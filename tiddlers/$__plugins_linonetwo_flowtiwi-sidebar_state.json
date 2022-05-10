@@ -4,7 +4,7 @@
             "w": 1,
             "h": 1,
             "x": 1,
-            "y": 16,
+            "y": 14,
             "i": "$:/core/ui/SideBar/Open",
             "moved": false,
             "static": false
@@ -13,7 +13,7 @@
             "w": 1,
             "h": 1,
             "x": 0,
-            "y": 12,
+            "y": 14,
             "i": "$:/plugins/kookma/favorites/sidebar-tab",
             "moved": false,
             "static": false
@@ -21,8 +21,8 @@
         {
             "w": 1,
             "h": 2,
-            "x": 1,
-            "y": 5,
+            "x": 0,
+            "y": 3,
             "i": "$:/core/ui/SideBar/Recent",
             "moved": false,
             "static": false
@@ -30,8 +30,8 @@
         {
             "w": 1,
             "h": 2,
-            "x": 0,
-            "y": 5,
+            "x": 1,
+            "y": 3,
             "i": "$:/core/ui/SideBar/Tools",
             "moved": false,
             "static": false
@@ -40,7 +40,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 7,
+            "y": 8,
             "i": "$:/core/ui/SideBar/More",
             "moved": false,
             "static": false
@@ -49,7 +49,7 @@
             "w": 1,
             "h": 1,
             "x": 0,
-            "y": 16,
+            "y": 15,
             "i": "$:/plugins/kookma/refnotes/ui/bibtexlibrary",
             "moved": false,
             "static": false
@@ -67,7 +67,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 14,
+            "y": 12,
             "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
             "moved": false,
             "static": false
@@ -76,7 +76,7 @@
             "w": 1,
             "h": 2,
             "x": 1,
-            "y": 12,
+            "y": 15,
             "i": "$:/plugins/linonetwo/source-control-management/SideBarSCMTab",
             "moved": false,
             "static": false
@@ -85,7 +85,7 @@
             "w": 2,
             "h": 3,
             "x": 0,
-            "y": 9,
+            "y": 5,
             "i": "$:/core/ui/SideBar/FishingAnalysis",
             "moved": false,
             "static": false
@@ -94,7 +94,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 3,
+            "y": 10,
             "i": "TheBrain",
             "moved": false,
             "static": false
@@ -206,7 +206,7 @@
             "w": 2,
             "h": 1,
             "x": 2,
-            "y": 12,
+            "y": 0,
             "i": "$:/core/ui/SideBar/Open",
             "moved": false,
             "static": false
@@ -214,8 +214,8 @@
         {
             "w": 2,
             "h": 1,
-            "x": 2,
-            "y": 0,
+            "x": 0,
+            "y": 9,
             "i": "$:/plugins/kookma/favorites/sidebar-tab",
             "moved": false,
             "static": false
@@ -223,8 +223,8 @@
         {
             "w": 2,
             "h": 3,
-            "x": 2,
-            "y": 1,
+            "x": 0,
+            "y": 4,
             "i": "$:/core/ui/SideBar/Recent",
             "moved": false,
             "static": false
@@ -233,7 +233,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 4,
+            "y": 7,
             "i": "$:/core/ui/SideBar/Tools",
             "moved": false,
             "static": false
@@ -242,7 +242,7 @@
             "w": 2,
             "h": 2,
             "x": 2,
-            "y": 13,
+            "y": 6,
             "i": "$:/core/ui/SideBar/More",
             "moved": false,
             "static": false
@@ -251,7 +251,7 @@
             "w": 1,
             "h": 1,
             "x": 3,
-            "y": 15,
+            "y": 13,
             "i": "$:/plugins/kookma/refnotes/ui/bibtexlibrary",
             "moved": false,
             "static": false
@@ -268,8 +268,8 @@
         {
             "w": 2,
             "h": 2,
-            "x": 0,
-            "y": 9,
+            "x": 2,
+            "y": 1,
             "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
             "moved": false,
             "static": false
@@ -278,7 +278,7 @@
             "w": 1,
             "h": 1,
             "x": 2,
-            "y": 15,
+            "y": 8,
             "i": "$:/plugins/linonetwo/source-control-management/SideBarSCMTab",
             "moved": false,
             "static": false
@@ -287,7 +287,7 @@
             "w": 2,
             "h": 3,
             "x": 2,
-            "y": 9,
+            "y": 3,
             "i": "$:/core/ui/SideBar/FishingAnalysis",
             "moved": false,
             "static": false
@@ -296,7 +296,7 @@
             "w": 4,
             "h": 3,
             "x": 0,
-            "y": 6,
+            "y": 10,
             "i": "TheBrain",
             "moved": false,
             "static": false

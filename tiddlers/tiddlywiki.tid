@@ -1,11 +1,10 @@
-color: #9f9ffe
-created: 20220510141536333
+color: #696ddd
+created: 20220510145356292
 creator: TidGiUser
-modified: 20220510141659711
+modified: 20220510145431632
 modifier: TidGiUser
 tags: 
 title: tiddlywiki
 type: text/vnd.tiddlywiki
 
-记录如何使用tiddlywiki
-<<locator-view "tiddlywiki">>
+学习使用tiddlywiki
