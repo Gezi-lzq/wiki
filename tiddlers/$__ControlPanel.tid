@@ -1,0 +1,11 @@
+color: #bbb
+created: 20220510100238431
+creator: lzq
+icon: $:/core/images/options-button
+modified: 20220510142533160
+modifier: lzq
+title: $:/ControlPanel
+type: text/vnd.tiddlywiki
+
+
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/ControlPanel]!has[draft.of]]" default="$:/core/ui/ControlPanel/Info" explicitState="$:/state/tab-1749438307"/>
