@@ -4,7 +4,7 @@
             "w": 1,
             "h": 1,
             "x": 1,
-            "y": 14,
+            "y": 3,
             "i": "$:/core/ui/SideBar/Open",
             "moved": false,
             "static": false
@@ -31,7 +31,7 @@
             "w": 1,
             "h": 2,
             "x": 1,
-            "y": 3,
+            "y": 15,
             "i": "$:/core/ui/SideBar/Tools",
             "moved": false,
             "static": false
@@ -47,7 +47,7 @@
         },
         {
             "w": 1,
-            "h": 1,
+            "h": 2,
             "x": 0,
             "y": 15,
             "i": "$:/plugins/kookma/refnotes/ui/bibtexlibrary",
@@ -74,9 +74,9 @@
         },
         {
             "w": 1,
-            "h": 2,
+            "h": 1,
             "x": 1,
-            "y": 15,
+            "y": 14,
             "i": "$:/plugins/linonetwo/source-control-management/SideBarSCMTab",
             "moved": false,
             "static": false
