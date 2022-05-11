@@ -1,8 +1,11 @@
 created: 20220511043537259
 creator: lzq
-modified: 20220511070912326
+due-date: 1
+modified: 20220511082910146
 modifier: lzq
-tags: 任务 解决方案 自改TW tiddlywiki done
+priority: normal
+status: complete
+tags: 解决方案 自改TW tiddlywiki task done
 title: 修复无法显示的热力图
 type: text/vnd.tiddlywiki
 

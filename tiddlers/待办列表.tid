@@ -1,0 +1,33 @@
+color: #de7d7d
+created: 20220510140909096
+creator: TidGiUser
+modified: 20220511083654476
+modifier: lzq
+tags: Index
+title: 待办列表
+type: text/vnd.tiddlywiki
+
+\define createTask()
+<$action-sendmessage 
+  $message="tm-new-tiddler" 
+  title="New Task" 
+  tags="task" 
+  text=""
+  due-date=""
+  priority="normal"
+  status="not started"
+  />
+\end
+
+\define newTask()
+<$button actions=<<createTask>> class="btn btn-sm btn-info" style="color:rgb(222,125,125)" >New Task
+</$button>
+\end
+
+<div class="float-right">
+<<newTask>>
+</div>
+
+
+搜索 <$edit-text tiddler="$:/temp/tasks/dtable/search" filed=text tag=input default=""/>
+<$macrocall $name=table-dynamic caption="优先待办列表" filter="[tag[task]search{$:/temp/tasks/dtable/search}]-[tag[done]]" fields="tbl-checkbox tbl-expand title priority status created" class="w-100" stateTiddler="your-state-tid" />
