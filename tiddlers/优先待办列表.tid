@@ -1,9 +1,9 @@
 created: 20220510140909096
 creator: TidGiUser
-modified: 20220510143029001
+modified: 20220511071043029
 modifier: lzq
 tags: Index
 title: 优先待办列表
 type: text/vnd.tiddlywiki
 
-<$macrocall $name=table-dynamic caption="优先待办列表" filter="[tag[任务]]" fields="title tags" class="w-100"/>
+<$macrocall $name=table-dynamic caption="优先待办列表" filter="[tag[任务]]-[tag[done]]" fields="title tags" class="w-100"/>

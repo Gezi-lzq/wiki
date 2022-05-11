@@ -1,7 +1,21 @@
 created: 20220511043537259
 creator: lzq
-modified: 20220511065946038
+modified: 20220511070912326
 modifier: lzq
-tags: 任务
+tags: 任务 解决方案 自改TW tiddlywiki done
 title: 修复无法显示的热力图
 type: text/vnd.tiddlywiki
+
+!!!问题：
+`<$echarts$tiddler="$:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap.js" $height="180px"/>`
+
+输入此段标签后，页面未显示每日热力图
+
+!!!解决方案
+解决方案相对不太明确，总的改变是
+
+创建并且填写了`$:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap.js`
+
+删除了插件并重新安装
+
+重启了此wiki
