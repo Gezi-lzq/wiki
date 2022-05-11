@@ -1,8 +1,8 @@
 created: 20220511052721957
 creator: lzq
-modified: 20220511053057730
+modified: 20220511065834811
 modifier: lzq
 title: $:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap/CalendarHeatmapExample
 type: text/vnd.tiddlywiki
 
-<$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap/CalendarHeatmap.js" $height="180px"/>
+<$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap.js" $height="180px"/>
