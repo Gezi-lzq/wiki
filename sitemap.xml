@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://onetwo.ren/wiki/#:done</loc>
-		<lastmod>2022-05-11</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:favicon.ico</loc>
 		<lastmod>2020-06-05</lastmod>
 		<changefreq>monthly</changefreq>
@@ -17,6 +11,12 @@
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:task</loc>
+		<lastmod>2022-05-11</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:TheBrain</loc>
@@ -49,19 +49,13 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:任务</loc>
-		<lastmod>2022-05-10</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://onetwo.ren/wiki/#:优先待办列表</loc>
+		<loc>https://onetwo.ren/wiki/#:修复无法显示的热力图</loc>
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:修复无法显示的热力图</loc>
+		<loc>https://onetwo.ren/wiki/#:制作vue页面</loc>
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -71,6 +65,12 @@
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:待办列表</loc>
+		<lastmod>2022-05-11</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:快速创建新笔记按钮</loc>
