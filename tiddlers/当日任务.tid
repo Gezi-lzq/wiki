@@ -1,0 +1,11 @@
+created: 20220511095944114
+creator: lzq
+modified: 20220511100517263
+modifier: lzq
+tags: 
+title: 当日任务
+type: text/vnd.tiddlywiki
+
+<$list filter="当天" variable=prj>
+<$macrocall $name=todolist-ui base=<<prj>> caption="""<h2 style="color:darkred;font-weight:lighter;"><<prj>></h2>""" width="60%" />
+</$list>
