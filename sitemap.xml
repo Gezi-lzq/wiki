@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://onetwo.ren/wiki/#:2022-5-12%2520关于项目安排的感想</loc>
-		<lastmod>2022-05-11</lastmod>
+		<loc>https://onetwo.ren/wiki/#:1.gRPC试图解决的问题是什么？</loc>
+		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2.什么是gRPC</loc>
+		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:add.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -13,13 +24,19 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:gRPG</loc>
+		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:image.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Index</loc>
-		<lastmod>2022-05-11</lastmod>
+		<lastmod>2022-05-12</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -60,14 +77,37 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:tidGi.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:修复无法显示的热力图</loc>
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:入门使用TiddlyWiki</loc>
+		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:创建Wiki仓库</loc>
+		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:制作vue页面</loc>
-		<lastmod>2022-05-11</lastmod>
+		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:安装TiddlyWiki</loc>
+		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -79,7 +119,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:当日任务</loc>
-		<lastmod>2022-05-11</lastmod>
+		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -91,19 +131,25 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:快速创建新笔记按钮</loc>
-		<lastmod>2022-05-10</lastmod>
+		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:想法</loc>
-		<lastmod>2022-05-11</lastmod>
+		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:热力图</loc>
 		<lastmod>2022-05-10</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:笔记</loc>
+		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
