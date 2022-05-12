@@ -1,0 +1,9 @@
+created: 20220512165052397
+creator: lzq
+modified: 20220512165150328
+modifier: lzq
+tags: Index
+title: 随记
+type: text/vnd.tiddlywiki
+
+<$macrocall $name="locator-view" baseTitle=<<currentTiddler>> />
