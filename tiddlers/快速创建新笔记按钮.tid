@@ -1,7 +1,7 @@
 color: #86651d
 created: 20220510145607290
 creator: TidGiUser
-modified: 20220512170620545
+modified: 20220512192041087
 modifier: lzq
 tags: 自改TW tiddlywiki
 title: 快速创建新笔记按钮
@@ -32,7 +32,7 @@ type: text/vnd.tiddlywiki
 	
 	<$button>
 		<$action-sendmessage $message="tm-new-tiddler" title="xxx" tags="随记" text="# " />
-	添加随记
+	添加学习笔记
 	</$button>
 	<$button>
 		<$action-sendmessage $message="tm-new-tiddler" title=<<now "YYYY-MM-DD">> text="" tags="APrivateContent 日志" />

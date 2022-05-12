@@ -1,0 +1,22 @@
+created: 20220512173000091
+creator: lzq
+modified: 20220512173833972
+modifier: lzq
+tags: 入门使用TiddlyWiki
+title: 创建Wiki仓库
+type: text/vnd.tiddlywiki
+
+打开软件，点击左侧添加按钮
+
+[img[add.png]]
+[img height=520 [image.png]]
+
+最开始我使用时，选择云端同步知识库的情况下，会在wiki仓库初始化过程中出现报错，所以我选择最开始不选择同步云端，而是先建立本地的知识库。
+完成下面信息，选择知识库所放入的文件夹后，即可创建一个wiki
+
+此时已经建立了一个Git仓库
+
+我这时选择手动在github中创建了一个仓库，然后将本地仓库的远程分支与github仓库相连，手动把本地仓库给推送到github仓库。
+
+
+

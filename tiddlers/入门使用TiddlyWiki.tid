@@ -1,0 +1,11 @@
+created: 20220512171727086
+creator: lzq
+icon: 📒
+modified: 20220512173959239
+modifier: lzq
+page-cover: https://source.unsplash.com/random
+tags: tiddlywiki
+title: 入门使用TiddlyWiki
+type: text/vnd.tiddlywiki
+
+<$macrocall $name="locator-view" baseTitle=<<currentTiddler>> />

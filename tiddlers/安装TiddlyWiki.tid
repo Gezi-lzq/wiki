@@ -1,0 +1,18 @@
+created: 20220512171837637
+creator: lzq
+modified: 20220512172733194
+modifier: lzq
+tags: 入门使用TiddlyWiki
+title: 安装TiddlyWiki
+type: text/vnd.tiddlywiki
+
+首先我们需要一个操作TiddlyWiki的客户端,这里有很多方案
+我所选择的是使用TidGi 桌面版TiddlyWiki
+
+[[TidGi-Desktop|https://github.com/tiddly-gittly/TidGi-Desktop]]
+
+>Desktop note app, with local REST API. 「 太记 」是一个基于「 太微 TiddlyWiki 」的知识管理桌面应用，能保护隐私内容、高级自动化、自动Git云备份、部署为博客，且可通过RESTAPI与Anki等应用连接。
+在releases中下载`Install-TidGi-Windows-x64.msi`,并安装，除了选择安装路径，剩下全是下一步。
+安装完成后,可正常打开此软件
+
+[img[tidGi.png]]
