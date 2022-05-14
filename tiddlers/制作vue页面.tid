@@ -1,11 +1,11 @@
 created: 20220511080236651
 creator: lzq
 due-date: 1
-modified: 20220512174226545
+modified: 20220514054440591
 modifier: lzq
 priority: normal
-status: not started
-tags: task
+status: complete
+tags: task done
 title: 制作vue页面
 type: text/vnd.tiddlywiki
 

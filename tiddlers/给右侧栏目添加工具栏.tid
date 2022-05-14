@@ -1,0 +1,9 @@
+created: 20220513055621021
+creator: lzq
+modified: 20220513055721373
+modifier: lzq
+tags: tiddlywiki
+title: 给右侧栏目添加工具栏
+type: text/vnd.tiddlywiki
+
+在卡片中添加`$:/tags/SideBar` tag即可
