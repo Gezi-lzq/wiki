@@ -1,0 +1,19 @@
+created: 20220517042554909
+creator: lzq
+modified: 20220517051639073
+modifier: lzq
+tags: 最小生成树
+title: 普利姆算法(Prim)
+type: text/vnd.tiddlywiki
+
+算法步骤
+
+* 初始化距离，将所有距离初始化为正无穷
+
+* n次迭代
+
+** 找到集合外距离集合最近的点，赋给t
+
+** 用t更新其他点到集合的距离
+
+** 把t加入到集合当中去

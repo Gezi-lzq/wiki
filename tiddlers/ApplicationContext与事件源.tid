@@ -1,0 +1,22 @@
+created: 20220515173615270
+creator: lzq
+modified: 20220515185019085
+modifier: lzq
+tags: Spring 观察者模式
+title: ApplicationContext与事件源
+type: text/vnd.tiddlywiki
+
+What is ApplicationContext?
+
+> ApplicationContext 是一个为应用程序提供配置信息的接口。
+> Springframework 提供了多个类来实现这个接口，并帮助我们在应用程序中使用配置信息。
+> ApplicationContext 提供标准的 bean 工厂生命周期功能。
+
+系统中Bean的各个依赖关系，都属于配置中的一种，而整个应用程序的配置信息也都由ApplicationContext管理
+
+通过事件驱动架构，还可以把它认作为一个事件源，在这个事件源中，应用会发生很多状态的变化，例如:
+
+<table ><tbody ><tr class="evenRow"><th > Spring 内置事件</th><th align="center">描述</th></tr><tr class="oddRow"><th > ContextRefreshedEvent</th><td >ApplicationContext 被初始化或刷新时，该事件被发布。这也可以在 ConfigurableApplicationContext 接口中使用 refresh() 方法来发生。</td></tr><tr class="evenRow"><th >ContextStartedEvent</th><td >当使用 ConfigurableApplicationContext 接口中的 start() 方法启动 ApplicationContext 时，该事件被发布。你可以调查你的数据库，或者你可以在接受到这个事件后重启任何停止的应用程序。</td></tr><tr class="oddRow"><th align="left"> ContextStoppedEvent</th><td >当使用 ConfigurableApplicationContext 接口中的 stop() 方法停止 ApplicationContext 时，发布这个事件。你可以在接受到这个事件后做必要的清理的工作。</td></tr><tr class="evenRow"><th align="left"> ContextClosedEvent</th><td >当使用 ConfigurableApplicationContext 接口中的 close() 方法关闭 ApplicationContext 时，该事件被发布。一个已关闭的上下文到达生命周期末端；它不能被刷新或重启。</td></tr><tr class="oddRow"><th align="left"> RequestHandledEvent</th><td >这是一个 web-specific 事件，告诉所有 bean HTTP 请求已经被服务。</td></tr></tbody></table>
+这些都是事件源所能发出的一些事件。
+
+ApplicationListener对于ApplicationEvent进行关注，当目前的应用上下文发生某个Event，对应的Listener就会收到，并对此Event进行响应。

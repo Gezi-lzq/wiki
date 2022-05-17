@@ -1,0 +1,13 @@
+created: 20220517034110679
+creator: lzq
+modified: 20220517034456338
+modifier: lzq
+tags: 数据结构与算法 图论
+title: 二分图
+type: text/vnd.tiddlywiki
+wysiwyg: yes
+
+判别二分图 > dfs染色法 O(n+m)
+
+
+求最大匹配 ——> 匈牙利算法 O(mn),实际运行时间一般远小于O(mn)
