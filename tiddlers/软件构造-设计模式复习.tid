@@ -1,0 +1,11 @@
+created: 20220519145928510
+creator: lzq
+modified: 20220519152415391
+modifier: lzq
+tags: 软件构造复习
+title: 软件构造-设计模式复习
+type: text/vnd.tiddlywiki
+
+> 熟练掌握工厂方法模式与适配器模式（重点掌握其核心思想及其模式的UML类图设计、代码实现）
+
+<<list-links "[tag[软件构造-设计模式复习]sort[title]]">>
