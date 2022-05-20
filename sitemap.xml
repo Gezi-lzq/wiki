@@ -47,6 +47,12 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:JSP实验</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Spring</loc>
 		<lastmod>2022-05-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -94,6 +100,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:UML-ER图</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:UML-类图</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:不要刻意追求最佳实践</loc>
 		<lastmod>2022-05-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -119,7 +137,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:最小生成树</loc>
-		<lastmod>2022-05-17</lastmod>
+		<lastmod>2022-05-18</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -136,6 +154,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:基础SQL语句</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:安装TiddlyWiki</loc>
 		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
@@ -144,6 +168,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:对onetwo的wiki做模仿</loc>
 		<lastmod>2022-05-11</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:工厂模式</loc>
+		<lastmod>2022-05-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -167,7 +197,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:想法</loc>
-		<lastmod>2022-05-15</lastmod>
+		<lastmod>2022-05-18</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -179,7 +209,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:普利姆算法(Prim)</loc>
-		<lastmod>2022-05-17</lastmod>
+		<lastmod>2022-05-18</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -218,5 +248,47 @@
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:软件构造-GUI软件构造</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:软件构造-应用数据库</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:软件构造-设计模式复习</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:软件构造-面向对象的软件构造</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:软件构造复习</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:迭代器模式</loc>
+		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:需要完成的课程作业</loc>
+		<lastmod>2022-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
 	</url>
 </urlset>
