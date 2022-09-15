@@ -13,15 +13,6 @@
             "w": 1,
             "h": 1,
             "x": 0,
-            "y": 12,
-            "i": "$:/plugins/kookma/favorites/sidebar-tab",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 1,
-            "x": 0,
             "y": 4,
             "i": "$:/core/ui/SideBar/Recent",
             "moved": false,
@@ -31,7 +22,7 @@
             "w": 1,
             "h": 2,
             "x": 1,
-            "y": 13,
+            "y": 11,
             "i": "$:/core/ui/SideBar/Tools",
             "moved": false,
             "static": false
@@ -40,7 +31,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 10,
+            "y": 8,
             "i": "$:/core/ui/SideBar/More",
             "moved": false,
             "static": false
@@ -49,7 +40,7 @@
             "w": 1,
             "h": 2,
             "x": 0,
-            "y": 13,
+            "y": 10,
             "i": "$:/plugins/kookma/refnotes/ui/bibtexlibrary",
             "moved": false,
             "static": false
@@ -67,7 +58,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 15,
+            "y": 13,
             "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
             "moved": false,
             "static": false
@@ -76,7 +67,7 @@
             "w": 1,
             "h": 1,
             "x": 1,
-            "y": 12,
+            "y": 10,
             "i": "$:/plugins/linonetwo/source-control-management/SideBarSCMTab",
             "moved": false,
             "static": false
@@ -96,15 +87,6 @@
             "x": 0,
             "y": 2,
             "i": "当日任务",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 2,
-            "h": 2,
-            "x": 0,
-            "y": 8,
-            "i": "TheBrain",
             "moved": false,
             "static": false
         }
