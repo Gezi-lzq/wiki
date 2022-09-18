@@ -13,6 +13,15 @@
             "w": 1,
             "h": 1,
             "x": 0,
+            "y": 5,
+            "i": "$:/plugins/kookma/favorites/ui/sidebar/active-tab",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 1,
+            "h": 1,
+            "x": 0,
             "y": 4,
             "i": "$:/core/ui/SideBar/Recent",
             "moved": false,
@@ -22,7 +31,7 @@
             "w": 1,
             "h": 2,
             "x": 1,
-            "y": 11,
+            "y": 9,
             "i": "$:/core/ui/SideBar/Tools",
             "moved": false,
             "static": false
@@ -31,7 +40,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 8,
+            "y": 6,
             "i": "$:/core/ui/SideBar/More",
             "moved": false,
             "static": false
@@ -40,7 +49,7 @@
             "w": 1,
             "h": 2,
             "x": 0,
-            "y": 10,
+            "y": 8,
             "i": "$:/plugins/kookma/refnotes/ui/bibtexlibrary",
             "moved": false,
             "static": false
@@ -58,7 +67,7 @@
             "w": 2,
             "h": 2,
             "x": 0,
-            "y": 13,
+            "y": 11,
             "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
             "moved": false,
             "static": false
@@ -67,17 +76,17 @@
             "w": 1,
             "h": 1,
             "x": 1,
-            "y": 10,
+            "y": 8,
             "i": "$:/plugins/linonetwo/source-control-management/SideBarSCMTab",
             "moved": false,
             "static": false
         },
         {
-            "w": 2,
-            "h": 3,
+            "w": 1,
+            "h": 1,
             "x": 0,
-            "y": 5,
-            "i": "$:/core/ui/SideBar/FishingAnalysis",
+            "y": 13,
+            "i": "$:/plugins/oflg/fishing-analysis/ui/SideBar/FishingAnalysis",
             "moved": false,
             "static": false
         },
