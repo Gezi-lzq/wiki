@@ -1,10 +1,11 @@
 created: 20220917140422301
 creator: lzq
-modified: 20220918115139034
+modified: 20220918115835643
 modifier: lzq
 tags: GPM调度模型
 title: Machine
 type: text/vnd.tiddlywiki
+wysiwyg: yes
 
 !!Machine
 M就是''对应操作系统的线程''，最多会有GOMAXPROCS个活跃线程能够正常运行，默认情况下''GOMAXPROCS被设置为内核数'',假如有四个内核，那么默认就创建四个线程
