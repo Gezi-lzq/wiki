@@ -1,6 +1,6 @@
 created: 20220917140422301
 creator: lzq
-modified: 20220917142122696
+modified: 20220918032832884
 modifier: lzq
 tags: GPM调度模型
 title: Machine
@@ -24,4 +24,5 @@ type m struct {
 }
 ```
 g0：会''深度参与运行时的调度过程''，比如goroutine的创建、内存分配等
+
 curg：代表''当前正在线程上执行的goroutin''e。
