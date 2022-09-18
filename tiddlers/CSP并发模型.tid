@@ -1,9 +1,15 @@
 created: 20220918133632133
 creator: lzq
-modified: 20220918133804289
+modified: 20220918134658762
 modifier: lzq
 tags: 笔记
 title: CSP并发模型
 type: text/vnd.tiddlywiki
 
 Go语言的并发模型为CSP（Communicating Sequential Processes），提倡通过通信共享内存而不是通过共享内存而实现通信。
+
+
+> 为什么不通过共享内存来实现通信？
+> 
+> 共享内存在不同的goroutine中容易''发生竞态问题''。为了保证数据交换的正确性，必须使用''互斥量对内存进行加锁''，这种做法势必造成性能问题
+
