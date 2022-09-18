@@ -1,0 +1,21 @@
+created: 20220917135202780
+creator: lzq
+modified: 20220917140752489
+modifier: lzq
+tags: 笔记 GPM调度模型
+title: GPM调度模型
+type: text/vnd.tiddlywiki
+
+# GPM调度模型
+
+三种角色：
+
+* Gorouttine: 用go关键字创建的执行体，它对应一个结构体g，结构体里保存了goroutine的堆栈信息
+* Processor: 表示处理器，有了它才能建立G、M的联系
+* Machine: 表示操作系统的线程
+
+{{Goroutine}}
+
+{{Machine}}
+
+

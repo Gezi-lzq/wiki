@@ -1,0 +1,27 @@
+created: 20220917140422301
+creator: lzq
+modified: 20220917142122696
+modifier: lzq
+tags: GPM调度模型
+title: Machine
+type: text/vnd.tiddlywiki
+
+!!Machine
+M就是''对应操作系统的线程''，最多会有GOMAXPROCS个活跃线程能够正常运行，默认情况下''GOMAXPROCS被设置为内核数'',假如有四个内核，那么默认就创建四个线程
+
+每一个线程对应一个runtime.m结构体。
+
+线程数等于CPU个数的原因是，每个线程分配到一个CPU上就''不至于出现线程的上下文切换''，可以保证系统开销降到最低。
+
+```
+type m struct {
+	g0   *g 
+	curg *g
+	...
+	p             puintptr
+	nextp         puintptr
+	oldp          puintptr
+}
+```
+g0：会''深度参与运行时的调度过程''，比如goroutine的创建、内存分配等
+curg：代表''当前正在线程上执行的goroutin''e。
