@@ -1,6 +1,6 @@
 created: 20220917135202780
 creator: lzq
-modified: 20220918135801737
+modified: 20220918140513222
 modifier: lzq
 tags: 笔记 GPM调度模型
 title: GPM调度模型
@@ -23,3 +23,6 @@ type: text/vnd.tiddlywiki
 
 {{Machine}}
 
+{{Processor}}
+
+[img[GPM调度.png]]

@@ -1,0 +1,14 @@
+created: 20220918140204348
+creator: lzq
+modified: 20220918140204348
+modifier: lzq
+tags: GPM调度模型
+title: Processor
+type: text/vnd.tiddlywiki
+
+!! Processor
+Proccessor负责Machine与Goroutine的连接，它能提供线程需要的上下文环境，也能分配G到它应该去的线程上执行，有了它，每个G都能得到合理的调用，每个线程都不再浑水摸鱼
+
+同样的，处理器的数量也是默认按照GOMAXPROCS来设置的，与线程的数量一一对应
+
+结构体P中存储了性能追踪、垃圾回收、计时器等相关的字段外，还存储了处理器的待运行队列，队列中存储的是待执行的Goroutine列表。
