@@ -42,6 +42,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:GPM调度.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:GPM调度模型</loc>
 		<lastmod>2022-09-18</lastmod>
 		<changefreq>monthly</changefreq>
@@ -78,6 +83,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:NewTiddler</loc>
+		<lastmod>2022-09-18</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Processor</loc>
 		<lastmod>2022-09-18</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
