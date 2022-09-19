@@ -36,19 +36,19 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:GMP调度模型</loc>
+		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Goroutine</loc>
-		<lastmod>2022-09-18</lastmod>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:GPM调度.png</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>https://onetwo.ren/wiki/#:GPM调度模型</loc>
-		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -77,7 +77,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Machine</loc>
-		<lastmod>2022-09-18</lastmod>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -89,7 +89,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Processor</loc>
-		<lastmod>2022-09-18</lastmod>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
