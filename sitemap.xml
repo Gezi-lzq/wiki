@@ -48,7 +48,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:GPM调度模型</loc>
-		<lastmod>2022-09-18</lastmod>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -159,6 +159,16 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:x86-64Linux进程地址空间分布.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:不同进程轮流使用处理器.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:不要刻意追求最佳实践</loc>
 		<lastmod>2022-05-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -225,6 +235,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:并发与并行的区别</loc>
+		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:当日任务</loc>
 		<lastmod>2022-05-13</lastmod>
 		<changefreq>monthly</changefreq>
@@ -268,7 +284,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:深入理解计算机系统</loc>
-		<lastmod>2022-09-18</lastmod>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -334,13 +350,19 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:进程与上下文</loc>
-		<lastmod>2022-09-18</lastmod>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:迭代器模式</loc>
 		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:逻辑控制流</loc>
+		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
