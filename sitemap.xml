@@ -295,6 +295,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:用户态和内核态</loc>
+		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:笔记</loc>
 		<lastmod>2022-05-13</lastmod>
 		<changefreq>monthly</changefreq>
