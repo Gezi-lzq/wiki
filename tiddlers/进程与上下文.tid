@@ -1,0 +1,11 @@
+created: 20220918141500905
+creator: lzq
+modified: 20220918141638805
+modifier: lzq
+tags: 深入理解计算机系统
+title: 进程与上下文
+type: text/vnd.tiddlywiki
+
+!Processes(进程)
+当在命令行启动一个程序，我们往往会产生如下''假象''
+* 
