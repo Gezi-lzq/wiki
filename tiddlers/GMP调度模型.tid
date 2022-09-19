@@ -1,12 +1,12 @@
 created: 20220917135202780
 creator: lzq
-modified: 20220919054741995
+modified: 20220919070851056
 modifier: lzq
-tags: 笔记 GPM调度模型
-title: GPM调度模型
+tags: 笔记 GMP调度模型
+title: GMP调度模型
 type: text/vnd.tiddlywiki
 
-# GPM调度模型
+# GMP调度模型
 
 三种角色：
 
@@ -26,3 +26,11 @@ type: text/vnd.tiddlywiki
 {{Processor}}
 
 [img[GPM调度.png]]
+
+* 全局队列：存放等待运行的G
+
+* P的本地队列：同全局队列类似，存放的也是等待运行的G，存的数量有限，不超过 256 个。新建 G’时，G’优先加入到 P 的本地队列，如果队列满了，则会把本地队列中一半的 G 移动到全局队列。
+
+* P 列表：所有的 P 都在程序启动时创建，并保存在数组中，最多有 GOMAXPROCS(可配置) 个。
+
+* M：线程想运行任务就得获取 P，从 P 的本地队列获取 G，P 队列为空时，M 也会尝试从全局队列拿一批 G 放到 P 的本地队列，或从其他 P 的本地队列偷一半放到自己 P 的本地队列。M 运行 G，G 执行之后，M 会从 P 获取下一个 G，不断重复下去。
