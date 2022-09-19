@@ -1,0 +1,12 @@
+created: 20220919054002306
+creator: lzq
+modified: 20220919054311954
+modifier: lzq
+tags: 进程与上下文
+title: 逻辑控制流
+type: text/vnd.tiddlywiki
+
+!!Logical Control Flow
+假如我们用调试器来控制程序单步执行，我们会看到一系列的程序计数器的数值
+这些数值与可执行程序中的指令是一一对应的
+我们把这个PC值的序列叫做逻辑控制流，简称逻辑流

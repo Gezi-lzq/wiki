@@ -1,0 +1,11 @@
+created: 20220919055308889
+creator: lzq
+modified: 20220919055308889
+modifier: lzq
+tags: 进程与上下文
+title: 并发与并行的区别
+type: text/vnd.tiddlywiki
+
+> 并发与并行的不同
+> 并行是两个进程在不同的处理器核上同时运行
+> 并发是在同一个处理器核上交替运行的
