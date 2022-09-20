@@ -265,6 +265,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:数字信号与模拟信号的区别</loc>
+		<lastmod>2022-09-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:数据结构与算法</loc>
 		<lastmod>2022-05-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -323,6 +329,12 @@
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:计算机网络</loc>
+		<lastmod>2022-09-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:软件构造-GUI软件构造</loc>
