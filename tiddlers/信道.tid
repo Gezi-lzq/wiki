@@ -1,0 +1,15 @@
+created: 20220920022746460
+creator: lzq
+modified: 20220920022857351
+modifier: lzq
+tags: 计算机网络
+title: 信道
+type: text/vnd.tiddlywiki
+
+是信号在通信系统中传输的通道，由信号从发射端传输到接收端所经过的传输媒质所构成。
+
+分为：
+
+* 模拟信道
+
+* 数字信道

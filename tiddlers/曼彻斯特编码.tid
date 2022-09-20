@@ -1,0 +1,13 @@
+created: 20220920023106032
+creator: lzq
+modified: 20220920023211673
+modifier: lzq
+tags: 计算机网络
+title: 曼彻斯特编码
+type: text/vnd.tiddlywiki
+
+曼彻斯特编码（Manchester coding）
+
+能够用信号的变化来保持发送设备和接收设备之间的同步
+
+它用电压的变化来分辨0和1，从高电平到低电平的跳变代表1，而从低电平到高电平的跳变代表0
