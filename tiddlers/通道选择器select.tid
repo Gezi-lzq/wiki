@@ -1,0 +1,28 @@
+created: 20220925081053571
+creator: lzq
+modified: 20220925082714595
+modifier: lzq
+tags: Golang高并发
+title: 通道选择器select
+type: text/vnd.tiddlywiki
+
+常规的通过通道发送和接收数据是阻塞的，当我试图获取多个通道发来的值的时候，常规的顺序写法，会让程序等待其中一个channel发信息，而另一个channel已经发送了信息却没机会接受，也得暂停在那。因此我们通过`select`语句来同时等待多个channel发来信息。
+
+<<code src:"select {
+case <-ch1:
+    // ...
+case x := <-ch2:
+    // ...use x...
+case ch3 <- y:
+    // ...
+default:
+    // ...
+}" language:golang >>
+
+select会等待case中有能够执行的case时去执行。
+
+当条件满足时，select才会去通信并执行case之后的语句；
+
+这时候其它通信是不会执行的。
+
+一个没有任何case的select语句写作select{}，会永远地等待下去。
