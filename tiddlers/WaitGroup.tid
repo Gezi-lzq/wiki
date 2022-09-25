@@ -1,11 +1,12 @@
 created: 20220925070251329
 creator: lzq
-modified: 20220925070911002
+modified: 20220925072516787
 modifier: lzq
 tags: Golang高并发
 title: WaitGroup
 type: text/vnd.tiddlywiki
 
+!! WaitGroup
 当main函数执行完后，即使协程还未执行完，也会跟着main函数的结束而一起结束
 
 为了使得main函数等待其他协程执行完后再去终止程序，则需要通过`WaitGroup` 来辅助实现

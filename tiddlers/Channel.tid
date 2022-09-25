@@ -1,0 +1,17 @@
+created: 20220925072212922
+creator: lzq
+modified: 20220925074806956
+modifier: lzq
+tags: Golang高并发
+title: Channel
+type: text/vnd.tiddlywiki
+
+!!Channer 信道
+> ''Don't communicate by sharing memory;share memory by communicating''
+> ''我们不通过共享内存而交流，而是通过交流来共享内存''
+
+在go语言中，channel就是不同的goroutine之间交流的途径，你可以把它看成一个管道，通过它并发核心单元就可以发送或者接收数据进行通讯
+
+* 通过`make`创建，如`ch := make(chan int)`
+* channel 具有数据类型，可以接收和发送类型为 T 的数据
+* 可以设置容量 `make(chan int, 100)` 。设置了缓存，就有可能不发生阻塞， 只有buffer满了后 send才会阻塞
