@@ -1,0 +1,42 @@
+created: 20220925070251329
+creator: lzq
+modified: 20220925070911002
+modifier: lzq
+tags: Golang高并发
+title: WaitGroup
+type: text/vnd.tiddlywiki
+
+当main函数执行完后，即使协程还未执行完，也会跟着main函数的结束而一起结束
+
+为了使得main函数等待其他协程执行完后再去终止程序，则需要通过`WaitGroup` 来辅助实现
+
+''WaitGroup''主要用于同步多个协程间的状态（例如等待所有协程都执行完）。
+
+在WaitGroup 对象实现中，内部有一个计数器，最初从0开始，它有三个方法：
+
+* Add()：计数器加一
+
+* Done()：计数器减一
+
+* Wait()：等待计数器清零
+
+''执行Wait方法的函数在等待组内部计数器不为0的时候回阻塞''，一旦计数器为0了，程序就会继续往下执行。
+
+> 注意事项
+> 1. 计数器不能为负值
+> 2. WaitGroup对象不是一个引用类型，在通过函数传值的时候需要使用地址
+>   <<code src:"// 一定要通过指针传值，不然进程会进入死锁状态
+func f(i int, wg *sync.WaitGroup) {
+    fmt.Println(i)
+    wg.Done()
+}
+ 
+func main() {
+    wg := sync.WaitGroup{}
+    wg.Add(100)
+    for i := 0; i < 100; i++ {
+        go f(i, &wg)
+    }
+    wg.Wait()
+}
+" language:"golang" title:"">>
