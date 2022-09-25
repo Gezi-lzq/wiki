@@ -42,6 +42,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Golang高并发</loc>
+		<lastmod>2022-09-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Goroutine</loc>
 		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
@@ -155,6 +161,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:UML-类图</loc>
 		<lastmod>2022-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:WaitGroup</loc>
+		<lastmod>2022-09-25</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
