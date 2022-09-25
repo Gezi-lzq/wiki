@@ -409,6 +409,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:通道选择器select</loc>
+		<lastmod>2022-09-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:逻辑控制流</loc>
 		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
