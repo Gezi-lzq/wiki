@@ -247,6 +247,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:实现分布式缓存GeeCache</loc>
+		<lastmod>2022-09-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:对onetwo的wiki做模仿</loc>
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
