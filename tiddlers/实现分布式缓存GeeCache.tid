@@ -1,18 +1,17 @@
 created: 20220928030155110
 creator: lzq
 due-date: 
-modified: 20220928030424882
+modified: 20220928030635004
 modifier: lzq
 priority: normal
 status: not started
 tags: task
 title: 实现分布式缓存GeeCache
 type: text/vnd.tiddlywiki
-wysiwyg: yes
 
 学习来源：[ext[https://geektutu.com/post/geecache.html]]
 
-
+!! 任务介绍
 
 GeeCache 基本上模仿了 groupcache 的实现，为了将代码量限制在 500 行左右（groupcache 约 3000 行），裁剪了部分功能。
 但总体实现上，还是与 groupcache 非常接近的。支持特性有：
@@ -26,3 +25,7 @@ GeeCache 基本上模仿了 groupcache 的实现，为了将代码量限制在 5
 
 GeeCache 分7天实现，每天完成的部分都是可以独立运行和测试的，就像搭积木一样，每天实现的特性组合在一起就是最终的分布式缓存系统。每天的代码在 100 行左右。
 
+!! 目标
+
+* 巩固Golang并发处理知识
+* 学习分布式缓存涉及的知识并对整体架构有一个直观理解
