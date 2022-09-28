@@ -1,6 +1,6 @@
 created: 20220928111404826
 creator: lzq
-modified: 20220928112118183
+modified: 20220928114245668
 modifier: lzq
 tags: LRU缓存淘汰算法
 title: LRU 算法实现
@@ -10,4 +10,11 @@ type: text/vnd.tiddlywiki
 !! 核心数据结构
 
 [img[LRU数据结构.png]]
+
+* 绿色的是字典(map)，存储键和值的映射关系。这样根据某个键(key)查找对应的值(value)的复杂是O(1)，在字典中插入一条记录的复杂度也是O(1)。
+
+* 红色的是双向链表(double linked list)实现的队列。将所有的值放到双向链表中，这样，当访问到某个值时，将其移动到队尾的复杂度是O(1)，在队尾新增一条记录以及删除一条记录的复杂度均为O(1)。
+
+
+[img[LRU演示.png]]
 
