@@ -48,6 +48,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:FIFO缓存淘汰算法</loc>
+		<lastmod>2022-09-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:GMP调度模型</loc>
 		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
@@ -90,6 +96,39 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:JSP实验</loc>
 		<lastmod>2022-06-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:LFU缓存淘汰算法</loc>
+		<lastmod>2022-09-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:LRU%2520算法实现</loc>
+		<lastmod>2022-09-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:LRU数据结构.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:LRU演示.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:LRU演示2.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:LRU缓存淘汰算法</loc>
+		<lastmod>2022-09-28</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -363,6 +402,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:给右侧栏目添加工具栏</loc>
 		<lastmod>2022-05-13</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:缓存淘汰策略</loc>
+		<lastmod>2022-09-28</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
