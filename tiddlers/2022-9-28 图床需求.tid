@@ -1,0 +1,10 @@
+created: 20220928065416785
+creator: lzq
+modified: 20220928065552450
+modifier: lzq
+tags: 想法
+title: 2022-9-28 图床需求
+type: text/vnd.tiddlywiki
+
+* 需要一个稳定的图片存储方案
+* 可以通过 快捷键/悬浮框 的方式，将我剪切板内的图片进行上传 并转成外链
