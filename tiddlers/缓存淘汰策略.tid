@@ -1,0 +1,11 @@
+created: 20220928110347912
+creator: lzq
+modified: 20220928110814808
+modifier: lzq
+tags: 分布式缓存
+title: 缓存淘汰策略
+type: text/vnd.tiddlywiki
+
+{{FIFO缓存淘汰算法}}
+{{LFU缓存淘汰算法}}
+{{LRU缓存淘汰算法}}
