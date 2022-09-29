@@ -1,20 +1,61 @@
 created: 20220928111404826
 creator: lzq
-modified: 20220928114245668
+modified: 20220929021002129
 modifier: lzq
 tags: LRU缓存淘汰算法
 title: LRU 算法实现
 type: text/vnd.tiddlywiki
-
 
 !! 核心数据结构
 
 [img[LRU数据结构.png]]
 
 * 绿色的是字典(map)，存储键和值的映射关系。这样根据某个键(key)查找对应的值(value)的复杂是O(1)，在字典中插入一条记录的复杂度也是O(1)。
-
 * 红色的是双向链表(double linked list)实现的队列。将所有的值放到双向链表中，这样，当访问到某个值时，将其移动到队尾的复杂度是O(1)，在队尾新增一条记录以及删除一条记录的复杂度均为O(1)。
 
-
 [img[LRU演示.png]]
+
+<<code src:"type Cache struct {
+	// 允许最大使用内存
+	maxBytes int64
+	// 当前已使用内存
+	nbytes int64
+	// 双向链表
+	ll *list.List
+
+	cache map[string]*list.Element
+
+	// OnEvicted 是某条记录被移除时的回调函数，可以为 nil
+	onEvicted func(key string, value Value)
+}
+
+// 键值对 entry 是双向链表节点的数据类型
+type entry struct {
+	// 在链表中仍保存每个值对应的 key 的好处在于
+	// 淘汰队首节点时，需要用 key 从字典中删除对应的映射
+	key   string
+	value Value
+}
+
+// 为了通用性，我们允许值是实现了 Value 接口的任意类型
+// 该接口只包含了一个方法 Len() int
+// 用于返回值所占用的内存大小
+type Value interface {
+	Len() int
+}
+" language:golang title:LRU>>
+
+!!操作
+
+* `Get(key string) (value Value, ok bool)` :
+
+查找,第一步：从字典中找到对应节点的双向链表的节点,将该节点移动到队尾,返回查找到的值
+
+* `RemoveOldest()` : 
+
+删除 缓存淘汰，即移除最近最少访问的节点(队首),取出队首节点,从链表中删除,从字典c.cache删除该节点的映射关系,更新当前所用的内存 c.nbytes,若回调函数OnEvited不为nil,则调用回调函数
+
+* `Add(key string, value Value)` : 
+
+新增/修改.如果键存在，则更新对应节点的值，并将该节点移到队尾;不存在则是新增场景,首先队尾添加新节点`&entry{key,value}` ,字典中添加key和节点的映射关系,更新从c.nbytes.如果超过了设定的最大值c.maxBytes,则移除最少访问的节点
 
