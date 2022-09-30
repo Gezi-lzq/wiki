@@ -163,6 +163,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:sync.Mutex互斥锁</loc>
+		<lastmod>2022-09-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:task</loc>
 		<lastmod>2022-05-11</lastmod>
 		<changefreq>monthly</changefreq>
