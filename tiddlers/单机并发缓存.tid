@@ -1,11 +1,9 @@
 created: 20220930070322580
 creator: lzq
-draft.of: NewTiddler 1
-draft.title: 单机并发缓存
-modified: 20220930070443051
+modified: 20220930075259417
 modifier: lzq
 tags: 分布式缓存
-title: Draft of 'NewTiddler 1' by lzq
+title: 单机并发缓存
 type: text/vnd.tiddlywiki
 
 * sync.Mutex 互斥锁的使用，并实现 LRU 缓存的并发控制
