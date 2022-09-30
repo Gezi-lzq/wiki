@@ -1,0 +1,13 @@
+created: 20220930070322580
+creator: lzq
+draft.of: NewTiddler 1
+draft.title: 单机并发缓存
+modified: 20220930070443051
+modifier: lzq
+tags: 分布式缓存
+title: Draft of 'NewTiddler 1' by lzq
+type: text/vnd.tiddlywiki
+
+* sync.Mutex 互斥锁的使用，并实现 LRU 缓存的并发控制
+* 实现GeeCache核心数据结构Group，缓存不存在时，调用回调函数获取源数据
+
