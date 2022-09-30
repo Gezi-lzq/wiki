@@ -42,12 +42,6 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;NewTiddler%25201&apos;%2520by%2520lzq</loc>
-		<lastmod>2022-09-30</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:favicon.ico</loc>
 		<lastmod>2020-06-05</lastmod>
 		<changefreq>monthly</changefreq>
@@ -294,6 +288,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:制作vue页面</loc>
 		<lastmod>2022-05-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:单机并发缓存</loc>
+		<lastmod>2022-09-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
