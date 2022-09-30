@@ -1,0 +1,49 @@
+created: 20220930085435120
+creator: lzq
+modified: 20220930091437944
+modifier: lzq
+tags: 分布式系统
+title: MapReduce
+type: text/vnd.tiddlywiki
+
+MapReduce是由Google设计，开发和使用的一个系统
+
+Google当时面临的问题是，他们需要在TB级别的数据上进行大量的计算：
+1. 统计某个关键词的现的频率,计算pageRank
+
+2. 对大规模数据按词频排序
+
+3. 对多台机器上的文件进行grep等
+
+MapReduce的思想是，应用程序设计人员和分布式运算的使用者，只需要写简单的Map函数和Reduce函数，而不需要知道任何有关分布式的事情，MapReduce框架会处理剩下的事情。
+
+[img[mapreduce.png]]
+
+> 将一组输入的数据应用map函数返回一个k/v对的结构作为中间数据集,并将具有相同key的数据输入到一个reduce函数中执行,最终返回处理后的结果。
+
+这一计算模型的优势在于非常利于并行化,map的过程可以在多台机器上而机器之间''不需要相互协调''。reduce的执行''同样不需要协调,没有相互依赖可并行执行''。 
+
+所有的依赖性和协调过程都被隐藏在''map与reduce函数的数据分发之间。因此这里有一个很重要的细节就是 map和reduce都是可以''各自并行执行,但reduce执行的''前提条件是所有的map函数执行完毕''。
+
+
+
+例子：
+假设要对几个TB的英文资料进行单词词频的统计。
+
+<<code src:"map(String key,String value):
+    // key: 文档名
+    // value: 文档内容
+    for each word w in value:
+        EmitIntermediate(w,'1');
+reduce(Stringkey, Iterator values):
+    // key: 一个单词
+    // value: 计数值列表
+    int result = 0;
+    for each v in values:
+        result += ParseInt(v);
+    Emit(AsString(result));" language:"python" title:"">>
+
+
+
+
+
