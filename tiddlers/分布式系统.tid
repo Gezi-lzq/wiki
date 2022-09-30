@@ -1,9 +1,9 @@
 created: 20220930085406833
 creator: lzq
-modified: 20220930085432518
+modified: 20220930113942308
 modifier: lzq
 tags: 笔记
 title: 分布式系统
 type: text/vnd.tiddlywiki
 
-<<list-links "[tag[“分布式系统”]sort[title]]">>
+<$macrocall $name="locator-view" baseTitle=<<currentTiddler>> />
