@@ -139,6 +139,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:MapReduce</loc>
+		<lastmod>2022-09-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:mapreduce.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:NewTiddler</loc>
 		<lastmod>2022-09-18</lastmod>
 		<changefreq>monthly</changefreq>
@@ -270,6 +281,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:最小生成树</loc>
 		<lastmod>2022-05-18</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:分布式系统</loc>
+		<lastmod>2022-09-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
