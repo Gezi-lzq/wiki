@@ -1,0 +1,49 @@
+created: 20221002104347103
+creator: lzq
+modified: 20221002105612718
+modifier: lzq
+tags: Golang
+title: Golang接口型函数
+type: text/vnd.tiddlywiki
+
+<<code src:"// A Getter loads data for a key.
+type Getter interface {
+	Get(key string) ([]byte, error)
+}
+
+// A GetterFunc implements Getter with a function.
+type GetterFunc func(key string) ([]byte, error)
+
+// Get implements Getter interface function
+func (f GetterFunc) Get(key string) ([]byte, error) {
+	return f(key)
+}" language:"golang" title:"回调 Getter">>
+
+在学习GeeCache中，关于回调Getter的写法产生了一些疑惑。
+
+* 定义了一个接口 Getter，只包含一个方法 Get(key string) ([]byte, error)
+
+* 定义了一个函数类型 GetterFunc，GetterFunc 参数和返回值与 Getter 中 Get 方法是一致的
+
+*  GetterFunc 还定义了 Get 方式，并在 Get 方法中调用自己，''这样就实现了接口 Getter''
+
+首先在谈论写法之前，先谈论试图''达到的目的''是什么？
+对于下面这段代码
+<<code src:"func GetFromSource(getter Getter, key string) []byte {
+	buf, err := getter.Get(key)
+	if err == nil {
+		return buf
+	}
+	return nil
+}" language:"golang" title:"">>
+
+1. 我可以在我创建的数据源相关的结构体中，实现Getter接口的Get方法，这样我就可以把结构体作为参数传入其中了
+
+2. 我可以创建一个跟Get函数参数列表和返回值相同的函数/匿名函数，当作参数传入其中
+
+''第一个目的只需要定义接口和在结构体内实现接口即可完成''
+
+''而第二个目的，则需要让一个函数也能传入这个Getter接口内，故需要此函数也去实现一下Getter接口的Get方法，才可以作为参数传入。''
+
+> 同类型语言比较，其实与Java的 lambda 表达式和函数式接口差不多
+> 构造一个匿名对象简化为只需要一个 lambda 函数表达式，可以认为是面向对象与函数式编程的一种结合
