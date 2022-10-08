@@ -262,6 +262,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:一致性哈希.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:不同进程轮流使用处理器.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
