@@ -36,6 +36,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Consistent%2520Hashing(一致性哈希)</loc>
+		<lastmod>2022-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:CSP并发模型</loc>
 		<lastmod>2022-09-18</lastmod>
 		<changefreq>monthly</changefreq>
