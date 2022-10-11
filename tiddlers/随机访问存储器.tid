@@ -1,0 +1,12 @@
+created: 20221011001438611
+creator: lzq
+modified: 20221011001947987
+modifier: lzq
+tags: 存储器
+title: 随机访问存储器
+type: text/vnd.tiddlywiki
+
+!!Random Access Memory
+分为两类，静态RAM(Static RAM , SRAM) 与 动态RAM(Dynamic RAM, DRAM)
+{{Static RAM}}
+{{Dynamic RAM}}
