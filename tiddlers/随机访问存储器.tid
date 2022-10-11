@@ -1,6 +1,6 @@
 created: 20221011001438611
 creator: lzq
-modified: 20221011001947987
+modified: 20221011004143729
 modifier: lzq
 tags: 存储器
 title: 随机访问存储器
@@ -8,5 +8,16 @@ type: text/vnd.tiddlywiki
 
 !!Random Access Memory
 分为两类，静态RAM(Static RAM , SRAM) 与 动态RAM(Dynamic RAM, DRAM)
+用于SRAM与DRAM的结构不同，导致二者存在访问速度的差异
+
 {{Static RAM}}
+
 {{Dynamic RAM}}
+
+[img[PAM比较.png]]
+
+虽然SRAM的速度比DRAM更快，但是在价格方面要更贵
+
+处理器芯片内的cache(高速缓存)采用的就是SRAM，而内存采用的就是DRAM。
+
+此外DRAM还有一个缺陷，就是会因为各种原因导致漏电

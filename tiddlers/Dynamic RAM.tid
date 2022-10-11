@@ -1,0 +1,9 @@
+created: 20221011003539581
+creator: lzq
+modified: 20221011003908645
+modifier: lzq
+tags: 随机访问存储器
+title: Dynamic RAM
+type: text/vnd.tiddlywiki
+
+与SRAM相比，DRAM存储信息的原理是电容充电。对于DRAM结构，每个bit位的存储对应一个电容(很小)和一个晶体管。与SRAM不同，DRAM的存储单元对干扰十分的敏感，当电容的电压被扰乱之后，就再也无法恢复到干扰之前的状态

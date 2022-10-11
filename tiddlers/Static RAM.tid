@@ -1,9 +1,15 @@
 created: 20221011001950441
 creator: lzq
-modified: 20221011002057317
+modified: 20221011003446839
 modifier: lzq
 tags: 随机访问存储器
 title: Static RAM
 type: text/vnd.tiddlywiki
 
 !!! 静态RAM，DRAM
+
+SRAM将每个bit位的信息存储在一个双稳态的存储器单元内，每个存储器单元需要六个晶体管来实现
+
+{{双稳态结构}}
+
+正是由于SRAM具有双稳态的特性，所以只要有电，它就能一直保持所存储的数据
