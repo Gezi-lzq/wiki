@@ -48,6 +48,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Dynamic%2520RAM</loc>
+		<lastmod>2022-10-11</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:favicon.ico</loc>
 		<lastmod>2020-06-05</lastmod>
 		<changefreq>monthly</changefreq>
@@ -170,6 +176,11 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:NewTiddler</loc>
 		<lastmod>2022-09-18</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:PAM比较.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -346,6 +357,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:单机并发缓存</loc>
 		<lastmod>2022-10-02</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:双稳态结构</loc>
+		<lastmod>2022-10-11</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -561,6 +578,11 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:逻辑控制流</loc>
 		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:钟摆模型.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
