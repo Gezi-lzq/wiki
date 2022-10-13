@@ -1,0 +1,9 @@
+created: 20221013030327403
+creator: lzq
+modified: 20221013030501730
+modifier: lzq
+tags: 分布式缓存
+title: 缓存雪崩
+type: text/vnd.tiddlywiki
+
+缓存在同一时刻全部失效，造成瞬时DB请求量大、压力骤增，引起雪崩。缓存雪崩通常因为缓存服务器宕机、缓存的 key 设置了相同的过期时间等引起。
