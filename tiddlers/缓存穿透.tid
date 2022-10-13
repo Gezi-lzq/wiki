@@ -1,0 +1,9 @@
+created: 20221013030941088
+creator: lzq
+modified: 20221013031141614
+modifier: lzq
+tags: 分布式缓存
+title: 缓存穿透
+type: text/vnd.tiddlywiki
+
+查询一个不存在的数据，因为不存在则不会写到缓存中，所以每次都会请求DB，如果瞬间流量过大，穿透到DB，导致宕机。

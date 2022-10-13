@@ -1,0 +1,9 @@
+created: 20221013030833140
+creator: lzq
+modified: 20221013030926235
+modifier: lzq
+tags: 分布式缓存
+title: 缓存击穿
+type: text/vnd.tiddlywiki
+
+一个存在的key，在缓存过期的一刻，同时有大量的请求，这些请求都会击穿到DB，造成瞬时DB请求量大、压力骤增。
