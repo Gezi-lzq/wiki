@@ -174,12 +174,6 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:NewTiddler</loc>
-		<lastmod>2022-09-18</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:PAM比较.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -332,7 +326,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:分布式缓存</loc>
-		<lastmod>2022-09-28</lastmod>
+		<lastmod>2022-10-13</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -504,8 +498,20 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:缓存击穿</loc>
+		<lastmod>2022-10-13</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:缓存淘汰策略</loc>
 		<lastmod>2022-09-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:缓存穿透</loc>
+		<lastmod>2022-10-13</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
