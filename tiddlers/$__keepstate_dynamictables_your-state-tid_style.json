@@ -4,5 +4,6 @@
     "制作vue页面": "color:#155724;background-color:#d4edda;",
     "软件构造复习": "color:#155724;background-color:#d4edda;",
     "JSP实验": "color:#155724;background-color:#d4edda;",
-    "需要完成的课程作业": "color:#155724;background-color:#d4edda;"
+    "需要完成的课程作业": "color:#155724;background-color:#d4edda;",
+    "实现分布式缓存": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
 }
