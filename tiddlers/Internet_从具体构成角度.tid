@@ -1,0 +1,18 @@
+created: 20221016093450594
+creator: lzq
+modified: 20221016093735158
+modifier: lzq
+tags: 计算机网络
+title: Internet:从具体构成角度
+type: text/vnd.tiddlywiki
+
+* 数以亿计的，互联的计算设备：
+** 主机 = 端系统
+** 运行网络应用程序
+
+* 通信链路
+** 光纤，同轴电缆，无线电，卫星
+** 传输速率 = 带宽（bps）
+
+* 分组交换设备：转发分组(packets)
+** 路由器和交换机
