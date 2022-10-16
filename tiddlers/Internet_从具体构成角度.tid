@@ -1,6 +1,6 @@
 created: 20221016093450594
 creator: lzq
-modified: 20221016093735158
+modified: 20221016104247614
 modifier: lzq
 tags: 计算机网络
 title: Internet:从具体构成角度
@@ -16,3 +16,13 @@ type: text/vnd.tiddlywiki
 
 * 分组交换设备：转发分组(packets)
 ** 路由器和交换机
+
+* 协议控制发送，接受消息
+** 松散的层次结构，互联的ISP
+** 公共Internet vs,专用intranet
+
+* Internet标准
+** RFS:Request for comments
+** IETF:Internet Engineering Task Force
+
+
