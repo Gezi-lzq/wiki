@@ -1,12 +1,17 @@
 created: 20221027161030582
 creator: lzq
-modified: 20221027161112690
+modified: 20221027162415764
 modifier: lzq
 tags: 总线
 title: 总线的性能指标
 type: text/vnd.tiddlywiki
 wysiwyg: yes
 
-# 总线宽度
-# 
+# 总线宽度 ：数据线的根数
+# 标准传输率 ：
+# 时钟同步/异步
+# 总线复用
+# 信号线数
+# 总线控制方式
+# 其它指标
 
