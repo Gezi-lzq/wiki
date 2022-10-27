@@ -1,0 +1,13 @@
+created: 20221027042210910
+creator: lzq
+modified: 20221027044230623
+modifier: lzq
+tags: 深入理解计算机系统
+title: 总线
+type: text/vnd.tiddlywiki
+
+! 什么是总线
+总线是连接各个部件的信息传输线，
+是''各个部件共享的传输介质
+
+
