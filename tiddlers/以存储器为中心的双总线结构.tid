@@ -1,6 +1,6 @@
 created: 20221027083704677
 creator: lzq
-modified: 20221027102938012
+modified: 20221027153518216
 modifier: lzq
 tags: 总线
 title: 以存储器为中心的双总线结构
@@ -13,4 +13,6 @@ type: text/vnd.tiddlywiki
 主存如果想与外部设备进行信息交互则可通过系统总线
 
 CPU想要与外部设备进行信息交换也可以通过系统总线
+
+不过这两条总线仍然无法同时工作，只能分时来传输
 
