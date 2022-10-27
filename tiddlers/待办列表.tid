@@ -1,7 +1,7 @@
-color: #de7d7d
+color: #d79898
 created: 20220510140909096
 creator: TidGiUser
-modified: 20220514054504509
+modified: 20221027050709296
 modifier: lzq
 tags: Index
 title: 待办列表
@@ -20,7 +20,7 @@ type: text/vnd.tiddlywiki
 \end
 
 \define newTask()
-<$button actions=<<createTask>> class="btn btn-sm btn-info" style="color:rgb(222,125,125)" >New Task
+<$button actions=<<createTask>> class="btn btn-sm btn-info" style="color:#B8E8FC" >New Task
 </$button>
 \end
 
