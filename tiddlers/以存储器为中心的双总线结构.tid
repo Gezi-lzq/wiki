@@ -1,0 +1,16 @@
+created: 20221027083704677
+creator: lzq
+modified: 20221027102938012
+modifier: lzq
+tags: 总线
+title: 以存储器为中心的双总线结构
+type: text/vnd.tiddlywiki
+
+[img[以存储器为中心的双总线结构.png]]
+
+在这个结构当中，CPU与主存当中是具有专用的存储总线的
+
+主存如果想与外部设备进行信息交互则可通过系统总线
+
+CPU想要与外部设备进行信息交换也可以通过系统总线
+
