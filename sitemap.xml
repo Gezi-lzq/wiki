@@ -395,6 +395,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:四总线结构</loc>
+		<lastmod>2022-10-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:四总线结构.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:基础SQL语句</loc>
 		<lastmod>2022-05-19</lastmod>
 		<changefreq>monthly</changefreq>
