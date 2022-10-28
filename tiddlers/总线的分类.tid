@@ -1,10 +1,11 @@
 created: 20221027153531345
 creator: lzq
-modified: 20221027154848209
+modified: 20221027164407903
 modifier: lzq
 tags: 总线
 title: 总线的分类
 type: text/vnd.tiddlywiki
+wysiwyg: yes
 
 1. 片内总线：芯片内部的总线
 
@@ -19,5 +20,3 @@ type: text/vnd.tiddlywiki
 * 传输方式
 ** 串行通信总线
 ** 并行通信总线
-
-

@@ -1,0 +1,11 @@
+created: 20221027164214245
+creator: lzq
+modified: 20221027164346295
+modifier: lzq
+tags: 总线
+title: 四总线结构
+type: text/vnd.tiddlywiki
+
+[img[四总线结构.png]]
+
+将高速设备与低速设备进行分而治之
