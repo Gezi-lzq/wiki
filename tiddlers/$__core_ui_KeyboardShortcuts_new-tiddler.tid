@@ -1,0 +1,13 @@
+created: 20221114090655782
+creator: lzq
+key: ((new-tiddler))
+modified: 20221114090655782
+modifier: lzq
+tags: $:/tags/KeyboardShortcut
+title: $:/core/ui/KeyboardShortcuts/new-tiddler
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+{{$:/core/ui/Actions/new-tiddler}}
+</$navigator>
