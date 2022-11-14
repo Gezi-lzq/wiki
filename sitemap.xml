@@ -372,6 +372,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:协议</loc>
+		<lastmod>2022-11-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:单总线结构.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -430,7 +436,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:实现分布式缓存</loc>
-		<lastmod>2022-10-15</lastmod>
+		<lastmod>2022-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -478,7 +484,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:总线上的信息传输</loc>
-		<lastmod>2022-10-27</lastmod>
+		<lastmod>2022-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
