@@ -1,11 +1,10 @@
 created: 20221115071048281
 creator: lzq
-modified: 20221115091156121
+modified: 20221115135253453
 modifier: lzq
 tags: 总线
 title: 总线判优控制
 type: text/vnd.tiddlywiki
-wysiwyg: yes
 
 ! 基本概念
 
@@ -13,11 +12,8 @@ wysiwyg: yes
 
 从设备(模块) 响应从总设备发来的总线命令
 
-
-
 * 集中式
-** 链式查询
-** 计数器定时查询
-** 独立请求
+** [[链式查询]]
+** [[计数器定时查询]]
+** [[独立请求方式]]
 * 分布式
-
