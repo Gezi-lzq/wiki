@@ -5,7 +5,6 @@ modifier: lzq
 tags: 总线
 title: 总线上的信息传输
 type: text/vnd.tiddlywiki
-wysiwyg: yes
 
 * 串行 单条数据线 一次传输一位信号
 ** 支持的距离就比较长

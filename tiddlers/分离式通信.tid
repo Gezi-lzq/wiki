@@ -1,0 +1,15 @@
+created: 20221115174903272
+creator: lzq
+modified: 20221115175035786
+modifier: lzq
+tags: 总线的通信控制
+title: 分离式通信
+type: text/vnd.tiddlywiki
+
+1. 各个模块都有权占用总线
+
+2. 采用同步方式通信，不等对方回答
+
+3. 各个模块准备数据时，不占用总线
+
+4. 总线被占用时，无空闲

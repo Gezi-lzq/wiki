@@ -1,0 +1,13 @@
+created: 20221115175538057
+creator: lzq
+modified: 20221115175538057
+modifier: lzq
+tags: 总线的通信控制
+title: 总线通信四种方式
+type: text/vnd.tiddlywiki
+
+!! 总线通信的四种方式
+
+* 同步通信 由统一时标控制数据传输
+* 异步通信 采用应答方式，没有公共时钟标准
+* 半同步通信  同步、异步结合
