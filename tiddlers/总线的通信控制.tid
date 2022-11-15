@@ -1,6 +1,6 @@
 created: 20221115135622768
 creator: lzq
-modified: 20221115145740366
+modified: 20221115173700602
 modifier: lzq
 title: 总线的通信控制
 type: text/vnd.tiddlywiki
@@ -25,6 +25,8 @@ type: text/vnd.tiddlywiki
 
 * 半同步通信  同步、异步结合
 
-* 分离式通信 充分挖掘系统总线每个瞬间的
+上面[[三种通信的共同点]]
+
+* 分离式通信 充分挖掘系统总线每个瞬间的潜力 (利用到了准备数据时总线空闲的时间)
 
 
