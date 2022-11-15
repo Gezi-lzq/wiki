@@ -284,6 +284,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:三种通信的共同点</loc>
+		<lastmod>2022-11-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:不同进程轮流使用处理器.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
