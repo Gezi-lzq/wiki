@@ -686,6 +686,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:链式查询</loc>
+		<lastmod>2022-11-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:链式查询.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:随机访问存储器</loc>
 		<lastmod>2022-10-11</lastmod>
 		<changefreq>monthly</changefreq>
