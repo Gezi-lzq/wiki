@@ -1,13 +1,15 @@
 created: 20221011002400789
 creator: lzq
-modified: 20221011003320062
+modified: 20221115180712451
 modifier: lzq
 tags: [[Static RAM]]
 title: 双稳态结构
 type: text/vnd.tiddlywiki
 
 关于双稳态结构，可以通过钟摆模型来理解：
-[img[钟摆模型.png]]
+
+[img width=700 [钟摆模型.png]]
+
 当钟摆倾斜到最左边或者最右边时，它的状态是最稳定的。理论上钟摆也可以在垂直的位置上保持平衡，不过该状态是不稳定的，一个细微的扰动就可以破坏平衡的状态，并且倒下之后无法恢复到从前的垂直状态
 
 

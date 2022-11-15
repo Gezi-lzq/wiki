@@ -1,9 +1,9 @@
 created: 20221011001438611
 creator: lzq
-modified: 20221011004143729
+modified: 20221115181733411
 modifier: lzq
 tags: 存储器
-title: 随机访问存储器
+title: 随机访问存储器 RAM
 type: text/vnd.tiddlywiki
 
 !!Random Access Memory
@@ -14,7 +14,7 @@ type: text/vnd.tiddlywiki
 
 {{Dynamic RAM}}
 
-[img[PAM比较.png]]
+[img width=700 [PAM比较.png]]
 
 虽然SRAM的速度比DRAM更快，但是在价格方面要更贵
 
