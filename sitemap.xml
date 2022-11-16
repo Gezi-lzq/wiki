@@ -49,7 +49,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Dynamic%2520RAM</loc>
-		<lastmod>2022-10-11</lastmod>
+		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -197,6 +197,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:ROM</loc>
+		<lastmod>2022-11-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Spring</loc>
 		<lastmod>2022-05-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -204,7 +210,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Static%2520RAM</loc>
-		<lastmod>2022-10-11</lastmod>
+		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -366,6 +372,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:分离式通信</loc>
+		<lastmod>2022-11-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:创建Wiki仓库</loc>
 		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
@@ -402,7 +414,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:双稳态结构</loc>
-		<lastmod>2022-10-11</lastmod>
+		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -425,12 +437,17 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:存储器</loc>
-		<lastmod>2022-10-11</lastmod>
+		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:存储层次.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:存储的层次.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -520,6 +537,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:总线的通信控制</loc>
+		<lastmod>2022-11-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:总线通信四种方式</loc>
 		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -731,8 +754,8 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:随机访问存储器</loc>
-		<lastmod>2022-10-11</lastmod>
+		<loc>https://onetwo.ren/wiki/#:随机访问存储器%2520RAM</loc>
+		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
