@@ -1,0 +1,11 @@
+created: 20221116144549191
+creator: lzq
+modified: 20221116155801436
+modifier: lzq
+tags: 存储器
+title: 主存中存储单元的地址分配
+type: text/vnd.tiddlywiki
+
+* 大端，大尾方式  高位字节 地址为字地址
+
+* 小端，小尾方式  低位字节 地址为字地址
