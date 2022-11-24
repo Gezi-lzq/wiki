@@ -180,12 +180,6 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:NewTiddler</loc>
-		<lastmod>2022-11-24</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:PAM比较.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
