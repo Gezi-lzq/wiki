@@ -542,6 +542,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:总线带宽</loc>
+		<lastmod>2022-12-03</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:总线控制</loc>
 		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
