@@ -1,0 +1,9 @@
+created: 20221203154351612
+creator: lzq
+modified: 20221203154542230
+modifier: lzq
+tags: 总线 ?
+title: 总线周期
+type: text/vnd.tiddlywiki
+
+通常把CPU通过总线对微处理器''外部''（存贮器或 I/O接口）''进行一次访问所需时间''称为一个总线周期。
