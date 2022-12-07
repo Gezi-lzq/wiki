@@ -60,6 +60,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:DevOps</loc>
+		<lastmod>2022-12-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:DRAM.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -126,6 +132,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:gRPG</loc>
 		<lastmod>2022-05-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:IDP</loc>
+		<lastmod>2022-12-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
