@@ -1,0 +1,11 @@
+created: 20221207171902252
+creator: lzq
+modified: 20221207172053069
+modifier: lzq
+tags: 
+title: DevOps
+type: text/vnd.tiddlywiki
+
+> 从字面上来看，"DevOps"一词是由英文 Development（开发）和 Operations（运维）组合而成，但它所代表的理念和实践要比单独或组合的两个词广阔的多。
+
+DevOps 强调通过一系列手段来实现既快又稳的工作流程，使每个想法（比如一个新的软件功能，一个功能增强请求或者一个 bug 修复）在从开发到生产环境部署的整个流程中，都能不断地为用户带来价值。
