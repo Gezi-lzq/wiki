@@ -1,0 +1,23 @@
+created: 20221207080101078
+creator: lzq
+modified: 20221207081235687
+modifier: lzq
+tags: [[随机访问存储器 RAM]]
+title: DRAM芯片
+type: text/vnd.tiddlywiki
+
+[img  width=800 [DRAM.png]]
+
+一个DRAM芯片中有d（列*行）个超单元，每个超单元有w个DRAM单元组成(故存储了w位信息)
+
+因此DRAM芯片存储了dw 位信息
+
+每个DRAM芯片被连接到成为内存管理器的电路。
+
+通过该电路可以每次写入w位或者读出w位
+
+内存管理器通过依次发送行地址i与列地址j，读出超单元(i，j)的内容
+
+> 设计出二维阵列的模式可以降低芯片上的地址引脚的数量，缺点则是需要分两次发送地址
+
+DRAM芯片被封装在了[[内存模块]]中

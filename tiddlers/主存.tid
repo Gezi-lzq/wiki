@@ -1,0 +1,10 @@
+created: 20221207082148268
+creator: lzq
+modified: 20221207082434727
+modifier: lzq
+title: 主存
+type: text/vnd.tiddlywiki
+
+> 内存是由多个[[内存模块]]聚合而成，由内存控制器来管理多个内存模块。
+
+> 当控制器收到一个地址A是，控制器选择包含A的模块k，将A转换成它的(i,j)的形式，并将(i,j)发送到模块k
