@@ -501,6 +501,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:字节青训营每日打卡</loc>
+		<lastmod>2023-01-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:存储器</loc>
 		<lastmod>2022-12-07</lastmod>
 		<changefreq>monthly</changefreq>
@@ -518,7 +524,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:学校需交实验作业</loc>
-		<lastmod>2022-12-05</lastmod>
+		<lastmod>2023-01-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
