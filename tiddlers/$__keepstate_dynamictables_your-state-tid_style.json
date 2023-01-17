@@ -1,10 +1,10 @@
 {
-    "修复无法显示的热力图": "color:#155724;background-color:#d4edda;",
-    "对onetwo的wiki做模仿": "color:#155724;background-color:#d4edda;",
-    "制作vue页面": "color:#155724;background-color:#d4edda;",
-    "软件构造复习": "color:#155724;background-color:#d4edda;",
-    "JSP实验": "color:#155724;background-color:#d4edda;",
-    "需要完成的课程作业": "color:#155724;background-color:#d4edda;",
+    "修复无法显示的热力图": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "对onetwo的wiki做模仿": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "制作vue页面": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "软件构造复习": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "JSP实验": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "需要完成的课程作业": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "实现分布式缓存": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "学校需交实验作业": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
 }

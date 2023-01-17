@@ -1,7 +1,7 @@
 color: #d79898
 created: 20220510140909096
 creator: TidGiUser
-modified: 20230117032903963
+modified: 20230117110136533
 modifier: lzq
 tags: Index
 title: 待办列表
@@ -30,4 +30,4 @@ type: text/vnd.tiddlywiki
 
 
 搜索 <$edit-text tiddler="$:/temp/tasks/dtable/search" filed=text tag=input default=""/>
-<$macrocall $name=table-dynamic caption="优先待办列表" filter="[tag[task]search{$:/temp/tasks/dtable/search}]-[tag[done]]" fields="tbl-checkbox tbl-expand title priority status created" class="w-100" stateTiddler="your-state-tid" />
+<$macrocall $name=table-dynamic caption="优先待办列表" filter="[tag[task]search{$:/temp/tasks/dtable/search}]-[tag[Done]]" fields="tbl-checkbox tbl-expand title priority status created" class="w-100" stateTiddler="your-state-tid" />
