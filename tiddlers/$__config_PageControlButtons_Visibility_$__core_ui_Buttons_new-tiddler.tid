@@ -1,8 +1,8 @@
 created: 20230117103426624
 creator: lzq
-modified: 20230117103426624
+modified: 20230117135035848
 modifier: lzq
 title: $:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/new-tiddler
 type: text/vnd.tiddlywiki
 
-hide
+show
