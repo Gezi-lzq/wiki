@@ -1,0 +1,18 @@
+caption: Batch
+color: #bbb
+created: 20230117135749657
+creator: lzq
+description: Batch Operation
+icon: $:/xp/images/batch-creation
+modified: 20230117135751760
+modifier: lzq
+tags: 
+title: $:/xp/ui/SideBar/BatchOperation
+type: text/vnd.tiddlywiki
+
+<$macrocall
+  $name="tabs"
+  tabsList="[all[shadows+tiddlers]tag[$:/tags/BatchOperation]!has[draft.of]]"
+  default="$:/BatchCreation"
+  state="$:/state/tab/batch-operation"
+/>
