@@ -1,3 +1,4 @@
+Modern.TiddlyDev#SHA256-Hashed: 6224748b0761ed4bd7fa19a969c15fc4339a89a68b2149fa075e61de33aa48af
 author: Gk0Wk
 dependents: 
 description: Use tiddler's H1~H6 headers to generate navigable TOC for tiddler
@@ -7,4 +8,4 @@ plugin-type: plugin
 source: https://github.com/Gk0Wk/TiddlySeq/tree/master/plugins/Gk0Wk/page-toc
 title: $:/plugins/Gk0Wk/page-toc
 type: application/json
-version: 0.0.3
+version: 0.0.4
