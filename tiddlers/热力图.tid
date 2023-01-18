@@ -1,9 +1,9 @@
 created: 20220510152527756
 creator: lzq
-modified: 20220510153529387
+modified: 20230118131505617
 modifier: lzq
 tags: 
 title: 热力图
 type: text/vnd.tiddlywiki
 
-<$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap/CalendarHeatmap.js" $height="220px" />
+<$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/oflg/CalendarHeatmap.js" $height="180px"/>
