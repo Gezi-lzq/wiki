@@ -1,0 +1,21 @@
+created: 20230118151807184
+creator: lzq
+modified: 20230118152646573
+modifier: lzq
+tags: 
+title: 注释的艺术
+type: text/vnd.tiddlywiki
+wysiwyg: yes
+
+注释应该做的：
+
+* 解释代码作用（）
+* 解释代码如何做的
+* 解释代码实现原因
+* 解释代码什么情况下会出错
+
+Good code has lots of comments,bad code requires lots of comments
+
+好的代码有很多注释，坏代码需要很多注释
+
+Dave Thomas and Andrew Hunt
