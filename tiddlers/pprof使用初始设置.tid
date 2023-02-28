@@ -1,0 +1,20 @@
+created: 20230123144014196
+creator: Gezi
+modified: 20230123144134323
+modifier: Gezi
+tags: 性能分析工具pprof
+title: pprof使用初始设置
+type: text/vnd.tiddlywiki
+
+首先，在代码中添加 _ "net/http/pprof" 的引用
+
+```
+// 限制 CPU 使用数，避免过载,可加可不加
+runtime.GOMAXPROCS(1)
+// 如果未来希望进行互斥锁的采集，
+// 那么需要通过调用该方法来设置采集频率
+// 若不设置或没有设置大于 0 的数值，默认是不进行采集的
+runtime.SetMutexProfileFraction(1)
+// 开启对阻塞操作的跟踪
+runtime.SetBlockProfileRate(1)
+```

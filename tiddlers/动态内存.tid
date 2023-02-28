@@ -1,0 +1,8 @@
+created: 20230126074223470
+creator: Gezi
+modified: 20230126080127252
+modifier: Gezi
+title: 动态内存
+type: text/vnd.tiddlywiki
+
+程序在运行时根据需求动态分配的内存，如malloc()

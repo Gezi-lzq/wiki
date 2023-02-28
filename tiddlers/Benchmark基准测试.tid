@@ -1,0 +1,18 @@
+created: 20230119163805469
+creator: Gezi
+modified: 20230119165814154
+modifier: Gezi
+tags: 
+title: Benchmark基准测试
+type: text/vnd.tiddlywiki
+
+Go 语言还提供了基准测试框架。基准测试是指测试一段程序的运行性能及耗费 CPU 的程度，这样可以在开发过程中及早发现代码性能问题，并且可以帮助我们确定代码的运行速度，并在不同的环境中进行比较。使用基准测试有助于我们更好的定位性能瓶颈，提高代码的性能。
+
+函数名必须以 Benchmark 开头，后面一般跟待测试的函数名
+
+参数为 b *testing.B。
+
+执行基准测试时，需要添加 -bench 参数。
+
+结果说明：
+[img[Benchmark结果说明.png]]

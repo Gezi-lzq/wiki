@@ -1,0 +1,13 @@
+created: 20230126094056114
+creator: Gezi
+modified: 20230126100406798
+modifier: Gezi
+tags: 自动内存管理 垃圾回收(gc)
+title: GC算法评价
+type: text/vnd.tiddlywiki
+
+* 安全性(Safety) : 不能回收存活的对象是''基本要求''
+* 吞吐率(Throughput) :  ,该量衡量的是GC 时间占程序执行总时间的比例
+* [[暂停时间]](Pause time) : stop the world(STW)业务是否感知
+* [[内存开销]](Space overhead) : GC元数据开销
+

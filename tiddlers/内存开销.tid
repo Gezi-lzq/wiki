@@ -1,0 +1,11 @@
+created: 20230126100141955
+creator: Gezi
+modified: 20230215151006283
+modifier: Gezi
+tags: 
+title: 内存开销
+type: text/vnd.tiddlywiki
+
+内存开销(Space overhead)是指 GC 使用的内存空间。
+
+GC 算法需要使用''一些元数据来跟踪对象的状态和指向关系''。这些元数据需要使用一定的内存空间。例如，标记-清除算法需要使用标记数组来跟踪对象的状态，而复制算法需要使用两个内存空间来存储对象。

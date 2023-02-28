@@ -1,0 +1,57 @@
+created: 20230123145505304
+creator: Gezi
+modified: 20230123163211955
+modifier: Gezi
+tags: 性能分析工具pprof
+title: pprof交互式终端查看
+type: text/vnd.tiddlywiki
+
+''go tool pprof'' 命令是用于分析 Go 程序性能的工具。它可用于生成并分析 CPU 使用情况、内存使用情况和阻塞事件等的性能概要。
+
+基本用法:
+
+```
+go tool pprof [options] URL
+```
+
+URL为pprof浏览器查看中，对应的 `http://localhost:6060/debug/pprof/profile`, `http://localhost:6060/debug/pprof/mutex`等等
+
+go tool pprof从该接口获得程序信息，然后通过命令行交互对该信息进行查看
+
+其中options中常用的：
+
+*   -http参数：添加`-http=:6001`,将在所指定的端口号运行一个 pprof 的分析用的站点
+*   -seconds: 指定 profile 的持续时间。
+*   -inuse_space：分析应用程序的常驻内存占用情况。
+*   -alloc_objects：分析应用程序的内存临时分配情况。
+
+go tool pprof 命令还提供了许多子命令，可用于进一步分析和可视化分析数据。常用的一些子命令包括:
+
+
+*   web : 用交互式浏览器打开分析数据
+*   top : 显示使用最多资源的函数
+*   list : 显示分析中函数的源代码
+*   svg : 生成调用图的 SVG 可视化
+*   traces : 打印出对应的所有调用栈，以及指标信息
+
+top命令的输出报告：
+
+```
+(pprof) top10
+Showing nodes accounting for 36.23s, 97.26% of 37.25s total
+Dropped 80 nodes (cum <= 0.19s)
+Showing top 10 nodes out of 34
+      flat  flat%   sum%        cum   cum%  Name
+    32.63s 87.60% 87.60%     32.70s 87.79%  syscall.syscall
+     0.87s  2.34% 89.93%      0.88s  2.36%  runtime.stringtoslicebyte
+     0.69s  1.85% 91.79%      0.69s  1.85%  runtime.memmove
+     0.52s  1.40% 93.18%      0.52s  1.40%  runtime.nanotime
+     ...
+(pprof) 
+```
+*   flat：函数自身的运行耗时。
+*   flat%：函数自身在 CPU 运行耗时总比例。
+*   sum%：函数自身累积使用 CPU 总比例。
+*   cum：函数自身及其调用函数的运行总耗时。
+*   cum%：函数自身及其调用函数的运行耗时总比例。
+*   Name：函数名

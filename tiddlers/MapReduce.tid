@@ -1,7 +1,7 @@
 created: 20220930085435120
 creator: lzq
-modified: 20220930113247313
-modifier: lzq
+modified: 20230216123836850
+modifier: Gezi
 tags: 分布式系统
 title: MapReduce
 type: text/vnd.tiddlywiki
@@ -17,7 +17,7 @@ Google当时面临的问题是，他们需要在TB级别的数据上进行大量
 
 MapReduce的思想是，应用程序设计人员和分布式运算的使用者，只需要写简单的Map函数和Reduce函数，而不需要知道任何有关分布式的事情，MapReduce框架会处理剩下的事情。
 
-[img[mapreduce.png]]
+[img width=460 [mapreduce.png]]
 
 > 将一组输入的数据应用map函数返回一个k/v对的结构作为中间数据集,并将具有相同key的数据输入到一个reduce函数中执行,最终返回处理后的结果。
 

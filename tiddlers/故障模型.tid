@@ -1,0 +1,20 @@
+created: 20230203071847145
+creator: Gezi
+modified: 20230204142816852
+modifier: Gezi
+tags: 分布式理论
+title: 故障模型
+type: text/vnd.tiddlywiki
+
+Byzantine failure : 节点可以任意篡改发生给其他节点的数据
+
+Authentication detectable byzantine failure(ADB) :  Byzantine failure 的特例;节点可以篡改(本节点)数据，但不能伪造其他节点的数据。
+
+Performance failure : 节点未在特定时间段内受到数据，即时间太早或太晚。(--如果你慢了，还不如G掉)
+
+Omission failure : 节点收到数据的时间无限晚,即收不到数据。
+
+Crash failure : 在Omission failure的基础上,增加了节点停止响应的假设, 也即持续性地 omission failure
+
+Fail-stop failure : 在 Crash failure 的基础上增加了错误可检测的假设
+

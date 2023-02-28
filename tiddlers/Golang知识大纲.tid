@@ -1,0 +1,20 @@
+created: 20230217063605400
+creator: Gezi
+modified: 20230217063605400
+modifier: Gezi
+tags: 面试准备
+title: Golang知识大纲
+type: text/vnd.tiddlywiki
+
+!!! Golang
+
+* 数据结构
+** slice
+** map
+* 并发编程
+** [[GMP调度模型]]
+** [[Golang高并发]]
+* 内存管理
+** [[垃圾回收(gc)]]
+** [[自动内存管理]]
+* 编译器和静态分析

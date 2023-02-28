@@ -1,0 +1,37 @@
+created: 20230126073750234
+creator: Gezi
+modified: 20230215151023255
+modifier: Gezi
+tags: 垃圾回收(gc)
+title: 自动内存管理
+type: text/vnd.tiddlywiki
+
+自动内存管理（[[垃圾回收(gc)]]）：由程序语言运行时系统管理[[动态内存]]
+
+* 避免手动内存管理，专注于实现业务逻辑
+* 保存内存使用的正确性和安全性： [[double-free proble]],[[use-after-free problem]]
+
+三个核心任务：
+
+* 为对象分配新的空间
+* 找到存活对象
+* 回收死亡对象的内存空间
+
+相关概念：
+
+* Mutartor : 业务线程，分配新对象，修改对象指向关系
+* Collector GC : GC 线程,找在存活对象,回收死亡对象的内存空间
+
+[img[MutatorAndCollector.png]]
+
+* Serial GC : 只有一个collector,使用单线程来执行垃圾收集
+
+[img[Serial GC.png]]
+
+* Parallel GC : 支持多个collectors同时回收的GC算法,使用多线程来执行垃圾收集
+
+[img[Parallel GC.png]]
+
+* Concurrent GC : mutator(s) 和 colector(s) 可以''同时执行'',在应用程序运行时执行垃圾收集，减少垃圾收集对应用程序性能的影响
+
+[img[Concurrent GC.png]]

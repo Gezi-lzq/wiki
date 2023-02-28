@@ -1,0 +1,16 @@
+created: 20230217090538453
+creator: Gezi
+modified: 20230217092935766
+modifier: Gezi
+tags: Redis
+title: Redis-链表
+type: text/vnd.tiddlywiki
+
+!!用途：
+
+链表提供了高效的节点重排能力， 以及顺序性的节点访问方式， 并且可以通过增删节点来灵活地调整链表的长度。
+
+链表被广泛用于实现 Redis 的各种功能， 比如列表键， 发布与订阅， 慢查询， 监视器， 等等。Redis 服务器本身还使用链表来保存多个客户端的状态信息， 以及使用链表来构建客户端输出缓冲区（output buffer）。
+
+
+{{Redis链表底层实现}}

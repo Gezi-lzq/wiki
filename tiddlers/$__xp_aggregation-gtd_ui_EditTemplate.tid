@@ -1,0 +1,119 @@
+created: 20230122145514273
+creator: Gezi
+footer: <span class="tc-muted" style="float:left;text-align:left;padding:.5em 0 0 1em;font-size:.9em;"> Status: <$list filter="[<currentItem>!tag[done]]"><span style="color:#cc3333;">undone</span></$list><$list filter="[<currentItem>removeprefix[$:/]addprefix[$:/todolist/data/status/]search:text[undone]]"><$list filter="[<currentItem>!tag[done]]"> / </$list><span style="color:#cc3333;">todolist</span></$list><$list filter="[<currentItem>tag[done]]"><$list filter="[<currentItem>removeprefix[$:/]addprefix[$:/todolist/data/status/]!search:text[undone]]"><span style="color:#00a565;">completed</span></$list></$list></span><span class="py-todo-actions"><$button tooltip="Delete all information about this item" class="py-btn"><span style="opacity:.8;">{{$:/core/images/delete-button}}</span><$action-deletetiddler $tiddler=<<currentItem>>/><$action-deletetiddler $filter="[prefix[$:/todolist/data]suffix<td-baseName>]"/><$action-sendmessage $message="tm-close-tiddler"/><$action-listops $tiddler=<<currentList>> $subfilter="+[remove<currentItem>]"/></$button><$button tooltip="Confirm changes to this item. ctrl-Enter" class="py-btn" style="margin:0 1em 0 .8em;">{{$:/core/images/done-button}}<$list filter="[<currentItem>get[caption]!match{$:/state/gtd/edit-caption}]"><$action-setfield $tiddler=<<currentItem>> $field="caption" $value={{$:/state/gtd/edit-caption}}/></$list><$action-sendmessage $message="tm-close-tiddler"/></$button></span>
+modified: 20230122145748228
+modifier: Gezi
+subtitle: {{$:/xp/images/q2}} 重要不紧急
+title: $:/xp/aggregation-gtd/ui/EditTemplate
+type: text/vnd.tiddlywiki
+
+\define save-tiddler-actions()
+<$action-sendmessage $message="tm-add-tag" $param={{{ [<newTagNameTiddler>get[text]] }}}/>
+<$action-sendmessage $message="tm-add-field" $name={{{ [<newFieldNameTiddler>get[text]] }}} $value={{{ [<newFieldValueTiddler>get[text]] }}}/>
+<<delete-edittemplate-state-tiddlers>>
+<$action-sendmessage $message="tm-save-tiddler"/>
+<!-- Save & Close -->
+<$action-setfield $tiddler=<<currentItem>> $field="caption" $value={{$:/state/gtd/edit-caption}}/>
+<$action-sendmessage $message="tm-auto-save-wiki"/>
+<$action-sendmessage $message="tm-close-tiddler"/>
+\end
+
+\define config-visibility-title()
+$:/config/EditorToolbarButtons/Visibility/$(currentTiddler)$
+\end
+
+\define importFileActions()
+<$action-popup $state=<<importState>> $coords="(0,0,0,0)" $floating="yes"/>
+\end
+
+<$set name="currentItem" value={{$:/state/gtd/edit}}>
+<$set name="td-baseName" value={{{ [<currentItem>removeprefix[$:/]] }}}>
+
+<!-- Editor -->
+<div data-tiddler-title=<<currentItem>> data-tags={{!!tags}} class="tc-tiddler-frame tc-tiddler-edit-frame tc-tiddler-exists tc-tiddler-system xp-gtd-editor">
+<$fieldmangler>
+<$vars storyTiddler=<<currentItem>>>
+<$keyboard key="((save-tiddler))" actions=<<save-tiddler-actions>> tag="div">
+
+<$edit-text tiddler="$:/state/gtd/edit-caption" tag="input" class="tc-titlebar tc-edit-texteditor" focus="yes" tabindex={{$:/config/EditTabIndex}} cancelPopups="yes"/>
+
+<!-- $:/core/ui/EditTemplate/body/default -->
+<div class="xp-gtd-editor-body">
+<$set name="edit-preview-state" value={{{ [{$:/config/ShowEditPreview/PerTiddler}!match[yes]then[$:/state/showeditpreview]] :else[<qualify "$:/state/showeditpreview">] }}}>
+<$vars importTitle=<<qualify $:/ImportImage>> importState=<<qualify $:/state/ImportImage>> >
+<$dropzone importTitle=<<importTitle>> autoOpenOnImport="no" contentTypesFilter={{$:/config/Editor/ImportContentTypesFilter}} class="tc-dropzone-editor" enable={{{ [{$:/config/DragAndDrop/Enable}match[no]] :else[subfilter{$:/config/Editor/EnableImportFilter}then[yes]else[no]] }}} filesOnly="yes" actions=<<importFileActions>> ><$reveal stateTitle=<<edit-preview-state>> type="match" text="yes" tag="div">
+<$tiddler tiddler=<<currentItem>>>
+<div class="tc-tiddler-preview">
+
+<$transclude tiddler="$:/core/ui/EditTemplate/body/editor" mode="inline"/>
+
+<div class="tc-tiddler-preview-preview">
+
+<$transclude tiddler={{$:/state/editpreviewtype}} mode="inline">
+
+<$transclude tiddler="$:/core/ui/EditTemplate/body/preview/output" mode="inline"/>
+
+</$transclude>
+
+</div>
+
+</div>
+</$tiddler>
+</$reveal>
+
+<$reveal stateTitle=<<edit-preview-state>> type="nomatch" text="yes" tag="div">
+
+<$edit
+	tiddler=<<currentItem>>
+  field="text"
+  class="tc-edit-texteditor tc-edit-texteditor-body"
+  placeholder={{$:/language/EditTemplate/Body/Placeholder}}
+  tabindex={{$:/config/EditTabIndex}}
+  focus={{{ [{$:/config/AutoFocus}match[text]then[true]] ~[[false]] }}}
+  cancelPopups="yes"
+  fileDrop={{{ [{$:/config/DragAndDrop/Enable}match[no]] :else[subfilter{$:/config/Editor/EnableImportFilter}then[yes]else[no]] }}}
+><$set
+
+  name="targetTiddler"
+  value=<<currentItem>>
+
+><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorToolbar]!has[draft.of]remove[$:/core/ui/EditorToolbar/editor-height $:/xp/ui/EditorToolbar/annotate]]"
+
+><$reveal
+
+  type="nomatch"
+  state=<<config-visibility-title>>
+  text="hide"
+  class="tc-text-editor-toolbar-item-wrapper"
+
+><$transclude
+
+  tiddler="$:/core/ui/EditTemplate/body/toolbar/button"
+  mode="inline"
+
+/></$reveal></$list><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorTools]!has[draft.of]]"
+
+><$list
+	filter={{!!condition}}
+	variable="list-condition"
+><$transclude/>
+</$list></$list></$set></$edit>
+
+</$reveal>
+</$dropzone>
+</$vars>
+</$set>
+</div>
+
+</$keyboard>
+</$vars>
+</$fieldmangler>
+<<gtd-todolist-ui caption:"Todolist {{||$:/xp/images/pie-todolist}}">>
+</div>
+
+</$set>
+</$set>

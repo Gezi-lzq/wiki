@@ -1,0 +1,14 @@
+created: 20230126095435735
+creator: Gezi
+modified: 20230126100440245
+modifier: Gezi
+tags: 垃圾回收(gc)
+title: 暂停时间
+type: text/vnd.tiddlywiki
+wysiwyg: yes
+
+暂停时间(Pause time)是指在进行 GC 时，应用程序会暂停执行，等待 GC 完成后再继续执行。这种暂停行为也叫做 ''"stop the world" (STW)''。
+
+STW 对于应用程序来说是可感知的，因为在 GC 过程中，应用程序会暂停执行，用户可能会感到卡顿。在实际应用中，STW 的时间越短，对应用程序的影响就越小。因此，选择合适的 GC 算法并调整 GC 参数可以最小化 STW 时间，提高程序的响应速度。
+
+另外, Concurrent GC 也是一种方法来降低STW的影响， 它能在应用程序运行时进行 GC，而不会影响应用程序的执行，减少STW对应用程序的影响。

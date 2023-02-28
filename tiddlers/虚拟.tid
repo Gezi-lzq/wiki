@@ -1,0 +1,11 @@
+created: 20230215084929654
+creator: Gezi
+modified: 20230215085155420
+modifier: Gezi
+tags: 操作系统
+title: 虚拟
+type: text/vnd.tiddlywiki
+
+在OS中，把通过某种技术将一个物理实体变为若干个逻辑上的对应物的功能，称为“虚拟”。
+
+在OS中是利用[[时空复用技术]]和[[空分复用技术]]来实现“虚拟”。

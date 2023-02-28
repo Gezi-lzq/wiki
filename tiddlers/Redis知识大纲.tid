@@ -1,0 +1,25 @@
+created: 20230217063543913
+creator: Gezi
+modified: 20230218093210808
+modifier: Gezi
+tags: 面试准备
+title: Redis知识大纲
+type: text/vnd.tiddlywiki
+
+!!! Redis
+
+* 5种基本数据类型（介绍、使用场景、底层实现）
+** [[Redis-简单动态字符串]]
+** [[Redis-链表]]
+** [[Redis-字典]]
+** [[Redis-跳跃表]]
+** 整数集合
+** 压缩列表
+** 对象
+* 备份策略
+* 缓存、mysql数据一致性
+* 击穿、穿透、雪崩及其解决方案
+* 过期键删除策略
+* 内存淘汰机制
+* redis为什么这么快？
+

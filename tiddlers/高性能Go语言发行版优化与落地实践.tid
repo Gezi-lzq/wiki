@@ -1,0 +1,21 @@
+created: 20230126065518614
+creator: Gezi
+modified: 20230126080311148
+modifier: Gezi
+tags: Golang
+title: 高性能Go语言发行版优化与落地实践
+type: text/vnd.tiddlywiki
+
+! 优化
+
+* 内存管理优化
+* 编译器优化
+
+! 背景
+
+* [[自动内存管理]]和[[Go内存管理机制]]
+* 编译器优化的基本问题和思路
+
+! 实践
+
+字节跳动遇到的性能问题以及优化方案

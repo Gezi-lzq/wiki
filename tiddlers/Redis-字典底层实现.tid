@@ -1,0 +1,43 @@
+created: 20230217110221967
+creator: Gezi
+modified: 20230217111229272
+modifier: Gezi
+tags: Redis-字典
+title: Redis-字典底层实现
+type: text/vnd.tiddlywiki
+
+!!字典的实现
+
+!!! 哈希表
+table 属性是一个数组， 数组中的每个元素都是一个指向 dict.h/dictEntry 结构的指针， 每个 dictEntry 结构保存着一个键值对。
+size 属性记录了哈希表的大小， used 属性则记录了哈希表目前已有节点（键值对）的数量
+
+sizemask 属性的值总是等于 size - 1 ， 这个属性和哈希值一起决定一个键应该被放到 table 数组的哪个索引上面
+
+通过链地址法（separate chaining），将多个哈希值相同的键值对连接在一次， 以此来解决键冲突（collision）的问题。
+
+[img[哈希表.png]]
+
+!!! 字典
+
+```c
+typedef struct dict {
+    // 类型特定函数
+    dictType *type;
+    // 私有数据
+    void *privdata;
+    // 哈希表
+    dictht ht[2];
+    // rehash 索引
+    // 当 rehash 不在进行时，值为 -1
+    int rehashidx; /* rehashing not in progress if rehashidx == -1 */
+} dict;
+```
+ht 属性是一个包含两个项的数组， 数组中的每个项都是一个 dictht 哈希表， 一般情况下， 字典只使用 ht[0] 哈希表， ht[1] 哈希表只会在对 ht[0] 哈希表进行 rehash 时使用。
+
+rehashidx ：它记录了 rehash 目前的进度， 如果目前没有在进行 rehash ， 那么它的值为 -1 
+
+type 属性是一个指向 dictType 结构的指针， 每个 dictType 结构保存了一簇用于操作特定类型键值对的函数， Redis 会为用途不同的字典设置不同的类型特定函数。privdata 属性则保存了需要传给那些类型特定函数的可选参数。
+
+[img[字典.png]]
+

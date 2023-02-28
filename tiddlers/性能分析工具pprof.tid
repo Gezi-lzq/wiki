@@ -1,0 +1,23 @@
+created: 20230123072904193
+creator: Gezi
+modified: 20230123080732900
+modifier: Gezi
+tags: $:/gtd/20230122145307384
+title: 性能分析工具pprof
+type: text/vnd.tiddlywiki
+
+!! 介绍
+pprof是Go程序的性能分析工具，提供了分析和可视化Go程序性能的方法。它可用于分析CPU使用率、内存使用率和阻塞事件，并能生成详细报告，以帮助识别程序中的性能瓶颈。
+
+[img[pprof工具.png]]
+
+''CPU profilling'':CPU分析，按照一定频率采集所监听的应用程序的CPU(含寄存器)的使用情况，可确定应用程序在主动消耗CPU周期时花费时间的位置。
+
+''Memory Profiling'':内存分析，在应用程序进行堆分配时记录堆栈跟踪，用于监视当前和历史内存的使用情况，以及检查内存泄漏。
+
+''Block Profilling'':阻塞分析，记录Goroutine阻塞等待同步(包括定时器通道)的位置，默认不开启，需要调用 runtime.SetBlockProfileRate 进行设置。
+
+''Mutex Profiling''：互斥锁分析，报告互斥锁的竞争情况，默认不开启，需要调用 runtime.SetMutexProfileFraction 进行设置。
+
+''Goroutine Profiling'':Goroutine 分析,通过对当前程序正在运行的 Goroutine 进行堆栈跟踪和分析来提高程序性能的技术.很多问题出现时的表象就是 Goroutine 暴增，而这时候我们要做的事情之一就是查看程序中的 Goroutine 正在做什么事情，因为什么阻塞了。
+

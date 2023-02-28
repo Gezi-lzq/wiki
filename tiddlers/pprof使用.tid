@@ -1,0 +1,16 @@
+created: 20230123142905458
+creator: Gezi
+modified: 20230123155813413
+modifier: Gezi
+tags: 性能分析工具pprof
+title: pprof使用
+type: text/vnd.tiddlywiki
+
+{{pprof使用初始设置}}
+
+运行起程序后
+
+{{pprof浏览器查看}}
+
+
+{{pprof交互式终端查看}}

@@ -1,0 +1,32 @@
+created: 20230123145145251
+creator: Gezi
+modified: 20230123155824311
+modifier: Gezi
+tags: 性能分析工具pprof
+title: pprof浏览器查看
+type: text/vnd.tiddlywiki
+
+可通过浏览器访问，`http://localhost:6060/debug/pprof/`
+得知程序总览页面
+
+
+[img[pprof浏览器总览页面.png]]
+
+
+|!类型|解释|
+|!allocs|查看过去所有内存分配的样本，访问路径为 $HOST/debug/pprof/allocs。|
+|!block|查看导致阻塞同步的堆栈跟踪，访问路径为 $HOST/debug/pprof/block。|
+|!cmdline|当前程序的命令行的完整调用路径。|
+|!goroutine|查看当前所有运行的 goroutines 堆栈跟踪，访问路径为 $HOST/debug/pprof/goroutine。|
+|!heap|查看活动对象的内存分配情况， 访问路径为 $HOST/debug/pprof/heap。|
+|!mutex|查看导致互斥锁的竞争持有者的堆栈跟踪，访问路径为 $HOST/debug/pprof/mutex。|
+|!profile|默认进行 30s 的 CPU Profiling，得到一个分析用的profile 文件，访问路径为 $HOST/debug/pprof/profile。|
+|!threadcreate|查看创建新 OS 线程的堆栈跟踪，访问路径为 $HOST/debug/pprof/threadcreate。|
+
+由于直接阅读采样信息缺乏直观性，我们往往需要借助 go tool pprof 命令来排查问题，这个命令是 go 原生自带的，所以不用额外安装。
+
+直接点进去，是直接下载对于的profile文件
+
+如果机会在浏览器中查看，需要在路径名后加上`debug=1`
+
+[img[pprof浏览器查看页面2.png]]

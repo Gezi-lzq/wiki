@@ -1,0 +1,36 @@
+created: 20230215151406844
+creator: Gezi
+modified: 20230215153709070
+modifier: Gezi
+tags: 自动内存管理
+title: 分代GC(Generational GC)
+type: text/vnd.tiddlywiki
+
+> 分代假说(Generational hypothesis)
+> Infant mortality or the generational hypothesis is the observation that, in most cases, young objects are much more likely to die than old objects.
+
+* Intuition: 很多对象在分配出来后很快就不再使用了
+
+* 每个对象都有年龄：经历过GC的次数
+
+* 目的: 对年轻和年老的对象，制定不同的GC策略，''降低整体内存管理的开销''
+
+* 不同年龄的对象处于heap的不同区域
+
+[img[分代GC_区域.png]]
+
+* 年轻化(Young generation)
+
+** 常规的对象分配
+
+** 由于''存活对象很少'',可以采用[[Copying GC]]
+
+** GC 吞吐率很高
+
+* 老年代(Old generation)
+
+** ''对象趋向于一直活着，反复复制开销较大''
+
+** 可以采用 [[Mark-compact GC]]
+
+

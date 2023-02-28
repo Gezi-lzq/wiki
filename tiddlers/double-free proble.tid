@@ -1,0 +1,11 @@
+created: 20230126080555538
+creator: Gezi
+modified: 20230215151012761
+modifier: Gezi
+tags: 
+title: double-free proble
+type: text/vnd.tiddlywiki
+
+Double-free problem是指在一个程序中多次释放同一块内存的问题。
+
+这类问题通常发生在使用动态内存分配函数（如malloc或new）''分配的内存被释放多次。这样做可能会导致程序崩溃或不可预期的行为。''

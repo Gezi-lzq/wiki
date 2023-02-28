@@ -1,0 +1,19 @@
+created: 20230130091804363
+creator: Gezi
+modified: 20230130092109033
+modifier: Gezi
+tags: 
+title: 云计算架构组成
+type: text/vnd.tiddlywiki
+
+云计算是一种通过互联网提供计算资源和服务的交付模型，按需付费，而不必拥有和维护自有基础设施。
+
+IaaS，PaaS，SaaS 和 FaaS 都是云计算架构的一部分。它们代表了云计算服务中不同抽象和方便的层次，每种服务都提供了自己的优点和代价。
+
+''IaaS''（Infrastructure as a Service）：提供基础设施，如计算、存储、网络等，客户可以基于这些基础设施自主构建环境，控制资源使用，并且负责操作维护。
+
+''PaaS''（Platform as a Service）：提供一个完整的开发平台，包括编程语言、开发工具、数据库等，帮助客户开发、部署、管理和运行应用，隐藏底层基础设施。
+
+''SaaS''（Software as a Service）：提供完整的应用软件，客户可以直接使用，不需要本地安装和维护，通常收费。
+
+''FaaS''（Functions as a Service）：提供一种新的计算模型，只为客户提供按需执行的函数，隐藏了操作系统和基础设施。

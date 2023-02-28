@@ -1,0 +1,13 @@
+created: 20230125185807738
+creator: Gezi
+modified: 20230125185819843
+modifier: Gezi
+tags: ETCD
+title: registry-etcd
+type: text/vnd.tiddlywiki
+
+Registry-etcd 是一个使用 etcd 作为存储后端的微服务注册中心。它提供了一个简单的 API ，用于服务发现和注册。使用 registry-etcd 可以使用 etcd 的高可用性和一致性特性来管理微服务。
+
+通过使用 registry-etcd ，可以将服务注册到 etcd 集群中，并将服务的元数据（例如 IP 地址和端口）存储在 etcd 中。客户端可以使用 registry-etcd 提供的 API 来查询服务的元数据并连接到服务。
+
+使用 registry-etcd 可以轻松地管理和维护服务注册和发现，并可以借助 etcd 的高可用性和一致性特性来保证服务的稳定性。

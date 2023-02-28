@@ -1,0 +1,21 @@
+created: 20230131164302578
+creator: Gezi
+modified: 20230215151246343
+modifier: Gezi
+tags: 追踪垃圾回收
+title: Mark-compact GC
+type: text/vnd.tiddlywiki
+
+[img[Mark-CompactGC.png]]
+Mark-Compact GC 的原理就是原地整理对象
+
+Compact GC与Copy GC有些类似，但是Copy GC是额外的一块内存空间去做复制，而Compect GC则是在原地进行复制。
+
+''优点：''
+
+可以有效利用堆，避免了复制GC的缺点，同时也具有压缩无碎片内存的优点。
+GC 标记 -压缩算法可以在整个堆中安排对象，堆使用效率几乎是 GC 复制算法的 2 倍。
+
+''缺点：''
+
+压缩花费计算成本：执行该算法所花费的时间是和堆大小成正比的。GC 标记 - 压缩算法的吞吐量要劣于其他算法。

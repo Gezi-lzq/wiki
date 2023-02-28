@@ -1,0 +1,17 @@
+created: 20230217063622497
+creator: Gezi
+modified: 20230227123801802
+modifier: Gezi
+tags: 面试准备
+title: Mysql相关知识大纲
+type: text/vnd.tiddlywiki
+
+!!! MySql
+
+* 索引：[[聚簇索引和非聚簇索引]]、B+树和哈希、覆盖索引和回表、最左匹配原则、索引下推、索引失效、explain
+* 事务：四个特性（原理也要会）、事务隔离级别及可能产生的问题、MVCC。
+* 锁：悲观锁和[[乐观锁]]、读锁和写锁、表锁和行锁、意向锁、死锁。
+* 存储引擎区别。
+* 三大日志：undolog、redolog、binlog
+* select、update执行流程
+* Sql优化经历

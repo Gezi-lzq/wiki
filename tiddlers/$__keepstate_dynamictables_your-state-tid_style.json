@@ -6,5 +6,6 @@
     "JSP实验": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "需要完成的课程作业": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "实现分布式缓存": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
-    "学校需交实验作业": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
+    "学校需交实验作业": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "字节青训营每日打卡": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
 }
