@@ -1,6 +1,6 @@
 created: 20230301071851192
 creator: Gezi
-modified: 20230301080458839
+modified: 20230301130206084
 modifier: Gezi
 title: 服务端与消息编码
 type: text/vnd.tiddlywiki
@@ -49,9 +49,11 @@ RPC服务端实现了 Accept 方式，通过net.Listener作为参数，使用for
 
 在 ServerConn 方法中，首先使用json.NewDecoder进行反序列化得到Option实例，检查MagicNumber和CodeType的值是否正确。然后根据CodeType得到对应的消息编解码器，接下来的处理交给serverCodec。
 
-serverCodec是一个接口，它定义了用于服务端处理请求和发送响应的方法。具体实现可通过gob、JSON等编解码方式实现。
+在RPC服务端的实现中，serveCodec是一个关键的组件，它负责处理客户端发送的请求并发送响应。serveCodec的处理过程非常简单，主要包含三个阶段：读取请求(readRequest)、处理请求(handleRequest)、回复请求(sendResponse)。
 
-通过这种方式，RPC服务端能够接收来自客户端的请求，根据请求的参数调用相应的服务方法，并将处理结果返回给客户端。
+由于在一次连接中可能会接收到多个请求，因此在readRequest中使用for循环无限制地等待请求的到来，直到发生错误。在handleRequest中，使用协程并发执行请求处理，而在sendResponse中，需要保证回复报文的逐个发送，避免多个回复报文交织在一起。为此，在这里使用锁(sending)来保证回复报文的有序发送。
+
+最后需要注意的是，在解析header失败时，应尽力而为，只有在header解析失败时，才终止循环。
 
 [img[rpc服务端.png]]
 
