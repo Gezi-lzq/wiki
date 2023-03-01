@@ -1,0 +1,57 @@
+created: 20230301071851192
+creator: Gezi
+modified: 20230301080458839
+modifier: Gezi
+title: 服务端与消息编码
+type: text/vnd.tiddlywiki
+
+! 消息的序列化与反序列化
+
+一个典型的RPC调用如下：
+
+```
+err = client.Call("Arith.Multiply", args, &reply)
+```
+
+客户端发送的请求包含服务名 `Arith` ,方法名 `Multiply`, 参数 `args` 三个，服务端的相应包括错误 `error` ,返回值 `reply` 2个。
+
+将为了进行通信协商，RPC协议中需要设计报文的结构，一般采用 header 和 body 两部分，其中 header 存储报文的元数据，如编码方式、内容长度等信息，body 存储实际的请求参数和响应结果。
+
+在GeeRPC客户端中，为了简化实现，固定采用JSON编码Option，后续的header和body的编码方式由Option中的CodeType指定。服务端首先使用JSON解码Option，然后通过Option的CodeType解码剩余的内容。
+
+[img[rpc消息编码.png]]
+
+
+在一次连接中，Option 固定在报文的最开始，Header 和 Body 可以有多个，即报文可能是这样的。
+
+```
+| Option | Header1 | Body1 | Header2 | Body2 | ...
+```
+
+! 消息编解码
+抽象出对消息体进行编解码的接口 Codec，抽象出接口是为了实现不同的 Codec 实例
+
+```
+func (c *Codec) ReadHeader(hdr *Header) error
+func (c *Codec) ReadBody(body interface{}) error
+func (c *Codec) Write(hdr *Header, body interface{}) error
+func (c *Codec) Close() error
+```
+
+[img[Codec.png]]
+
+
+抽象出 Codec 的构造函数，客户端和服务端可以通过 Codec 的 Type 得到构造函数，从而创建 Codec 实例。
+
+! 服务端
+
+RPC服务端实现了 Accept 方式，通过net.Listener作为参数，使用for循环等待socket连接建立，并开启子协程处理连接请求。处理过程交给了 ServerConn 方法。
+
+在 ServerConn 方法中，首先使用json.NewDecoder进行反序列化得到Option实例，检查MagicNumber和CodeType的值是否正确。然后根据CodeType得到对应的消息编解码器，接下来的处理交给serverCodec。
+
+serverCodec是一个接口，它定义了用于服务端处理请求和发送响应的方法。具体实现可通过gob、JSON等编解码方式实现。
+
+通过这种方式，RPC服务端能够接收来自客户端的请求，根据请求的参数调用相应的服务方法，并将处理结果返回给客户端。
+
+[img[rpc服务端.png]]
+

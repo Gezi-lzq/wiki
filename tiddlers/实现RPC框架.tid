@@ -1,33 +1,27 @@
 created: 20221206084817080
 creator: lzq
 due-date: 
-modified: 20221206085118155
-modifier: lzq
+modified: 20230301071817755
+modifier: Gezi
 priority: normal
 status: not started
 tags: task
 title: 实现RPC框架
 type: text/vnd.tiddlywiki
 
-学习来源：https://geektutu.com/post/geerpc.html
+学习来源：[ext[https://geektutu.com/post/geerpc.html]]
 
 任务介绍
 GeeRPC 选择从零实现 Go 语言官方的标准库 net/rpc，并在此基础上，新增了协议交换(protocol exchange)、注册中心(registry)、服务发现(service discovery)、负载均衡(load balance)、超时处理(timeout processing)等特性。
 
 对应任务：
 
-* 服务端与消息编码
-
+* [[服务端与消息编码]]
 * 支持并发与异步的客户端
-
 * 服务注册
-
 * 超时处理
-
 * 支持HTTP协议
-
 * 负载均衡
-
 * 服务发现与注册中心
 
 目标
