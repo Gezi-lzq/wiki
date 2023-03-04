@@ -1,0 +1,21 @@
+created: 20230304084811759
+creator: Gezi
+modified: 20230304091858677
+modifier: Gezi
+tags: 
+title: 业务缓存的设计模式
+type: text/vnd.tiddlywiki
+
+> DB泛指数据源，cache泛指快速路径上的局部数据源
+
+1. 旁路 : 写时：更新DB，删除cache; 读时miss后差DB回写cache，用于高一致性的场景
+
+2. 穿透 : 写时：hit则更新DB和cache，miss仅更新DB；读时：miss则查询DB并回写，适用于冷热分区
+
+3. 异步 : 写时：只更新cache，异步更新DB。读时：miss后查询DB并回写，适用于高频写
+
+4. 兜底 : 写时：直接写DB，读时：读DB失败后读cache/成功后回写cache，适用于高可用场景
+
+5. 只读 : 写时：更新DB，读时：读cache，其他异步方式更新cache，适用于100%命中率场景，最终一致场景
+
+6. 回源 : 写时：写DB，读时：读DB，适用于缓存的降级时期
