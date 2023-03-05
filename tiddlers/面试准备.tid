@@ -1,7 +1,7 @@
 created: 20230216104909836
 creator: Gezi
 due-date: 
-modified: 20230304042103470
+modified: 20230305062510675
 modifier: Gezi
 priority: normal
 status: not started
@@ -52,7 +52,7 @@ type: text/vnd.tiddlywiki
 * 实现web框架
 * [[实现分布式缓存]]
 * [[实现RPC框架]]
-* 抖音青训营-短视频后端
+* [[抖音青训营-短视频后端]]
 * RPC应用
 * 进程内缓存
 ! 算法准备
