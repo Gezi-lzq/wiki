@@ -1,0 +1,17 @@
+created: 20230307153033354
+creator: Gezi
+modified: 20230307160121360
+modifier: Gezi
+tags: $:/gtd/20230307152723036 k8s
+title: Kubernetes基础概念
+type: text/vnd.tiddlywiki
+
+* <mark class="mark-orange">Kubernetes</mark> 的 API 对象：Kubernetes API ''定义了 Kubernetes 中的所有对象''，它包含了 Pod、ReplicaSet、Deployment 和 Service 等对象的规范和行为。API 对象可以通过 kubectl 命令行工具、Kubernetes API 客户端库或 RESTful API 进行创建、更新和删除等操作。
+
+* <mark class="mark-orange">Pod</mark>：Pod 是 Kubernetes 中''最基本的可部署单元''，它由一个或多个 Docker 容器组成，共享网络和存储资源。''Pod 通常被用来部署应用程序的不同组件''，这些组件可能需要紧密协作以实现应用程序的功能。
+
+* <mark class="mark-orange">ReplicaSet</mark>：ReplicaSet 是''用来管理 Pod 副本数量的控制器''。它确保在 Kubernetes 集群中的任何时候都有一定数量的 Pod 副本在运行，如果 Pod 失败或需要扩展，则会自动调整副本数量。
+
+* <mark class="mark-orange">Deployment</mark>：Deployment 是''管理应用程序的上层抽象''，''通过控制 ReplicaSet 来实现应用程序的部署和更新''。Deployment 提供了应用程序的''版本控制、滚动升级、回滚''等功能。
+
+* <mark class="mark-orange">Service</mark>：Service 是一个抽象层，用来''暴露应用程序内部的一组 Pod''，使得这些 Pod 可以被其他应用程序或用户访问到。Service 可以通过 ClusterIP、NodePort、LoadBalancer 和 ExternalName 等方式提供服务。
