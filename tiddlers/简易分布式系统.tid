@@ -1,14 +1,12 @@
 created: 20230308142001008
 creator: Gezi
-draft.of: New Task
-draft.title: 简易分布式系统
 due-date: 
-modified: 20230308142509561
+modified: 20230311053725711
 modifier: Gezi
 priority: normal
 status: not started
 tags: task
-title: Draft of 'New Task' by Gezi
+title: 简易分布式系统
 type: text/vnd.tiddlywiki
 
 * 使用Go语言构建一套简易分布式系统
@@ -20,7 +18,9 @@ type: text/vnd.tiddlywiki
 [img[混合模式.png]]
 
 优点：
+
 * 有利于负载均衡
+
 * 对服务失败的防范更加健壮
 
 缺点

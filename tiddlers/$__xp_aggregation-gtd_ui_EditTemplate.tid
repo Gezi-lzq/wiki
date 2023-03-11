@@ -1,7 +1,7 @@
 created: 20230122145514273
 creator: Gezi
 footer: <span class="tc-muted" style="float:left;text-align:left;padding:.5em 0 0 1em;font-size:.9em;"> Status: <$list filter="[<currentItem>!tag[done]]"><span style="color:#cc3333;">undone</span></$list><$list filter="[<currentItem>removeprefix[$:/]addprefix[$:/todolist/data/status/]search:text[undone]]"><$list filter="[<currentItem>!tag[done]]"> / </$list><span style="color:#cc3333;">todolist</span></$list><$list filter="[<currentItem>tag[done]]"><$list filter="[<currentItem>removeprefix[$:/]addprefix[$:/todolist/data/status/]!search:text[undone]]"><span style="color:#00a565;">completed</span></$list></$list></span><span class="py-todo-actions"><$button tooltip="Delete all information about this item" class="py-btn"><span style="opacity:.8;">{{$:/core/images/delete-button}}</span><$action-deletetiddler $tiddler=<<currentItem>>/><$action-deletetiddler $filter="[prefix[$:/todolist/data]suffix<td-baseName>]"/><$action-sendmessage $message="tm-close-tiddler"/><$action-listops $tiddler=<<currentList>> $subfilter="+[remove<currentItem>]"/></$button><$button tooltip="Confirm changes to this item. ctrl-Enter" class="py-btn" style="margin:0 1em 0 .8em;">{{$:/core/images/done-button}}<$list filter="[<currentItem>get[caption]!match{$:/state/gtd/edit-caption}]"><$action-setfield $tiddler=<<currentItem>> $field="caption" $value={{$:/state/gtd/edit-caption}}/></$list><$action-sendmessage $message="tm-close-tiddler"/></$button></span>
-modified: 20230122145748228
+modified: 20230311053837505
 modifier: Gezi
 subtitle: {{$:/xp/images/q2}} 重要不紧急
 title: $:/xp/aggregation-gtd/ui/EditTemplate

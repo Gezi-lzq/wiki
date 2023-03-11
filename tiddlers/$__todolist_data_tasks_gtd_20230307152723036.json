@@ -1,8 +1,0 @@
-{
-    "20230307152757333": "6.集群管理和监控：学习如何管理和监控 Kubernetes 集群，包括如何故障排查、备份和恢复等操作。",
-    "20230307152801363": "5.Kubernetes 储存和网络：学习如何使用 Kubernetes 动态存储和网络配置。",
-    "20230307152805051": "4.Deployments 和 Services：学习如何使用 Kubernetes 部署应用程序并将其暴露为服务。",
-    "20230307152808096": "3.管理 Kubernetes 对象：学习如何使用 Kubernetes 手动创建和管理 Kubernetes 对象。",
-    "20230307152813010": "2.安装 Kubernetes：学习如何在本地搭建单节点或多节点 Kubernetes 集群。",
-    "20230307152817207": "1.了解 Kubernetes 的基础概念：包括 Kubernetes 的 API 对象、Pod、ReplicaSet、Deployment、Service 等基础概念。"
-}
