@@ -1,7 +1,7 @@
 created: 20230308142001008
 creator: Gezi
 due-date: 
-modified: 20230311053725711
+modified: 20230311163035674
 modifier: Gezi
 priority: normal
 status: not started
@@ -10,7 +10,6 @@ title: 简易分布式系统
 type: text/vnd.tiddlywiki
 
 * 使用Go语言构建一套简易分布式系统
-
 * 仅为学习使用，故组件选择不是面向生成环境
 
 混合模式：
@@ -20,7 +19,25 @@ type: text/vnd.tiddlywiki
 优点：
 
 * 有利于负载均衡
-
 * 对服务失败的防范更加健壮
 
 缺点
+
+* 架构更加复杂
+* Hob的作用范围难以界定
+
+!! 系统主要组件
+
+* [[服务注册]]
+** 服务注册
+** 健康检查
+* [[用户门户]]
+** Web应用
+** API网关
+* [[日志服务]]
+** 集中式日志
+* [[业务服务]]
+** 业务逻辑
+** 数据持久化
+
+

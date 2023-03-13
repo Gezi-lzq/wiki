@@ -1,0 +1,15 @@
+created: 20230313051714593
+creator: Gezi
+modified: 20230313052214247
+modifier: Gezi
+tags: 
+title: DAU预估
+type: text/vnd.tiddlywiki
+
+* 假设某个功能每人每天使用的频次 (假设使用100次)
+
+* QPS 可以预估为 1000Mli * 100 / 86400 = 12Mli QPS
+
+* 峰值预估 12Mli * 1.5 = 18Mli QPS
+
+* 假设使用该功能每次需要存储消耗1kb 则 1000Mli * 100 * 1KB = 1P 每天

@@ -1,0 +1,22 @@
+created: 20230313050923352
+creator: Gezi
+due-date: 
+modified: 20230313051155633
+modifier: Gezi
+priority: normal
+status: not started
+tags: task
+title: IM系统-plato
+type: text/vnd.tiddlywiki
+
+项目亮点
+
+* 单机百万长连接热重启实现
+
+* 万人群聊消息通信延迟优化
+
+* 架构可用性4个9建设
+
+* 超大规模消息推送优化
+
+* 直播/聊天室/弹幕多场景消息中台扩展
