@@ -1,0 +1,17 @@
+created: 20230315085838831
+creator: Gezi
+modified: 20230315085947630
+modifier: Gezi
+tags: 
+title: EDF调度算法
+type: text/vnd.tiddlywiki
+
+最早截止时间优先算法（Earliest Deadline First，EDF）
+
+定义：EDF算法是指根据''任务的截止时间来确定任务的优先级''的算法，''任务截止时间越早，其优先级愈高''。
+
+作用对象：即可用于抢占式调度方式中，也可以用于非抢占式调度方式中。
+
+* 非抢占式调度方式用于非周期实时任务
+
+* 抢占式调度方式用于周期实时任务
