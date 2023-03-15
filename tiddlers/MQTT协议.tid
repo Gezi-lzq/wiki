@@ -1,0 +1,25 @@
+created: 20230315023730362
+creator: Gezi
+modified: 20230315024407519
+modifier: Gezi
+tags: IM相关技术与协议调研
+title: MQTT协议
+type: text/vnd.tiddlywiki
+
+MQTT（Message Queuing Telemetry Transport，消息队列遥测传输）
+
+MQTT是轻量级基于代理的发布/订阅的消息传输协议，它可以通过很少的代码和带宽和远程设备连接。
+
+> 最初是为了针对物联网的一些应用场景来制订的一个异步的轻量级双向消息传输协议。
+
+''MQTT的优势''
+
+* 轻量级
+
+* 消息可达率高。专为预定义不稳定的网络而设计的一个传输协议。
+
+* 发布和订阅的模式，可一对一也可一对多的消息传输。
+
+* 安全性。
+
+* 提供了多种消息质量的服务。
