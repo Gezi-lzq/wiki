@@ -1,0 +1,11 @@
+created: 20230316013226734
+creator: Gezi
+modified: 20230316013322686
+modifier: Gezi
+tags: [[L3/L4/L7 Load Balancing]]
+title: L3负载均衡
+type: text/vnd.tiddlywiki
+
+[img[可扩展架构-35.png]]
+
+L3是在''网络协议层''实现的负载均衡，通过Load balancer（负载均衡器）来进行请求的派发，发送给后端的若干个Server。''基于ip协议，将请求中，通过网络地址转换协议 来实现请求的分发''。

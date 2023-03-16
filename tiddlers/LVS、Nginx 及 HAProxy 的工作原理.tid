@@ -1,0 +1,13 @@
+created: 20230316005317502
+creator: Gezi
+modified: 20230316012829219
+modifier: Gezi
+tags: 负载均衡
+title: LVS、Nginx 及 HAProxy 的工作原理
+type: text/vnd.tiddlywiki
+
+在 Web 服务器集群之前总会有一台''负载均衡服务器''，负载均衡设备的任务就是作为 Web 服务器流量的入口，挑选最合适的一台 Web 服务器，将客户端的请求转发给它处理，实现客户端到真实服务端的透明转发。
+
+''LVS、Nginx、HAProxy 是目前使用最广泛的三种软件负载均衡软件。''
+
+[[负载均衡方面流行的架构方案]]

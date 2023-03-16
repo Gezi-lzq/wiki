@@ -1,0 +1,10 @@
+created: 20230316012835478
+creator: Gezi
+modified: 20230316012946124
+modifier: Gezi
+tags: 负载均衡
+title: DNS Pound Robin
+type: text/vnd.tiddlywiki
+
+通过DNS的ip地址的分配来实现负载均衡，将请求分摊到不同服务器上。
+[img[可扩展架构-33.png]]

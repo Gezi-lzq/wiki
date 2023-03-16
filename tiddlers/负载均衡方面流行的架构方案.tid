@@ -1,0 +1,20 @@
+created: 20230316005645764
+creator: Gezi
+modified: 20230316005713977
+modifier: Gezi
+title: 负载均衡方面流行的架构方案
+type: text/vnd.tiddlywiki
+
+一般对负载均衡的使用是''随着网站规模的提升根据不同的阶段来使用不同的技术''。
+
+具体的应用需求还得具体分析，如果是中小型的 Web 应用，比如日 PV 小于1000万，用 Nginx 就完全可以了；
+
+如果机器不少，可以用 DNS 轮询，LVS 所耗费的机器还是比较多的；
+
+大型网站或重要的服务，且服务器比较多时，可以考虑用 LVS。
+
+目前关于网站架构一般比较合理流行的架构方案：
+
+Web 前端采用 Nginx/HAProxy+Keepalived 作负载均衡器；
+
+后端采用 MySQ L数据库一主多从和读写分离，采用 LVS+Keepalived 的架构。
