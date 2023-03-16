@@ -1,11 +1,28 @@
 created: 20230316013226734
 creator: Gezi
-modified: 20230316013322686
+modified: 20230316021931743
 modifier: Gezi
-tags: [[L3/L4/L7 Load Balancing]]
+tags: 负载均衡
 title: L3负载均衡
 type: text/vnd.tiddlywiki
 
 [img[可扩展架构-35.png]]
 
 L3是在''网络协议层''实现的负载均衡，通过Load balancer（负载均衡器）来进行请求的派发，发送给后端的若干个Server。''基于ip协议，将请求中，通过网络地址转换协议 来实现请求的分发''。
+
+比如，Load Balancer 的ip地址对于用户来说，相当于整个服务的一个入口。
+一个用户（ip为206.183.42.40），向该Load Balancer发送请求，建立一个TCP/UDP等链接。
+负载均衡器并不处理这个请求，而是将此请求转发到后台某个Server上面。
+
+[img width= 450 [可扩展架构-37.png]]
+
+''负载均衡器''通过将客户端发送的每个数据包内的`destination ip`通过某种算法，''更换为某个后台Server的ip''。服务器返回的数据包会再经过Load balancer,然后Load balancer''再修改`source ip`''。对于客户端来说，还是感觉向负载均衡器发送请求，又由它进行响应的。
+
+[img width= 650 [可扩展架构-38.png]]
+
+''通过Ip层的转换，将用户请求进行分发。''
+为避免出现''单点失效''，即为负载均衡器宕机了，整个服务都无法进行。所以要''增加冗余''，防止单个Load Balancer，整个服务不可用。
+
+[img width= 450 [可扩展架构-39.png]]
+
+> 服务器都通过负载均衡器这个网口，部署条件较高，使用较少

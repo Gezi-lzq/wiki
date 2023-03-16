@@ -1,9 +1,11 @@
 created: 20230316013018522
 creator: Gezi
-modified: 20230316013052568
+modified: 20230316021117891
 modifier: Gezi
 tags: 负载均衡
 title: L3/L4/L7 Load Balancing
 type: text/vnd.tiddlywiki
 
 [img[可扩展架构-34.png]]
+
+* [[L3负载均衡]]
