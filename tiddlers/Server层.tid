@@ -1,0 +1,13 @@
+created: 20230318165122969
+creator: Gezi
+modified: 20230318165432562
+modifier: Gezi
+tags: mysql
+title: Server层
+type: text/vnd.tiddlywiki
+
+<mark class="mark-orange">Server层负责建立连接,分析和执行SQL。</mark>
+
+MySQL大多数的核心功能模块都在这实现，主要包括''连接器''，''查询缓存''，''解析器''，''预处理器''，''优化器''，''执行器''等。
+
+另外，所有的内置函数(如日期，时间，数学和加密函数等)和所有跨存储引擎的功能（如存储过程、触发器、视图等。）都在 Server 层实现。

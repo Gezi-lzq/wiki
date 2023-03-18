@@ -1,0 +1,15 @@
+created: 20230318165458811
+creator: Gezi
+modified: 20230318173029312
+modifier: Gezi
+tags: mysql
+title: 存储引擎层
+type: text/vnd.tiddlywiki
+
+<mark class="mark-orange">存储引擎层负责数据的存储和提取。</mark>
+
+支持 InnoDB、MyISAM、Memory 等多个存储引擎，不同的存储引擎共用一个 Server 层。
+
+现在最常用的存储引擎是 InnoDB，从 MySQL 5.5 版本开始， InnoDB 成为了 MySQL 的默认存储引擎。
+
+我们常说的索引数据结构，就是由存储引擎层实现的，不同的存储引擎支持的索引类型也不相同，比如 InnoDB 支持索引类型是 B+树 ，且是默认使用，也就是说在数据表中创建的主键索引和二级索引默认使用的是 B+ 树索引。

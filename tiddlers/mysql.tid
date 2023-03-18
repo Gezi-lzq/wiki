@@ -1,0 +1,10 @@
+created: 20230318165050956
+creator: Gezi
+modified: 20230318165451147
+modifier: Gezi
+title: mysql
+type: text/vnd.tiddlywiki
+
+[img[Mysql内部架构.png]]
+
+MySQL 的架构共分为两层：[[Server层]]和[[存储引擎层]]，
