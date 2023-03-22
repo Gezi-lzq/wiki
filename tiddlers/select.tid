@@ -1,0 +1,21 @@
+created: 20230322022327487
+creator: Gezi
+modified: 20230322071604160
+modifier: Gezi
+tags: IO多路复用第一版(select/poll)
+title: select
+type: text/vnd.tiddlywiki
+
+! select
+
+select是第一个实现IO多路复用 (1983 左右在BSD里面实现)。select是三者当中最底层的，它的事件的轮训机制是''基于比特位的''。每次查询都要遍历整个事件列表。
+
+[img[select数据结构与操作.png]]
+
+[img width=600 [select函数调用.png]]
+
+[img[select执行过程与相关代码.png]]
+
+其中还有一部分，在server进行Accept时,等待新客户端连接，当有新客户端连接后，需要加入f_set中，调用select，重新将其拷贝到内核态
+
+[img width=650 [select中接受新客户端时.png]]

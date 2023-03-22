@@ -1,0 +1,40 @@
+created: 20230322020423960
+creator: Gezi
+modified: 20230322071534115
+modifier: Gezi
+tags: 网络演变
+title: IO多路复用第一版(select/poll)
+type: text/vnd.tiddlywiki
+
+! IO多路复用第一版(select/poll)
+
+[img[IO多路复用第一版(用户态与内核态调用过程).png]]
+
+1. 用户程序调用I/O多路复用函数（如select，poll）。
+
+2. I/O多路复用函数在用户态进行处理，将多个文件描述符(fd数组 bitmap/pollfd)注册到内核态的轮询机制中，并等待事件发生。
+
+3. 当I/O事件发生时，轮询机制会将fd数组返回给用户程序。
+
+4. 用户程序通过遍历fd数组判断哪个socket需要进行读写操作。
+
+5. 读写操作完成后，用户程序再次调用I/O多路复用函数进行事件监听。
+
+6. I/O多路复用函数重复上述操作，进行事件监听。
+
+7. 如果没有事件发生，I/O多路复用函数会阻塞等待，节省了CPU资源。
+
+8. 如果有事件发生，I/O多路复用函数会通知用户程序进行读写操作，提高了程序的效率。
+
+<<<
+
+IO多路复用主要复用的是<mark class="mark-red">系统调用</mark>。
+
+从原先非阻塞情况下的<mark class="mark-red">多个client需要各自多次发送recvfrom系统调用去不断询问内核数据是否已就绪；</mark> 
+
+<mark class="mark-orange">转变成了现在通过一次系统调用select/poll由内核主动通知用户哪些client数据已就绪(read，write,accept事件)。</mark>
+
+''大大减少了无效的系统调用次数''
+
+<<<
+
