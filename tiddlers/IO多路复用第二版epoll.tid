@@ -1,0 +1,19 @@
+created: 20230322074737902
+creator: Gezi
+modified: 20230322080510938
+modifier: Gezi
+tags: 网络演变
+title: IO多路复用第二版epoll
+type: text/vnd.tiddlywiki
+
+1. epoll和poll的区别在于epoll维护了一个内核事件表存放所有文件描述符，而poll没有长久维护数据结构
+
+2. poll每次调用时都会拷贝一遍所有文件描述符到内核态，而epoll不会
+
+3.在内核中长久维护一个数据结构来存放文件描述符会影响内核效率
+
+4.红黑树是一种高效的数据结构来存放文件描述符
+
+5.epoll的操作EPOLL_CTL_ADD可以使用红黑树来实现插入操作
+
+6.红黑树的插入、查找和删除操作效率都比较高

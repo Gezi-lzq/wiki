@@ -1,6 +1,6 @@
 created: 20230322020423960
 creator: Gezi
-modified: 20230322071534115
+modified: 20230322074933205
 modifier: Gezi
 tags: 网络演变
 title: IO多路复用第一版(select/poll)
@@ -38,3 +38,21 @@ IO多路复用主要复用的是<mark class="mark-red">系统调用</mark>。
 
 <<<
 
+<<list-links "[tag[IO多路复用第一版(select/poll)]sort[title]]">>
+
+!!! select与poll的区别
+
+[img[select与poll区别.png]]
+
+!! 优缺点
+
+!!!优点
+
+<mark class="mark-red">充分利用了一次系统调用select()/poll()就可以实现管理多个client的事件</mark>(read、
+write、accept等)。大大降低了之前非阻塞IO时''频繁无效的系统调用''。
+''核心思路是：将主动询问内核转变为等待内核通知，提升了性能''
+
+!!! 缺点
+
+每次select()/poll()都需要将注册管理的''多个client从用户态拷贝到内核态''。在管理
+百万连接时，由拷贝带来的<mark class="mark-purple">资源开销较大，影响性能</mark>
