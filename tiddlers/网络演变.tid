@@ -1,0 +1,34 @@
+created: 20230321151404002
+creator: Gezi
+modified: 20230321153834213
+modifier: Gezi
+tags: 网络演变及网络模型
+title: 网络演变
+type: text/vnd.tiddlywiki
+
+<div style="float:left;margin-rigiht:20px;"> 
+<h2>网络演变过程</h2>
+[img width= 150 [网络演变.png]]
+
+</div>
+
+<div style="margin-left: 180px;">
+
+<<list-links "[tag[网络演变]sort[title]]">>
+
+
+<<reuse-tiddler "阻塞IO(BIO)">>
+
+<<reuse-tiddler "非阻塞IO(NIO)">>
+
+<<reuse-tiddler "IO多路复用第一版(select/poll)">>
+
+<<reuse-tiddler "IO多路复用第二版(epoll)">>
+
+<<reuse-tiddler "信号驱动IO">>
+
+<<reuse-tiddler "异步IO(AIO)">>
+
+</div>
+
+
