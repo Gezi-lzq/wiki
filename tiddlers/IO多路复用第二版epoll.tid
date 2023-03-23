@@ -1,10 +1,20 @@
 created: 20230322074737902
 creator: Gezi
-modified: 20230322080510938
+modified: 20230323065435214
 modifier: Gezi
 tags: 网络演变
 title: IO多路复用第二版epoll
 type: text/vnd.tiddlywiki
+
+
+!! 相对第一版的改进
+
+select与poll中，从主动轮询转变为了被动通知，的确提升了性能。但是select()/poll()每次调用都需要拷贝管理的全量的fd到内核态，导致影响性能。
+
+''改进思路：''
+
+由第一版的<mark class="mark-orange">拷贝，模糊通知</mark>优化为=><mark class="mark-red">不拷贝，明确通知</mark>
+
 
 1. epoll和poll的区别在于epoll维护了一个内核事件表存放所有文件描述符，而poll没有长久维护数据结构
 
