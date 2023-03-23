@@ -1,0 +1,22 @@
+created: 20230323115855773
+creator: Gezi
+modified: 20230323122606887
+modifier: Gezi
+tags: Golang
+title: 数组与切片有什么异同
+type: text/vnd.tiddlywiki
+
+slice 的底层数据是数组，slice 是对数组的封装，它描述一个数组的片段。两者都可以通过下标来访问单个元素。
+
+* 数组是定长的,长度不可更改
+
+* 切片可以动态地扩容，切片类型与长度无关
+
+```go
+// runtime/slice.go
+type slice struct {
+	array unsafe.Pointer // 元素指针
+	len   int // 长度 
+	cap   int // 容量
+}
+```
