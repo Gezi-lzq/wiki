@@ -1,0 +1,9 @@
+created: 20230324032754157
+creator: Gezi
+modified: 20230324032852170
+modifier: Gezi
+tags: ? Golang八股 数组与切片
+title: 向一个nil的slice添加元素会发生什么？为什么？
+type: text/vnd.tiddlywiki
+
+其实 `nil slice` 或者 `empty slice` 都是可以通过调用 `append` 函数来获得底层数组的扩容。最终都是调用 `mallocgc` 来向 Go 的内存管理器申请到一块内存，然后再赋给原来的`nil slice` 或 `empty slice`，然后摇身一变，成为“真正”的 `slice` 了。
