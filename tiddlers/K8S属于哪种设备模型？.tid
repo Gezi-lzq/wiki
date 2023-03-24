@@ -1,0 +1,9 @@
+created: 20230324161423094
+creator: Gezi
+modified: 20230324161438171
+modifier: Gezi
+tags: ? k8s
+title: K8S属于哪种设备模型？
+type: text/vnd.tiddlywiki
+
+主从设备模型（Master-Slave架构）。

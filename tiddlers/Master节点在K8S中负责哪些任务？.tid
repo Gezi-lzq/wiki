@@ -1,0 +1,9 @@
+created: 20230324161441564
+creator: Gezi
+modified: 20230324161453942
+modifier: Gezi
+tags: ? k8s
+title: Master节点在K8S中负责哪些任务？
+type: text/vnd.tiddlywiki
+
+核心的调度、管理和运维

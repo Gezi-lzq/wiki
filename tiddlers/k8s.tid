@@ -1,0 +1,22 @@
+created: 20230324161219965
+creator: Gezi
+modified: 20230324161420817
+modifier: Gezi
+title: k8s
+type: text/vnd.tiddlywiki
+
+<fieldset>
+<legend>快速添加</legend>
+	<$button>
+		<$action-sendmessage $message="tm-new-tiddler" tags="? k8s" />
+	添加钓鱼卡片
+	</$button>
+</fieldset>
+
+!!! 传统的后端部署办法有哪些不足？ 
+
+如果服务请求量上来，已部署的服务响应不过来，需要手动增加服务器，并接入负载均衡。
+
+!!! K8S解决了什么问题？
+
+K8S自动化运维管理Docker（容器化）程序，自动完成服务的部署、更新、卸载和扩容、缩容。

@@ -1,0 +1,9 @@
+created: 20230324161625178
+creator: Gezi
+modified: 20230324161640087
+modifier: Gezi
+tags: ? k8s
+title: K8S中的Scheduler有什么作用？
+type: text/vnd.tiddlywiki
+
+选择最合适的Worker Node来部署服务
