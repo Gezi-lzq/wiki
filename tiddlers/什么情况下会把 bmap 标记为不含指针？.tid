@@ -1,0 +1,12 @@
+caption: 什么情况下会把 bmap 标记为不含指针？如果此时包含overflow字段怎么办
+created: 20230324074156747
+creator: Gezi
+modified: 20230324074321627
+modifier: Gezi
+tags: ? Golang八股 map
+title: 什么情况下会把 bmap 标记为不含指针？
+type: text/vnd.tiddlywiki
+
+当 map 中的 key 和 value 均不是指针，并且大小都小于 128 字节时，Go 会将该 map 中的 bitmap（即 bmap，用于表示 map 中的键值对是否存在）标记为不含指针，从而避免在进行垃圾回收时需要扫描整个 map。
+
+然而，bmap 中还有一个 overflow 字段，用于存储部分哈希冲突的键值对。由于 overflow 字段是指针类型，因此会破坏 bmap 不含指针的设计。为了解决这个问题，Go 会将 overflow 字段移动到 extra 字段中，从而实现了 bmap 不含指针的设想。

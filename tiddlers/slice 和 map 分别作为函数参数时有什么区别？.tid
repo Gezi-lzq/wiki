@@ -1,8 +1,8 @@
 created: 20230324070606865
 creator: Gezi
-modified: 20230324071110584
+modified: 20230324074350793
 modifier: Gezi
-tags: ? Golang八股
+tags: ? Golang八股 map 数组与切片
 title: slice 和 map 分别作为函数参数时有什么区别？
 type: text/vnd.tiddlywiki
 
