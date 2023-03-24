@@ -1,0 +1,9 @@
+created: 20230324063828064
+creator: Gezi
+modified: 20230324070602448
+modifier: Gezi
+tags: ? Golang面试 map
+title: map 的底层如何实现
+type: text/vnd.tiddlywiki
+
+Go 语言采用的是哈希查找表，并且使用链表解决哈希冲突

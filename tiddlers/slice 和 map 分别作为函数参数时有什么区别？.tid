@@ -1,0 +1,20 @@
+created: 20230324070606865
+creator: Gezi
+modified: 20230324071110584
+modifier: Gezi
+tags: ? Golang八股
+title: slice 和 map 分别作为函数参数时有什么区别？
+type: text/vnd.tiddlywiki
+
+当 map 和 slice 作为函数参数时，在函数参数内部对 map 的操作会影响 map 自身；而对 slice 却不会。
+
+主要原因：一个是指针（*hmap），一个是结构体（slice）。
+
+Go 语言中的函数传参都是''值传递''，在函数内部，参数会被 copy 到本地。
+
+`*hmap指针` copy 完之后，仍然指向同一个 map，因此函数内部对 map 的操作会影响实参。
+
+而 slice 被 copy 后，会成为一个新的 slice，对它进行的操作不会影响到实参。
+
+不过也需注意，不管传的是 slice 还是 slice 指针，''如果改变了 slice 底层数组的数据，会反应到实参 slice 的底层数据''。因为''底层数据在 slice 结构体里是一个指针''，尽管 slice 结构体自身不会被改变，也就是说底层数据地址不会被改变。 但是通过指向底层数据的指针，可以改变切片的底层数据，没有问题。
+

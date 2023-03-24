@@ -1,8 +1,8 @@
 created: 20230324032754157
 creator: Gezi
-modified: 20230324032852170
+modified: 20230324064505510
 modifier: Gezi
-tags: ? Golang八股 数组与切片
+tags: ? Golang面试 数组与切片
 title: 向一个nil的slice添加元素会发生什么？为什么？
 type: text/vnd.tiddlywiki
 
