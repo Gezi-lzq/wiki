@@ -1,0 +1,17 @@
+created: 20230324030121075
+creator: Gezi
+modified: 20230324031845123
+modifier: Gezi
+tags: ? Golang八股 数组与切片
+title: Slice如何扩容？
+type: text/vnd.tiddlywiki
+
+在使用 append 向 slice 追加元素时，若 slice 空间不足则会发生扩容，扩容会重新分配一块更大的内存，将原 slice 拷贝到新 slice ，然后返回新 slice。扩容后再将数据追加进去。
+
+扩容操作只对容量，扩容后的 slice 长度不变，容量变化规则如下：
+
+golang1.18版本之前：当原 slice 容量小于 1024 的时候，新 slice 容量变成原来的 2 倍；原 slice 容量超过 1024，新 slice 容量变成原来的1.25倍。
+
+golang1.18版本更新之后: 当原slice容量(oldcap)小于256的时候，新slice(newcap)容量为原来的2倍；原slice容量超过256，新slice容量$$newcap = oldcap+(oldcap+3*256)/4$$
+
+> 实际扩容中，还会在进行一次''内存对齐''，进行内存对齐之后，新 slice 的容量是要 ''大于等于'' 按照原扩容规则生成的newcap。
