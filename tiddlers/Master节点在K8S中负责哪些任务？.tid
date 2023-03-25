@@ -1,8 +1,18 @@
 created: 20230324161441564
 creator: Gezi
-modified: 20230324161453942
+difficulty: 5
+due: 20230326172545828
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172545828
 modifier: Gezi
-tags: ? k8s
+reps: 1
+retrievability: 1
+review: 20230324172545828
+stability: 2
+tags: k8s ?
 title: Master节点在K8S中负责哪些任务？
 type: text/vnd.tiddlywiki
 

@@ -1,8 +1,18 @@
 created: 20230324161625178
 creator: Gezi
-modified: 20230324161640087
+difficulty: 5
+due: 20230326172549593
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172549593
 modifier: Gezi
-tags: ? k8s
+reps: 1
+retrievability: 1
+review: 20230324172549593
+stability: 2
+tags: k8s ?
 title: K8S中的Scheduler有什么作用？
 type: text/vnd.tiddlywiki
 

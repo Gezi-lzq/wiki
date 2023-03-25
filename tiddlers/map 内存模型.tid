@@ -1,8 +1,18 @@
 created: 20230324064307432
 creator: Gezi
-modified: 20230324070553528
+difficulty: 5
+due: 20230326172458892
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172458892
 modifier: Gezi
-tags: ? Golang面试 map
+reps: 1
+retrievability: 1
+review: 20230324172458892
+stability: 2
+tags: Golang面试 map ?
 title: map 内存模型
 type: text/vnd.tiddlywiki
 

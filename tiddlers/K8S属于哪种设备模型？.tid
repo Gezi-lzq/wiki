@@ -1,8 +1,18 @@
 created: 20230324161423094
 creator: Gezi
-modified: 20230324161438171
+difficulty: 5
+due: 20230326172541265
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172541265
 modifier: Gezi
-tags: ? k8s
+reps: 1
+retrievability: 1
+review: 20230324172541265
+stability: 2
+tags: k8s ?
 title: K8S属于哪种设备模型？
 type: text/vnd.tiddlywiki
 

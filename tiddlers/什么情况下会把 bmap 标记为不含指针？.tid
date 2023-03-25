@@ -1,9 +1,19 @@
 caption: 什么情况下会把 bmap 标记为不含指针？如果此时包含overflow字段怎么办
 created: 20230324074156747
 creator: Gezi
-modified: 20230324074321627
+difficulty: 5
+due: 20230326172532891
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172532891
 modifier: Gezi
-tags: ? Golang八股 map
+reps: 1
+retrievability: 1
+review: 20230324172532891
+stability: 2
+tags: Golang八股 map ?
 title: 什么情况下会把 bmap 标记为不含指针？
 type: text/vnd.tiddlywiki
 

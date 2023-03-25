@@ -1,8 +1,18 @@
 created: 20230324030121075
 creator: Gezi
-modified: 20230324064505511
+difficulty: 5
+due: 20230326172434966
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172434966
 modifier: Gezi
-tags: ? Golang面试 数组与切片
+reps: 1
+retrievability: 1
+review: 20230324172434966
+stability: 2
+tags: Golang面试 数组与切片 ?
 title: Slice如何扩容？
 type: text/vnd.tiddlywiki
 

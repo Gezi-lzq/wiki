@@ -1,8 +1,18 @@
 created: 20230323115855773
 creator: Gezi
-modified: 20230324064505510
+difficulty: 5
+due: 20230326172423699
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230324172423699
 modifier: Gezi
-tags: ? Golang面试 数组与切片
+reps: 1
+retrievability: 1
+review: 20230324172423699
+stability: 2
+tags: Golang面试 数组与切片 ?
 title: 数组与切片有什么异同
 type: text/vnd.tiddlywiki
 
