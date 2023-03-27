@@ -1,17 +1,17 @@
 created: 20230323115855773
 creator: Gezi
-difficulty: 5
-due: 20230326172423699
-grade: -1
-history: []
-interval: 0
-lapses: 0
-modified: 20230324172423699
+difficulty: 6.1000000000000005
+due: 20230328071354204
+grade: 0
+history: [{"due":"20230326172423699","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172423699"}]
+interval: 2
+lapses: 1
+modified: 20230327071354205
 modifier: Gezi
 reps: 1
-retrievability: 1
-review: 20230324172423699
-stability: 2
+retrievability: 0.9
+review: 20230327071354204
+stability: 1.4816364413634358
 tags: Golang面试 数组与切片 ?
 title: 数组与切片有什么异同
 type: text/vnd.tiddlywiki

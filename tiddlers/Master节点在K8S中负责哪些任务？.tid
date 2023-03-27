@@ -1,17 +1,17 @@
 created: 20230324161441564
 creator: Gezi
-difficulty: 5
-due: 20230326172545828
-grade: -1
-history: []
-interval: 0
+difficulty: 5.1000000000000005
+due: 20230402071530378
+grade: 1
+history: [{"due":"20230326172545828","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172545828"}]
+interval: 2
 lapses: 0
-modified: 20230324172545828
+modified: 20230327071530378
 modifier: Gezi
-reps: 1
-retrievability: 1
-review: 20230324172545828
-stability: 2
+reps: 2
+retrievability: 0.9
+review: 20230327071530378
+stability: 5.512139752431654
 tags: k8s ?
 title: Master节点在K8S中负责哪些任务？
 type: text/vnd.tiddlywiki

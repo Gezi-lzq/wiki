@@ -1,17 +1,17 @@
 created: 20230324032754157
 creator: Gezi
-difficulty: 5
-due: 20230326172448402
-grade: -1
-history: []
+difficulty: 5.300000000000001
+due: 20230402071417094
+grade: 1
+history: [{"due":"20230326172448402","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172448402"},{"due":"20230402071416986","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071416986"}]
 interval: 0
 lapses: 0
-modified: 20230324172448402
+modified: 20230327071417094
 modifier: Gezi
-reps: 1
+reps: 3
 retrievability: 1
-review: 20230324172448402
-stability: 2
+review: 20230327071417094
+stability: 5.512139752431654
 tags: Golang面试 数组与切片 ?
 title: 向一个nil的slice添加元素会发生什么？为什么？
 type: text/vnd.tiddlywiki

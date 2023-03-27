@@ -1,17 +1,17 @@
 created: 20230324161423094
 creator: Gezi
-difficulty: 5
-due: 20230326172541265
-grade: -1
-history: []
+difficulty: 5.300000000000001
+due: 20230402071424461
+grade: 1
+history: [{"due":"20230326172541265","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172541265"},{"due":"20230402071424357","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071424357"}]
 interval: 0
 lapses: 0
-modified: 20230324172541265
+modified: 20230327071424461
 modifier: Gezi
-reps: 1
+reps: 3
 retrievability: 1
-review: 20230324172541265
-stability: 2
+review: 20230327071424461
+stability: 5.512139752431654
 tags: k8s ?
 title: K8S属于哪种设备模型？
 type: text/vnd.tiddlywiki

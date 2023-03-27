@@ -1,17 +1,17 @@
 created: 20230324070606865
 creator: Gezi
-difficulty: 5
-due: 20230326172511636
-grade: -1
-history: []
-interval: 0
+difficulty: 5.1000000000000005
+due: 20230402071817110
+grade: 1
+history: [{"due":"20230326172511636","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172511636"}]
+interval: 2
 lapses: 0
-modified: 20230324172511636
+modified: 20230327071817110
 modifier: Gezi
-reps: 1
-retrievability: 1
-review: 20230324172511636
-stability: 2
+reps: 2
+retrievability: 0.9
+review: 20230327071817109
+stability: 5.512139752431654
 tags: Golang八股 map 数组与切片 ?
 title: slice 和 map 分别作为函数参数时有什么区别？
 type: text/vnd.tiddlywiki
