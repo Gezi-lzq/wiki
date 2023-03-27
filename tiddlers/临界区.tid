@@ -1,0 +1,9 @@
+created: 20230327030103482
+creator: Gezi
+modified: 20230327030144321
+modifier: Gezi
+title: 临界区
+type: text/vnd.tiddlywiki
+
+系统中''某些资源一次只允许一个进程使用，称这样的资源为临界资源或互斥资源或共享变量''。
+诸进程间应采取''[[互斥方式]]''，实现对这种资源的共享。

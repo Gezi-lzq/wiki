@@ -1,0 +1,39 @@
+created: 20230327032046150
+creator: Gezi
+modified: 20230327032711148
+modifier: Gezi
+title: 硬件同步机制
+type: text/vnd.tiddlywiki
+
+* 关中断
+** 进入锁测试之前关闭中断，完成锁测试并上锁之后才打开中断
+** 可有效保证互斥，但存在许多缺点
+
+* Test-and-Set指令
+** 原子地检查和修改字的内容
+
+```c
+boolean TestAndSet(Boolean *lock) 
+{
+	boolean old = *lock;
+	*lock = TRUE;
+     	return old;
+}
+```
+
+* Swap指令
+** 原子地交换两个变量
+
+```c
+void Swap(boolean *a, boolean *b) {
+	boolean temp = *a;
+	*a = *b;
+	*b = temp;
+}
+```
+
+''缺点：''
+
+1. 不符合“让权等待”原则，浪费CPU时间
+
+2. 很难解决复杂的同步问题

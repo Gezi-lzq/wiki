@@ -1,0 +1,9 @@
+created: 20230326063055932
+creator: Gezi
+modified: 20230326140256812
+modifier: Gezi
+tags: 长连接网关设计
+title: 业务层如何感知连接所处网关
+type: text/vnd.tiddlywiki
+
+业务层如何感知到连接在哪一个网关机器上

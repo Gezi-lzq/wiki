@@ -1,0 +1,14 @@
+created: 20230327025524701
+creator: Gezi
+modified: 20230327030258034
+modifier: Gezi
+tags: 操作系统
+title: 互斥方式
+type: text/vnd.tiddlywiki
+
+由于多线程执行操作共享变量的这段代码可能会导致竞争状态，因此我们将此段代码称为<mark class="mark-orange">[[临界区]]（critical section），它是访问共享资源的代码片段，一定不能给多线程同时执行。
+</mark>
+
+我们希望这段代码是<c style="color:CornflowerBlue;">互斥（mutualexclusion）的</c>，<c style="color:CornflowerBlue;">也就说保证一个线程在临界区执行时，其他线程应该被阻止进入临界区</c>，说白了，就是这段代码执行过程中，最多只能出现一个线程。
+
+[img[临界区.png]]

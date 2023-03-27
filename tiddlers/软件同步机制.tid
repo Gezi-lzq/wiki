@@ -1,0 +1,31 @@
+created: 20230327031323909
+creator: Gezi
+modified: 20230327031643180
+modifier: Gezi
+title: 软件同步机制
+type: text/vnd.tiddlywiki
+
+! Peterson解决方案
+
+共享变量: 
+
+```c
+int turn = 0;turn == i ; //表示 Pi 能进入临界区
+j = 1-i;
+boolean flag[2];flag [0] = flag [1] = false;  	//初值
+flag [i] = true ; //表示Pi 准备进入临界区
+```
+
+进程Pi:
+
+```c
+do {
+  flag [i]:= true;
+	turn = j;
+	while (flag [j] and turn = j) ;
+	临界区
+	flag [i] = false;
+	剩余区
+	
+} while (1);
+```

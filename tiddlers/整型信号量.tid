@@ -1,0 +1,25 @@
+created: 20230327033325235
+creator: Gezi
+modified: 20230327033618223
+modifier: Gezi
+tags: 信号量同步机制 操作系统
+title: 整型信号量
+type: text/vnd.tiddlywiki
+
+!! ➩ 信号量S-整型变量
+
+提供两个不可分割的[原子操作]访问信号量
+
+```c
+wait(S)：
+	while s<=0 ;   /*do no-op*/
+	s:=s-1;
+	
+signal(S)：
+	s:=s+1; 
+```
+
+* Wait(s)又称为P(S)
+* Signal(s)又称为V(S)
+
+* 缺点：进程忙等

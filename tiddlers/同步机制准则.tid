@@ -1,0 +1,22 @@
+created: 20230327031841253
+creator: Gezi
+modified: 20230327032012861
+modifier: Gezi
+tags: 进程同步机制
+title: 同步机制准则
+type: text/vnd.tiddlywiki
+
+!同步机制应遵循的准则
+
+* <mark class="mark-orange">空闲让进</mark>
+** 当无进程处于临界区，应允许一个请求进入临界区的进程立即进入自己的临界区；
+
+* <mark class="mark-orange">忙则等待</mark>
+** 已有进程处于其临界区，其它试图进入临界区的进程必须等待；
+
+* <mark class="mark-orange">有限等待</mark>
+** 等待进入临界区的进程不能"死等"；
+
+* <mark class="mark-orange">让权等待</mark>
+** 不能进入临界区的进程，应释放CPU（如转换到阻塞状态）
+
