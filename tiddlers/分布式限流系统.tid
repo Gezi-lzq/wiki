@@ -1,0 +1,18 @@
+color: #bad5ee
+created: 20230328064005380
+creator: Gezi
+modified: 20230328065909294
+modifier: Gezi
+tags: 
+title: 分布式限流系统
+type: text/vnd.tiddlywiki
+
+! 需求分析
+
+''统计整个服务集群承受的QPS，若其超过一个阈值则触发过载保护机制，限流可以避免性能劣化/资源耗尽而崩溃''
+
+! 功能需求
+
+1. 提供check接口 `func check(acquireCount int) -> bool`
+
+2. 统计集群整体QPS，因此需要做分布式统计

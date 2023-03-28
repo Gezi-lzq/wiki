@@ -1,0 +1,9 @@
+created: 20230328002310121
+creator: Gezi
+modified: 20230328002351511
+modifier: Gezi
+tags: 进程的控制 ?
+title: 进程通常有多少种终止方式？
+type: text/vnd.tiddlywiki
+
+三种，正常结束、异常结束以及外界干预（信号 kill 掉）

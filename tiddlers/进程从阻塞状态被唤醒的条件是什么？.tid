@@ -1,0 +1,10 @@
+created: 20230328003531729
+creator: Gezi
+modified: 20230328003700154
+modifier: Gezi
+tags: ? 进程的控制
+title: 进程从阻塞状态被唤醒的条件是什么？
+type: text/vnd.tiddlywiki
+
+进程必须等待某一事件完成才会被唤醒，比如等待 I/O 事件等。
+''一旦被阻塞等待，它只能由另一个进程唤醒''

@@ -1,0 +1,53 @@
+created: 20230328065426323
+creator: Gezi
+modified: 20230328065747544
+modifier: Gezi
+tags: 分布式限流系统
+title: 固定窗口-计数器算法
+type: text/vnd.tiddlywiki
+
+确定时间窗口大小，例如每秒、每分钟或每小时等。 
+
+维护一个计数器，初始化为0。 
+
+每当收到一个请求时，将计数器加1。 
+
+每次check时检查是否在当前时间窗口内，若进入了下一个窗口则清零。 
+
+check时检查当前时间窗口内的请求数是否超过了设定的阈值，如果超过则返回为false。
+
+
+```go
+// NewLimiter 初始化简单计数器限流
+func NewLimiter(interval int64, maxCount int) *CounterLimiter {
+    return &CounterLimiter{
+        Interval: interval,
+        LastTime: time.Now(),
+        MaxCount: maxCount,
+        lock:      new(sync.Mutex),
+        ReqCount: 0,
+    }
+}
+
+ // counterLimit 简单计数器限流实现
+func (r *CounterLimiter) Check() bool {
+    r.lock.Lock()
+    defer r.lock.Unlock()
+    now := time.Now()
+    if now.Unix()-r.LastTime.Unix() > r.Interval {
+        r.LastTime = now
+        r.ReqCount = 0
+    }
+    if r.ReqCount < r.MaxCount {
+        r.ReqCount += 1
+        return true
+    }
+    return false
+}
+```
+
+!! 不足
+
+QPS的定义是1s内的请求数量，但是1s中的请求也可能是不能均匀的，这就导致在1s中切换边界丢失限流状态，如果在此时流量突增会导致服务雪崩。
+
+[img[边界丢失限流状态.png]]

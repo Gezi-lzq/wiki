@@ -1,0 +1,21 @@
+created: 20230328001438935
+creator: Gezi
+modified: 20230328001925373
+modifier: Gezi
+tags: 进程控制块（PCB）
+title: PCB是如何组织的？
+type: text/vnd.tiddlywiki
+
+通常是通过<mark class="mark-orange">链表</mark>的方式进行组织，把具有<mark class="mark-orange">相同状态的进程链在一起，组成各种队列</mark>。比如：
+
+将所有''处于就绪状态的进程''链在一起，称为<mark class="mark-orange">就绪队列</mark>；
+
+把所有''因等待某事件而处于等待状态的进程''链在一起就组成各种<mark class="mark-orange">阻塞队列</mark>；
+
+另外，对于运行队列在单核 CPU 系统中则只有一个运行指针了，因为单核 CPU 在某个时间，只能运行一个程序。
+
+[img[就绪队列和阻塞队列链表的组织形式.png]]
+
+除了链接的组织方式，还有索引方式，它的工作原理：将同一状态的进程组织在一个索引表中，索引表项指向相应的 PCB，不同状态对应不同的索引表。
+
+一般会选择链表，因为可能面临进程创建，销毁等调度导致进程状态发生变化，所以''链表能够更加灵活的插入和删除''。

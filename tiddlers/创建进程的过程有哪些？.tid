@@ -1,0 +1,13 @@
+created: 20230328002119841
+creator: Gezi
+modified: 20230328002305888
+modifier: Gezi
+tags: ? 进程的控制
+title: 创建进程的过程有哪些？
+type: text/vnd.tiddlywiki
+
+* 申请一个空白的 PCB，并向 PCB 中填写信息，比如进程的唯一标识等；
+
+* 为该进程分配运行时资源（比如内存资源）；
+
+* 将 PCB 插入到就绪队列，等待被调度运行。
