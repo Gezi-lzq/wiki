@@ -1,6 +1,6 @@
 created: 20230328073309316
 creator: Gezi
-modified: 20230329020557650
+modified: 20230329070812059
 modifier: Gezi
 tags: 分布式限流系统
 title: Leaky bucket
@@ -14,4 +14,46 @@ type: text/vnd.tiddlywiki
 
 [img[漏桶算法示意图.png]]
 
+漏桶算法的核心是维护一个固定容量的漏桶，当请求到来时，将请求放入漏桶中，如果漏桶已满，则拒绝请求。
+
+为了保证请求的流畅性，需要在漏桶中''每隔一段时间释放一个请求''。
+
+具体来说，可以在漏桶中记录上次释放请求的时间戳，每次新请求到来时，''计算当前时间戳与上次释放时间戳之间的时间差，用这个时间差除以漏桶的容量，得到请求流速''。
+
+如果流速大于1，则需要等待一段时间后才能将请求放入漏桶中，如果小于1，则可以立即将请求放入漏桶中，并更新上次释放时间戳为当前时间戳。这样，''就可以实现按照固定流速限制请求的处理。''
+
+```go
+func check(acquireCount int)bool{
+    if acquireCount <= 0{
+        return true
+    }
+    currentTime := time.Now()
+    // 根据配置计算两次请求之间的最小时间
+    constTime := 1.0 * (acquireCount) / count * 1000
+     // 计算上一次请求之后，下一次允许通过的最小时间
+    expectedTime := costTime + latestPassedTime
+    if expectedTime <= currentTime {
+        // 如果当前时间大于计算的时间，那么可以直接放行
+        latestPassedTime = currentTime
+        return true
+    } else {
+        // 如果没有，则计算相应需要等待的时间
+        waitTime := costTime + latestPassedTime - currentTime.Unix()
+        if waitTime > maxQueueingTimeMs {
+            return false
+        } else {
+            // 在并发条件下等待时间可能会小于等于0
+            if waitTime > 0 {
+                Sleep(waitTime);
+            }
+            return true;
+        }
+    }
+}
+```
+
+
 漏桶算法的主要作用就是避免出现有的时候流量很高，有的时候又很低，导致系统出现旱的旱死，涝的涝死的这种情况。
+
+[[参考资料|https://lailin.xyz/post/go-training-week6-4-leaky-bucket.html]]
+

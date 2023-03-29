@@ -1,0 +1,87 @@
+created: 20230329065543233
+creator: Gezi
+modified: 20230329074142341
+modifier: Gezi
+tags: 分布式限流系统
+title: ToKen bucket
+type: text/vnd.tiddlywiki
+
+[img[tokenBucket.png]]
+
+令牌桶算法的原理是系统会以一个''恒定的速度往桶里放入令牌''，而如果请求需要被处理，则需要先从桶里''获取一个令牌''，当桶里''没有令牌可取时，则拒绝服务''。
+
+算法基本过程：
+
+* 假如用户配置的平均发送速率为 r，则每隔 1/r 秒一个令牌被加入到桶中；
+* 假设桶最多可以存发 b 个令牌。如果令牌到达时令牌桶已经满了，那么这个令牌会被丢弃；
+* 当一个 n 个字节的数据包到达时，就从令牌桶中删除 n 个令牌，并且数据包被发送到网络；
+* 如果令牌桶中少于 n 个令牌，那么不会删除令牌，并且认为这个数据包在流量限制之外；
+算法允许最长 b 个字节的突发，但从长期运行结果看，数据包的速率被限制成常量 r。对于在流量限制外的数据包可以以不同的方式处理：
+
+* 它们可以被丢弃；
+* 它们可以排放在队列中以便当令牌桶中累积了足够多的令牌时再传输；
+* 它们可以继续发送，但需要做特殊标记，网络过载的时候将这些特殊标记的包丢弃
+
+
+```go
+// 每interval时间间隔填充1个token
+func NewTokenBucket(interval time.Duration, capacity int64) *Bucket {
+    return &Bucket{
+        latestTick:      0, //最后的时刻
+        startTime:       time.Now(), // 启动时间
+        interval:        fillInterval, // 每隔多久 放入quant个token
+        capacity:        capacity, // 最大的容量
+        quant:           quant, // 放入quant个token, 一个常量
+        availableTokens: capacity, // 当前可用token（初始化为容量
+    }
+}
+
+// take token
+// 检测当前时间是否可以获取指定数量的token
+func (tb *Bucket) check(now time.Time, count int64)bool{
+    if count <= 0 {
+        return true
+    }
+		// 计算从tb.startTime到当前时间now经过了多少个tb.interval时间段
+    tick := tb.tick(now)
+		// 通过已经经过的若干个tick,来更新当前可用的token数量。
+    tb.adjust(tick)
+		// 计算当前可用的token是否足够用来处理该请求
+    avail := tb.availableTokens - count
+    if avail >= 0 {
+        tb.availableTokens = avail
+        return true
+    }
+    tb.availableTokens = 0
+    return false
+}
+// 计算从上一次tick到现在经过了多少个tick，tick*quantum+available等于目前可以使用的token数量
+func (tb *Bucket) adjust(tick int64) {
+    lastTick := tb.latestTick
+    tb.latestTick = tick
+    if tb.availableTokens >= tb.capacity {
+        return
+    }
+    tb.availableTokens += (tick - lastTick) * tb.quant
+    if tb.availableTokens > tb.capacity {
+        tb.availableTokens = tb.capacity
+    }
+    return
+}
+// 计算经过了多少个tick 
+// 每隔tick会填充quant的token
+func (tb *Bucket) tick(now time.Time) int64 {
+    return int64(now.Sub(tb.startTime) / tb.interval)
+}
+
+```
+
+---
+<<<.tc-big-quote
+其实 as a queue leaky bucket 算法就是 token bucket 算法的一个特例，平时我们大多数说的漏桶算法就是指 as a queue leaky bucket。
+
+漏桶算法主要目的是''控制数据注入到网络的速率，平滑网络上的突发流量''。漏桶算法提供了一种机制，通过它，突发流量可以被整形以便为网络提供一个稳定的流量。而令牌桶算法能够在''限制数据的平均传输速率的同时还允许某种程度的突发传输''。
+<<<
+
+
+[[漏桶算法 && 令牌桶算法|https://int64.me/2018/%E6%BC%8F%E6%A1%B6%E7%AE%97%E6%B3%95%20&&%20%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95.html]]
