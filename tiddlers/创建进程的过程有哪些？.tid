@@ -1,8 +1,18 @@
 created: 20230328002119841
 creator: Gezi
-modified: 20230328002305888
+difficulty: 5
+due: 20230331092025841
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230329092025841
 modifier: Gezi
-tags: ? 进程的控制
+reps: 1
+retrievability: 1
+review: 20230329092025841
+stability: 2
+tags: 进程的控制 ?
 title: 创建进程的过程有哪些？
 type: text/vnd.tiddlywiki
 
