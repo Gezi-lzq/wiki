@@ -8,5 +8,6 @@
     "实现分布式缓存": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "学校需交实验作业": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "字节青训营每日打卡": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
-    "面试准备": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
+    "面试准备": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "简易分布式系统": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
 }

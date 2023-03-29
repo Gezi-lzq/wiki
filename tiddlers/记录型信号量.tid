@@ -1,0 +1,37 @@
+created: 20230329083905734
+creator: Gezi
+modified: 20230329090342353
+modifier: Gezi
+tags: 信号量同步机制
+title: 记录型信号量
+type: text/vnd.tiddlywiki
+
+!! ➩ 记录型信号量:去除忙等的信号量
+
+每个信号量S除一个整数值S.value外，还有一个''进程等待队列S.list''，存放阻塞在该信号量的各个进程PCB
+
+```c
+typedef struct {
+	int value;
+	stuct process_control_block *list;
+}semaphore; 
+
+```
+
+信号量只能通过初始化和两个标准的原语PV来访问－－作为OS核心代码执行，不受进程调度的打断
+
+初始化指定一个非负整数值，表示空闲资源总数（又称为"资源信号量"）－－若为非负值表示当前的空闲资源数，若为负值其绝对值表示当前等待临界区的进程数
+
+```c
+wait(semaphores *S) {   			      //请求一个单位的资源
+		  S->value --; 				            //资源减少一个
+		  if (S->value<0) block(S->list) 	//进程自我阻塞
+}
+
+signal(semaphores *S) 			            //释放一个单位资源
+{
+	  S->value++; 				                //资源增加一个
+	  if (S->value<=0) wakeup(S->list); 	//唤醒等待队列中的一个进程
+}
+```
+

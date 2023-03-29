@@ -1,6 +1,6 @@
 created: 20230327030407325
 creator: Gezi
-modified: 20230327033323666
+modified: 20230329084741061
 modifier: Gezi
 tags: 操作系统
 title: 信号量同步机制
@@ -14,3 +14,5 @@ type: text/vnd.tiddlywiki
 * 信号量有值，为正说明它空闲，为负说明其忙碌
 
 <<reuse-tiddler "整型信号量">>
+
+<<reuse-tiddler "记录型信号量">>
