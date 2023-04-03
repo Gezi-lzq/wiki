@@ -1,0 +1,19 @@
+created: 20230403123258860
+creator: Gezi
+modified: 20230403123350941
+modifier: Gezi
+tags: APrivateContent 日志
+title: 2023-4-3
+type: text/vnd.tiddlywiki
+
+<<<.tc-big-quote
+斯坦福新开的这门CS324从另一个视角讲解了大模型的建模、理论、伦理和系统方面的基础知识，值得大家简单看一看来激发新的思考。
+同时我们的 Copilot Hub 已上线这门课的TA，可以通过交互的方式快速了解这门课的一些内容。
+https://app.copilothub.co/chat?id=1288
+
+当然，这里用到的就是我们新上线的URL数据接入，可以快速将一些网站信息构建出专属的领域助手，可以参考 
+@Tisoga
+ 的这篇tweet https://twitter.com/Tisoga/status/1642485671058378752 快速体验起来。
+
+---https://twitter.com/xinqiu_bot/status/1642513856017866752
+<<<
