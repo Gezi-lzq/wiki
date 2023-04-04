@@ -1,17 +1,17 @@
 created: 20230323115855773
 creator: Gezi
-difficulty: 6.231358589403242
-due: 20230331003107818
+difficulty: 6.219865426218127
+due: 20230417071350655
 grade: 1
-history: [{"due":"20230326172423699","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172423699"},{"due":"20230328071354204","interval":2,"difficulty":6.1000000000000005,"stability":1.4816364413634358,"retrievability":0.9,"grade":0,"lapses":1,"reps":1,"review":"20230327071354204"}]
-interval: 1
+history: [{"due":"20230326172423699","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172423699"},{"due":"20230328071354204","interval":2,"difficulty":6.1000000000000005,"stability":1.4816364413634358,"retrievability":0.9,"grade":0,"lapses":1,"reps":1,"review":"20230327071354204"},{"due":"20230331003107818","interval":1,"difficulty":6.231358589403242,"stability":3.1038700697583637,"retrievability":0.9313585894032408,"grade":1,"lapses":1,"reps":2,"review":"20230328003107818"}]
+interval: 7
 lapses: 1
-modified: 20230328003107818
+modified: 20230404071350655
 modifier: Gezi
-reps: 2
-retrievability: 0.9313585894032408
-review: 20230328003107818
-stability: 3.1038700697583637
+reps: 3
+retrievability: 0.7885068368148844
+review: 20230404071350655
+stability: 12.832641001864781
 tags: Golang面试 数组与切片 ?
 title: 数组与切片有什么异同
 type: text/vnd.tiddlywiki

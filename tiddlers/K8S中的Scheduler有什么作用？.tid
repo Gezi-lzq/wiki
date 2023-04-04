@@ -6,13 +6,13 @@ grade: 1
 history: [{"due":"20230326172549593","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172549593"}]
 interval: 2
 lapses: 0
-modified: 20230327071430594
+modified: 20230404071435308
 modifier: Gezi
 reps: 2
 retrievability: 0.9
 review: 20230327071430594
 stability: 5.512139752431654
-tags: k8s ?
+tags: k8s ? !
 title: K8S中的Scheduler有什么作用？
 type: text/vnd.tiddlywiki
 

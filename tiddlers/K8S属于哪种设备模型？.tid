@@ -1,17 +1,17 @@
 created: 20230324161423094
 creator: Gezi
-difficulty: 5.300000000000001
-due: 20230402071424461
+difficulty: 5.358203401585466
+due: 20230421071420178
 grade: 1
-history: [{"due":"20230326172541265","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172541265"},{"due":"20230402071424357","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071424357"}]
-interval: 0
+history: [{"due":"20230326172541265","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172541265"},{"due":"20230402071424357","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071424357"},{"due":"20230402071424461","interval":0,"difficulty":5.300000000000001,"stability":5.512139752431654,"retrievability":1,"grade":1,"lapses":0,"reps":3,"review":"20230327071424461"}]
+interval: 8
 lapses: 0
-modified: 20230327071424461
+modified: 20230404071420178
 modifier: Gezi
-reps: 3
-retrievability: 1
-review: 20230327071424461
-stability: 5.512139752431654
+reps: 4
+retrievability: 0.8582034015854654
+review: 20230404071420177
+stability: 16.57110049244327
 tags: k8s ?
 title: K8S属于哪种设备模型？
 type: text/vnd.tiddlywiki

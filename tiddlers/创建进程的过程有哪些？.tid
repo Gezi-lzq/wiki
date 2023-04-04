@@ -1,22 +1,22 @@
 created: 20230328002119841
 creator: Gezi
-difficulty: 5
-due: 20230331092025841
-grade: -1
-history: []
-interval: 0
-lapses: 0
-modified: 20230329092025841
+difficulty: 5.929
+due: 20230405071325663
+grade: 0
+history: [{"due":"20230331092025841","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230329092025841"}]
+interval: 6
+lapses: 1
+modified: 20230404071325663
 modifier: Gezi
 reps: 1
-retrievability: 1
-review: 20230329092025841
-stability: 2
+retrievability: 0.7290000000000001
+review: 20230404071325663
+stability: 1.4816364413634358
 tags: 进程的控制 ?
 title: 创建进程的过程有哪些？
 type: text/vnd.tiddlywiki
 
-* 申请一个空白的 PCB，并向 PCB 中填写信息，比如进程的唯一标识等；
+* 申请一个空白的 [[进程控制块（PCB）]]，并向 PCB 中填写信息，比如进程的唯一标识等；
 
 * 为该进程分配运行时资源（比如内存资源）；
 

@@ -1,6 +1,6 @@
 created: 20230217063543913
 creator: Gezi
-modified: 20230218093210808
+modified: 20230404074958629
 modifier: Gezi
 tags: 面试准备
 title: Redis知识大纲
@@ -13,7 +13,7 @@ type: text/vnd.tiddlywiki
 ** [[Redis-链表]]
 ** [[Redis-字典]]
 ** [[Redis-跳跃表]]
-** 整数集合
+** [[Redis-整数集合]]
 ** 压缩列表
 ** 对象
 * 备份策略

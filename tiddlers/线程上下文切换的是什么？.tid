@@ -1,7 +1,17 @@
 created: 20230328005433655
 creator: Gezi
-modified: 20230328005517710
+difficulty: 5
+due: 20230406071103981
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230404071103982
 modifier: Gezi
+reps: 1
+retrievability: 1
+review: 20230404071103981
+stability: 2
 tags: 线程(Thread) ?
 title: 线程上下文切换的是什么？
 type: text/vnd.tiddlywiki

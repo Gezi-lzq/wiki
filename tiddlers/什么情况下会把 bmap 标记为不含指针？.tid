@@ -1,18 +1,18 @@
 caption: 什么情况下会把 bmap 标记为不含指针？如果此时包含overflow字段怎么办
 created: 20230324074156747
 creator: Gezi
-difficulty: 5.1000000000000005
-due: 20230402071716207
+difficulty: 5.1582034015854665
+due: 20230421071901388
 grade: 1
-history: [{"due":"20230326172532891","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172532891"}]
-interval: 2
+history: [{"due":"20230326172532891","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172532891"},{"due":"20230402071716207","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071716207"}]
+interval: 8
 lapses: 0
-modified: 20230327071716207
+modified: 20230404071901388
 modifier: Gezi
-reps: 2
-retrievability: 0.9
-review: 20230327071716207
-stability: 5.512139752431654
+reps: 3
+retrievability: 0.8582034015854654
+review: 20230404071901388
+stability: 16.869537326515847
 tags: Golang八股 map ?
 title: 什么情况下会把 bmap 标记为不含指针？
 type: text/vnd.tiddlywiki

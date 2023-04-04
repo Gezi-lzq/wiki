@@ -1,17 +1,17 @@
 created: 20230324063828064
 creator: Gezi
-difficulty: 5.1000000000000005
-due: 20230402071443550
+difficulty: 5.1582034015854665
+due: 20230421071445897
 grade: 1
-history: [{"due":"20230326172453782","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172453782"}]
-interval: 2
+history: [{"due":"20230326172453782","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172453782"},{"due":"20230402071443550","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071443550"}]
+interval: 8
 lapses: 0
-modified: 20230327071443551
+modified: 20230404071445897
 modifier: Gezi
-reps: 2
-retrievability: 0.9
-review: 20230327071443550
-stability: 5.512139752431654
+reps: 3
+retrievability: 0.8582034015854654
+review: 20230404071445897
+stability: 16.869537326515847
 tags: Golang面试 map ?
 title: map 的底层如何实现
 type: text/vnd.tiddlywiki

@@ -1,0 +1,28 @@
+created: 20230404075010851
+creator: Gezi
+modified: 20230404085225855
+modifier: Gezi
+title: Redis-整数集合
+type: text/vnd.tiddlywiki
+
+''整数集合''（intset）是 Redis 用于保存整数值的集合抽象数据结构， 它可以保存类型为 int16_t 、 int32_t 或者 int64_t 的整数值， 并且保证集合中''不会出现重复元素''。
+
+```c
+typedef struct intset {
+
+    // 编码方式
+    uint32_t encoding;
+
+    // 集合包含的元素数量
+    uint32_t length;
+
+    // 保存元素的数组
+    int8_t contents[];
+
+} intset;
+```
+contents 数组是整数集合的底层实现： 整数集合的每个元素都是 contents 数组的一个数组项（item）， 各个项在数组中按值的大小从小到大有序地排列， 并且数组中不包含任何重复项。
+
+length 属性记录了整数集合包含的元素数量， 也即是 contents 数组的长度。
+
+虽然 intset 结构将 contents 属性声明为 int8_t 类型的数组， 但实际上 contents 数组并不保存任何 int8_t 类型的值 —— contents 数组的真正类型取决于 encoding 属性的值

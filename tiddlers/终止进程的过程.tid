@@ -1,8 +1,18 @@
 created: 20230328002443136
 creator: Gezi
-modified: 20230328002647791
+difficulty: 5
+due: 20230406070811074
+grade: -1
+history: []
+interval: 0
+lapses: 0
+modified: 20230404070811074
 modifier: Gezi
-tags: ? 进程的控制
+reps: 1
+retrievability: 1
+review: 20230404070811074
+stability: 2
+tags: 进程的控制 ?
 title: 终止进程的过程
 type: text/vnd.tiddlywiki
 
