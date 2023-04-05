@@ -1,0 +1,13 @@
+created: 20230405035606059
+creator: Gezi
+modified: 20230405043720498
+modifier: Gezi
+tags: 长连接网关设计
+title: 长连接网关的通用性设计
+type: text/vnd.tiddlywiki
+
+# [[使用APP ID做逻辑区分]]
+
+# [[使用发布/订阅模式]]
+
+# [[单元化部署方案]]

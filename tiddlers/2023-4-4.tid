@@ -1,0 +1,21 @@
+created: 20230404113111300
+creator: Gezi
+modified: 20230404113151021
+modifier: Gezi
+title: 2023-4-4
+type: text/vnd.tiddlywiki
+
+<<<.tc-big-quote
+AI的又一个大创新，AI Agent的时代来了。ChatGPT是一个被动回答问题的AI，而Agent是一个带有目标和使命，并不知疲倦的去推演任务、排优先级并执行，直至使命达成的AI。
+
+想象一下黑客帝国里执著的Agent Smith就知道了。企业各行各业的AI员工、个人的助理、政府各岗位等将都是这些个Agent来操持(1/n)
+
+这两周有几个人已经独立实现了Agent
+
+@yoheinakajima
+ 实现了"Baby AGI” 一个任务驱动的自治Agent,  105 lines of code. 并开源了 https://github.com/yoheinakajima/babyagi
+
+
+@SigGravitas
+ 实现了 Auto-GPT，也是开源的：https://github.com/Torantulino/Auto-GPT。付视频是一个开发人员的agent。他还有其他的，比如语言助手、学术共同作者，投资人等等agent
+<<<

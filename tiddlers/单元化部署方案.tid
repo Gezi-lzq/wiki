@@ -1,0 +1,18 @@
+created: 20230405044349841
+creator: Gezi
+modified: 20230405050107130
+modifier: Gezi
+title: 单元化部署方案
+type: text/vnd.tiddlywiki
+
+单元化部署方案是指将一个应用拆分成若干个小单元，每个小单元都可独立部署和管理，达到更好的可扩展性、可维护性和可测试性等。为了实现这样的目标，我们需要对架构进行优化，引入一些新的概念和方法。
+
+Ip config、gateway 和 state server 是单元化部署方案中的三个关键组件
+
+* Ip config server 是用来进行连接调度的
+
+* gateway 是用来持有长连接的
+
+* state server 是用于管理集群的状态和配置信息的组件，它可以实现 pipeline 和 config 可插拔式配置，让业务可以根据自己的需求组合处理逻辑。
+
+可以再引入ops server集群，用于管理整个小的集群单元的部署。每个业务都可以拥有一个独立的集群，由 ops server 进行管理。
