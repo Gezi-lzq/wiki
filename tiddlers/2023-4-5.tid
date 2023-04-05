@@ -1,0 +1,18 @@
+created: 20230405144409056
+creator: Gezi
+modified: 20230405144444928
+modifier: Gezi
+tags: APrivateContent 日志
+title: 2023-4-5
+type: text/vnd.tiddlywiki
+
+<<<.tc-big-quote
+💡 利用 langchain + ChatGLM-6B 开发了基于本地知识的 ChatGLM 应用，可以实现基于文件内容的对话，具体形式类似 chatpdf 等。
+
+✅ 实现过程中 embedding 与 LLM 模型均使用开源 HuggingFace 模型，因此可在下载模型参数文件后进行离线部署。
+
+🔗 项目地址：
+
+https://github.com/imClumsyPanda/langchain-ChatGLM
+
+<<<
