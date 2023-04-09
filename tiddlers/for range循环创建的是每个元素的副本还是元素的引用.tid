@@ -1,17 +1,17 @@
 created: 20230330121212620
 creator: Gezi
-difficulty: 5
-due: 20230406071202767
-grade: -1
-history: []
-interval: 0
+difficulty: 4.968433471420917
+due: 20230420060447216
+grade: 1
+history: [{"due":"20230406071202767","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404071202767"}]
+interval: 5
 lapses: 0
-modified: 20230404071202767
+modified: 20230409060447217
 modifier: Gezi
-reps: 1
-retrievability: 1
-review: 20230404071202767
-stability: 2
+reps: 2
+retrievability: 0.7684334714209162
+review: 20230409060447216
+stability: 10.8623997997734
 tags: Golang面试 ?
 title: for range循环创建的是每个元素的副本还是元素的引用
 type: text/vnd.tiddlywiki

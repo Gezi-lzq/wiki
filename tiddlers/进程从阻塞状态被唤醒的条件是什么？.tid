@@ -1,17 +1,17 @@
 created: 20230328003531729
 creator: Gezi
-difficulty: 5
-due: 20230406071040591
-grade: -1
-history: []
-interval: 0
+difficulty: 3.9684334714209166
+due: 20230421060331624
+grade: 2
+history: [{"due":"20230406071040591","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404071040591"}]
+interval: 5
 lapses: 0
-modified: 20230404071040591
+modified: 20230409060331624
 modifier: Gezi
-reps: 1
-retrievability: 1
-review: 20230404071040591
-stability: 2
+reps: 2
+retrievability: 0.7684334714209162
+review: 20230409060331623
+stability: 12.372217148638658
 tags: 进程的控制 ?
 title: 进程从阻塞状态被唤醒的条件是什么？
 type: text/vnd.tiddlywiki

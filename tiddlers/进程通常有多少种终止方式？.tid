@@ -1,17 +1,17 @@
 created: 20230328002310121
 creator: Gezi
-difficulty: 5
-due: 20230406070740002
-grade: -1
-history: []
-interval: 0
+difficulty: 4.968433471420917
+due: 20230420060339628
+grade: 1
+history: [{"due":"20230406070740002","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404070740002"}]
+interval: 5
 lapses: 0
-modified: 20230404070740002
+modified: 20230409060339628
 modifier: Gezi
-reps: 1
-retrievability: 1
-review: 20230404070740002
-stability: 2
+reps: 2
+retrievability: 0.7684334714209162
+review: 20230409060339628
+stability: 10.8623997997734
 tags: 进程的控制 ?
 title: 进程通常有多少种终止方式？
 type: text/vnd.tiddlywiki
