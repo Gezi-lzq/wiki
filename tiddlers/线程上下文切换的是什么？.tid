@@ -1,17 +1,17 @@
 created: 20230328005433655
 creator: Gezi
-difficulty: 4.968433471420917
-due: 20230420060401757
-grade: 1
-history: [{"due":"20230406071103981","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404071103981"}]
-interval: 5
+difficulty: 4.049965185480529
+due: 20230522043129204
+grade: 2
+history: [{"due":"20230406071103981","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404071103981"},{"due":"20230420060401757","interval":5,"difficulty":4.968433471420917,"stability":10.8623997997734,"retrievability":0.7684334714209162,"grade":1,"lapses":0,"reps":2,"review":"20230409060401757"}]
+interval: 13
 lapses: 0
-modified: 20230409060401757
+modified: 20230422043129204
 modifier: Gezi
-reps: 2
-retrievability: 0.7684334714209162
-review: 20230409060401757
-stability: 10.8623997997734
+reps: 3
+retrievability: 0.881531714059612
+review: 20230422043129204
+stability: 29.97224098160467
 tags: 线程(Thread) ?
 title: 线程上下文切换的是什么？
 type: text/vnd.tiddlywiki

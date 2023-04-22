@@ -1,17 +1,17 @@
 created: 20230328002119841
 creator: Gezi
-difficulty: 8.029784715215015
-due: 20230410060210639
-grade: 0
-history: [{"due":"20230331092025841","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230329092025841"},{"due":"20230405071325663","interval":6,"difficulty":5.929,"stability":1.4816364413634358,"retrievability":0.7290000000000001,"grade":0,"lapses":1,"reps":1,"review":"20230404071325663"},{"due":"20230410060210549","interval":5,"difficulty":6.829784715215015,"stability":1.097623272188053,"retrievability":0.7007847152150146,"grade":0,"lapses":2,"reps":1,"review":"20230409060210549"}]
-interval: 0
+difficulty: 6.415332498423896
+due: 20230510042817234
+grade: 2
+history: [{"due":"20230331092025841","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230329092025841"},{"due":"20230405071325663","interval":6,"difficulty":5.929,"stability":1.4816364413634358,"retrievability":0.7290000000000001,"grade":0,"lapses":1,"reps":1,"review":"20230404071325663"},{"due":"20230410060210549","interval":5,"difficulty":6.829784715215015,"stability":1.097623272188053,"retrievability":0.7007847152150146,"grade":0,"lapses":2,"reps":1,"review":"20230409060210549"},{"due":"20230410060210639","interval":0,"difficulty":8.029784715215015,"stability":0.8131393194811983,"retrievability":1,"grade":0,"lapses":3,"reps":1,"review":"20230409060210639"}]
+interval: 13
 lapses: 3
-modified: 20230409060210639
+modified: 20230422042817234
 modifier: Gezi
-reps: 1
-retrievability: 1
-review: 20230409060210639
-stability: 0.8131393194811983
+reps: 2
+retrievability: 0.18554778320888052
+review: 20230422042817234
+stability: 18.226764833135263
 tags: 进程的控制 ?
 title: 创建进程的过程有哪些？
 type: text/vnd.tiddlywiki

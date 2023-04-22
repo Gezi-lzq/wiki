@@ -1,17 +1,17 @@
 created: 20230328002443136
 creator: Gezi
-difficulty: 5.168433471420917
-due: 20230420060437538
-grade: 1
-history: [{"due":"20230406070811074","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404070811074"},{"due":"20230420060437412","interval":5,"difficulty":4.968433471420917,"stability":10.8623997997734,"retrievability":0.7684334714209162,"grade":1,"lapses":0,"reps":2,"review":"20230409060437412"}]
-interval: 0
+difficulty: 4.249965185480529
+due: 20230521043155557
+grade: 2
+history: [{"due":"20230406070811074","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404070811074"},{"due":"20230420060437412","interval":5,"difficulty":4.968433471420917,"stability":10.8623997997734,"retrievability":0.7684334714209162,"grade":1,"lapses":0,"reps":2,"review":"20230409060437412"},{"due":"20230420060437538","interval":0,"difficulty":5.168433471420917,"stability":10.8623997997734,"retrievability":1,"grade":1,"lapses":0,"reps":3,"review":"20230409060437538"}]
+interval: 13
 lapses: 0
-modified: 20230409060437538
+modified: 20230422043155557
 modifier: Gezi
-reps: 3
-retrievability: 1
-review: 20230409060437538
-stability: 10.8623997997734
+reps: 4
+retrievability: 0.881531714059612
+review: 20230422043155556
+stability: 29.338198421154495
 tags: 进程的控制 ?
 title: 终止进程的过程
 type: text/vnd.tiddlywiki

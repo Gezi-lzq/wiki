@@ -1,7 +1,7 @@
 created: 20230216104909836
 creator: Gezi
 due-date: 
-modified: 20230317150824750
+modified: 20230422042313181
 modifier: Gezi
 priority: normal
 status: complete
@@ -40,8 +40,8 @@ type: text/vnd.tiddlywiki
 * 进程管理：进程和线程的区别、进程通信方式、PCB、进程状态切换、进程调度、死锁
 * 内存管理：分页分段、虚拟内存、页面置换算法、快表机制（局部性原理）
 !! IO
-* IO网络模型：NIO、BIO
-* IO多路复用：select、poll、epoll
+* IO网络模型：[[非阻塞IO(NIO)]]、BIO
+* IO多路复用：[[select]]、[[poll]]、[[IO多路复用第二版epoll]]
 !!! 分布式系统
 * 系统模型
 * 理论基础

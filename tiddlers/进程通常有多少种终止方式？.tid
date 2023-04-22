@@ -1,17 +1,17 @@
 created: 20230328002310121
 creator: Gezi
-difficulty: 4.968433471420917
-due: 20230420060339628
-grade: 1
-history: [{"due":"20230406070740002","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404070740002"}]
-interval: 5
+difficulty: 4.049965185480529
+due: 20230522043123682
+grade: 2
+history: [{"due":"20230406070740002","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230404070740002"},{"due":"20230420060339628","interval":5,"difficulty":4.968433471420917,"stability":10.8623997997734,"retrievability":0.7684334714209162,"grade":1,"lapses":0,"reps":2,"review":"20230409060339628"}]
+interval: 13
 lapses: 0
-modified: 20230409060339628
+modified: 20230422043123682
 modifier: Gezi
-reps: 2
-retrievability: 0.7684334714209162
-review: 20230409060339628
-stability: 10.8623997997734
+reps: 3
+retrievability: 0.881531714059612
+review: 20230422043123682
+stability: 29.97224098160467
 tags: 进程的控制 ?
 title: 进程通常有多少种终止方式？
 type: text/vnd.tiddlywiki

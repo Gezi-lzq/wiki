@@ -1,17 +1,17 @@
 created: 20230324032754157
 creator: Gezi
-difficulty: 5.358203401585466
-due: 20230421071415065
-grade: 1
-history: [{"due":"20230326172448402","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172448402"},{"due":"20230402071416986","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071416986"},{"due":"20230402071417094","interval":0,"difficulty":5.300000000000001,"stability":5.512139752431654,"retrievability":1,"grade":1,"lapses":0,"reps":3,"review":"20230327071417094"}]
-interval: 8
+difficulty: 4.450063869707082
+due: 20230531043347822
+grade: 2
+history: [{"due":"20230326172448402","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172448402"},{"due":"20230402071416986","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071416986"},{"due":"20230402071417094","interval":0,"difficulty":5.300000000000001,"stability":5.512139752431654,"retrievability":1,"grade":1,"lapses":0,"reps":3,"review":"20230327071417094"},{"due":"20230421071415065","interval":8,"difficulty":5.358203401585466,"stability":16.57110049244327,"retrievability":0.8582034015854654,"grade":1,"lapses":0,"reps":4,"review":"20230404071415065"}]
+interval: 18
 lapses: 0
-modified: 20230404071415065
+modified: 20230422043347822
 modifier: Gezi
-reps: 4
-retrievability: 0.8582034015854654
-review: 20230404071415065
-stability: 16.57110049244327
+reps: 5
+retrievability: 0.8918604681216159
+review: 20230422043347822
+stability: 39.34588302111515
 tags: Golang面试 数组与切片 ?
 title: 向一个nil的slice添加元素会发生什么？为什么？
 type: text/vnd.tiddlywiki

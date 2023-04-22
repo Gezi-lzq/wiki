@@ -1,17 +1,17 @@
 created: 20230324064307432
 creator: Gezi
-difficulty: 5.1582034015854665
-due: 20230421071536591
-grade: 1
-history: [{"due":"20230326172458892","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172458892"},{"due":"20230402071517543","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071517543"}]
-interval: 8
+difficulty: 4.251871397267842
+due: 20230601043408079
+grade: 2
+history: [{"due":"20230326172458892","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172458892"},{"due":"20230402071517543","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071517543"},{"due":"20230421071536591","interval":8,"difficulty":5.1582034015854665,"stability":16.869537326515847,"retrievability":0.8582034015854654,"grade":1,"lapses":0,"reps":3,"review":"20230404071536590"}]
+interval: 18
 lapses: 0
-modified: 20230404071536591
+modified: 20230422043408079
 modifier: Gezi
-reps: 3
-retrievability: 0.8582034015854654
-review: 20230404071536590
-stability: 16.869537326515847
+reps: 4
+retrievability: 0.8936679956823752
+review: 20230422043408079
+stability: 40.300276176590714
 tags: Golang面试 map ?
 title: map 内存模型
 type: text/vnd.tiddlywiki
