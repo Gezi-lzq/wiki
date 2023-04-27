@@ -1,6 +1,6 @@
 created: 20230409055959734
 creator: Gezi
-modified: 20230409060148139
+modified: 20230427102757855
 modifier: Gezi
 tags: ETCD
 title: ETCD的watch机制
@@ -13,3 +13,4 @@ ETCD的watch机制是一种基于订阅的通知机制，用于客户端监听�
 ETCD的watch机制不仅支持简单的key-value结构，也能支持复杂的目录结构，例如watch一个文件夹。在监听一个前缀的过程中，ETCD支持的事件类型包括PUT，DELETE，和UNDO。PUT表示某个新的键值对被添加进去，DELETE表示某个键值对被删除，而UNDO则是表示某个键的过期时间被重置。
 
 etcd v2 和 v3 版本之间的重要变化之一就是 watch 机制的优化。etcd v2 watch 机制采用的是基于 HTTP/1.x 协议的客户端轮询机制，历史版本存储则是通过滑动窗口。在大量的客户端连接的场景或者集群规模较大的场景，导致 etcd 服务端的扩展性和稳定性都无法保证。etcd v3 在此基础上进行优化，满足了 Kubernetes pods 部署和状态管理等业务场景诉求。
+
