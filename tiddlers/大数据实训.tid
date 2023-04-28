@@ -1,7 +1,7 @@
 created: 20230428063008651
 creator: Gezi
 due-date: 
-modified: 20230428063308753
+modified: 20230428071725023
 modifier: Gezi
 priority: normal
 status: not started
@@ -14,7 +14,7 @@ type: text/vnd.tiddlywiki
 
 （1）编写爬虫程序爬取电动车头盔评论数据集，网址为[ext[https://item.jd.com/10623728509.html]]；[[京东商品评论爬取]]
 
-（2）数据预处理：探索分析、异常数据的处理、数据的变换处理、数据集的分割；
+（2）数据预处理：探索分析、异常数据的处理、数据的变换处理、数据集的分割；[[京东商品评论数据集预处理]]
 
 （3）建立评论文本的LDA主题分析模型：对评论文本进行主题分析。
 

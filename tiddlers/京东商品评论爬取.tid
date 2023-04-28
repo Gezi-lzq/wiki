@@ -1,6 +1,6 @@
 created: 20230428063319298
 creator: Gezi
-modified: 20230428064403368
+modified: 20230428071653795
 modifier: Gezi
 title: 京东商品评论爬取
 type: text/vnd.tiddlywiki
@@ -14,5 +14,78 @@ https://club.jd.com/comment/productPageComments.action?callback=fetchJSON_commen
 只需要更改page参数，将评论的json存储起来即可
 
 ```python
+import requests
+import json
+import csv
+import time
 
+# 设置请求头
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
+    'Referer': 'https://item.jd.com/10623728509.html'
+}
+
+# 设置url
+url = 'https://club.jd.com/comment/productPageComments.action'
+
+# 初始化参数
+page = 0
+page_size = 10
+comments = []
+
+while True:
+    # 设置params
+    params = {
+        'callback': 'fetchJSON_comment98',
+        'productId': '10623728509',
+        'score': '0',
+        'sortType': '5',
+        'page': str(page),
+        'pageSize': str(page_size),
+        'isShadowSku': '0',
+        'rid': '0',
+        'fold': '1'
+    }
+
+    try:
+        # 发送请求
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()  # 如果响应状态码不是200，则抛出异常
+
+        # 解析json数据
+        json_str = response.text.lstrip('fetchJSON_comment98(').rstrip(');')
+        json_data = json.loads(json_str)
+
+        # 获取评论列表
+        comment_list = json_data['comments']
+
+        # 如果评论列表为空，则说明已经爬取完毕，退出循环
+        if len(comment_list) == 0:
+            break
+
+        # 将当前页的评论添加到comments列表中
+        comments.extend(comment_list)
+
+        print('已成功爬取第%d页评论' % (page + 1))
+
+        # 翻页
+        page += 1
+
+        # 停顿1秒，避免请求过于频繁
+        time.sleep(1)
+    except Exception as e:
+        print('爬取第%d页评论时出现异常：%s' % ((page + 1), e))
+        # 停顿1秒，避免请求过于频繁
+        time.sleep(1)
+
+# 写入csv文件
+with open('comments.csv', 'w', newline='', encoding='utf-8-sig') as f:
+    writer = csv.writer(f)
+    # 写入表头
+    writer.writerow(['用户id', '评分', '评论内容','评论时间'])
+    # 循环写入评论信息
+    for comment in comments:
+        writer.writerow([comment['guid'], comment['score'], comment['content'],comment['creationTime']])
+
+print('爬取并保存成功！')
 ```

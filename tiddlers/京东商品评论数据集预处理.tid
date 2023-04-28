@@ -1,0 +1,17 @@
+created: 20230428071731549
+creator: Gezi
+modified: 20230428071831870
+modifier: Gezi
+title: 京东商品评论数据集预处理
+type: text/vnd.tiddlywiki
+
+导入必要的库和模块，如pandas、numpy、matplotlib等。
+读取csv数据集，将其存储为pandas DataFrame对象，可以使用pandas.read_csv()函数实现。
+
+1. 进行数据探索分析，包括评论数量分布、评论长度分布、评分分布等情况，通过pandas describe()函数、value_counts()函数、hist()函数等实现，并用matplotlib将结果可视化呈现。
+
+2. 处理异常数据，比如重复值、缺失值、异常值等。可以使用pandas isnull()函数、drop_duplicates()函数、replace()函数等进行处理。
+
+3. 进行数据变换处理，包括去噪、分词、词形还原、停用词过滤等操作，以便进行主题分析。可以使用nltk或者spaCy等自然语言处理工具库来实现。
+
+4. 确定训练集、验证集和测试集的划分比例，并进行抽样和平衡等处理，确保数据集的质量和准确度。
