@@ -1,0 +1,18 @@
+created: 20230428063319298
+creator: Gezi
+modified: 20230428064403368
+modifier: Gezi
+title: 京东商品评论爬取
+type: text/vnd.tiddlywiki
+
+
+<<<
+爬虫评论接口：
+https://club.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98&productId=10623728509&score=0&sortType=5&page=0&pageSize=10&isShadowSku=0&rid=0&fold=1
+<<<
+
+只需要更改page参数，将评论的json存储起来即可
+
+```python
+
+```
