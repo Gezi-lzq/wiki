@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
+		<loc>https://onetwo.ren/wiki/#:?</loc>
+		<lastmod>2023-03-24</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:1.gRPC试图解决的问题是什么？</loc>
 		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
@@ -43,7 +49,55 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:2023-3-25%2520关于AI产品的认识</loc>
+		<lastmod>2023-03-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2023-4-1</loc>
+		<lastmod>2023-04-03</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2023-4-3</loc>
+		<lastmod>2023-04-03</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2023-4-4</loc>
+		<lastmod>2023-04-04</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2023-4-5</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2023-5-1</loc>
+		<lastmod>2023-05-01</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:ABA问题</loc>
+		<lastmod>2023-03-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:add.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:AI产品</loc>
+		<lastmod>2023-03-25</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -61,6 +115,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Benchmark结果说明.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:CAS(Compare%2520And%2520Swap)</loc>
+		<lastmod>2023-03-28</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -133,12 +193,6 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;非阻塞IO(NIO)&apos;%2520by%2520Gezi</loc>
-		<lastmod>2023-03-21</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;面试准备&apos;%2520by%2520Gezi</loc>
 		<lastmod>2023-02-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -156,6 +210,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:DSL</loc>
+		<lastmod>2023-03-24</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Dynamic%2520RAM</loc>
 		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -168,8 +228,19 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:epoll函数调用过程.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:ETCD</loc>
 		<lastmod>2023-01-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:ETCD的watch机制</loc>
+		<lastmod>2023-04-27</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -186,10 +257,22 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:for%2520range循环创建的是每个元素的副本还是元素的引用</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:GC算法评价</loc>
 		<lastmod>2023-01-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:GettingThingsDone</loc>
+		<lastmod>2023-04-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:github-theme</loc>
@@ -222,6 +305,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Golang面试</loc>
+		<lastmod>2023-03-24</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Golang高并发</loc>
 		<lastmod>2022-09-25</lastmod>
 		<changefreq>monthly</changefreq>
@@ -251,6 +340,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Happens%2520Before</loc>
+		<lastmod>2023-03-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:IDP-内部开发者平台</loc>
 		<lastmod>2022-12-07</lastmod>
 		<changefreq>monthly</changefreq>
@@ -269,13 +364,13 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:IM系统-plato</loc>
-		<lastmod>2023-03-13</lastmod>
+		<lastmod>2023-04-24</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Index</loc>
-		<lastmod>2023-03-16</lastmod>
+		<lastmod>2023-04-19</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -303,13 +398,25 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:IO多路复用第二版epoll</loc>
-		<lastmod>2023-03-22</lastmod>
+		<lastmod>2023-03-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:JSP实验</loc>
 		<lastmod>2023-01-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:k8s</loc>
+		<lastmod>2023-03-24</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:K8S属于哪种设备模型？</loc>
+		<lastmod>2023-04-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -328,6 +435,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:L3负载均衡</loc>
 		<lastmod>2023-03-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Leaky%2520bucket</loc>
+		<lastmod>2023-03-29</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -375,6 +488,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:LT与ET的区别.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:LVS、Nginx%2520及%2520HAProxy%2520的工作原理</loc>
 		<lastmod>2023-03-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -387,6 +505,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:map%2520内存模型</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:map%2520的底层如何实现</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:MapReduce</loc>
 		<lastmod>2023-02-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -394,6 +524,11 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:mapreduce.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:map内存模型图.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -416,6 +551,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Mark-sweepGC.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Master节点在K8S中负责哪些任务？</loc>
+		<lastmod>2023-04-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -486,6 +627,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:PCB是如何组织的？</loc>
+		<lastmod>2023-03-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Pipeline设计模式</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:poll</loc>
 		<lastmod>2023-03-22</lastmod>
 		<changefreq>monthly</changefreq>
@@ -543,6 +696,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Qos策略</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:QUIC协议</loc>
 		<lastmod>2023-03-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -557,6 +716,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Redis-字典底层实现</loc>
 		<lastmod>2023-02-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Redis-整数集合</loc>
+		<lastmod>2023-04-04</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -580,7 +745,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Redis知识大纲</loc>
-		<lastmod>2023-02-18</lastmod>
+		<lastmod>2023-04-04</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -694,6 +859,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:slice%2520和%2520map%2520分别作为函数参数时有什么区别？</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Slice如何扩容？</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Spring</loc>
 		<lastmod>2022-05-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -771,6 +948,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:ToKen%2520bucket</loc>
+		<lastmod>2023-03-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:tokenBucket.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Tradeoffs</loc>
 		<lastmod>2023-01-26</lastmod>
 		<changefreq>monthly</changefreq>
@@ -840,8 +1028,37 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:业务层如何感知连接所处网关</loc>
+		<lastmod>2023-03-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:业务缓存的设计模式</loc>
 		<lastmod>2023-03-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:临界区</loc>
+		<lastmod>2023-03-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:临界区.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:为何使用线程</loc>
+		<lastmod>2023-04-01</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:主备连接</loc>
+		<lastmod>2023-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -876,6 +1093,30 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:互斥方式</loc>
+		<lastmod>2023-03-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:京东商品评论数据集预处理</loc>
+		<lastmod>2023-04-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:京东商品评论爬取</loc>
+		<lastmod>2023-04-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:什么情况下会把%2520bmap%2520标记为不含指针？</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:以存储器为中心的双总线结构</loc>
 		<lastmod>2022-10-27</lastmod>
 		<changefreq>monthly</changefreq>
@@ -883,6 +1124,24 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:以存储器为中心的双总线结构.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:使用APP%2520ID做逻辑区分</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:使用发布/订阅模式</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:信号量同步机制</loc>
+		<lastmod>2023-03-29</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -970,6 +1229,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:分布式限流系统</loc>
+		<lastmod>2023-03-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:分离式通信</loc>
 		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -978,6 +1243,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:创建Wiki仓库</loc>
 		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:创建进程的过程有哪些？</loc>
+		<lastmod>2023-04-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -996,6 +1267,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:协议</loc>
 		<lastmod>2022-11-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:单元化部署方案</loc>
+		<lastmod>2023-04-05</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1059,6 +1336,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:同步机制准则</loc>
+		<lastmod>2023-03-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:向一个nil的slice添加元素会发生什么？为什么？</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:向量时钟算法</loc>
 		<lastmod>2023-03-18</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1077,6 +1366,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:四总线结构.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:固定窗口-计数器算法</loc>
+		<lastmod>2023-03-28</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1105,6 +1400,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:多对多群聊消息一致性保证思路2.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:大数据实训</loc>
+		<lastmod>2023-04-28</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1172,6 +1473,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:就绪队列和阻塞队列链表的组织形式.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:工厂模式</loc>
 		<lastmod>2022-05-19</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1201,6 +1507,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:应用层维护心跳</loc>
+		<lastmod>2023-03-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:当日任务</loc>
 		<lastmod>2023-01-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1213,8 +1525,20 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:心跳服务-断线重连</loc>
+		<lastmod>2023-03-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:心跳服务-租约机制(Lease机制)</loc>
+		<lastmod>2023-03-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:快速创建新笔记按钮</loc>
-		<lastmod>2023-01-22</lastmod>
+		<lastmod>2023-03-24</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -1345,8 +1669,32 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:数组与切片有什么异同</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:整型信号量</loc>
+		<lastmod>2023-03-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:日志</loc>
+		<lastmod>2023-03-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:时空复用技术</loc>
 		<lastmod>2023-02-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:时间轮算法</loc>
+		<lastmod>2023-03-24</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1392,8 +1740,20 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:未完成</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:注释的艺术</loc>
 		<lastmod>2023-01-18</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:流量潮汐</loc>
+		<lastmod>2023-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1410,6 +1770,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:消息通信场景</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:深入理解计算机系统</loc>
 		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1417,6 +1783,17 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:混合模式.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:滑动窗口-队列算法</loc>
+		<lastmod>2023-03-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:漏桶算法示意图.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1440,6 +1817,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:用户态和内核态</loc>
 		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:硬件同步机制</loc>
+		<lastmod>2023-03-27</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1469,13 +1852,31 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:简易分布式系统</loc>
-		<lastmod>2023-03-11</lastmod>
+		<lastmod>2023-03-29</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:系统设计时的思路</loc>
 		<lastmod>2023-03-13</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:线程(Thread)</loc>
+		<lastmod>2023-04-01</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:线程上下文切换的是什么？</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:终止进程的过程</loc>
+		<lastmod>2023-04-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1527,6 +1928,12 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:网络请求的扇出</loc>
+		<lastmod>2023-03-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:聚簇索引和非聚簇索引</loc>
 		<lastmod>2023-02-24</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1574,6 +1981,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:记录型信号量</loc>
+		<lastmod>2023-03-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:负载均衡</loc>
 		<lastmod>2023-03-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1591,7 +2004,19 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:跨数据中心的广域网络延时</loc>
+		<lastmod>2023-03-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:跳表.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:软件同步机制</loc>
+		<lastmod>2023-03-27</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1626,8 +2051,43 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:边界丢失限流状态.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:进程与上下文</loc>
 		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:进程从阻塞状态被唤醒的条件是什么？</loc>
+		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:进程同步机制</loc>
+		<lastmod>2023-03-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:进程控制块（PCB）</loc>
+		<lastmod>2023-03-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:进程的控制</loc>
+		<lastmod>2023-03-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:进程通常有多少种终止方式？</loc>
+		<lastmod>2023-04-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1681,6 +2141,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:银行家算法</loc>
+		<lastmod>2023-03-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:链式查询</loc>
 		<lastmod>2022-11-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1698,6 +2164,30 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:长连接服务如何做到通用性</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:长连接网关的中台演化</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:长连接网关的通用性设计</loc>
+		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:长连接网关设计</loc>
+		<lastmod>2023-03-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:阻塞IO(BIO)</loc>
 		<lastmod>2023-03-21</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1705,6 +2195,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:阻塞IO(用户态与内核态调用过程).png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:限流初始方案</loc>
+		<lastmod>2023-03-28</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1739,7 +2235,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:面试准备</loc>
-		<lastmod>2023-03-17</lastmod>
+		<lastmod>2023-04-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
