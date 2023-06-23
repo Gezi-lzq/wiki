@@ -1,6 +1,6 @@
 created: 20230322083837853
 creator: Gezi
-modified: 20230322085113196
+modified: 20230623033442168
 modifier: Gezi
 tags: 操作系统
 title: 银行家算法
@@ -40,4 +40,4 @@ Need[i,j] = Max[i,j] - allocation[i, j]
 
 * 假设系统现在以满足Pi的请求，即$$Allocation_i［j］ = Allocation_i［j］ + Request_i［j］$$，$$Available_j = Available_j - Request_i［j］$$。
 
-* 判断此时系统中是否仍然存在一个安全序列，如果存在，则进程Pi可以接受此次资源分配，否则，需要将Allocation和Available向量恢复到原来的状态，即$$Allocation_i［j］ = Allocation_i［j］ - Request_i［j］$$，$$Available_j = Available_j + Request_i［j］$$，同时让Pi等待，直到系统能够满足一个安全序列为止。
+* 判断此时系统中是否仍然存在一个安全序列，如果存在，则进程Pi可以接受此次资源分配，否则，需要将Allocation和Available向量恢复到原来的状态，即$$Allocation_i［j］ = Available_i［j］ - Request_i［j］$$，$$Available_j = Allocation_j + Request_i［j］$$，同时让Pi等待，直到系统能够满足一个安全序列为止。
