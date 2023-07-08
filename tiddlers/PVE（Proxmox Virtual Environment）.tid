@@ -1,0 +1,9 @@
+created: 20230708121548548
+modified: 20230708122144090
+tags: 实习小知识 运维
+title: PVE（Proxmox Virtual Environment）
+type: text/vnd.tiddlywiki
+
+Proxmox是一款基于开源技术的虚拟化平台，它提供了一种集成式的解决方案，可以让用户轻松地管理虚拟机和容器。Proxmox VE（Virtual Environment）是Proxmox的主要产品，它是一个基于Debian Linux操作系统构建的开源虚拟化管理平台，支持[[KVM和LXC虚拟化技术]]，同时还包含了一系列的管理工具和Web界面，使用户可以轻松地创建、配置、监视和管理虚拟机和容器。
+
+Proxmox VE可以在一台物理服务器上运行多个虚拟机和容器，从而实现资源共享和更高的资源利用率。此外，Proxmox VE还提供了备份和恢复功能、高可用性、集成式存储管理和网络管理等功能，使得它成为一款功能强大的虚拟化平台。
