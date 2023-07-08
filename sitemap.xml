@@ -433,6 +433,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:KVM和LXC虚拟化技术</loc>
+		<lastmod>2023-07-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:L3/L4/L7%2520Load%2520Balancing</loc>
 		<lastmod>2023-03-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -698,6 +704,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Protobuf通信协议</loc>
 		<lastmod>2023-03-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:PVE（Proxmox%2520Virtual%2520Environment）</loc>
+		<lastmod>2023-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
