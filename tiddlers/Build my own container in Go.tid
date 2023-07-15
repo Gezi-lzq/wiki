@@ -1,0 +1,14 @@
+created: 20230715041813395
+modified: 20230715051857070
+tags: 
+title: Build my own container in Go
+type: text/vnd.tiddlywiki
+
+使用Linux命名空间中的三个概念构建一个容器
+
+* Namespaces
+
+* Chroot
+
+* Cgroups
+
