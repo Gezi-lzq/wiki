@@ -125,6 +125,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Build%2520my%2520own%2520container%2520in%2520Go</loc>
+		<lastmod>2023-07-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:CAS(Compare%2520And%2520Swap)</loc>
 		<lastmod>2023-03-28</lastmod>
 		<changefreq>monthly</changefreq>
@@ -873,6 +879,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:skiplist.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Sky%2520Computing</loc>
+		<lastmod>2023-07-15</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
