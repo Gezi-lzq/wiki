@@ -913,6 +913,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:SQL%2520属性过滤</loc>
+		<lastmod>2023-07-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:SQL属性过滤技术原理.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:SSL/TLS</loc>
 		<lastmod>2023-03-15</lastmod>
 		<changefreq>monthly</changefreq>
