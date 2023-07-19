@@ -579,6 +579,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Maven%2520Profile%2520与%2520Spring%2520Profile%2520管理多环境打包</loc>
+		<lastmod>2023-07-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:MQTT协议</loc>
 		<lastmod>2023-03-15</lastmod>
 		<changefreq>monthly</changefreq>
