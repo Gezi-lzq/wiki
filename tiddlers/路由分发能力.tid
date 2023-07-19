@@ -1,0 +1,11 @@
+created: 20230719030346950
+modified: 20230719031119431
+tags: 消息队列
+title: 路由分发能力
+type: text/vnd.tiddlywiki
+
+# RocketMQ 多样消费功能-消息过滤
+
+{{ 消息过滤 }}
+
+在功能层面，RocketMQ 支持两种过滤方式，[[Tag 标签过滤]]和 [[SQL 属性过滤]]。
