@@ -1,36 +1,74 @@
 created: 20230803055734499
-modified: 20230803062343724
+modified: 20230803070329209
 title: topic路由机制
 type: text/vnd.tiddlywiki
+wysiwyg: yes
 
-如何获取Topic？
+!! 如何获取Topic？
 
-获取路由信息函数：
+!!! 获取路由信息函数：
 
-DefaultMQProducerImpl#tryToFindTopicPublishInfo
+* DefaultMQProducerImpl#tryToFindTopicPublishInfo
 
 ```java
 private TopicPublishInfo tryToFindTopicPublishInfo(final String topic) {
-			// 首先从本地topicPublishInfoTable去获取路由信息
-        TopicPublishInfo topicPublishInfo = this.topicPublishInfoTable.get(topic);
-			// 若不存在，获得路由信息中messageQueueList不存在或者为空
-        if (null == topicPublishInfo || !topicPublishInfo.ok()) {
-			// 创建一个空的TopicPublishInfo
-            this.topicPublishInfoTable.putIfAbsent(topic, new TopicPublishInfo());
-					// 从NameServer中更新topic的路由信息
-            this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic);
-					// 将获取到的topic路由信息更新至本地topicPublishInfoTable中
-            topicPublishInfo = this.topicPublishInfoTable.get(topic);
-        }
-			// 若topicPublishInfo正常（），则直接返回
-        if (topicPublishInfo.isHaveTopicRouterInfo() || topicPublishInfo.ok()) {
-            return topicPublishInfo;
-        } else {
-					// 若仍不存在，则从NameServer中查询默认topic的路由信息，并更新
-            this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic, true, this.defaultMQProducer);
-            topicPublishInfo = this.topicPublishInfoTable.get(topic);
-            return topicPublishInfo;
-        }
+    // 首先从本地topicPublishInfoTable去获取路由信息
+    TopicPublishInfo topicPublishInfo = this.topicPublishInfoTable.get(topic);
+    // 若不存在，获得路由信息中messageQueueList不存在或者为空
+    if (null == topicPublishInfo || !topicPublishInfo.ok()) {
+        // 创建一个空的TopicPublishInfo
+        this.topicPublishInfoTable.putIfAbsent(topic, new TopicPublishInfo());
+        // 从NameServer中更新topic的路由信息
+        this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic);
+        // 将获取到的topic路由信息更新至本地topicPublishInfoTable中
+        topicPublishInfo = this.topicPublishInfoTable.get(topic);
     }
+    // 若topicPublishInfo正常（），则直接返回
+    if (topicPublishInfo.isHaveTopicRouterInfo() || topicPublishInfo.ok()) {
+        return topicPublishInfo;
+    } else {
+        // 若仍不存在，则从NameServer中查询默认topic的路由信息，并更新
+        this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic, true, this.defaultMQProducer);
+        topicPublishInfo = this.topicPublishInfoTable.get(topic);
+        return topicPublishInfo;
+    }
+}
 ```
+* 向NameServer请求获得TopicRouteInfo
+
+```java
+public TopicRouteData getTopicRouteInfoFromNameServer(final String topic, final long timeoutMillis,
+    boolean allowTopicNotExist) throws MQClientException, InterruptedException, RemotingTimeoutException, RemotingSendRequestException, RemotingConnectException {
+		
+    GetRouteInfoRequestHeader requestHeader = new GetRouteInfoRequestHeader();
+    requestHeader.setTopic(topic);
+    RemotingCommand request = RemotingCommand.createRequestCommand(RequestCode.GET_ROUTEINFO_BY_TOPIC, requestHeader);
+	// 虽然addr为空，但是在后续逻辑中，若为空则会去 getAndCreateNameserverChannel() 所以实际默认就是向Nameserver发送请求的
+    RemotingCommand response = this.remotingClient.invokeSync(null, request, timeoutMillis);
+    assert response != null;
+    switch (response.getCode()) {
+        case ResponseCode.TOPIC_NOT_EXIST: {
+            if (allowTopicNotExist) {
+                log.warn("get Topic [{}] RouteInfoFromNameServer is not exist value", topic);
+            }
+
+            break;
+        }
+        case ResponseCode.SUCCESS: {
+            byte[] body = response.getBody();
+            if (body != null) {
+                return TopicRouteData.decode(body, TopicRouteData.class);
+            }
+        }
+        default:
+            break;
+    }
+
+    throw new MQClientException(response.getCode(), response.getRemark());
+}
+
+```
+* NameServer 处理GetRouteInfoRequest
+
+
 
