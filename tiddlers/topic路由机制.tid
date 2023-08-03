@@ -1,0 +1,36 @@
+created: 20230803055734499
+modified: 20230803062343724
+title: topic路由机制
+type: text/vnd.tiddlywiki
+
+如何获取Topic？
+
+获取路由信息函数：
+
+DefaultMQProducerImpl#tryToFindTopicPublishInfo
+
+```java
+private TopicPublishInfo tryToFindTopicPublishInfo(final String topic) {
+			// 首先从本地topicPublishInfoTable去获取路由信息
+        TopicPublishInfo topicPublishInfo = this.topicPublishInfoTable.get(topic);
+			// 若不存在，获得路由信息中messageQueueList不存在或者为空
+        if (null == topicPublishInfo || !topicPublishInfo.ok()) {
+			// 创建一个空的TopicPublishInfo
+            this.topicPublishInfoTable.putIfAbsent(topic, new TopicPublishInfo());
+					// 从NameServer中更新topic的路由信息
+            this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic);
+					// 将获取到的topic路由信息更新至本地topicPublishInfoTable中
+            topicPublishInfo = this.topicPublishInfoTable.get(topic);
+        }
+			// 若topicPublishInfo正常（），则直接返回
+        if (topicPublishInfo.isHaveTopicRouterInfo() || topicPublishInfo.ok()) {
+            return topicPublishInfo;
+        } else {
+					// 若仍不存在，则从NameServer中查询默认topic的路由信息，并更新
+            this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic, true, this.defaultMQProducer);
+            topicPublishInfo = this.topicPublishInfoTable.get(topic);
+            return topicPublishInfo;
+        }
+    }
+```
+

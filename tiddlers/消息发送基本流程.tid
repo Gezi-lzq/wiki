@@ -1,0 +1,12 @@
+created: 20230803055456761
+modified: 20230803055605769
+title: 消息发送基本流程
+type: text/vnd.tiddlywiki
+
+!! 消息长度验证
+
+!! 查找topic路由信息
+
+!! 选择消息队列
+
+!! 消息发送

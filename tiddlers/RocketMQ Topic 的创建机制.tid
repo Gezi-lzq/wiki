@@ -1,0 +1,10 @@
+created: 20230803060939966
+modified: 20230803061003663
+tags: 
+title: RocketMQ Topic 的创建机制
+type: text/vnd.tiddlywiki
+
+topic在rocketmq的设计思想里，是作为同一个''业务逻辑消息的组织形式''，它仅仅是一个逻辑上的概念，而在一个topic下又包含若干个逻辑队列，即消息队列，消息内容实际是存放在队列中，而队列又存储在broker中。
+
+[img[topic的存储模型.png]]
+
