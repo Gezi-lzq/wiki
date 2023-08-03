@@ -798,6 +798,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520Topic%2520的创建机制</loc>
+		<lastmod>2023-08-03</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ消息发送</loc>
+		<lastmod>2023-08-03</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ避免重复消费的机制</loc>
 		<lastmod>2023-07-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1019,6 +1031,17 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:tokenBucket.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:topic的存储模型.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:topic路由机制</loc>
+		<lastmod>2023-08-03</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1830,6 +1853,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:消息“可靠性”和“一致性”问题</loc>
 		<lastmod>2023-03-18</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:消息发送基本流程</loc>
+		<lastmod>2023-08-03</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
