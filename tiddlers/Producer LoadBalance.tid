@@ -1,0 +1,68 @@
+created: 20230804090621235
+modified: 20230804091933466
+title: Producer LoadBalance
+type: text/vnd.tiddlywiki
+
+!! RoundRobin模式
+
+''使用范围''
+
+对于非顺序消息（普通消息、定时/延时消息、事务消息）场景，默认且只能使用RoundRobin模式的负载均衡策略。
+
+''策略原理''：轮询方式
+
+RoundRobin模式下，生产者发送消息时，以消息为粒度，按照轮询方式将消息依次发送到指定主题中的所有可写目标队列中，保证消息尽可能均衡地分布到所有队列。
+
+```java
+public List<MessageQueueImpl> takeMessageQueues(Set<Endpoints> excluded, int count) {
+    int next = index.getAndIncrement();
+    List<MessageQueueImpl> candidates = new ArrayList<>();
+    Set<String> candidateBrokerNames = new HashSet<>();
+
+    for (int i = 0; i < messageQueues.size(); i++) {
+        final MessageQueueImpl messageQueueImpl = messageQueues.get(IntMath.mod(next++, messageQueues.size()));
+        final Broker broker = messageQueueImpl.getBroker();
+        final String brokerName = broker.getName();
+        if (!excluded.contains(broker.getEndpoints()) && !candidateBrokerNames.contains(brokerName)) {
+            candidateBrokerNames.add(brokerName);
+            candidates.add(messageQueueImpl);
+        }
+        if (candidates.size() >= count) {
+            return candidates;
+        }
+    }
+    // If all endpoints are isolated.
+    if (candidates.isEmpty()) {
+        for (int i = 0; i < messageQueues.size(); i++) {
+            final MessageQueueImpl messageQueueImpl = messageQueues.get(IntMath.mod(next++, messageQueues.size()));
+            final Broker broker = messageQueueImpl.getBroker();
+            final String brokerName = broker.getName();
+            if (!candidateBrokerNames.contains(brokerName)) {
+                candidateBrokerNames.add(brokerName);
+                candidates.add(messageQueueImpl);
+            }
+            if (candidates.size() >= count) {
+                break;
+            }
+        }
+    }
+    return candidates;
+}
+```
+
+!! MessageGroupHash模式
+''使用范围''
+
+对于顺序消息场景，默认且只能使用MessageGroupHash模式的负载均衡策略。
+
+''策略原理''：Hash算法
+
+MessageGroupHash模式下，生产者发送消息时，以消息组为粒度，按照内置的Hash算法，将相同消息组的消息分配到同一队列中，保证同一消息组的消息按照发送的先后顺序存储。
+
+```java
+public MessageQueueImpl takeMessageQueueByMessageGroup(String messageGroup) {
+    final long hashCode = Hashing.sipHash24().hashBytes(messageGroup.getBytes(StandardCharsets.UTF_8)).asLong();
+    final int index = LongMath.mod(hashCode, messageQueues.size());
+    return messageQueues.get(index);
+}
+```

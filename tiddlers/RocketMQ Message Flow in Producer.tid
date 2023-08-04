@@ -1,5 +1,5 @@
 created: 20230804075104956
-modified: 20230804075136959
+modified: 20230804090028536
 tags: 
 title: RocketMQ Message Flow in Producer
 type: text/vnd.tiddlywiki
@@ -10,8 +10,15 @@ The publishing procedure is as follows:
 
 [img[message-flow-in-producer.png]]
 
-<<<
-[[Topic的获取]]
+a. 判断当前状态是否为运行状态
+
+b. 判断需发送的MessageList是否是相同的Topic
+
+c. 若Topic为FIFO，则判断是否是相同的messageGroup
+
+---
+
+1-3 step : [[Topic的获取]]
 
 1. Check if topic route is cached before or not.
 
@@ -19,11 +26,20 @@ The publishing procedure is as follows:
 
 3. Return failure and end the current process if topic route is failed to fetch, otherwise cache the topic route and go to the next step.
 
-<<<
-
-
 
 4. Select writable candicate message queues from topic route to publish meessage.
+
+```java
+return Futures.transformAsync(routeFuture, result -> {
+    // Prepare the candidate message queue(s) for retry-sending in advance.
+    final List<MessageQueueImpl> candidates = null == messageGroup ? takeMessageQueues(result) :
+        Collections.singletonList(result.takeMessageQueueByMessageGroup(messageGroup));
+    final SettableFuture<List<SendReceiptImpl>> future0 = SettableFuture.create();
+    send0(future0, topic, messageType, candidates, pubMessages, 1);
+    return future0;
+}, MoreExecutors.directExecutor());
+```
+[[Producer LoadBalance]]
 
 5. Return failure and end the current process if the type of message queue is not matched with message type.
 
