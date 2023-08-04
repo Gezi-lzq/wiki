@@ -813,7 +813,25 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520client%2520Periodic%2520Task</loc>
+		<lastmod>2023-08-04</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520client%2520start</loc>
+		<lastmod>2023-08-04</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520client启动流程</loc>
+		<lastmod>2023-08-04</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520Message%2520Flow%2520in%2520Producer</loc>
 		<lastmod>2023-08-04</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -1057,6 +1075,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:topic的存储模型.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Topic的获取</loc>
+		<lastmod>2023-08-04</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
