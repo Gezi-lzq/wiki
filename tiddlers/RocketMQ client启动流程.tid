@@ -1,0 +1,71 @@
+created: 20230804012348683
+modified: 20230804015307677
+title: RocketMQ client启动流程
+type: text/vnd.tiddlywiki
+wysiwyg: yes
+
+!! Startup
+
+1. Try to fetch route data of topics.
+
+
+2. Try to get settings from the server, which could do hot-update about these settings. we call this process server-client telemetry.
+
+[img[client-startup-process.png]]
+
+In details, the server-client telemetry provides a channel to upload the local settings and to overwrite the client settings.
+
+!! Periodic Task
+
+The client performs same tasks periodically.
+
+1. Update topic route data and cache it. The subsequent request could get route from cache directly.
+
+2. Send heartbeat to keep alive.
+
+3. Send server-client telemetry request. Client settings may be overwritten by telemetry response.
+
+[img[client-Periodic-Task.png]]
+
+!! Message Flow in Producer
+
+The workflow to publish a single message of NORMAL type. The message publishing of other types and publishing of batch messages is similar to it. Some special cases will be explained later.
+
+The publishing procedure is as follows:
+
+[img[message-flow-in-producer.png]]
+
+1. Check if topic route is cached before or not.
+
+
+2. If topic route is not cached, then try to fetch it from server, otherwise go to step 4.
+
+
+3. Return failure and end the current process if topic route is failed to fetch, otherwise cache the topic route and go to the next step.
+
+
+4. Select writable candicate message queues from topic route to publish meessage.
+
+
+5. Return failure and end the current process if the type of message queue is not matched with message type.
+
+
+6. Attempt to publish message.
+
+
+7. Return success and end the current process if message is published successfully.
+
+
+8. Catch the error information of failed message publishing.
+
+
+9. Return failure and end the current process if the attempt times is run out, otherwirse deecide to retry or not according to the error type.
+
+
+10. Return failure and end the current process if there is no need to retry, otherwise go to the next step.
+
+
+11. Isolate the current endpoint for publishing.
+
+
+12. Rotate to next message queue to publish message, and go to step 6.

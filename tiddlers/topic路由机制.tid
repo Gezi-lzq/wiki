@@ -1,10 +1,11 @@
 created: 20230803055734499
-modified: 20230803070329209
+modified: 20230803080750459
 title: topic路由机制
 type: text/vnd.tiddlywiki
-wysiwyg: yes
 
 !! 如何获取Topic？
+
+以下代码均为4.0的
 
 !!! 获取路由信息函数：
 
@@ -35,6 +36,8 @@ private TopicPublishInfo tryToFindTopicPublishInfo(final String topic) {
 }
 ```
 * 向NameServer请求获得TopicRouteInfo
+
+MQClientAPIImpl#getTopicRouteInfoFromNameServer
 
 ```java
 public TopicRouteData getTopicRouteInfoFromNameServer(final String topic, final long timeoutMillis,
@@ -70,5 +73,125 @@ public TopicRouteData getTopicRouteInfoFromNameServer(final String topic, final 
 ```
 * NameServer 处理GetRouteInfoRequest
 
+ClientRequestProcessor#getRouteInfoByTopic
 
+```java
+public RemotingCommand getRouteInfoByTopic(ChannelHandlerContext ctx,
+    RemotingCommand request) throws RemotingCommandException {
+    final RemotingCommand response = RemotingCommand.createResponseCommand(null);
+    final GetRouteInfoRequestHeader requestHeader =
+        (GetRouteInfoRequestHeader) request.decodeCommandCustomHeader(GetRouteInfoRequestHeader.class);
+    // 当前时间与命名服务启动时间的差值，如果这个差值大于等于命名服务配置的等待时间，则认为命名服务已准备就绪，否则返回一个错误响应
+    boolean namesrvReady = needCheckNamesrvReady.get() && System.currentTimeMillis() - startupTimeMillis >= TimeUnit.SECONDS.toMillis(namesrvController.getNamesrvConfig().getWaitSecondsForService());
+    // 如果`namesrvController`的配置需要等待命名服务就绪，且命名服务尚未准备就绪
+    // 则返回一个错误响应，并在响应的`response`中设置错误代码和备注信息。
+    if (namesrvController.getNamesrvConfig().isNeedWaitForService() && !namesrvReady) {
+        log.warn("name server not ready. request code {} ", request.getCode());
+        response.setCode(ResponseCode.SYSTEM_ERROR);
+        response.setRemark("name server not ready");
+        return response;
+    }
+		 
+    TopicRouteData topicRouteData = this.namesrvController.getRouteInfoManager().pickupTopicRouteData(requestHeader.getTopic());
 
+    if (topicRouteData != null) {
+        //topic route info register success ,so disable namesrvReady check
+        //如果主题的路由信息存在，则将`needCheckNamesrvReady`标志设置为`false`,不需要在进行namesrvReady check
+        if (needCheckNamesrvReady.get()) {
+            needCheckNamesrvReady.set(false);
+        }
+        // 若命名服务配置启用了顺序消息功能，则从`namesrvController`的`KvConfigManager`中获取与该主题关联的顺序消息配置
+        if (this.namesrvController.getNamesrvConfig().isOrderMessageEnable()) {
+            String orderTopicConf =
+                this.namesrvController.getKvConfigManager().getKVConfig(NamesrvUtil.NAMESPACE_ORDER_TOPIC_CONFIG,
+                    requestHeader.getTopic());
+            topicRouteData.setOrderTopicConf(orderTopicConf);
+        }
+        // 根据请求的版本和`AcceptStandardJsonOnly`标志的值，将主题路由信息编码为JSON格式的字节数组，并将其设置为响应的主体。
+        // 如果请求版本较旧或未设置`AcceptStandardJsonOnly`标志，则将主题路由信息编码为二进制格式的字节数组
+        byte[] content;
+        Boolean standardJsonOnly = requestHeader.getAcceptStandardJsonOnly();
+        if (request.getVersion() >= MQVersion.Version.V4_9_4.ordinal() || null != standardJsonOnly && standardJsonOnly) {
+            content = topicRouteData.encode(SerializerFeature.BrowserCompatible,
+                SerializerFeature.QuoteFieldNames, SerializerFeature.SkipTransientField,
+                SerializerFeature.MapSortField);
+        } else {
+            content = topicRouteData.encode();
+        }
+
+        response.setBody(content);
+        response.setCode(ResponseCode.SUCCESS);
+        response.setRemark(null);
+        return response;
+    }
+
+    response.setCode(ResponseCode.TOPIC_NOT_EXIST);
+    response.setRemark("No topic route info in name server for the topic: " + requestHeader.getTopic()
+        + FAQUrl.suggestTodo(FAQUrl.APPLY_TOPIC_URL));
+    return response;
+}
+```
+!!! 如何维护本地的topicRouteTable
+
+MQClientInstance#startScheduledTask
+
+```java
+private void startScheduledTask() {
+	...
+  // 使用定时任务定期从NameServer更新主题路由信息
+	this.scheduledExecutorService.scheduleAtFixedRate(() -> {
+        try {
+            MQClientInstance.this.updateTopicRouteInfoFromNameServer();
+        } catch (Exception e) {
+            log.error("ScheduledTask updateTopicRouteInfoFromNameServer exception", e);
+        }
+    // 定时任务的执行周期由clientConfig.getPollNameServerInterval()方法返回的时间间隔决定，单位为毫秒。
+	// 在任务首次执行前，还需要等待10毫秒，以确保MQClientInstance实例被完全初始化。
+    }, 10, this.clientConfig.getPollNameServerInterval(), TimeUnit.MILLISECONDS);
+	...
+}
+```
+MQClientInstance#updateTopicRouteInfoFromNameServer
+
+```java
+public void updateTopicRouteInfoFromNameServer() {
+	// 创建一个空的字符串集合topicList，用于保存需要更新路由信息的主题列表
+    Set<String> topicList = new HashSet<>();
+
+// 遍历consumerTable和producerTable中保存的所有消费者和生产者
+// 并针对每个消费者和生产者，获取其订阅的主题或发布的主题列表，
+// 并将这些主题添加到topicList集合中。
+
+    // Consumer
+    {
+        for (Entry<String, MQConsumerInner> entry : this.consumerTable.entrySet()) {
+            MQConsumerInner impl = entry.getValue();
+            if (impl != null) {
+                Set<SubscriptionData> subList = impl.subscriptions();
+                if (subList != null) {
+                    for (SubscriptionData subData : subList) {
+                        topicList.add(subData.getTopic());
+                    }
+                }
+            }
+        }
+    }
+
+    // Producer
+    {
+        for (Entry<String, MQProducerInner> entry : this.producerTable.entrySet()) {
+            MQProducerInner impl = entry.getValue();
+            if (impl != null) {
+                Set<String> lst = impl.getPublishTopicList();
+                topicList.addAll(lst);
+            }
+        }
+    }
+	// 遍历topicList集合中的所有主题，并针对每个主题，
+	// 调用updateTopicRouteInfoFromNameServer(topic)方法
+	// 向NameServer请求最新的路由信息，并更新本地缓存
+    for (String topic : topicList) {
+        this.updateTopicRouteInfoFromNameServer(topic);
+    }
+}
+```
