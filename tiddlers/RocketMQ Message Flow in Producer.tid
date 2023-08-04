@@ -1,5 +1,5 @@
 created: 20230804075104956
-modified: 20230804090028536
+modified: 20230804102604049
 tags: 
 title: RocketMQ Message Flow in Producer
 type: text/vnd.tiddlywiki
@@ -42,6 +42,7 @@ return Futures.transformAsync(routeFuture, result -> {
 [[Producer LoadBalance]]
 
 5. Return failure and end the current process if the type of message queue is not matched with message type.
+
 
 
 6. Attempt to publish message.
