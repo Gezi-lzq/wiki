@@ -1,0 +1,95 @@
+created: 20230804075225285
+modified: 20230804075256738
+tags: 
+title: RocketMQ client start
+type: text/vnd.tiddlywiki
+
+1. Try to fetch route data of topics.
+
+
+2. Try to get settings from the server, which could do hot-update about these settings. we call this process server-client telemetry.
+
+[img[client-startup-process.png]]
+
+In details, the server-client telemetry provides a channel to upload the local settings and to overwrite the client settings.
+
+```java
+// ClientImpl
+
+@Override
+protected void startUp() throws Exception {
+    log.info("Begin to start the rocketmq client, clientId={}", clientId);
+    this.clientManager.startAsync().awaitRunning();
+    // Fetch topic route from remote.
+    log.info("Begin to fetch topic(s) route data from remote during client startup, clientId={}, topics={}",
+        clientId, topics);
+    for (String topic : topics) {
+        final ListenableFuture<TopicRouteData> future = fetchTopicRoute(topic);
+        future.get();
+    }
+    log.info("Fetch topic route data from remote successfully during startup, clientId={}, topics={}",
+        clientId, topics);
+    // Update route cache periodically.
+    final ScheduledExecutorService scheduler = clientManager.getScheduler();
+    this.updateRouteCacheFuture = scheduler.scheduleWithFixedDelay(() -> {
+        try {
+            updateRouteCache();
+        } catch (Throwable t) {
+            log.error("Exception raised while updating topic route cache, clientId={}", clientId, t);
+        }
+    }, 10, 30, TimeUnit.SECONDS);
+    log.info("The rocketmq client starts successfully, clientId={}", clientId);
+}
+
+private void updateRouteCache() {
+    log.info("Start to update route cache for a new round, clientId={}", clientId);
+    topicRouteCache.keySet().forEach(topic -> {
+        final ListenableFuture<TopicRouteData> future = fetchTopicRoute(topic);
+        Futures.addCallback(future, new FutureCallback<TopicRouteData>() {
+            @Override
+            public void onSuccess(TopicRouteData topicRouteData) {
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                log.error("Failed to fetch topic route for update cache, topic={}, clientId={}", topic,
+                    clientId, t);
+            }
+        }, MoreExecutors.directExecutor());
+    });
+}
+
+private ListenableFuture<TopicRouteData> fetchTopicRoute(final String topic) {
+    final ListenableFuture<TopicRouteData> future0 = fetchTopicRoute0(topic);
+    final ListenableFuture<TopicRouteData> future = Futures.transformAsync(future0,
+        topicRouteData -> onTopicRouteDataFetched(topic, topicRouteData), MoreExecutors.directExecutor());
+    Futures.addCallback(future, new FutureCallback<TopicRouteData>() {
+        @Override
+        public void onSuccess(TopicRouteData topicRouteData) {
+            log.info("Fetch topic route successfully, clientId={}, topic={}, topicRouteData={}", clientId,
+                topic, topicRouteData);
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            log.error("Failed to fetch topic route, clientId={}, topic={}", clientId, topic, t);
+        }
+    }, MoreExecutors.directExecutor());
+    return future;
+}
+
+protected ListenableFuture<TopicRouteData> fetchTopicRoute0(final String topic) {
+    Resource topicResource = Resource.newBuilder().setName(topic).build();
+    final QueryRouteRequest request = QueryRouteRequest.newBuilder().setTopic(topicResource)
+        .setEndpoints(endpoints.toProtobuf()).build();
+    final RpcFuture<QueryRouteRequest, QueryRouteResponse> future =
+        clientManager.queryRoute(endpoints, request, clientConfiguration.getRequestTimeout());
+    return Futures.transformAsync(future, response -> {
+        final Status status = response.getStatus();
+        StatusChecker.check(status, future);
+        final List<MessageQueue> messageQueuesList = response.getMessageQueuesList();
+        final TopicRouteData topicRouteData = new TopicRouteData(messageQueuesList);
+        return Futures.immediateFuture(topicRouteData);
+    }, MoreExecutors.directExecutor());
+}
+```

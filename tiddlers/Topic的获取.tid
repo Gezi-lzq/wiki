@@ -1,0 +1,156 @@
+created: 20230804073614585
+modified: 20230804075548318
+tags: 
+title: Topic的获取
+type: text/vnd.tiddlywiki
+
+
+1. Check if topic route is cached before or not.
+
+2. If topic route is not cached, then try to fetch it from server, otherwise go to step 4.
+
+3. Return failure and end the current process if topic route is failed to fetch, otherwise cache the topic route and go to the next step.
+
+```java
+protected ListenableFuture<TopicRouteData> getRouteData(final String topic) {
+    // 首先创建一个SettableFuture<TopicRouteData>对象future0，用于表示未来的结果
+    SettableFuture<TopicRouteData> future0 = SettableFuture.create();
+    // 检查topicRouteCache中是否已经缓存了topic对应的TopicRouteData对象
+    TopicRouteData topicRouteData = topicRouteCache.get(topic);
+    // If route result was cached before, get it directly.
+    if (null != topicRouteData) {
+        // 如果已经缓存，则将缓存的TopicRouteData对象设置为future0的结果，并直接返回future0。
+        future0.set(topicRouteData);
+        return future0;
+    }
+    // 获取一个锁inflightRouteFutureLock，确保线程安全
+    inflightRouteFutureLock.lock();
+    try {
+        // If route was fetched by last in-flight request, get it directly.
+        topicRouteData = topicRouteCache.get(topic);
+        // 如果在获取锁的过程中，其他线程已经更新了缓存，则将更新后的TopicRouteData对象设置为future0的结果，并直接返回future0
+        if (null != topicRouteData) {
+            future0.set(topicRouteData);
+            return future0;
+        }
+        // 检查inflightRouteFutureTable中是否已经存在正在处理中的请求
+        Set<SettableFuture<TopicRouteData>> inflightFutures = inflightRouteFutureTable.get(topic);
+        // Request is in-flight, return future directly.
+        if (null != inflightFutures) {
+            // 如果存在，则将future0添加到对应topic的SettableFuture集合中，并直接返回future0
+            inflightFutures.add(future0);
+            return future0;
+        }
+        // 如果不存在正在处理中的请求，则创建一个新的HashSet对象inflightFutures，将future0添加到其中，
+        inflightFutures = new HashSet<>();
+        inflightFutures.add(future0);
+        // 并将inflightFutures添加到inflightRouteFutureTable中，以便其他请求可以共享这个future0。
+        inflightRouteFutureTable.put(topic, inflightFutures);
+    } finally {
+        // 释放锁inflightRouteFutureLock
+        inflightRouteFutureLock.unlock();
+    }
+    // 调用fetchTopicRoute(topic)方法异步获取topic的TopicRouteData对象
+    // 并返回一个ListenableFuture<TopicRouteData>对象future
+    final ListenableFuture<TopicRouteData> future = fetchTopicRoute(topic);
+    Futures.addCallback(future, new FutureCallback<TopicRouteData>() {
+        @Override
+        public void onSuccess(TopicRouteData topicRouteData) {
+            inflightRouteFutureLock.lock();
+            try {
+                // 从inflightRouteFutureTable中移除topic对应的SettableFuture集合，并将其赋值给newFutureSet。
+                final Set<SettableFuture<TopicRouteData>> newFutureSet =
+                    inflightRouteFutureTable.remove(topic);
+                // 检查newFutureSet是否为null，如果为null，则记录错误日志
+                if (null == newFutureSet) {
+                    // Should never reach here.
+                    log.error("[Bug] in-flight route futures was empty, topic={}, clientId={}", topic,
+                        clientId);
+                    return;
+                }
+                log.debug("Fetch topic route successfully, topic={}, in-flight route future "
+                    + "size={}, clientId={}", topic, newFutureSet.size(), clientId);
+                // 遍历newFutureSet，将topicRouteData设置为每个SettableFuture对象的结果
+                for (SettableFuture<TopicRouteData> newFuture : newFutureSet) {
+                    newFuture.set(topicRouteData);
+                }
+            } catch (Throwable t) {
+                // Should never reach here.
+                log.error("[Bug] Exception raised while update route data, topic={}, clientId={}", topic,
+                    clientId, t);
+            } finally {
+                inflightRouteFutureLock.unlock();
+            }
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            inflightRouteFutureLock.lock();
+            try {
+                final Set<SettableFuture<TopicRouteData>> newFutureSet =
+                    inflightRouteFutureTable.remove(topic);
+                if (null == newFutureSet) {
+                    // Should never reach here.
+                    log.error("[Bug] in-flight route futures was empty, topic={}, clientId={}", topic, clientId);
+                    return;
+                }
+                log.debug("Failed to fetch topic route, topic={}, in-flight route future " +
+                    "size={}, clientId={}", topic, newFutureSet.size(), clientId, t);
+                // 遍历newFutureSet，将异常对象t设置为每个SettableFuture对象的异常结果。
+                for (SettableFuture<TopicRouteData> future : newFutureSet) {
+                    future.setException(t);
+                }
+            } finally {
+                inflightRouteFutureLock.unlock();
+            }
+        }
+    // 使用MoreExecutors.directExecutor()作为回调的执行器
+    }, MoreExecutors.directExecutor());
+    return future0;
+}
+```
+
+异步方法，返回一个`ListenableFuture<TopicRouteData>`对象。
+
+下面是该方法中各个状态的变化过程：
+
+1. 当方法被调用时，首先创建一个`SettableFuture<TopicRouteData>`对象`future0`，用于表示未来的结果。
+
+2. 检查`topicRouteCache`中是否已经缓存了`topic`对应的`TopicRouteData`对象。
+   - 如果已经缓存，则将缓存的`TopicRouteData`对象设置为`future0`的结果，并直接返回`future0`。
+   
+3. 如果缓存中没有对应的`TopicRouteData`对象，则需要进行进一步处理。
+
+4. 获取一个锁`inflightRouteFutureLock`，确保线程安全。
+
+5. 再次检查`topicRouteCache`中是否已经缓存了`topic`对应的`TopicRouteData`对象。
+   - 如果在获取锁的过程中，其他线程已经更新了缓存，则将更新后的`TopicRouteData`对象设置为`future0`的结果，并直接返回`future0`。
+
+6. 检查`inflightRouteFutureTable`中是否已经存在正在处理中的请求。
+   - 如果存在，则将`future0`添加到对应`topic`的`SettableFuture`集合中，并直接返回`future0`。
+
+7. 如果不存在正在处理中的请求，则创建一个新的`HashSet`对象`inflightFutures`，将`future0`添加到其中，并将`inflightFutures`添加到`inflightRouteFutureTable`中，以便其他请求可以共享这个`future0`。
+
+8. 释放锁`inflightRouteFutureLock`。
+
+9. 调用`fetchTopicRoute(topic)`方法异步获取`topic`的`TopicRouteData`对象，并返回一个`ListenableFuture<TopicRouteData>`对象`future`。
+
+10. 使用`Futures.addCallback()`方法注册一个`FutureCallback<TopicRouteData>`回调，用于处理异步请求的结果。
+
+11. 在回调中的`onSuccess()`方法中，获取锁`inflightRouteFutureLock`，处理成功获取到的`TopicRouteData`对象：
+    - 从`inflightRouteFutureTable`中移除`topic`对应的`SettableFuture`集合，并将其赋值给`newFutureSet`。
+    - 检查`newFutureSet`是否为null，如果为null，则记录错误日志。
+    - 遍历`newFutureSet`，将`topicRouteData`设置为每个`SettableFuture`对象的结果。
+    - 最后释放锁`inflightRouteFutureLock`。
+
+12. 在回调中的`onFailure()`方法中，获取锁`inflightRouteFutureLock`，处理获取失败的情况：
+    - 从`inflightRouteFutureTable`中移除`topic`对应的`SettableFuture`集合，并将其赋值给`newFutureSet`。
+    - 检查`newFutureSet`是否为null，如果为null，则记录错误日志。
+    - 遍历`newFutureSet`，将异常对象`t`设置为每个`SettableFuture`对象的异常结果。
+    - 最后释放锁`inflightRouteFutureLock`。
+
+13. 使用`MoreExecutors.directExecutor()`作为回调的执行器。
+
+14. 返回最初创建的`SettableFuture`对象`future0`。
+
+总结：该方法首先检查缓存中是否存在请求的结果，如果有，则直接返回缓存的结果。如果没有，则检查是否有其他正在处理中的请求，如果有，则将当前请求添加到已有的请求中。如果没有正在处理中的请求，则发起异步请求获取结果，并返回一个`SettableFuture`对象，等待异步请求完成后设置结果。无论请求成功还是失败，都会通知所有等待该结果的`SettableFuture`对象。

@@ -1,0 +1,81 @@
+created: 20230804074900670
+modified: 20230804074955877
+tags: 
+title: RocketMQ client Periodic Task
+type: text/vnd.tiddlywiki
+
+The client performs same tasks periodically.
+
+[img[client-Periodic-Task.png]]
+
+1. Update topic route data and cache it. The subsequent request could get route from cache directly.
+
+```java
+ClientImpl#startUp
+
+// Update route cache periodically.
+    final ScheduledExecutorService scheduler = clientManager.getScheduler();
+    this.updateRouteCacheFuture = scheduler.scheduleWithFixedDelay(() -> {
+        try {
+            updateRouteCache();
+        } catch (Throwable t) {
+            log.error("Exception raised while updating topic route cache, clientId={}", clientId, t);
+        }
+    }, 10, 30, TimeUnit.SECONDS);
+    log.info("The rocketmq client starts successfully, clientId={}", clientId);
+```
+
+2. Send heartbeat to keep alive.
+
+```java
+ClientManagerImpl#startUp
+
+scheduler.scheduleWithFixedDelay(
+    () -> {
+        try {
+            client.doHeartbeat();
+        } catch (Throwable t) {
+            log.error("Exception raised during heartbeat, clientId={}", clientId, t);
+        }
+    },
+    HEART_BEAT_INITIAL_DELAY.toNanos(),
+    HEART_BEAT_PERIOD.toNanos(),
+    TimeUnit.NANOSECONDS
+);startUp
+```
+
+3. Send server-client telemetry request. Client settings may be overwritten by telemetry response.
+
+```java
+ClientManagerImpl#startUp
+
+scheduler.scheduleWithFixedDelay(
+    () -> {
+        try {
+            log.info("Start to log statistics, clientVersion={}, clientWrapperVersion={}, "
+                    + "clientEndpoints={}, os description=[{}], java description=[{}], clientId={}",
+                MetadataUtils.getVersion(), MetadataUtils.getWrapperVersion(), client.getEndpoints(),
+                Utilities.getOsDescription(), Utilities.getJavaDescription(), clientId);
+            client.doStats();
+        } catch (Throwable t) {
+            log.error("Exception raised during statistics logging, clientId={}", clientId, t);
+        }
+    },
+    LOG_STATS_INITIAL_DELAY.toNanos(),
+    LOG_STATS_PERIOD.toNanos(),
+    TimeUnit.NANOSECONDS
+);
+
+scheduler.scheduleWithFixedDelay(
+    () -> {
+        try {
+            client.syncSettings();
+        } catch (Throwable t) {
+            log.error("Exception raised during the setting synchronization, clientId={}", clientId, t);
+        }
+    },
+    SYNC_SETTINGS_DELAY.toNanos(),
+    SYNC_SETTINGS_PERIOD.toNanos(),
+    TimeUnit.NANOSECONDS
+);
+```
