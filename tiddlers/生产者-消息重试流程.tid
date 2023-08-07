@@ -1,0 +1,63 @@
+created: 20230807024905732
+modified: 20230807025452693
+title: 生产者-消息重试流程
+type: text/vnd.tiddlywiki
+
+生产者在初始化时设置消息发送最大重试次数，当出现上述触发条件的场景时，生产者客户端会按照设置的重试次数一直重试发送消息，直到消息发送成功或达到最大重试次数重试结束，并在最后一次重试失败后返回调用错误响应。
+
+```java
+Futures.addCallback(future, new FutureCallback<List<SendReceiptImpl>>() {
+    @Override
+    public void onSuccess(List<SendReceiptImpl> sendReceipts) {
+        ...
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+        // Intercept after message publishing.
+        final MessageInterceptorContextImpl context0 = new MessageInterceptorContextImpl(context,
+            MessageHookPointsStatus.ERROR);
+        doAfter(context0, generalMessages);
+
+        // Collect messageId(s) for logging.
+        List<MessageId> messageIds = new ArrayList<>();
+        for (PublishingMessageImpl message : messages) {
+            messageIds.add(message.getMessageId());
+        }
+        // Isolate endpoints because of sending failure.
+        isolate(endpoints);
+        if (attempt >= maxAttempts) {
+            // No need more attempts.
+            future0.setException(t);
+            log.error("Failed to send message(s) finally, run out of attempt times, maxAttempts={}, " +
+                    "attempt={}, topic={}, messageId(s)={}, endpoints={}, clientId={}",
+                maxAttempts, attempt, topic, messageIds, endpoints, clientId, t);
+            return;
+        }
+        // No need more attempts for transactional message.
+        if (MessageType.TRANSACTION.equals(messageType)) {
+            future0.setException(t);
+            log.error("Failed to send transactional message finally, maxAttempts=1, attempt={}, " +
+                    "topic={}, messageId(s)={}, endpoints={}, clientId={}", attempt, topic, messageIds,
+                endpoints, clientId, t);
+            return;
+        }
+        // Try to do more attempts.
+        int nextAttempt = 1 + attempt;
+        // Retry immediately if the request is not throttled.
+        if (!(t instanceof TooManyRequestsException)) {
+            log.warn("Failed to send message, would attempt to resend right now, maxAttempts={}, "
+                    + "attempt={}, topic={}, messageId(s)={}, endpoints={}, clientId={}", maxAttempts, attempt,
+                topic, messageIds, endpoints, clientId, t);
+            send0(future0, topic, messageType, candidates, messages, nextAttempt);
+            return;
+        }
+        final Duration delay = ProducerImpl.this.getRetryPolicy().getNextAttemptDelay(nextAttempt);
+        log.warn("Failed to send message due to too many requests, would attempt to resend after {}, "
+                + "maxAttempts={}, attempt={}, topic={}, messageId(s)={}, endpoints={}, clientId={}", delay,
+            maxAttempts, attempt, topic, messageIds, endpoints, clientId, t);
+        ProducerImpl.this.getClientManager().getScheduler().schedule(() -> send0(future0, topic, messageType,
+            candidates, messages, nextAttempt), delay.toNanos(), TimeUnit.NANOSECONDS);
+    }
+}, clientCallbackExecutor);
+```

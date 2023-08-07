@@ -1,5 +1,5 @@
 created: 20230804075104956
-modified: 20230804102604049
+modified: 20230807024851900
 tags: 
 title: RocketMQ Message Flow in Producer
 type: text/vnd.tiddlywiki
@@ -29,6 +29,8 @@ c. 若Topic为FIFO，则判断是否是相同的messageGroup
 
 4. Select writable candicate message queues from topic route to publish meessage.
 
+* ProducerImpl#send
+
 ```java
 return Futures.transformAsync(routeFuture, result -> {
     // Prepare the candidate message queue(s) for retry-sending in advance.
@@ -43,7 +45,19 @@ return Futures.transformAsync(routeFuture, result -> {
 
 5. Return failure and end the current process if the type of message queue is not matched with message type.
 
-
+* ProducerImpl#send0
+```java
+// Calculate the current message queue.
+final MessageQueueImpl mq = candidates.get(IntMath.mod(attempt - 1, candidates.size()));
+final List<MessageType> acceptMessageTypes = mq.getAcceptMessageTypes();
+if (publishingSettings.isValidateMessageType() && !acceptMessageTypes.contains(messageType)) {
+    final IllegalArgumentException e = new IllegalArgumentException("Current message type not match with "
+        + "topic accept message types, topic=" + topic + ", actualMessageType=" + messageType + ", "
+        + "acceptMessageTypes=" + acceptMessageTypes);
+    future0.setException(e);
+    return;
+}
+```
 
 6. Attempt to publish message.
 
@@ -56,6 +70,7 @@ return Futures.transformAsync(routeFuture, result -> {
 
 9. Return failure and end the current process if the attempt times is run out, otherwirse deecide to retry or not according to the error type.
 
+[[生产者-消息重试流程]]
 
 10. Return failure and end the current process if there is no need to retry, otherwise go to the next step.
 

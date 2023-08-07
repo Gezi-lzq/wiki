@@ -1,5 +1,5 @@
 created: 20230804090621235
-modified: 20230807023201468
+modified: 20230807024308341
 title: Producer LoadBalance
 type: text/vnd.tiddlywiki
 
@@ -13,7 +13,7 @@ type: text/vnd.tiddlywiki
 
 RoundRobin模式下，生产者发送消息时，以消息为粒度，按照轮询方式将消息依次发送到指定主题中的所有可写目标队列中，保证消息尽可能均衡地分布到所有队列。
 
-# PublishingLoadBalancer.takeMessageQueues
+* PublishingLoadBalancer#takeMessageQueues
 
 ```java
 public List<MessageQueueImpl> takeMessageQueues(Set<Endpoints> excluded, int count) {
@@ -61,7 +61,7 @@ public List<MessageQueueImpl> takeMessageQueues(Set<Endpoints> excluded, int cou
 
 MessageGroupHash模式下，生产者发送消息时，以消息组为粒度，按照内置的Hash算法，将相同消息组的消息分配到同一队列中，保证同一消息组的消息按照发送的先后顺序存储。
 
-#PublishingLoadBalancer.takeMessageQueueByMessageGroup
+* PublishingLoadBalancer#takeMessageQueueByMessageGroup
 
 ```java
 public MessageQueueImpl takeMessageQueueByMessageGroup(String messageGroup) {
