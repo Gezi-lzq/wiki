@@ -1,5 +1,5 @@
 created: 20230807035007566
-modified: 20230807070228689
+modified: 20230807083555789
 title: Message Receiving in Push Consumer
 type: text/vnd.tiddlywiki
 
@@ -97,8 +97,36 @@ void scanAssignments() {
 
 ```
 
-2. If flow control occurs during message receiving, consumer will retry after 20 milliseconds, otherwise go to step3.
+2. If flow control occurs during [[message receiving|PushConsumer message receiving]], consumer will retry after 20 milliseconds, otherwise go to step3.
+
+```java
+public void onReceiveMessageException(Throwable t, String attemptId) {
+	Duration delay = t instanceof TooManyRequestsException ? RECEIVING_FLOW_CONTROL_BACKOFF_DELAY : RECEIVING_FAILURE_BACKOFF_DELAY;
+	receiveMessageLater(delay, attemptId);
+}
+```
+
 
 3. Cache message and trigger the consumption(Once the lifecycle of message is over, it will removed from cache immediately).
+
+* Cache message
+
+```java
+void cacheMessages(List<MessageViewImpl> messageList) {
+    cachedMessageLock.writeLock().lock();
+    try {
+        for (MessageViewImpl messageView : messageList) {
+            cachedMessages.add(messageView);
+            cachedMessagesBytes.addAndGet(messageView.getBody().remaining());
+        }
+    } finally {
+        cachedMessageLock.writeLock().unlock();
+    }
+}
+```
+* trigger the consumption
+
+
+
 
 4. Check the cache is full, consumer will try to receive message immediately, otherwise retry after 1 seconds.

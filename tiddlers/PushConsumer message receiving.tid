@@ -1,0 +1,160 @@
+created: 20230807073921241
+modified: 20230807082907779
+title: PushConsumer message receiving
+type: text/vnd.tiddlywiki
+
+''syncProcessQueue''
+
+1. 在定时任务 `scanAssignments` 扫描最新的分配情况的时候，会同步处理消息队列 `syncProcessQueue(topic, latest, filterExpression);`
+
+2. 在`syncProcessQueue(topic, latest, filterExpression);`方法中，有以下步骤：
+
+* 获取最新的分配情况中的消息队列，并创建一个集合 latest 存储这些消息队列。
+* 遍历当前的消息处理队列表，对每个消息处理队列进行以下操作：
+** 如果消息队列的主题与指定的主题不匹配，跳过该消息处理队列。
+** 如果最新的分配情况中不包含当前的消息队列，删除该消息队列的处理队列。
+** 如果消息处理队列已过期，删除该消息队列的处理队列。
+** 将活跃的消息队列添加到集合 activeMqs 中。
+* 遍历最新的消息队列集合 latest，对每个消息队列进行以下操作：
+** 如果该消息队列已在活跃的消息队列集合中，跳过。
+** 否则，创建该消息队列的处理队列，并立即''从远程服务器获取消息(fetchMessageImmediately)''。
+
+```java
+@VisibleForTesting
+void syncProcessQueue(String topic, Assignments assignments, FilterExpression filterExpression) {
+    // 创建一个新的集合用于存储最新的消息队列
+    Set<MessageQueueImpl> latest = new HashSet<>();
+
+    // 获取最新的分配情况中的消息队列，并添加到latest集合中
+    final List<Assignment> assignmentList = assignments.getAssignmentList();
+    for (Assignment assignment : assignmentList) {
+        latest.add(assignment.getMessageQueue());
+    }
+    // 创建一个新的集合用于存储活跃的消息队列
+    Set<MessageQueueImpl> activeMqs = new HashSet<>();
+
+    // 遍历当前的消息处理队列表
+    for (Map.Entry<MessageQueueImpl, ProcessQueue> entry : processQueueTable.entrySet()) {
+        // 消息队列实例，代表当前正在处理的消息队列
+        final MessageQueueImpl mq = entry.getKey();
+        // 消息处理队列实例，代表与当前消息队列相关联的消息处理队列
+        final ProcessQueue pq = entry.getValue();
+        // 如果消息队列的主题与指定的主题不匹配，继续下一个循环
+        if (!topic.equals(mq.getTopic())) {
+            continue;
+        }
+        // 如果最新的分配情况中不包含当前的消息队列，说明该消息队列已经被停用
+        if (!latest.contains(mq)) {
+            log.info("Drop message queue according to the latest assignmentList, mq={}, clientId={}", mq,
+                clientId);
+            dropProcessQueue(mq);
+            continue;
+        }
+        // 如果消息处理队列已过期，则删除该消息队列的处理队列
+        if (pq.expired()) {
+            log.warn("Drop message queue because it is expired, mq={}, clientId={}", mq, clientId);
+            dropProcessQueue(mq);
+            continue;
+        }
+        // 添加到活跃的消息队列集合中
+        activeMqs.add(mq);
+    }
+
+    for (MessageQueueImpl mq : latest) {
+        if (activeMqs.contains(mq)) {
+            continue;
+        }
+        // 若之前不存在，则创建消息队列的处理队列，并检查是否成功创建
+        final Optional<ProcessQueue> optionalProcessQueue = createProcessQueue(mq, filterExpression);
+        if (optionalProcessQueue.isPresent()) {
+            log.info("Start to fetch message from remote, mq={}, clientId={}", mq, clientId);
+            // Start to fetch messages from remote immediately.
+            optionalProcessQueue.get().fetchMessageImmediately();
+        }
+    }
+}
+```
+
+''fetch messages from remote''
+
+```java
+private void receiveMessageImmediately(String attemptId) {
+    final ClientId clientId = consumer.getClientId();
+    // 检查消费者是否正在运行，如果不是则停止接收消息
+    if (!consumer.isRunning()) {
+        log.info("Stop to receive message because consumer is not running, mq={}, clientId={}", mq, clientId);
+        return;
+    }
+    try {
+        final Endpoints endpoints = mq.getBroker().getEndpoints();
+        final int batchSize = this.getReceptionBatchSize();
+        final Duration longPollingTimeout = consumer.getPushConsumerSettings().getLongPollingTimeout();
+        // 创建接收消息的请求对象
+        final ReceiveMessageRequest request = consumer.wrapReceiveMessageRequest(batchSize, mq, filterExpression,
+            longPollingTimeout, attemptId);
+        activityNanoTime = System.nanoTime();
+
+        // Intercept before message reception.
+        // 在消息接收之前进行拦截
+        final MessageInterceptorContextImpl context = new MessageInterceptorContextImpl(MessageHookPoints.RECEIVE);
+        consumer.doBefore(context, Collections.emptyList());
+
+        // 异步地接收消息
+        final ListenableFuture<ReceiveMessageResult> future = consumer.receiveMessage(request, mq,
+            longPollingTimeout);
+        Futures.addCallback(future, new FutureCallback<ReceiveMessageResult>() {
+            @Override
+            public void onSuccess(ReceiveMessageResult result) {
+                // Intercept after message reception.
+                // 在消息接收之后进行拦截
+                final List<GeneralMessage> generalMessages = result.getMessageViewImpls().stream()
+                    .map((Function<MessageView, GeneralMessage>) GeneralMessageImpl::new)
+                    .collect(Collectors.toList());
+                final MessageInterceptorContextImpl context0 =
+                    new MessageInterceptorContextImpl(context, MessageHookPointsStatus.OK);
+                consumer.doAfter(context0, generalMessages);
+
+                try {
+                    // 处理接收到的消息结果
+                    onReceiveMessageResult(result);
+                } catch (Throwable t) {
+                    // Should never reach here.
+                    log.error("[Bug] Exception raised while handling receive result, mq={}, endpoints={}, "
+                        + "clientId={}", mq, endpoints, clientId, t);
+                    onReceiveMessageException(t, attemptId);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                String nextAttemptId = null;
+                if (t instanceof StatusRuntimeException) {
+                    StatusRuntimeException exception = (StatusRuntimeException) t;
+                    // 检查是否是超时异常
+                    if (io.grpc.Status.DEADLINE_EXCEEDED.equals(exception.getStatus())) {
+                        nextAttemptId = request.getAttemptId();
+                    }
+                }
+                // Intercept after message reception.
+                // 在消息接收之后进行拦截
+                final MessageInterceptorContextImpl context0 =
+                    new MessageInterceptorContextImpl(context, MessageHookPointsStatus.ERROR);
+                consumer.doAfter(context0, Collections.emptyList());
+
+                log.error("Exception raised during message reception, mq={}, endpoints={}, attemptId={}, " +
+                        "nextAttemptId={}, clientId={}", mq, endpoints, request.getAttemptId(), nextAttemptId,
+                    clientId, t);
+
+                onReceiveMessageException(t, nextAttemptId);
+            }
+        }, MoreExecutors.directExecutor());
+        // 增加接收消息的计数
+        receptionTimes.getAndIncrement();
+        // 跟踪消费者实例接收的总消息数量
+        consumer.getReceptionTimes().getAndIncrement();
+    } catch (Throwable t) {
+        log.error("Exception raised during message reception, mq={}, clientId={}", mq, clientId, t);
+        onReceiveMessageException(t, attemptId);
+    }
+}
+```
