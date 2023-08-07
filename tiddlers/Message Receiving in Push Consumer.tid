@@ -1,5 +1,5 @@
 created: 20230807035007566
-modified: 20230807035037860
+modified: 20230807070228689
 title: Message Receiving in Push Consumer
 type: text/vnd.tiddlywiki
 
@@ -8,6 +8,94 @@ type: text/vnd.tiddlywiki
 The receiving procedure is as follows:
 
 1. Fetch the latest queue assignment from server.
+* PushConsumerImpl#scanAssignments
+
+```java
+@Override
+protected void startUp() throws Exception {
+    try {
+        log.info("Begin to start the rocketmq push consumer, clientId={}", clientId);
+        GaugeObserver gaugeObserver = new ProcessQueueGaugeObserver(processQueueTable, clientId, consumerGroup);
+        this.clientMeterManager.setGaugeObserver(gaugeObserver);
+        super.startUp();
+        final ScheduledExecutorService scheduler = this.getClientManager().getScheduler();
+        this.consumeService = createConsumeService();
+        // Scan assignments periodically.
+        // 使用定时任务定期调用scanAssignments()方法来获取最新的队列分配
+        scanAssignmentsFuture = scheduler.scheduleWithFixedDelay(() -> {
+            try {
+                scanAssignments();
+            } catch (Throwable t) {
+                log.error("Exception raised while scanning the load assignments, clientId={}", clientId, t);
+            }
+        }, 1, 5, TimeUnit.SECONDS);
+        log.info("The rocketmq push consumer starts successfully, clientId={}", clientId);
+    } catch (Throwable t) {
+        log.error("Exception raised while starting the rocketmq push consumer, clientId={}", clientId, t);
+        shutDown();
+        throw t;
+    }
+}
+
+
+@VisibleForTesting
+void scanAssignments() {
+    try {
+        log.debug("Start to scan assignments periodically, clientId={}", clientId);
+        // 遍历订阅表达式的集合
+        for (Map.Entry<String, FilterExpression> entry : subscriptionExpressions.entrySet()) {
+            final String topic = entry.getKey();
+            final FilterExpression filterExpression = entry.getValue();
+            // 获取当前主题的分配情况
+            final Assignments existed = cacheAssignments.get(topic);
+            // 查询最新的分配情况
+            final ListenableFuture<Assignments> future = queryAssignment(topic);
+            Futures.addCallback(future, new FutureCallback<Assignments>() {
+                @Override
+                public void onSuccess(Assignments latest) {
+                    // 如果最新的分配结果为空
+                    if (latest.getAssignmentList().isEmpty()) {
+                        // 如果之前的分配结果也为空，则暂时不做处理，记录日志信息
+                        if (null == existed || existed.getAssignmentList().isEmpty()) {
+                            log.info("Acquired empty assignments from remote, would scan later, topic={}, "
+                                + "clientId={}", topic, clientId);
+                            return;
+                        }
+                        // 如果之前的分配结果不为空，但最新的分配结果为空，记录警告日志信息
+                        log.info("Attention!!! acquired empty assignments from remote, but existed assignments"
+                            + " is not empty, topic={}, clientId={}", topic, clientId);
+                    }
+                    // 如果最新的分配结果与之前的不同
+                    if (!latest.equals(existed)) {
+                        log.info("Assignments of topic={} has changed, {} => {}, clientId={}", topic, existed,
+                            latest, clientId);
+                        // 同步处理消息队列
+                        syncProcessQueue(topic, latest, filterExpression);
+                        // 存入本地缓存
+                        cacheAssignments.put(topic, latest);
+                        return;
+                    }
+                    // 如果最新的分配结果与之前的相同，记录调试日志信息
+                    log.debug("Assignments of topic={} remains the same, assignments={}, clientId={}", topic,
+                        existed, clientId);
+                    // Process queue may be dropped, need to be synchronized anyway.
+                    // 无论是否有变化，都需要同步处理消息队列
+                    syncProcessQueue(topic, latest, filterExpression);
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    log.error("Exception raised while scanning the assignments, topic={}, clientId={}", topic,
+                        clientId, t);
+                }
+            }, MoreExecutors.directExecutor());
+        }
+    } catch (Throwable t) {
+        log.error("Exception raised while scanning the assignments for all topics, clientId={}", clientId, t);
+    }
+}
+
+```
 
 2. If flow control occurs during message receiving, consumer will retry after 20 milliseconds, otherwise go to step3.
 
