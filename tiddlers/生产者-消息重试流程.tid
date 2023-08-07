@@ -1,5 +1,5 @@
 created: 20230807024905732
-modified: 20230807031525443
+modified: 20230807034022401
 title: 生产者-消息重试流程
 type: text/vnd.tiddlywiki
 
@@ -31,38 +31,50 @@ Futures.addCallback(future, new FutureCallback<List<SendReceiptImpl>>() {
 
         // Collect messageId(s) for logging.
         List<MessageId> messageIds = new ArrayList<>();
+        // 循环遍历messages列表，收集每个消息的messageId，并存储在messageIds列表中，用于日志记录
         for (PublishingMessageImpl message : messages) {
             messageIds.add(message.getMessageId());
         }
         // Isolate endpoints because of sending failure.
+        // Isolate the current endpoint for publishing.
         isolate(endpoints);
+        // Return failure and end the current process if the attempt times is run out,
+        // otherwirse deecide to retry or not according to the error type.
         if (attempt >= maxAttempts) {
             // No need more attempts.
             future0.setException(t);
             log.error("Failed to send message(s) finally, run out of attempt times, maxAttempts={}, " +
                     "attempt={}, topic={}, messageId(s)={}, endpoints={}, clientId={}",
                 maxAttempts, attempt, topic, messageIds, endpoints, clientId, t);
+            // Return failure and end the current process if there is no need to retry, otherwise go to the next step.
             return;
         }
         // No need more attempts for transactional message.
+        // 对于事务消息（MessageType.TRANSACTION），不再进行更多的attempts
         if (MessageType.TRANSACTION.equals(messageType)) {
             future0.setException(t);
             log.error("Failed to send transactional message finally, maxAttempts=1, attempt={}, " +
                     "topic={}, messageId(s)={}, endpoints={}, clientId={}", attempt, topic, messageIds,
                 endpoints, clientId, t);
+            // Return failure and end the current process if there is no need to retry, otherwise go to the next step.
             return;
         }
         // Try to do more attempts.
         int nextAttempt = 1 + attempt;
         // Retry immediately if the request is not throttled.
+        // 如果请求未被限流（t不是TooManyRequestsException类型），则立即重试发送消息
         if (!(t instanceof TooManyRequestsException)) {
             log.warn("Failed to send message, would attempt to resend right now, maxAttempts={}, "
                     + "attempt={}, topic={}, messageId(s)={}, endpoints={}, clientId={}", maxAttempts, attempt,
                 topic, messageIds, endpoints, clientId, t);
+            // Rotate to next message queue to publish message, and go to send step
             send0(future0, topic, messageType, candidates, messages, nextAttempt);
             return;
         }
+        // 如果请求被限流（t是TooManyRequestsException类型）
+        // 根据重试策略获取下一次重试的延迟时间delay。
         final Duration delay = ProducerImpl.this.getRetryPolicy().getNextAttemptDelay(nextAttempt);
+        // 记录警告日志指出由于请求过多而发送消息失败，并在延迟时间后调度重新发送消息的操作。
         log.warn("Failed to send message due to too many requests, would attempt to resend after {}, "
                 + "maxAttempts={}, attempt={}, topic={}, messageId(s)={}, endpoints={}, clientId={}", delay,
             maxAttempts, attempt, topic, messageIds, endpoints, clientId, t);
