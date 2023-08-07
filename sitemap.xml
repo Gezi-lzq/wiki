@@ -764,6 +764,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:PushConsumer%2520message%2520receiving</loc>
+		<lastmod>2023-08-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:PVE（Proxmox%2520Virtual%2520Environment）</loc>
 		<lastmod>2023-07-08</lastmod>
 		<changefreq>monthly</changefreq>
