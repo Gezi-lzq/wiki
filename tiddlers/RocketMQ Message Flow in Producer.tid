@@ -1,5 +1,5 @@
 created: 20230804075104956
-modified: 20230807024851900
+modified: 20230807031659884
 tags: 
 title: RocketMQ Message Flow in Producer
 type: text/vnd.tiddlywiki
@@ -70,12 +70,13 @@ if (publishingSettings.isValidateMessageType() && !acceptMessageTypes.contains(m
 
 9. Return failure and end the current process if the attempt times is run out, otherwirse deecide to retry or not according to the error type.
 
-[[生产者-消息重试流程]]
 
 10. Return failure and end the current process if there is no need to retry, otherwise go to the next step.
 
 
-11. Isolate the current endpoint for publishing.
+11. Isolate the current endpoint for publishing. [[isolate endpoint]]
 
 
 12. Rotate to next message queue to publish message, and go to step 6.
+
+[[生产者-消息重试流程]]

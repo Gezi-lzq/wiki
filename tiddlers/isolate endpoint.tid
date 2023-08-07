@@ -1,0 +1,69 @@
+created: 20230807031713386
+modified: 20230807032621084
+title: isolate endpoint
+type: text/vnd.tiddlywiki
+
+<<<
+Note: The failure of message publishing will isolate the endpoint, this makes the endpoint will not be selected for load balancing as much as possible. The periodic heartbeat to the isolate endpoint will check health status about it and remove it from the isolate endpoints if no more exception is detected.
+<<<
+
+* 若此endpoint在发送消息时存在failure，则：
+
+```java
+private void send0(SettableFuture<List<SendReceiptImpl>> future0, String topic, MessageType messageType,final List<MessageQueueImpl> candidates, final List<PublishingMessageImpl> messages, final int attempt) {
+	...
+	Futures.addCallback(future, new FutureCallback<List<SendReceiptImpl>>() {
+		@Override
+    public void onSuccess(List<SendReceiptImpl> sendReceipts) {...}
+		
+		@Override
+    public void onFailure(Throwable t) {
+			...
+			// Isolate endpoints because of sending failure.
+			isolate(endpoints);
+			...
+		}
+	}
+		
+}
+```
+
+* 定期心跳将检查isolate中endpoint的健康状态，若无异常则去除
+
+```java
+// ClientImpl
+
+private void doHeartbeat(HeartbeatRequest request, final Endpoints endpoints) {
+    try {
+        final RpcFuture<HeartbeatRequest, HeartbeatResponse> future = clientManager.heartbeat(endpoints,
+            request, clientConfiguration.getRequestTimeout());
+        Futures.addCallback(future, new FutureCallback<HeartbeatResponse>() {
+            @Override
+            public void onSuccess(HeartbeatResponse response) {
+                final Status status = response.getStatus();
+                final Code code = status.getCode();
+                if (Code.OK != code) {
+                    log.warn("Failed to send heartbeat, code={}, status message=[{}], endpoints={}, clientId={}",
+                        code, status.getMessage(), endpoints, clientId);
+                    return;
+                }
+                log.info("Send heartbeat successfully, endpoints={}, clientId={}", endpoints, clientId);
+                final boolean removed = isolated.remove(endpoints);
+                if (removed) {
+                    log.info("Rejoin endpoints which is isolated before, clientId={}, endpoints={}", clientId,
+                        endpoints);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                log.warn("Failed to send heartbeat, endpoints={}, clientId={}", endpoints, clientId, t);
+            }
+        }, MoreExecutors.directExecutor());
+    } catch (Throwable t) {
+        // Should never reach here.
+        log.error("[Bug] Exception raised while preparing heartbeat, endpoints={}, clientId={}", endpoints,
+            clientId, t);
+    }
+}
+```

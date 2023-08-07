@@ -1,5 +1,5 @@
 created: 20230804090621235
-modified: 20230807024308341
+modified: 20230807032945553
 title: Producer LoadBalance
 type: text/vnd.tiddlywiki
 
@@ -25,6 +25,7 @@ public List<MessageQueueImpl> takeMessageQueues(Set<Endpoints> excluded, int cou
         final MessageQueueImpl messageQueueImpl = messageQueues.get(IntMath.mod(next++, messageQueues.size()));
         final Broker broker = messageQueueImpl.getBroker();
         final String brokerName = broker.getName();
+        // 排除isolate endpoint
         if (!excluded.contains(broker.getEndpoints()) && !candidateBrokerNames.contains(brokerName)) {
             candidateBrokerNames.add(brokerName);
             candidates.add(messageQueueImpl);

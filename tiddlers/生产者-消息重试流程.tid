@@ -1,9 +1,19 @@
 created: 20230807024905732
-modified: 20230807025452693
+modified: 20230807031525443
 title: 生产者-消息重试流程
 type: text/vnd.tiddlywiki
 
 生产者在初始化时设置消息发送最大重试次数，当出现上述触发条件的场景时，生产者客户端会按照设置的重试次数一直重试发送消息，直到消息发送成功或达到最大重试次数重试结束，并在最后一次重试失败后返回调用错误响应。
+
+* Catch the error information of failed message publishing.
+
+* Return failure and end the current process if the attempt times is run out, otherwirse deecide to retry or not according to the error type.
+
+* Return failure and end the current process if there is no need to retry, otherwise go to the next step.
+
+* Isolate the current endpoint for publishing.
+
+* Rotate to next message queue to publish message, and go to step 6.
 
 ```java
 Futures.addCallback(future, new FutureCallback<List<SendReceiptImpl>>() {
