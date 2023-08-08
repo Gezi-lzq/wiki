@@ -1,7 +1,16 @@
 created: 20230808031736543
-modified: 20230808032839595
+modified: 20230808092021678
 title: Message Consumption in Push Consumer(Non-FIFO)
 type: text/vnd.tiddlywiki
 
 [img[Message_Consumption_in_Push_Consumer(Non-FIFO).png]]
 
+1. 在存入cache时，对存入message直接进行消费，cache只作为计数作用，不直接从cache中获取message
+
+2. 当消费任务结束后，从cache中删除该组message
+
+3. 若消费任务执行成功，则响应给服务端ack message
+
+4. 若消费任务执行失败，则根据重试策略获取retry延时，并修改InvisibleDuration
+
+5. 
