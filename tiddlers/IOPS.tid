@@ -1,0 +1,9 @@
+created: 20230814023905590
+modified: 20230814023955695
+tags: 
+title: IOPS
+type: text/vnd.tiddlywiki
+
+IOPS（Input/Output Operations Per Second）是一个用于电脑存储设备（如硬盘（HDD）、固态硬盘（SSD）或存储区域网络（SAN））''性能测试的量测方式''，可以视为是''每秒的读写次数''。 和其他性能测试一様，存储设备制造商提出的IOPS不保证就是实际应用下的性能。
+
+磁盘IOPS是指一秒内磁盘进行多少次I/O读写
