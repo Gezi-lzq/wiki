@@ -1,0 +1,17 @@
+created: 20230814084318384
+modified: 20230814085217900
+tags: 
+title: CloudEvents
+type: text/vnd.tiddlywiki
+
+A specification for describing event data in a common way.
+
+事件无处不在，但事件发布者往往以不同的方式描述事件。
+
+* Consistency
+
+* Accessibility
+
+* Portability
+
+
