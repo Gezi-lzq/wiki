@@ -1330,6 +1330,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:体格强壮</loc>
+		<lastmod>2023-08-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:使用APP%2520ID做逻辑区分</loc>
 		<lastmod>2023-04-05</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1338,6 +1344,18 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:使用发布/订阅模式</loc>
 		<lastmod>2023-04-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:保持营养均衡的饮食</loc>
+		<lastmod>2023-08-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:保持规律的作息</loc>
+		<lastmod>2023-08-21</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1360,8 +1378,20 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:充分的运动</loc>
+		<lastmod>2023-08-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:入门使用TiddlyWiki</loc>
 		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:具备一定的人体知识</loc>
+		<lastmod>2023-08-21</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1895,6 +1925,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:时刻保存对自己身材的自信与控制能力</loc>
+		<lastmod>2023-08-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:时空复用技术</loc>
 		<lastmod>2023-02-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -2266,6 +2302,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:跳表.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:身体健康</loc>
+		<lastmod>2023-08-21</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
