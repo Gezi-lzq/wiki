@@ -1,0 +1,31 @@
+created: 20230929111149915
+creator: LZQ
+modified: 20230929111328177
+modifier: LZQ
+tags: 
+title: 并发操作代码片段-CountDownLatch
+
+```java
+final CountDownLatch countDownLatch = new CountDownLatch(nameServerAddressList.size());
+for (final String namesrvAddr : nameServerAddressList) {
+    brokerOuterExecutor.execute(() -> {
+        try {
+            RegisterBrokerResult result = registerBroker(namesrvAddr, oneway, timeoutMills, requestHeader, body);
+            if (result != null) {
+                registerBrokerResultList.add(result);
+            }
+
+            log.info("register broker[{}]to name server {} OK", brokerId, namesrvAddr);
+        } catch (Exception e) {
+            log.warn("registerBroker Exception, {}", namesrvAddr, e);
+        } finally {
+            countDownLatch.countDown();
+        }
+    });
+}
+
+try {
+    countDownLatch.await(timeoutMills, TimeUnit.MILLISECONDS);
+} catch (InterruptedException e) {
+}
+```
