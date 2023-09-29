@@ -1734,6 +1734,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:并发操作代码片段-CountDownLatch</loc>
+		<lastmod>2023-09-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:序列化技术</loc>
 		<lastmod>2023-03-15</lastmod>
 		<changefreq>monthly</changefreq>
