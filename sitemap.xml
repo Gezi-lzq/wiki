@@ -1028,8 +1028,8 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:Slice如何扩容？</loc>
-		<lastmod>2023-04-22</lastmod>
+		<loc>https://onetwo.ren/wiki/#:Slice如何扩容时的策略是什么？根据什么去选择扩容级别？</loc>
+		<lastmod>2023-10-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1480,7 +1480,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:创建进程的过程有哪些？</loc>
-		<lastmod>2023-04-22</lastmod>
+		<lastmod>2023-10-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
