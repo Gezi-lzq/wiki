@@ -6,22 +6,37 @@ grade: 2
 history: [{"due":"20230326172434966","interval":0,"difficulty":5,"stability":2,"retrievability":1,"grade":-1,"lapses":0,"reps":1,"review":"20230324172434966"},{"due":"20230402071622534","interval":2,"difficulty":5.1000000000000005,"stability":5.512139752431654,"retrievability":0.9,"grade":1,"lapses":0,"reps":2,"review":"20230327071622533"},{"due":"20230405071808591","interval":8,"difficulty":6.1582034015854665,"stability":1.4816364413634358,"retrievability":0.8582034015854654,"grade":0,"lapses":1,"reps":1,"review":"20230404071808591"},{"due":"20230419060323664","interval":5,"difficulty":6.0589881168004815,"stability":9.603224126811964,"retrievability":0.7007847152150146,"grade":1,"lapses":1,"reps":2,"review":"20230409060323664"}]
 interval: 13
 lapses: 1
-modified: 20230422042907096
-modifier: Gezi
+modified: 20231022172400999
+modifier: LZQ
 reps: 3
 retrievability: 0.8670767372026534
 review: 20230422042907096
 stability: 26.199881349646216
 tags: Golang面试 数组与切片 ?
-title: Slice如何扩容？
+title: Slice如何扩容时的策略是什么？根据什么去选择扩容级别？
 type: text/vnd.tiddlywiki
 
 在使用 append 向 slice 追加元素时，若 slice 空间不足则会发生扩容，扩容会重新分配一块更大的内存，将原 slice 拷贝到新 slice ，然后返回新 slice。扩容后再将数据追加进去。
 
 扩容操作只对容量，扩容后的 slice 长度不变，容量变化规则如下：
 
-golang1.18版本之前：当原 slice 容量小于 1024 的时候，新 slice 容量变成原来的 2 倍；原 slice 容量超过 1024，新 slice 容量变成原来的1.25倍。
+golang1.18版本之前：
 
-golang1.18版本更新之后: 当原slice容量(oldcap)小于256的时候，新slice(newcap)容量为原来的2倍；原slice容量超过256，新slice容量$$newcap = oldcap+(oldcap+3*256)/4$$
 
-> 实际扩容中，还会在进行一次''内存对齐''，进行内存对齐之后，新 slice 的容量是要 ''大于等于'' 按照原扩容规则生成的newcap。
+* 当原 slice ''容量小于 1024 的时候''，新 slice 容量变成''原来的 2 倍''；
+
+* 原 slice 容量''超过 1024''，新 slice 容量变成''原来的1.25倍''。
+
+golang1.18版本更新之后: 
+
+
+* 当''原slice容量(oldcap)小于256的时候''，新slice(newcap)容量为''原来的2倍''；
+
+* 原slice容量''超过256''，新slice容量
+
+> 实际扩容中，还会在进行一次
+> 内存对齐
+> ，进行内存对齐之后，新 slice 的容量是要 
+> 大于等于
+> 按照原扩容规则生成的newcap。
+
