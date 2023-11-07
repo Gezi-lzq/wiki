@@ -1,0 +1,83 @@
+created: 20231107015734991
+modified: 20231107020052924
+tags: 
+title: 启动脚本中的jvm参数
+type: text/vnd.tiddlywiki
+
+```shell
+# 根据 Java 的不同版本设置不同的 GC 参数
+java_major_version=$("$java" -version 2>&1 | sed -r -n 's/.* version "([0-9]*).*$/\1/p')
+if [ -z "$java_major_version" ] || [ "$java_major_version" -lt "9" ] ; then
+      java_opt="${java_opt} -server -Xms2g -Xmx2g -Xmn1g -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=160m"
+      java_opt="${java_opt} -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8 -XX:-UseParNewGC"
+      java_opt="${java_opt} -verbose:gc -Xloggc:${gc_log_dir}/gc_%p_%t.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps"
+      java_opt="${java_opt} -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m"
+    else
+      java_opt="${java_opt} -server -Xms2g -Xmx2g -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=160m"
+      java_opt="${java_opt} -XX:+UseG1GC -XX:G1HeapRegionSize=16m -XX:G1ReservePercent=25 -XX:InitiatingHeapOccupancyPercent=30 -XX:SoftRefLRUPolicyMSPerMB=0"
+      java_opt="${java_opt} -Xlog:gc*:file=${gc_log_dir}/gc_%p_%t.log:time,tags:filecount=5,filesize=30M"
+    fi
+```
+1. Java 9 及以上版本：
+
+* 使用 G1 垃圾回收器：-XX:+UseG1GC。
+* 设置 G1 垃圾回收器的一些参数，如堆区域大小、保留空间百分比等。
+* 使用 -Xlog:gc* 选项来配置垃圾回收日志的输出格式和文件。
+
+2. Java 8 及以下版本：
+
+* 使用 CMS (Concurrent Mark Sweep) 垃圾回收器：-XX:+UseConcMarkSweepGC。
+* 设置 CMS 垃圾回收器的一些参数，如初始标记百分比、并行标记等。
+* 使用 -verbose:gc 选项来启用详细的垃圾回收日志输出。
+* 使用 -Xloggc 选项来配置垃圾回收日志文件的路径和格式。
+
+这些差异主要是由于 Java 9 引入了 G1 垃圾回收器作为默认的垃圾回收器，相比于之前的 CMS 垃圾回收器，G1 提供了更好的吞吐量和更低的停顿时间。因此，对于 Java 9 及以上版本，推荐使用 G1 垃圾回收器，并按需调整相关参数。对于 Java 8 及以下版本，使用 CMS 垃圾回收器是常见的选择。
+
+<<<
+
+这段代码是用于设置 Java 虚拟机的运行参数。下面是各个参数的含义解释：
+
+-server：指定虚拟机以服务器模式运行。
+
+-Xms2g：指定虚拟机的初始堆大小为2GB。
+
+-Xmx2g：指定虚拟机的最大堆大小为2GB。
+
+-Xmn1g：指定虚拟机的新生代大小为1GB。
+
+-XX:MetaspaceSize=64m：指定元空间（Metaspace）的初始大小为64MB。
+
+-XX:MaxMetaspaceSize=160m：指定元空间的最大大小为160MB。
+
+-XX:+UseConcMarkSweepGC：启用并行标记清除（Concurrent Mark Sweep）垃圾回收器。
+
+-XX:+UseCMSCompactAtFullCollection：在进行完整垃圾回收时执行压缩。
+
+-XX:CMSInitiatingOccupancyFraction=70：指定当老年代空间使用达到70%时触发并发标记清除阶段。
+
+-XX:+CMSParallelRemarkEnabled：并行执行CMS垃圾回收的标记阶段。
+
+-XX:SoftRefLRUPolicyMSPerMB=0：禁用软引用对象的LRU（Least Recently Used）策略。
+
+-XX:+CMSClassUnloadingEnabled：启用CMS垃圾回收器进行类卸载。
+
+-XX:SurvivorRatio=8：指定新生代中 Eden 区和 Survivor 区的大小比例为8:1。
+
+-XX:-UseParNewGC：禁用ParNew垃圾回收器，使用CMS进行年轻代的垃圾回收。
+
+-verbose:gc：启用详细的垃圾回收日志输出。
+
+-Xloggc:${gc_log_dir}/gc_%p_%t.log：指定垃圾回收日志文件的路径和格式。
+
+-XX:+PrintGCDetails：打印详细的垃圾回收信息。
+
+-XX:+PrintGCDateStamps：打印垃圾回收的时间戳。
+
+-XX:+UseGCLogFileRotation：使用垃圾回收日志文件的轮转策略。
+
+-XX:NumberOfGCLogFiles=5：指定垃圾回收日志文件的数量为5个。
+
+-XX:GCLogFileSize=30m：指定每个垃圾回收日志文件的大小为30MB。
+
+<<<
+
