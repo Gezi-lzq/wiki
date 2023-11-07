@@ -1648,6 +1648,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:如何只deploy部分子模块到maven远程仓库</loc>
+		<lastmod>2023-10-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:字典.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
