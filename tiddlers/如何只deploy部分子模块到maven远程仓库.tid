@@ -1,0 +1,24 @@
+created: 20231020031150156
+modified: 20231020031240985
+tags: 
+title: 如何只deploy部分子模块到maven远程仓库
+type: text/vnd.tiddlywiki
+
+执行mvn deploy命令时，实际执行了maven-deploy-plugin插件，而这个插件有个配置可以设置跳过部署该模块。参考
+(https://maven.apache.org/plugins/maven-deploy-plugin/faq.html#skip)
+
+---
+
+如果一个父项目下的子项目大部分都不需要deploy，就像我们开头提的那种场景，可以通过maven的-N(-N,–non-recursive Do not recurse into sub-projects)选项来先deploy parent pom，然后切到子项目下deploy子项目。
+
+比如:
+
+```
+//in petstore-parent directory
+mvn -N deploy
+cd petstore-api
+mvn deploy
+
+```
+
+https://javahow.cn/2021/02/19/only-deply-sub-module-by-maven/
