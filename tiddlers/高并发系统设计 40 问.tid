@@ -1,0 +1,7 @@
+created: 20231114055737957
+modified: 20231114055744907
+tags: 
+title: 高并发系统设计 40 问
+type: text/vnd.tiddlywiki
+
+推荐一个在线免费专题：《高并发系统设计 40 问》，https://zq99299.github.io/note-architect/hc/，内容较为详实。涵盖了数据库、缓存、消息队列、分布式服务等，还包括性能管理、压测、控流、熔断等运维实战，看完还是有不少收获的。
