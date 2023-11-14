@@ -2555,6 +2555,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:高并发系统设计%252040%2520问</loc>
+		<lastmod>2023-11-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:高性能Go语言发行版优化与落地实践</loc>
 		<lastmod>2023-01-26</lastmod>
 		<changefreq>monthly</changefreq>
