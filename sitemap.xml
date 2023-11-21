@@ -1378,6 +1378,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:修改Linux的SSH端口</loc>
+		<lastmod>2023-11-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:充分的运动</loc>
 		<lastmod>2023-08-21</lastmod>
 		<changefreq>monthly</changefreq>
@@ -2120,6 +2126,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:用户态和内核态</loc>
 		<lastmod>2022-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:直接根据ECharts的规则编写API接口</loc>
+		<lastmod>2023-11-21</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
