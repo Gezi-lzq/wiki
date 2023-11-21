@@ -1,0 +1,18 @@
+created: 20231121080658349
+creator: Gezi
+modified: 20231121080909461
+modifier: Gezi
+tags: mac
+title: mac中安装TidGi
+
+经常会出现提示已被损坏，需要删除。
+
+1. 输入命令：`sudo spctl --master-disable`
+
+2. 设置 -> 安全性 -> 允许所有来源
+
+3. 安装包移动到“应用程序”
+
+4. 输入命令: `sudo xattr -d com.apple.quarantine /Applications/TidGi.app`
+
+完成
