@@ -1,0 +1,20 @@
+created: 20231121065844862
+modified: 20231121070024059
+tags: linux
+title: 修改Linux的SSH端口
+type: text/vnd.tiddlywiki
+
+''打开SSH守护进程的配置文件''
+
+```
+sudo vim /etc/ssh/sshd_config
+```
+
+在这个文件中，找到行#Port 22。去掉行首的#并将22改为你想要的端口号。
+
+
+''重启SSH服务''
+
+```
+sudo systemctl restart ssh
+```

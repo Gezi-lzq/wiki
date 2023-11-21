@@ -1,0 +1,12 @@
+created: 20231121063519087
+modified: 20231121063918687
+tags: 杂记 API设计
+title: 直接根据ECharts的规则编写API接口
+type: text/vnd.tiddlywiki
+
+https://github.com/ECharts-Java
+
+ “一切皆 Option”的设计理念“
+ 
+后端直接根据Option规则，将数据与格式生成完，前端直接使用。
+ 
