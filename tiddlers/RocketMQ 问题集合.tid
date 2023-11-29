@@ -1,0 +1,24 @@
+created: 20231129034324268
+creator: Gezi
+modified: 20231129034520564
+modifier: Gezi
+tags: RocketMQ
+title: RocketMQ 问题集合
+
+* 是否应该禁用慢消费者来保护 Broker？
+
+* 如何配置消息轨迹集群，实现消息生产消费可追踪？
+
+* 为何要保证 ConsumerGroup 订阅关系一致？
+
+* Broker 定时注册周期应该如何配置才能来保证路由注册正常？
+
+* Broker 发送队列最大等待时间应该如何配置？
+
+* Broker 拉取队列最大等待时间应该如何配置？
+
+* PushConsumer 应该如何配置消费起始位点？
+
+* PushConsumer 消费超时时间应该如何配置？
+
+* PushConsumer 最大消费次数应该如何配置？
