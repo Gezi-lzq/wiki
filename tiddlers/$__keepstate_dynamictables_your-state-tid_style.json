@@ -13,5 +13,6 @@
     "大数据实训": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "实现RPC框架": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "IM系统-plato": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
-    "Go手写BT下载器": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
+    "Go手写BT下载器": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "RocketMQ学习": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
 }
