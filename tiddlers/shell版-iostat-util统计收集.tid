@@ -1,0 +1,16 @@
+created: 20231205031340062
+creator: Gezi
+modified: 20231205031538875
+modifier: Gezi
+tags: 
+title: shell版-iostat-util统计收集
+
+* https://bean-li.github.io/dive-into-iostat/
+* https://www.kernel.org/doc/Documentation/iostats.txt
+* https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats
+* https://github.com/sysstat/sysstat/blob/master/iostat.c
+* https://stackoverflow.com/questions/4458183/how-the-util-of-iostat-is-computed
+
+```shell
+device="sda"; initial=$(awk -v dev="$device" '$3 == dev {print $13}' /proc/diskstats); sleep 0.5; new=$(awk -v dev="$device" '$3 == dev {print $13}' /proc/diskstats); echo | awk -v initial=$initial -v new=$new '{diff = new - initial; printf "%.2f\n", (diff >= 0 ? diff : -diff)/5}'
+```
