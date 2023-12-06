@@ -1,11 +1,12 @@
 created: 20231205031340062
 creator: Gezi
-modified: 20231205031538875
+modified: 20231206021957581
 modifier: Gezi
 tags: 
 title: shell版-iostat-util统计收集
 
 * https://bean-li.github.io/dive-into-iostat/
+* https://ykrocku.github.io/blog/2014/04/11/diskstats/
 * https://www.kernel.org/doc/Documentation/iostats.txt
 * https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats
 * https://github.com/sysstat/sysstat/blob/master/iostat.c
