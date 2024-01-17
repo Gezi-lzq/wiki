@@ -120,6 +120,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Back%2520Pressure</loc>
+		<lastmod>2024-01-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:back-pressure.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Benchmark基准测试</loc>
 		<lastmod>2023-01-19</lastmod>
 		<changefreq>monthly</changefreq>
@@ -825,6 +836,18 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:QUIC协议</loc>
 		<lastmod>2023-03-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Reactive%2520Programming</loc>
+		<lastmod>2024-01-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Reactive%2520Streams%2520接口对象</loc>
+		<lastmod>2024-01-17</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
