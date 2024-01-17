@@ -1,0 +1,21 @@
+color: #d73c3c
+created: 20240117115737942
+creator: Gezi
+modified: 20240117121131532
+modifier: Gezi
+tags: 
+title: Reactive Programming
+
+!! 为什么需要Reactive Programming
+
+理由与为什么需要异步类似，当进行一个耗时操作，我不希望一直等待下去。而是可以接着做事情，直到执行结果出来后，再去做该做的事情。
+
+!! 什么是Reactive Programming
+
+为了理解Reactive Programming，理解 Reactive 的含义很重要。 React 的意思是响应的一种形式，但是我们为了什么而响应呢？我们对事件做出反应，这意味着 Reactive 是对事件的响应。这样，我们就可以将Reactive Programming定义为事件驱动的编程方法。
+
+在 reactive programming 中, 数据将像流一样流动，并且由于它是反应式的，因此将有一个事件和对该事件的响应消息。在Java中，它类似于Java 1.8中引入的java流。在传统方式中，当我们从数据源（例如：数据库、API）获取数据时，所有数据都会被一次性获取。在事件驱动流中，数据将被逐一获取，并将作为事件获取给消费者。
+
+!! 使用Reactive Programming的目标是什么
+
+是为了可以方便的写出开发异步和非阻塞应用程序。对于一些耗时操作/调用，可以以非阻塞、异步的方式执行，执行流程不会被阻塞，futures and callbacks 将会用于异步代码执行。

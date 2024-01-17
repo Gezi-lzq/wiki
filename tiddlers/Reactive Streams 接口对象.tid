@@ -1,0 +1,30 @@
+created: 20240117121353944
+creator: Gezi
+modified: 20240117121934780
+modifier: Gezi
+tags: [[Reactive Programming]]
+title: Reactive Streams 接口对象
+
+!! Publisher 
+
+单一方法接口，将用于将订阅者注册到发布者。该接口的 subscribe 方法接受订阅者对象并注册它。
+
+!! Subscriber
+
+1. onSubscribe 方法将由发布者在订阅 Subscribe 对象时调用。
+
+2. onNext 方法将在下一个数据发布给订阅者时被调用
+
+3. onError 当发布者发布数据给订阅者时出现异常时，Subscriber将调用 onError 方法
+
+4. onComplete 方法将在成功完成向订阅者的数据发布后调用
+
+!! Subscription
+
+当订阅者需要向发布者请求数据时，会调用request方法
+
+当订阅者需要取消并关闭订阅时，会调用cancel方法
+
+!! Processor
+
+这是一个由发布者和订阅者接口扩展的接口。该接口不是很常用，但将用于处理订阅和发布工作流程的逻辑

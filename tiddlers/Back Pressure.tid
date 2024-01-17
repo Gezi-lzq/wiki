@@ -1,0 +1,10 @@
+created: 20240117121039422
+creator: Gezi
+modified: 20240117121315993
+modifier: Gezi
+tags: [[Reactive Programming]]
+title: Back Pressure
+
+在 reactive streams 中，当reactive application (Consumer) 使用来自 Producer 的数据时，Producer 会将数据作为流持续发布到应用程序。有时应用程序无法以 Producer 的速度处理数据。这种情况下，Consumer 可以通知 Producer 放慢数据发布速度。
+
+[img[back-pressure.png]]
