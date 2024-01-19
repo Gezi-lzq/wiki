@@ -1,10 +1,9 @@
 created: 20240118030621822
 creator: Gezi
-modified: 20240119063050876
+modified: 20240119075735170
 modifier: Gezi
 tags: APrivateContent 日志
 title: 2024-1-18
-wysiwyg: yes
 
 环境初始化阶段：s3 bucket 的创建并获取BucketFullName，在systemManager中管理BucketName
 
@@ -75,4 +74,3 @@ wysiwyg: yes
 # 获取instanceId关联的Infrastructure列表
 # 根据InfrastructureType与tag逐类按顺序进行删除
 # 更新数据库状态
-
