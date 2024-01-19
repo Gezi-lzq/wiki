@@ -1,0 +1,43 @@
+created: 20240118030621822
+creator: Gezi
+modified: 20240119025808798
+modifier: Gezi
+tags: APrivateContent 日志
+title: 2024-1-18
+wysiwyg: yes
+
+环境初始化阶段：s3 bucket 的创建并获取BucketFullName，在systemManager中管理BucketName
+
+实例创建阶段：
+依赖参数：InstanceCreatePayload
+
+1. 创建安全组
+
+2. 创建broker controller启动模版
+
+2.1 需配置specs/aliyun.yaml InstanceVersion配置
+
+2.2 增加相关tag
+
+2.3 获取InstanceVersion配置中的userData内容并更新变量
+
+3. 创建broker controller ASG 
+
+4. 创建controller DNS
+
+5. 上传配置文件至S3
+
+5.1 从Specification#instanceConfigs获取配置文件内容
+
+5.2 配置文件内容是否根据节点数量创建多份（待确认）
+
+5.3 将配置文件内容转换为properties格式 上传至S3
+
+5.4 上传至S3的ObjectName未确认
+
+5.5 Object的InfraId格式为 automq-BucketName-ObjectName
+
+创建实例后输出：
+
+# 启动地址EndPoints: 根据创建privteRr格式
+
