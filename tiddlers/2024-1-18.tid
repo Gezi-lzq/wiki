@@ -1,12 +1,14 @@
 created: 20240118030621822
 creator: Gezi
-modified: 20240119025808798
+modified: 20240119032722807
 modifier: Gezi
 tags: APrivateContent 日志
 title: 2024-1-18
 wysiwyg: yes
 
 环境初始化阶段：s3 bucket 的创建并获取BucketFullName，在systemManager中管理BucketName
+
+
 
 实例创建阶段：
 依赖参数：InstanceCreatePayload
@@ -39,5 +41,27 @@ wysiwyg: yes
 
 创建实例后输出：
 
-# 启动地址EndPoints: 根据创建privteRr格式
+# 启动地址EndPoints: 根据创建privateZone时的Rr格式可得知EndPoints
+# 需等待实例启动后，在S3上传文件后，得知clusterId与实例状态
+
+
+
+实例更新阶段：
+
+依赖参数：InstanceSpecPayload。参数中包括 实例规格信息 与 实例配置信息
+
+通过id,instanceId与clusterId关联具体资源
+
+实例规格信息：（region; vpc; networks;不会发生修改） Specification#values#core
+
+实例配置信息：静态配置文件：Specification#instanceConfigs; 动态配置：Specification#values
+
+# 实例规格变化
+## 根据当前参数，仅生成且比较ASG的Infra Param
+## 
+# 
+
+
+
+
 
