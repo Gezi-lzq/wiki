@@ -1,10 +1,9 @@
 created: 20240118030621822
 creator: Gezi
-modified: 20240119032722807
+modified: 20240119035242777
 modifier: Gezi
 tags: APrivateContent 日志
 title: 2024-1-18
-wysiwyg: yes
 
 环境初始化阶段：s3 bucket 的创建并获取BucketFullName，在systemManager中管理BucketName
 
@@ -58,7 +57,28 @@ wysiwyg: yes
 
 # 实例规格变化
 ## 根据当前参数，仅生成且比较ASG的Infra Param
-## 
+## 检查当前是否已存在该Infrastructure，若不存在则进行 ASG 的创建（对应情况为core从6增长为8，需创建broker的ASG）
+## 若存在则检查是否存在非法的修改，即为region; vpc; networks;不可变参数发生修改 （当前不允许修改）
+## 检查 ASG 配置是否存在修改，若存在修改，则进行ASG资源的修改，并更新实例状态
+# 实例配置变化
+## 当前实例状态检查，需等待当前实例状态Ready
+## 静态配置检查
+### 是否存在静态配置的修改，进行文件内容的比较
+### 若存在修改，则进行更新操作，更新S3上的文件内容
+### 获取当前ASG下的ECS列表，逐个进行roll操作
+### 更新实例状态
+## 动态配置检查：
+### 通过API实时修改（未确认）
+
+
+
+
+实例销毁阶段：
+
+依赖参数：InstanceDeletePayload
+
+# 获取instanceId关联的Infrastructure列表
+# 根据InfrastructureType与tag逐类按顺序进行删除
 # 
 
 
