@@ -1,0 +1,14 @@
+created: 20240126031939899
+creator: Gezi
+modified: 20240126032523948
+modifier: Gezi
+tags: APrivateContent 日志
+title: 2024-1-26
+
+1. 实例删除时需要删除所有有关的云盘
+
+2. 云盘不需要配置快照
+
+3. 需要完善集群删除逻辑，保证资源与数据库信息删除完毕
+
+4. 检查一下S3 Object的删除逻辑
