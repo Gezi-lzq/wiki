@@ -1,6 +1,6 @@
 created: 20240203082947951
 creator: Gezi
-modified: 20240203103503634
+modified: 20240203110918489
 modifier: Gezi
 tags: 日志
 title: 2024-2-3 plane 环境准备
@@ -64,4 +64,21 @@ pip install psycopg2-binary
 
 # 使用 pnpm 安装项目依赖项
 pnpm install
+
+# 准备数据库
+docker exec -it test-postgres psql -U postgres -c "CREATE DATABASE plane;"
+
+# 修改settings/local.py内的数据库配置
+
+# 初始化数据库
+python3 manage.py migrate --settings=plane.settings.local
+
+```
+
+! 启动环境
+
+```bash
+pnpm run dev
+
+python3 manage.py runserver --settings=plane.settings.local
 ```
