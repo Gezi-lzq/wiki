@@ -1,0 +1,67 @@
+created: 20240203082947951
+creator: Gezi
+modified: 20240203103220291
+modifier: Gezi
+tags: 日志
+title: 2024-2-3 plane 环境准备
+
+! plane 环境准备
+
+```bash
+# 在 Docker 中运行一个名为 test-postgres 的容器，用于 PostgreSQL 数据库
+docker run --name test-postgres -e POSTGRES_PASSWORD=testpassword -p 5432:5432 -d postgres
+
+# 在 Docker 中运行一个名为 test-redis 的容器，用于 Redis 数据库
+docker run --name test-redis -p 6379:6379 -d redis
+
+# 更新系统软件包列表
+sudo apt update
+
+# 安装 Python 3
+sudo apt install python3
+
+# 安装 Python 3 的包管理工具 pip
+sudo apt install python3-pip
+
+# 添加 Yarn 的仓库密钥
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+
+# 添加 Yarn 的仓库到您的系统中
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+# 更新软件包列表并安装 Yarn
+sudo apt update
+sudo apt install yarn
+
+# 安装 nvm（Node Version Manager），用于管理不同版本的 Node.js
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# 设置 nvm 环境变量
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# 使用系统中的 Node.js 版本
+nvm use system
+
+# 安装 Node.js 18 版本
+nvm install 18
+
+# 使用 Node.js 18 版本
+nvm use 18
+
+# 全局安装 pnpm（快速、零配置的包管理器）
+npm install -g pnpm
+```
+
+! 安装依赖
+
+```bash
+# 安装 PostgreSQL 开发包，以满足 psycopg2 包的编译依赖（如果需要）
+sudo apt-get install libpq-dev
+
+# 使用 pip 安装 psycopg2-binary 包（可选，如果不需要从源代码编译 psycopg2）
+pip install psycopg2-binary
+
+# 使用 pnpm 安装项目依赖项
+pnpm install
+```
