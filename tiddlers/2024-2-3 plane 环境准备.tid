@@ -1,6 +1,6 @@
 created: 20240203082947951
 creator: Gezi
-modified: 20240203110918489
+modified: 20240204050554373
 modifier: Gezi
 tags: 日志
 title: 2024-2-3 plane 环境准备
@@ -60,7 +60,11 @@ npm install -g pnpm
 sudo apt-get install libpq-dev
 
 # 使用 pip 安装 psycopg2-binary 包（可选，如果不需要从源代码编译 psycopg2）
-pip install psycopg2-binary
+pip3 install psycopg2-binary
+
+pip3 install -r apiserver/requirements.txt
+
+pip3 install pyyaml
 
 # 使用 pnpm 安装项目依赖项
 pnpm install
