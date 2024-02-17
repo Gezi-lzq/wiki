@@ -1,0 +1,15 @@
+created: 20240217095947622
+creator: Gezi
+from-url: https://www.cnblogs.com/yoke/p/11486200.html
+modified: 20240217100158113
+modifier: Gezi
+tags: 分布式理论
+title: ISR and AR
+
+简单来说，分区中的所有副本统称为 AR (Assigned Replicas)。所有与leader副本保持一定程度同步的副本（包括leader副本在内）组成 ISR (In Sync Replicas)。 
+
+ISR 集合是 AR 集合的一个子集。消息会先发送到leader副本，然后follower副本才能从leader中拉取消息进行同步。
+
+同步期间，follow副本相对于leader副本而言会有一定程度的滞后。前面所说的 ”一定程度同步“ 是指可忍受的滞后范围，这个范围可以通过参数进行配置。
+
+由于leader副本同步滞后过多的副本（不包括leader副本）将组成 OSR （Out-of-Sync Replied）由此可见，AR = ISR + OSR。正常情况下，所有的follower副本都应该与leader 副本保持 一定程度的同步，即AR=ISR，OSR集合为空。
