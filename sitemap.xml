@@ -244,6 +244,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:DevOps%2520Concepts:%2520Pets%2520vs%2520Cattle</loc>
+		<lastmod>2024-03-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:DNS%2520Pound%2520Robin</loc>
 		<lastmod>2023-03-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -880,6 +886,12 @@
 		<lastmod>2024-01-17</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:readingList</loc>
+		<lastmod>2024-03-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Redis-字典</loc>
