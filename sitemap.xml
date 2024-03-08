@@ -250,6 +250,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:devops-concepts-pets-vs-cattle.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:DNS%2520Pound%2520Robin</loc>
 		<lastmod>2023-03-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -439,7 +444,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Index</loc>
-		<lastmod>2023-04-19</lastmod>
+		<lastmod>2024-03-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -1889,7 +1894,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:待办列表</loc>
-		<lastmod>2023-01-17</lastmod>
+		<lastmod>2024-03-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -1907,7 +1912,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:快速创建新笔记按钮</loc>
-		<lastmod>2023-03-24</lastmod>
+		<lastmod>2024-03-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
