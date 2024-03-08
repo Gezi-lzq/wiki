@@ -1,8 +1,48 @@
 created: 20240308070412574
 creator: Gezi-lzq
-modified: 20240308070655869
+modified: 20240308120951089
 modifier: Gezi-lzq
-tags: readingList task
+status: complete
+tags: readingList task Done
 title: DevOps Concepts: Pets vs Cattle
 
-https://joachim8675309.medium.com/devops-concepts-pets-vs-cattle-2380b5aab313
+[ext[https://joachim8675309.medium.com/devops-concepts-pets-vs-cattle-2380b5aab313]]
+
+[img[devops-concepts-pets-vs-cattle.png]]
+
+pets vs cattle 的比喻最早来源于[[Scaling SQL Server 2012|http://www.pass.org/eventdownload.aspx?suid=1902]]。
+
+!! 如何理解 pets vs cattle 的比喻？
+
+* what is pets?
+
+这个很好理解，宠物，我们所养的小动物，往往会给它赋予一个爱的名字，并每天个性化地，精心地照顾它，陪伴它。
+
+* what is cattle?
+
+通常，这个词主要指的是家养用于生产肉、牛奶或用于耕作的牛。这个词往往是在畜牧业的领域中出现，所表述的虽然与pet一样都是动物，但是给人的感觉却是工业化的，不再是由人单独个性化照顾的。
+
+所以，从计算机领域来看，这个两个词分别又指了什么呢？
+
+* what is pets service model?
+
+这个所描述的对象，往往是公司内被人所管理的机器，包括大型机、单独服务器、负载平衡器和防火墙、数据库系统等。
+
+* what is cattle service model?
+
+这个描述的对象，往往是Web 服务器阵列、no-sql 集群、队列集群、搜索集群、缓存反向代理集群、多主数据存储（如 Cassandra）、大数据集群解决方案等。
+
+The difference between the pre-virtualisation model and the post-virtualisation model can be thought of as the difference between pets and cattle. Pets are given loving names, like pussinboots (or in my case, Tortoise, Achilles, etc.). They are unique, lovingly hand-raised, and cared for. You scale them up by making them bigger. And when they get sick, you nurse them back to health. Whereas cattle are given functional identification numbers like vm0042. They are almost identical to each other. You scale them out by getting more of them. And when one gets sick, you replace it with another one.
+
+虚拟化前模型和虚拟化后模型之间的差异可以被认为是宠物和牛之间的区别。宠物被赋予了爱的名字，比如 pussinboots （或者就我而言，、阿喀琉斯等）。他们是独一无二的，精心抚养和照顾。你通过让它们变大来扩大它们的规模。当他们生病时，你要照顾他们恢复健康。而牛被赋予了功能识别号，如 vm0042 .它们几乎完全相同。您可以通过获取更多来扩展它们。当一个人生病时，你用另一个人代替它。
+
+As Massimo points out, once you have that analogy in mind, it’s easy to determine whether you’re dealing with pets or cattle. Ask yourself this: what would happen if several of your servers went offline right now? If such a thing would go unnoticed by your end-users, then you are dealing with cattle. If it would cause a major disruption for your end-users, you have pets.
+
+正如马西莫所指出的，一旦你有了这种类比，就很容易判断你是在处理宠物还是牛群。问问自己：如果你的几台服务器现在离线了会怎样？如果这种情况不会被你的终端用户察觉，那么你处理的就是牛群。如果这会对你的终端用户造成重大干扰，那你拥有的就是宠物。
+
+https://it20.info/2012/12/vcloud-openstack-pets-and-cattle/
+
+!! Evolution of Cattle
+
+正如畜牧业的发展，从以家庭为级别的小农场，到如今规模巨大的畜牧工厂。cattle service model 也已经从铁器时代（裸机架式服务器）演变为云时代（可通过Web界面/API编程的虚拟化服务器）。
+

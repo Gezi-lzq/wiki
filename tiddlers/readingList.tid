@@ -1,6 +1,9 @@
 color: #a9a2e2
 created: 20240308070610702
 creator: Gezi-lzq
-modified: 20240308070617018
+modified: 20240308121716803
 modifier: Gezi-lzq
 title: readingList
+
+
+<$macrocall $name=table-dynamic caption="待读文章" filter="[tag[readingList]search{$:/temp/tasks/dtable/search}]-[tag[Done]]" fields="tbl-checkbox tbl-expand title from-url status created" class="w-100" stateTiddler="your-state-tid" />
