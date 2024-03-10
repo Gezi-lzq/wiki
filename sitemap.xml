@@ -267,12 +267,6 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;登录Shell与非登录Shell的环境变量加载顺序&apos;%2520by%2520Gezi-lzq</loc>
-		<lastmod>2024-03-10</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;面试准备&apos;%2520by%2520Gezi</loc>
 		<lastmod>2023-02-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1321,6 +1315,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:上下文无关语法</loc>
 		<lastmod>2023-01-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:不同Linux发行版中的Shell差异</loc>
+		<lastmod>2024-03-10</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
