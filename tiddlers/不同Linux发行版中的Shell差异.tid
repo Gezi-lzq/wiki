@@ -1,0 +1,29 @@
+created: 20240310101955316
+creator: Gezi-lzq
+modified: 20240310102231287
+modifier: Gezi-lzq
+tags: 脚本tips linux
+title: 不同Linux发行版中的Shell差异
+
+!! 场景：
+
+在不同Linux发行版上执行Shell脚本
+使用sh或bash执行命令时出现不同行为
+
+!! 原理：
+
+CentOS将/usr/bin/sh链接到/usr/bin/bash，使得sh和bash等效
+
+Ubuntu将/usr/bin/sh链接到/usr/bin/dash，后者是一个为速度优化且与bash不完全兼容的Shell
+
+!! 注意事项：
+
+应当检查脚本的兼容性，尤其是在不同的Shell环境下运行时。
+如果脚本在Ubuntu中以sh运行时出现语法错误，尝试使用bash运行，或者修改脚本确保其符合POSIX标准。
+理解sh通常是指符合POSIX标准的Shell，而bash可能包含额外的功能和扩展，这可能导致在不同Shell之间迁移脚本时出现问题。
+
+!! 参考引用
+
+Ubuntu官方文档对于 /bin/sh 与 /bin/dash 的解释：https://wiki.ubuntu.com/DashAsBinSh
+
+POSIX标准对Shell的描述，了解sh与bash的关系：https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html
