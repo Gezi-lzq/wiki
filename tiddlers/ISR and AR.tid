@@ -1,9 +1,9 @@
 created: 20240217095947622
 creator: Gezi
 from-url: https://www.cnblogs.com/yoke/p/11486200.html
-modified: 20240217100158113
-modifier: Gezi
-tags: 分布式理论
+modified: 20240311092101084
+modifier: Gezi-lzq
+tags: 分布式理论 名词学习
 title: ISR and AR
 
 简单来说，分区中的所有副本统称为 AR (Assigned Replicas)。所有与leader副本保持一定程度同步的副本（包括leader副本在内）组成 ISR (In Sync Replicas)。 
