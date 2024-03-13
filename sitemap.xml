@@ -989,6 +989,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520事务回查</loc>
+		<lastmod>2024-03-13</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520问题集合</loc>
 		<lastmod>2023-11-29</lastmod>
 		<changefreq>monthly</changefreq>
