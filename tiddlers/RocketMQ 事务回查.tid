@@ -1,15 +1,44 @@
 created: 20240313025706417
 creator: Gezi-lzq
-modified: 20240313025829932
+modified: 20240314065831319
 modifier: Gezi-lzq
 tags: 
 title: RocketMQ 事务回查
 type: 
 
-事务异常检查间隔	默认值：60秒。	事务异常检查间隔指的是，半事务消息因系统重启或异常情况导致没有提交，生产者客户端会按照该间隔时间进行事务状态回查。 间隔时长不建议设置过短，否则频繁的回查调用会影响系统性能。
+（一）关于事务消息的MQ回查 的问题,需要关注以下几个Broker配置项
 
+1. 半事务消息第一次回查时间（transactionTimeOut）：默认60秒。
 
-半事务消息第一次回查时间	默认值：取值等于[事务异常检查间隔] * 最大限制：不超过1小时。	无。
+2. 回查消息检查间隔（transactionCheckInterval）：默认60秒。
 
+3. 回查消息最大次数（transactionCheckMax）	：默认15次。
 
-半事务消息最大超时时长	默认值：4小时。 * 取值范围：不支持自定义修改。	半事务消息因系统重启或异常情况导致没有提交，生产者客户端会按照事务异常检查间隔时间进行回查，若超过半事务消息超时时长后没有返回结果，半事务消息将会被强制回滚。 您可以通过监控该指标避免异常事务。
+客户端参数：
+
+* 可以在事务消息中配置CHECK_IMMUNITY_TIME_IN_SECONDS，来覆盖transactionTimeOut参数
+
+（二）另一个问题 是回查的条件，条件大致如下：
+
+已经提交half message
+
+并且 half message的创建时间到现在，超过transactionTimeOut时间 
+
+并且 未提交过commit/rollback消息
+
+并且 回查次数未超过transactionCheckMax
+
+（或者 helf message的创建时间晚于当前时间）
+
+回查条件简化到业务上面：
+
+本地事务检查未返回commit/rollback消息
+
+从开始事务到现在，超过了transactionTimeOut时间
+
+从上一次回查到现在，间隔超过了transactionCheckInterval
+
+（三）事务超时的最大时长，由上面所描述的三个参数决定，且有一个极限是不可能超过 消息保存时间
+
+（四）注意事项：
+事务消息的生产者GroupName不能与其他类型消息的生产者 GroupName 共享。与其他类型的消息不同，事务消息允许反向查询、MQ服务器能通过它们的生产者 GroupName 查询到生产者发送回查消息。
