@@ -1,0 +1,9 @@
+created: 20240321121724276
+creator: Gezi-lzq
+modified: 20240321124234567
+modifier: Gezi-lzq
+tags: kafka问题列表 readingList
+title: Kafka assigning partitions, do you need to commit offsets?
+
+Kafka assigning partitions, do you need to commit offsets
+https://stackoverflow.com/questions/62306965/kafka-assigning-partitions-do-you-need-to-commit-offsets

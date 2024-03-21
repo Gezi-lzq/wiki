@@ -1,0 +1,10 @@
+created: 20240321121759543
+creator: Gezi-lzq
+modified: 20240321124251151
+modifier: Gezi-lzq
+tags: kafka问题列表 readingList
+title: kafka消费者如何配置超时时间？
+
+https://www.cnblogs.com/chanshuyi/p/kafka_rebalance_quick_guide.html 
+
+https://stackoverflow.com/questions/39730126/difference-between-session-timeout-ms-and-max-poll-interval-ms-for-kafka-0-10

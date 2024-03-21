@@ -1,0 +1,8 @@
+created: 20240321121946696
+creator: Gezi-lzq
+modified: 20240321124258435
+modifier: Gezi-lzq
+tags: kafka问题列表 readingList
+title: auto-commit的机制是什么？
+
+https://docs.confluent.io/platform/current/clients/consumer.html#offset-management

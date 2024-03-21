@@ -1,0 +1,10 @@
+created: 20240321122100187
+creator: Gezi-lzq
+modified: 20240321124304235
+modifier: Gezi-lzq
+tags: kafka问题列表 readingList
+title: Kafka中member.id的用途？
+
+https://www.confluent.io/blog/dynamic-vs-static-kafka-consumer-rebalancing/
+
+https://www.confluent.io/kafka-summit-san-francisco-2019/static-membership-rebalance-strategy-designed-for-the-cloud/
