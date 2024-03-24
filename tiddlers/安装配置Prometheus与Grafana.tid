@@ -1,6 +1,6 @@
 created: 20240324155759917
 creator: LZQ
-modified: 20240324161523494
+modified: 20240324163358972
 modifier: LZQ
 tags: 实践日志
 title: 安装配置Prometheus与Grafana
@@ -94,9 +94,117 @@ spec:
 kubectl apply -f ingress-grafana.yaml
 ```
 
+Prometheus使用NodePort服务暴漏Prometheus的端口
 
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-nodeport
+  namespace: monitoring
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      nodePort: 30080
+      targetPort: 9090
+  selector:
+    app.kubernetes.io/name: prometheus
+```
 
 配置Prometheus作为Grafana的数据源：
-一旦Grafana安装完成，你需要配置Prometheus作为数据源。这通常在Grafana的UI界面中进行设置。访问Grafana的Web界面（如果你设置了LoadBalancer，就可以通过云服务器的公网IP加上端口访问，例如http://<YOUR_SERVER_IP>:3000），然后使用admin和你设置的密码登录。
 
-在Grafana界面中，转到"Configuration > Data Sources"，点击"Add data source"，选择"Prometheus"，然后在URL字段中输入Prometheus服务器的地址（如果Prometheus和Grafana在同一命名空间，通常是http://prometheus-server:9090）。
+Grafana安装完成，需要配置Prometheus作为数据源。这通常在Grafana的UI界面中进行设置。访问Grafana的Web界面（如果你设置了LoadBalancer，就可以通过云服务器的公网IP加上端口访问，例如http://<YOUR_SERVER_IP>:3000），然后使用admin和你设置的密码登录。
+
+在Grafana界面中，转到"Configuration > Data Sources"，点击"Add data source"，选择"Prometheus"，然后在URL字段中输入Prometheus服务器的地址（如果Prometheus和Grafana在同一命名空间，通常是http://prometheus-server:9090）。此处我使用的是k8s的内部dns域名。
+
+部署node_exporter
+
+node_exporter是一个由Prometheus官方提供的导出器（exporter），用于收集和暴露Linux/UNIX服务器上的硬件和操作系统指标。
+
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-exporter
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: node-exporter
+  template:
+    metadata:
+      labels:
+        app: node-exporter
+    spec:
+      containers:
+      - name: node-exporter
+        image: prom/node-exporter
+        ports:
+        - containerPort: 9100
+          name: http
+        volumeMounts:
+        - name: proc
+          mountPath: /host/proc
+          readOnly: true
+        - name: sys
+          mountPath: /host/sys
+          readOnly: true
+        - name: root
+          mountPath: /rootfs
+          readOnly: true
+      volumes:
+      - name: proc
+        hostPath:
+          path: /proc
+      - name: sys
+        hostPath:
+          path: /sys
+      - name: root
+        hostPath:
+          path: /
+```
+
+应用这个DaemonSet：
+
+```
+kubectl apply -f node-exporter-daemonset.yaml
+```
+
+配置Prometheus监控node_exporter
+添加新的scrape配置
+
+```
+# 找出Prometheus配置的ConfigMap：
+kubectl get configmaps -n monitoring
+# 编辑ConfigMap, 找到包含Prometheus配置的ConfigMap后,进行编辑
+kubectl edit configmap <configmap-name> -n monitoring
+```
+
+添加如下片段
+
+```
+scrape_configs:
+  - job_name: 'node'
+    static_configs:
+      - targets: ['localhost:9100']
+```
+
+编辑完成后，Prometheus热重载，发送一个HTTP POST请求到/-/reload端点，如：
+
+```
+curl -X POST http://<prometheus-pod-ip>:9090/-/reload
+```
+
+若不支持热重载，则重启Prometheus Pod
+
+随后查找仪表盘ID：
+
+访问Grafana Dashboards。
+搜索“node_exporter”，你会找到许多社区创建的node_exporter仪表盘。选择一个你喜欢的仪表盘，注意它的ID（仪表盘页面上会显示）。
+导入仪表盘：
+
+回到Grafana UI，在左侧菜单栏选择“加号”图标（创建），然后选择“Import”。
+在“Import via grafana.com”字段中，输入你选择的仪表盘ID，然后点击“Load”。
+在接下来的页面中，你可能需要选择一个Prometheus数据源（如果你有多个）。选择你刚刚配置的Prometheus数据源。
+点击“Import”按钮完成仪表盘导入。
