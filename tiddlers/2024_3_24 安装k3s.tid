@@ -1,0 +1,22 @@
+created: 20240324155037774
+creator: LZQ
+modified: 20240324155750249
+modifier: LZQ
+tags: 实践日志
+title: 2024/3/24 安装k3s
+
+突发奇想在我的轻量服务器安装一个只有单节点的k3s
+
+https://k3s.io/
+
+```
+curl -sfL https://get.k3s.io | sh - 
+# Check for Ready node, takes ~30 seconds 
+sudo k3s kubectl get node 
+```
+
+成功安装后，复制 `/etc/rancher/k3s/k3s.yaml` 文件，到 `~/.kube/config` 
+
+并修改环境变量`export KUBECONFIG=$HOME/.kube/config`，更新到.zshrc中，此操作主要目的是希望不用每次执行kubectl命令都需要sudo。
+
+完成以上配置后，我下一步配置Prometheus与Grafana，来监控当前服务器的指标。[[安装配置Prometheus与Grafana]]

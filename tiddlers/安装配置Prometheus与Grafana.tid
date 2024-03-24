@@ -1,0 +1,102 @@
+created: 20240324155759917
+creator: LZQ
+modified: 20240324161523494
+modifier: LZQ
+tags: 实践日志
+title: 安装配置Prometheus与Grafana
+
+安装Prometheus：
+Prometheus是一个开源监控系统，它通过抓取Metrics Server和Kubernetes API提供的指标来收集集群的监控数据。你可以使用Helm来安装Prometheus。首先，添加Prometheus的Helm仓库并更新它：
+
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+```
+然后，安装Prometheus：
+
+```
+helm install prometheus prometheus-community/prometheus --namespace monitoring --create-namespace
+```
+
+其中遇到了一个问题：
+
+```
+Warning  Failed       48m (x5 over 53m)      kubelet            Failed to pull image "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.11.0": rpc error: code = DeadlineExceeded desc = failed to pull and unpack image "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.11.0": failed to resolve reference "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.11.0": failed to do request: Head "https://us-west2-docker.pkg.dev/v2/k8s-artifacts-prod/images/kube-state-metrics/kube-state-metrics/manifests/v2.11.0": dial tcp 74.125.203.82:443: i/o timeout
+```
+
+解决办法：
+
+使用 `bitnami/kube-state-metrics` 来替换 `registry.k8s.io/kube-state-metrics/kube-state-metrics`。
+
+```
+# 找到控制该Pod的Deployment
+kubectl get deployments -n monitoring
+# 编辑Deployment
+kubectl edit deployment <deployment-name> -n monitoring
+
+# 修改镜像
+# 在编辑器中，找到spec.template.spec.containers部分，将image字段从registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.11.0更改为bitnami/kube-state-metrics:2.11.0
+```
+
+安装Grafana：
+与Prometheus一样，你可以使用Helm来安装Grafana。首先，添加Grafana的Helm仓库并更新它：
+
+```
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+```
+
+接着，安装Grafana：
+
+```
+helm install grafana grafana/grafana --namespace monitoring --create-namespace --set adminPassword='yourStrongPassword' --set service.type=LoadBalancer
+```
+
+遇到问题：
+
+我并没有使用云厂商提供的EKS，所以没有LoadBalancer这种选项
+
+解决办法：
+
+通过Ingress在k3s上访问Grafana，并且能够通过公网IP和配置的端口进行访问：
+
+确保Ingress控制器已安装：
+k3s默认安装了Traefik作为Ingress控制器。你可以用以下命令检查Traefik是否正在运行：
+
+```
+kubectl get pods -n kube-system | grep traefik
+```
+
+创建Ingress资源：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
+```
+执行命令：
+
+```
+kubectl apply -f ingress-grafana.yaml
+```
+
+
+
+配置Prometheus作为Grafana的数据源：
+一旦Grafana安装完成，你需要配置Prometheus作为数据源。这通常在Grafana的UI界面中进行设置。访问Grafana的Web界面（如果你设置了LoadBalancer，就可以通过云服务器的公网IP加上端口访问，例如http://<YOUR_SERVER_IP>:3000），然后使用admin和你设置的密码登录。
+
+在Grafana界面中，转到"Configuration > Data Sources"，点击"Add data source"，选择"Prometheus"，然后在URL字段中输入Prometheus服务器的地址（如果Prometheus和Grafana在同一命名空间，通常是http://prometheus-server:9090）。
