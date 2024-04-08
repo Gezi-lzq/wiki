@@ -1,0 +1,47 @@
+created: 20240408142100941
+creator: LZQ
+modified: 20240408142710779
+modifier: LZQ
+tags: 实践日志
+title: WSL2配置
+type: text/vnd.tiddlywiki
+
+!! 操作
+
+1. 关闭跟wsl有关的vscode
+
+2. wsl shutdown
+
+3. 创建文件C:\Users\\.wslconfig 内容如下所示
+
+4. 重新启动wsl
+
+```
+
+[wsl2]
+processors=8
+memory=8GB
+swap=8GB
+localhostForwarding=true
+autoMemoryReclaim=gradual
+dnsTunneling=true
+autoProxy=true
+
+```
+!! 改变
+
+1. 限制wsl2占用过多内存
+
+2. 增加了实验性特性 检测空闲 CPU 使用率后，自动释放缓存的内存。 
+
+3. 增加了win11特性 强制 WSL 使用Windows的代理
+
+!! 引用文档
+
+1. [ext[https://zhuanlan.zhihu.com/p/345645621]]
+
+2. [ext[https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config]]
+
+3. [ext[https://zhuanlan.zhihu.com/p/660694182]]
+
+``
