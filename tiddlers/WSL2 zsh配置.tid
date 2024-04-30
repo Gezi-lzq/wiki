@@ -1,0 +1,86 @@
+created: 20240430153712406
+creator: LZQ
+modified: 20240430153803329
+modifier: LZQ
+tags: 
+title: WSL2 zsh配置
+
+```
+$ sudo apt update
+$ sudo apt install zsh
+# 查看版本
+$ zsh --version
+# 将 ZSH 设置为默认 Shell
+# 使用以下命令找出 ZSH Shell 的路径
+$ whereis zsh
+# 从回复中可以看到，ZSH Shell 的路径是 /usr/bin/zsh
+# 使用如下命令将 ZSH 设置为当前登录用户的默认 Shell
+$ sudo usermod -s /usr/bin/zsh $(whoami)
+# 重启电脑
+$ sudo reboot
+# 按键盘数字键 2，ZSH 会使用推荐的设置创建一个新的 ~/.zshrc 配置文件
+$ 2
+# 可以正常使用 ZSH Shell 了
+
+# 查看当前shell是zsh还是bash
+$ echo $0 
+
+# 安装git
+$ sudo apt install git
+# 安装ohmyzsh：网站 https://github.com/ohmyzsh/ohmyzsh
+$ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+$ sh install.sh
+# 安装插件highlight，高亮语法
+$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+$ git clone git://github.com/wting/autojump.git  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autojump
+# autojump需要安装一下， cd ~/.oh-my-zsh/custom/plugins/autojump && ./install.py
+# 在Oh-my-zsh的配置文件中~/.zshrc中添加插件
+# plugins=(git z extract zsh-syntax-highlighting  autojump zsh-autosuggestions)
+# 在~/.zshrc中加入以下内容:
+# [[ -s /home/friday/.autojump/etc/profile.d/autojump.sh ]] && source /home/friday/.autojump/etc/profile.d/autojump.sh
+# 使配置生效
+$ source ~/.zshrc
+# 这里需要重新登入一下，否则zsh只会在当前终端中应用
+
+# 安装 Powerlevel10k 主题
+# 网站： https://github.com/romkatv/powerlevel10k
+$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# 在Oh-my-zsh的配置文件中~/.zshrc中更改主题方案
+# ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
+
+# 最好先设置字体，否则主题显示不好，推荐字体：Meslo Nerd Font
+# Meslo Nerd Font 安装包及设置在 https://github.com/romkatv/powerlevel10k 上有
+# GNOME Terminal (the default Ubuntu terminal)
+# Open Terminal → Preferences and click on the selected profile under Profiles. 
+# Check Custom font under Text Appearance and select MesloLGS NF Regular.
+
+# 设置 Powerlevel10k 主题
+$ p10k configure
+
+
+# 启动NetworkManager
+$ sudo vim /etc/NetworkManager/NetworkManager.conf #修改managed=true
+# 重启服务
+$ sudo service network-manager restart
+# 查看启用的网卡
+$ ifconfig
+# 查看所有网卡
+$ ifconfig -a
+# 一般宽带使用的为enp开头的网卡（如：enp7s0）
+# 如果网卡未启用，则通过sudo ifconfig enp7s0 up启用网卡(down为关闭)
+# 通过nmcli命令查看网卡状态，有没有被network-manager所管理：
+$ nmcli
+# 如果网卡（例如 enp7s0）显示为未托管状态，则需要修改配置文件：
+# 备份原配置文件
+$ sudo mv /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf  /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf_origin
+# 新建新配置文件
+$ sudo touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
+# 修改后重启networkmaneger服务
+$ sudo service network-manager restart
+# 再用nmcli命令查看，会发现enp7s0已经被network-manager所管理，
+# 在系统 -> 设置 -> 网络中发现，多出来了“有线”选项，表示终于可以联网了！
+
+# 如果还是不能联网，考虑是网卡驱动问题，以及network-manager问题 ！
+
+```
