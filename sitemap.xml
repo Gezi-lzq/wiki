@@ -285,6 +285,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;安装配置Prometheus与Grafana&apos;%2520by%2520LZQ</loc>
+		<lastmod>2024-04-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;面试准备&apos;%2520by%2520Gezi</loc>
 		<lastmod>2023-02-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1351,6 +1357,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:WSL2配置</loc>
+		<lastmod>2024-04-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:x86-64Linux进程地址空间分布.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -1884,7 +1896,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:安装配置Prometheus与Grafana</loc>
-		<lastmod>2024-03-24</lastmod>
+		<lastmod>2024-04-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
