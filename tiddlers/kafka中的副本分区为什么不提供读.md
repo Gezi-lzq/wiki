@@ -1,0 +1,71 @@
+此问题来源为5月1号下午，小黑发来的微信
+
+<<<
+讨论个问题,
+kafka分区的从节点能不能提供读,
+像mysql，rds都可以主从复制读写分离,
+我觉得消息队列的分区副本天然就支持读写分离,
+因为消息队列是fifo,
+主从之间的数据同步是从时间上从早到晚,
+从节点最多是没有同步最新的消息,
+其二不可能丢失中间的数据，
+因此消息的顺序不会受到影响，
+因此副本可以提供读，
+但是为什么kafka不做读写分离呢？
+
+看到一个观点，topic按照partition对数据进行分片，partition主从以及不同的partition本身就平衡地分布在不同的broker上，因此其本身已经有了很好的资源的利用
+
+像mysql，rds，都是主从节点分开，如果从节点不提供读服务，那么其实就相当于一台机器作为了备份而浪费了
+
+<<<
+
+看到这个问题的时候， 感觉我也有些被说服了，的确诶，既然也有副本，并且顶多会有一些延迟，那为什么不能读副本呢？
+
+但是又觉得这个设计一定不是我想的那么简单，应该有别的原因，于是对此展开了搜索。
+
+! kafka的副本机制
+
+既然讨论到了副本是不是可以提供读，那么就需要先再回顾一下kafka自己的副本机制是什么？
+
+Apache Kafka® 将每个Topic分区的事件日志复制到可配置数量的服务器上。这个 replication factor 是Topic级别配置的，复制的单位是Topic分区。当集群中服务器失败时，这使得自动故障转移到这些副本，以便消息保持可用。
+
+在非故障情况下，Kafka中的每个分区都有一个单一的leader和0-n个followers.在Kafka中，所有Topic都必须具有 replication factor 配置值。replication factor 包括 leader在内的总副本数，这意味着 replication factor 配置为1，则说明该Topic的分区没有副本。
+
+所有的读取和写入都发送到分区的leader。
+
+通常，分区数量比Broker多得多，leader在boker之间均匀分布。follower的日志与leader的日志相同；它们的offsets和messages以相同的顺序排列。尽管在任何给定时间，leader的日志末尾可能有一些未复制的消息（应该也未提交）。
+
+以下图片显示了一个具有三个分区的Topic，以及它们如何在三个Broker之间进行复制。
+
+[img[broker-and-partition.png]]
+
+followers 像 Kafka 消费者一样消费 leader 的消息，并将其应用于自己的日志。从leader拉取的follower能够批量拉取日志条目并记录到自己上面。
+
+与大多数分布式系统一样，自动处理故障需要准确定义节点存活的含义。对于 Kafka 节点被视为存活，必须满足两个条件。
+
+1. A node must be able to maintain its session with the controller
+
+2. If it is a follower it must replicate the writes happening on the leader and not fall “too far” behind
+
+这些节点被称作 "In sync" 而不是 “alive” or “failed”. leader 跟踪一组 "In sync" 节点，如果follower 失败、卡住或者落后，leader将其从IR列表中移除。 `replica.lag.time.max.ms ` 配置指定哪些副本被视为卡住或滞后。
+
+在分布式系统术语中，Kafka 试图处理“失败/恢复”场景，即节点突然停止工作，然后稍后恢复，但不处理拜占庭故障，即节点由于恶意行为或错误而产生任意或恶意响应。
+
+
+<<<
+
+作者：huxihx
+链接：https://www.zhihu.com/question/327925275/answer/705690755
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+首先明确一下：主从分离与否没有绝对的优劣，它仅仅是一种架构设计，各自有适用的场景。
+第二、如你所说，Redis和MySQL都支持主从读写分离，我个人觉得这和它们的使用场景有关。对于那种读操作很多而写操作相对不频繁的负载类型而言，采用读写分离是非常不错的方案——我们可以添加很多follower横向扩展，提升读操作性能。反观Kafka，它的主要场景还是在消息引擎而不是以数据存储的方式对外提供读服务，通常涉及频繁地生产消息和消费消息，这不属于典型的读多写少场景，因此读写分离方案在这个场景下并不太适合。
+第三、Kafka副本机制使用的是异步消息拉取，因此存在leader和follower之间的不一致性。如果要采用读写分离，必然要处理副本lag引入的一致性问题，比如如何实现read-your-writes、如何保证单调读（monotonic reads）以及处理消息因果顺序颠倒的问题。相反地，如果不采用读写分离，所有客户端读写请求都只在Leader上处理也就没有这些问题了——当然最后全局消息顺序颠倒的问题在Kafka中依然存在，常见的解决办法是使用单分区，其他的方案还有version vector，但是目前Kafka没有提供。
+<<<
+
+https://cloud.tencent.com/developer/article/1690234
+
+https://www.enjoyalgorithms.com/blog/master-slave-replication-databases
+
+http://www.jasongj.com/kafka/high_throughput/
