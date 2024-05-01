@@ -520,7 +520,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:ISR%2520and%2520AR</loc>
-		<lastmod>2024-03-11</lastmod>
+		<lastmod>2024-05-01</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1576,6 +1576,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:入门使用TiddlyWiki</loc>
 		<lastmod>2022-05-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:六壬</loc>
+		<lastmod>2024-05-01</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
