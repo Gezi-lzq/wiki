@@ -1043,6 +1043,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ单节点启动流程</loc>
+		<lastmod>2024-06-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ学习</loc>
 		<lastmod>2023-12-02</lastmod>
 		<changefreq>monthly</changefreq>
