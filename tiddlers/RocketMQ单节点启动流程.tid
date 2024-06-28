@@ -1,6 +1,6 @@
 created: 20240628061511922
 creator: Gezi-lzq
-modified: 20240628063131670
+modified: 20240628070600635
 modifier: Gezi-lzq
 tags: RocketMQ
 title: RocketMQ单节点启动流程
@@ -17,7 +17,6 @@ sudo yum install java-11-amazon-corretto-devel -y
 ! 下载RocketMQ
 
 访问版本列表：[[RocketMQ Download|https://rocketmq.apache.org/download/]]
-
 下载所需版本的RocketMQ，例如：
 
 ```bash
@@ -43,6 +42,7 @@ unzip rocketmq-all-4.9.7-bin-release.zip
 ```bash
 export ROCKETMQ_HOME=/path/to/rocketmq-folder
 ```
+
 使环境变量生效：
 
 ```bash
@@ -62,7 +62,16 @@ source /etc/profile
 * 设置 `listenPort` 为Broker监听的端口号
 * 设置 `storePathRootDir` 为存储消息的根目录
 * 设置 `storePathCommitLog` 为CommitLog的存储路径
-* 设置 `brokerIP1` 为Broker的监听IP地址
+* 设置 `brokerIP1` 为Broker的监听IP地址，例如：
+
+
+! 设置操作系统内核参数
+
+执行 `sh os.sh` 脚本，优化系统内核参数：
+
+```bash
+sh os.sh
+```
 
 ! 启动RocketMQ
 
@@ -81,3 +90,5 @@ nohup sh bin/mqbroker -n localhost:9876 &
 如果需要指定配置文件，则在命令中加入 `-c /path/to/broker.conf`
 
 确保在启动Broker之前NameServer已经启动并运行。完成以上步骤后，RocketMQ应当成功启动并准备好接收和处理消息。
+
+https://cloud.tencent.com/developer/article/1862669
