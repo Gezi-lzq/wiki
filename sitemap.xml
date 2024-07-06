@@ -597,6 +597,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Linux最大文件打开数</loc>
+		<lastmod>2024-07-06</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:list.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
