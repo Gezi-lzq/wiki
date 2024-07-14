@@ -1,8 +1,10 @@
 created: 20240711071736359
 creator: Gezi-lzq
-modified: 20240711080047618
+modified: 20240714085254869
 modifier: Gezi-lzq
 tags: RocketMQ
 title: Broker服务端自动创建topic的原理分析
 
 https://www.cnblogs.com/liboware/p/15823867.html
+
+[img[自动创建topic.png]]
