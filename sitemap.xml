@@ -173,7 +173,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Broker服务端自动创建topic的原理分析</loc>
-		<lastmod>2024-07-11</lastmod>
+		<lastmod>2024-07-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -2489,6 +2489,11 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:自动内存管理</loc>
 		<lastmod>2023-02-15</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:自动创建topic.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
