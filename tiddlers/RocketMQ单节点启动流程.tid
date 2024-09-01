@@ -1,0 +1,94 @@
+created: 20240628061511922
+creator: Gezi-lzq
+modified: 20240628070600635
+modifier: Gezi-lzq
+tags: RocketMQ
+title: RocketMQ单节点启动流程
+type: text/vnd.tiddlywiki
+
+! 安装JDK环境
+
+执行命令：
+
+```bash
+sudo yum install java-11-amazon-corretto-devel -y
+```
+
+! 下载RocketMQ
+
+访问版本列表：[[RocketMQ Download|https://rocketmq.apache.org/download/]]
+下载所需版本的RocketMQ，例如：
+
+```bash
+wget https://archive.apache.org/dist/rocketmq/4.9.7/rocketmq-all-4.9.7-bin-release.zip
+```
+
+! 解压RocketMQ压缩包
+
+执行命令：
+
+```bash
+unzip rocketmq-all-4.9.7-bin-release.zip
+```
+
+! 修改内存设置
+
+编辑 `ROCKETMQ_HOME/bin/runserver.sh` 和 `ROCKETMQ_HOME/bin/runbroker.sh` 文件，根据实际需求调整JVM内存参数，在 `JAVA_OPT` 中修改内存设置。
+
+! 设置环境变量
+
+编辑 `/etc/profile` 文件，添加 `ROCKETMQ_HOME` 环境变量，例如：
+
+```bash
+export ROCKETMQ_HOME=/path/to/rocketmq-folder
+```
+
+使环境变量生效：
+
+```bash
+source /etc/profile
+```
+
+! 修改Broker配置文件 `broker.conf`
+
+* 设置 `namesrvAddr` 为NameServer地址，多个地址用逗号分隔
+* 设置 `brokerClusterName` 为所属集群名称
+* 设置 `brokerName` 为Broker名称，Master和Slave使用相同名称表示主从关系
+* 设置 `brokerId`，0表示Master，大于0表示Slave
+* 设置 `deleteWhen` 为消息删除时间，默认凌晨4点
+* 设置 `fileReservedTime` 为磁盘上保留消息的时长，单位为小时
+* 设置 `brokerRole` 为【SYNC_MASTER，ASYNC_MASTER，SLAVE】之一，表示同步或异步Master与Slave数据同步机制
+* 设置 `flushDiskType` 为【ASYNC_FLUSH，SYNC_FLUSH】之一，表示同步或异步刷盘策略
+* 设置 `listenPort` 为Broker监听的端口号
+* 设置 `storePathRootDir` 为存储消息的根目录
+* 设置 `storePathCommitLog` 为CommitLog的存储路径
+* 设置 `brokerIP1` 为Broker的监听IP地址，例如：
+
+
+! 设置操作系统内核参数
+
+执行 `sh os.sh` 脚本，优化系统内核参数：
+
+```bash
+sh os.sh
+```
+
+! 启动RocketMQ
+
+* 启动NameServer：
+
+```bash
+nohup sh mqnamesrv &
+```
+
+* 启动Broker：
+
+```bash
+nohup sh bin/mqbroker -n localhost:9876 &
+```
+
+如果需要指定配置文件，则在命令中加入 `-c /path/to/broker.conf`
+
+确保在启动Broker之前NameServer已经启动并运行。完成以上步骤后，RocketMQ应当成功启动并准备好接收和处理消息。
+
+https://cloud.tencent.com/developer/article/1862669
