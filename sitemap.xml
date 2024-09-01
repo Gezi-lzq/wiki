@@ -172,6 +172,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:broker-and-partition.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Broker服务端自动创建topic的原理分析</loc>
 		<lastmod>2024-07-14</lastmod>
 		<changefreq>monthly</changefreq>
@@ -287,12 +292,6 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:double-free%2520proble</loc>
 		<lastmod>2023-02-15</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;安装配置Prometheus与Grafana&apos;%2520by%2520LZQ</loc>
-		<lastmod>2024-04-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -561,6 +560,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:kafka中的副本分区为什么不提供读</loc>
+		<lastmod>2024-05-01</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:kafka消费者如何配置超时时间？</loc>
 		<lastmod>2024-03-21</lastmod>
 		<changefreq>monthly</changefreq>
@@ -715,6 +720,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Mark-sweepGC.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:master-slave-replication-databases</loc>
+		<lastmod>2024-05-01</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
