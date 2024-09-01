@@ -1,0 +1,19 @@
+created: 20240901192824345
+creator: Gezi-lzq
+modified: 20240901192824348
+modifier: Gezi-lzq
+tags: $:/tags/ControlPanel/Settings/CodeMirror
+title: {{$:/language/codemirror/theme/hint}}
+
+\define lingo-base() $:/language/codemirror/
+
+<$link to="$:/config/codemirror/theme"><<lingo hint>></$link>
+
+<$select tiddler="$:/config/codemirror/theme" default="default">
+<option value="default">default</option>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Stylesheet]module-type[codemirror-theme]!has[draft.of]get[name]]">
+<option value=<<currentTiddler>>><$transclude field="name"><$text text=<<currentTiddler>>/></$transclude></option>
+</$list>
+</$select>
+
+//see the [[CodeMirror Usage|$:/plugins/tiddlywiki/codemirror/usage]] how to add themes//
