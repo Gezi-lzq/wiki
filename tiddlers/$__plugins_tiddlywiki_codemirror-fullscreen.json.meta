@@ -1,11 +1,11 @@
 author: tiddlywiki
 dependents: 
-description: CSS highlighting mode for CodeMirror
+description: Fullscreen editing for CodeMirror
 list: readme
-name: CodeMirror Mode CSS
+name: CodeMirror Fullscreen
 parent-plugin: $:/plugins/tiddlywiki/codemirror
 plugin-type: plugin
 stability: STABILITY_2_STABLE
-title: $:/plugins/tiddlywiki/codemirror-mode-css
+title: $:/plugins/tiddlywiki/codemirror-fullscreen
 type: application/json
 version: 5.3.5
