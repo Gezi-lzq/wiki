@@ -1,11 +1,12 @@
 author: kl
+core-version: >=5.3.0
 created: 20210410045035022
 dependents: 
 description: Insert an emoji
 list: readme
-modified: 20220810131842881
+modified: 20231001012620286
 name: Emoji Button
 plugin-type: plugin
 title: $:/plugins/xp/emoji-button
 type: application/json
-version: 0.2.1
+version: 0.2.2

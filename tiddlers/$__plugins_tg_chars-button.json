@@ -153,12 +153,12 @@
             "created": "20181107162630202"
         },
         "$:/language/Buttons/Chars/New/Text": {
-            "text": "* Add a character:\n** e.g. as character (`↔`),  in hex (`&#x2194;`), or dec (`&#8595;`)\n* Add a descriptive title in the caption field of this tiddler, e.g. 'Text color Purple'\n* Add a appropriate title to this tiddler\n* Save this tiddler\n",
+            "created": "20181107162854101",
+            "creator": "TonGerner",
+            "text": "\n* Add a character in this text field:\n** e.g. as character (`↔`),  in hex (`&#x2194;`), or dec (`&#8596;`)\n* Add a descriptive title in the caption field of this tiddler, e.g. 'Left right arrow ↔'\n* Add a appropriate title to this tiddler\n* Save this tiddler\n** Remove this help text before saving!",
             "title": "$:/language/Buttons/Chars/New/Text",
             "modifier": "TonGerner",
-            "modified": "20201227192558483",
-            "creator": "TonGerner",
-            "created": "20181107162854101"
+            "modified": "20221229105541757"
         },
         "$:/language/Buttons/Chars/New/Title": {
             "text": "Name as shown in menu",
@@ -169,19 +169,61 @@
         "$:/plugins/tg/chars-button/readme": {
             "created": "20181104201802562",
             "creator": "TonGerner",
-            "text": "\\define icn(icon)\n<button class=\"tc-btn-invisible\"> {{$icon$}}</button>\n\\end\n\nA button (<<icn $:/core/images/chars>>) for inserting special characters.<br>\nAssigned shortcut: {{$:/config/shortcuts/chars}}\n\nTo add new characters you can:\n\nYou can add new entries via 'Add your own' in the dropdown menu. \n",
+            "text": "\\define icn(icon)\n<button class=\"tc-btn-invisible\"> {{$icon$}}</button>\n\\end\n\nA button (<<icn $:/core/images/chars>>) for inserting special characters.<br>\nAssigned shortcut: {{$:/config/shortcuts/chars}}\n\n* You can add new entries via 'Add your own' in the dropdown menu\n* You can remove non-used characters from the list by deleting the tag <<tag $:/tags/TextEditor/Chars>> from  the character to be removed (click the tag to select the character)\n",
             "title": "$:/plugins/tg/chars-button/readme",
             "modifier": "TonGerner",
-            "modified": "20210104194634103"
+            "modified": "20221229110248600"
         },
         "$:/plugins/tg/chars-button/license": {
-            "text": "[[Characters button|http://www.tongerner.nl/TW5/TW5_playground.html]] &copy; Ton Gerner &mdash; 2018-2021\n\nMIT License: https://opensource.org/licenses/MIT",
+            "created": "20210103203709955",
+            "creator": "TonGerner",
+            "text": "[[Characters button|http://www.tongerner.nl/TW5/TW5_playground.html]] &copy; Ton Gerner &mdash; 2018-2023\n\nMIT License: https://opensource.org/licenses/MIT",
             "title": "$:/plugins/tg/chars-button/license",
             "tags": "",
             "modifier": "TonGerner",
-            "modified": "20210103203813863",
+            "modified": "20221229110300169"
+        },
+        "$:/language/Chars/copyright": {
+            "title": "$:/language/Chars/copyright",
+            "text": "&copy;",
+            "caption": "Copyright ©",
+            "created": "20191013141520628",
+            "modified": "20191013142013696",
+            "tags": "$:/tags/TextEditor/Chars"
+        },
+        "$:/language/Chars/infinity": {
+            "title": "$:/language/Chars/infinity",
+            "text": "∞",
+            "caption": "Infinity ∞",
+            "created": "20181108203349998",
+            "modified": "20181108203424742",
+            "tags": "$:/tags/TextEditor/Chars"
+        },
+        "$:/language/Chars/not-equal": {
+            "created": "20181104184337023",
             "creator": "TonGerner",
-            "created": "20210103203709955"
+            "text": "&#x2260;",
+            "title": "$:/language/Chars/not-equal",
+            "modified": "20221229105257910",
+            "caption": "Not equal ≠",
+            "tags": "$:/tags/TextEditor/Chars",
+            "modifier": "TonGerner"
+        },
+        "$:/language/Chars/registered-trademark": {
+            "title": "$:/language/Chars/registered-trademark",
+            "text": "&reg;",
+            "caption": "Registered trademark ®",
+            "created": "20191013141614406",
+            "modified": "20191013142158621",
+            "tags": "$:/tags/TextEditor/Chars"
+        },
+        "$:/language/Chars/trademark": {
+            "title": "$:/language/Chars/trademark",
+            "text": "&trade;",
+            "caption": "Trademark ™",
+            "created": "20191013142338426",
+            "modified": "20191013142706748",
+            "tags": "$:/tags/TextEditor/Chars"
         }
     }
 }

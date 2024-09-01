@@ -4,11 +4,11 @@ created: 20181106114516621
 creator: TonGerner
 description: Chars button
 list: readme license
-modified: 20210103204230136
+modified: 20221229110328439
 modifier: TonGerner
 name: Chars button
 plugin-type: plugin
 source: http://www.tongerner.nl/TW5/TW5_index.html
 title: $:/plugins/tg/chars-button
 type: application/json
-version: 0.0.10
+version: 0.0.11

@@ -1,7 +1,7 @@
 author: NicolasPetton
 core-version: >=5.1.22
 dependents: $:/plugins/flibbles/relink
-description: Simple project management for TiddlyWiki
+description: Simple and Beautiful project management in TiddlyWiki
 icon: https://raw.githubusercontent.com/NicolasPetton/Projectify/master/docs/img/favicon.svg
 list: doc/Help changelog LICENSE
 name: Projectify
@@ -9,4 +9,4 @@ plugin-type: plugin
 source: https://github.com/thaddeusjiang/Projectify
 title: $:/plugins/nico/projectify
 type: application/json
-version: 0.14.0
+version: 0.14.3
