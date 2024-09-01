@@ -1,8 +1,8 @@
 color: #d79898
 created: 20220510140909096
 creator: TidGiUser
-modified: 20240308121418073
-modifier: Gezi-lzq
+modified: 20240901164007796
+modifier: LZQ
 tags: Index
 title: 待办列表
 type: text/vnd.tiddlywiki
@@ -20,7 +20,7 @@ type: text/vnd.tiddlywiki
 \end
 
 \define newTask()
-<$button actions=<<createTask>> class="btn btn-sm btn-info" style="color:#B8E8FC" >New Task
+<$button actions=<<createTask>> class="btn-sm" style="color:#B8E8FC">New Task
 </$button>
 \end
 
