@@ -1,0 +1,14 @@
+created: 20240902022219624
+creator: Gezi-lzq
+modified: 20240902022230339
+modifier: Gezi-lzq
+tags: APrivateContent 日志
+title: 2024-9-2
+
+Will DO：
+
+1. 更新TagDao层，增加version字段，修改Mapper写法，修改测试
+
+2. 修改CloudProviderOperator接口，增加scope字段，进行重构
+
+3. 
