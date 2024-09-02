@@ -9,6 +9,16 @@ Will DO：
 
 1. 更新TagDao层，增加version字段，修改Mapper写法，修改测试(done)
 
-2. 修改CloudProviderOperator接口，增加scope字段，进行重构(done)
+2. 增加scope字段，进行重构(done)
 
-3. 
+3. TagOperator 阿里云实现已经合入(done)
+
+4. 任务Payload构建以及任务实现
+
+5. 升级等场景需要确认Plan内tag信息是否符合
+
+6. DeploymentPlan内增加CustomTags
+
+7. Migration创建密钥对与安全组,并设置自定义tag
+
+8. 修改CloudProviderOperator接口
