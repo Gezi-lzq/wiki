@@ -7,8 +7,8 @@ title: 2024-9-2
 
 Will DO：
 
-1. 更新TagDao层，增加version字段，修改Mapper写法，修改测试
+1. 更新TagDao层，增加version字段，修改Mapper写法，修改测试(done)
 
-2. 修改CloudProviderOperator接口，增加scope字段，进行重构
+2. 修改CloudProviderOperator接口，增加scope字段，进行重构(done)
 
 3. 
