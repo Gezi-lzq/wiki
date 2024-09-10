@@ -1,7 +1,7 @@
 created: 20240910015925711
 creator: Gezi-lzq
-modified: 20240910015932595
-modifier: Gezi-lzq
+modified: 20240910163255400
+modifier: LZQ
 tags: APrivateContent 日志
 title: 2024-9-10
 
@@ -35,6 +35,8 @@ title: 2024-9-10
 
 15. rocketmq 增加 dashboard 控制台() -> TODO
 
+16. CMP 增加 chart -> TODO
 
+17. buildNodeFromJob 修复 -> TODO
 
 
