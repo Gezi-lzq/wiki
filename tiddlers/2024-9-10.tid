@@ -4,3 +4,37 @@ modified: 20240910015932595
 modifier: Gezi-lzq
 tags: APrivateContent 日志
 title: 2024-9-10
+
+
+1. RocketMQ Copilot重新发版 -> 暂时脚本写死公钥 -> 上传s3 -> 测试完成 -> 更新线上copilot -> 
+重新打包 -> 更改版本介绍 -> 联系鞍钢升级 
+
+2. Copilot 巡检不执行确认一下 -> 已确认原因为bean注入问题并修改 -> done
+
+3. 确认华为云tf创建委托为何不生效 -> 又未复现 -> 重新打包测试
+
+4. RocketMQ poc集群 对等链接 确认 -> 安全组修改 -> done
+
+5. Pem文件失效原因 -> 文档是返回的pem内容，猜测改为ssh类型可行 -> 测试 -> 确认为此原因
+
+6. 数据面使用iam端点更新 -> 等待发包 ->  TODO
+
+7. NPE scope问题复现  -> ClientBuilder.java:144 -> 通过实例元数据 -> done
+
+8. 重启发现OBS权限问题，重启后又正常 -> 复现 大约启动10分钟左右权限才正常 -> 发现IMS权限问题 -> 重启后有发现 ecs权限问题/obs权限问题 -> 提供工单等回复 -> 未恢复
+
+10. 更改为外部设置权限委托，测试手动创建是否正常 -> 确认新的手动创建的也会存在问题
+
+11. 更新poc rocketmq开启自动创建topic -> done
+
+12. 数据面阿里云基础镜像过期，需要升级 -> done
+
+13. 测试正常委托情况下拉起一套集群
+
+14. 修改scope 获取逻辑 -> TODO
+
+15. rocketmq 增加 dashboard 控制台() -> TODO
+
+
+
+
