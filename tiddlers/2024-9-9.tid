@@ -6,10 +6,31 @@ tags: APrivateContent 日志
 title: 2024-9-9
 
 
-1. RocketMQ 单节点搭建
+1. RocketMQ 单节点搭建 -> done -> Copilot部署
+  备注：rocketmq在jdk 17下需要注意JVM参数
+  Copilot巡检存在问题，巡检不执行
+  本侧 VPC 打通网络配置已完成
 
-2. Copilot前端跳转bug处理
+2. Copilot跳转bug处理-> 判断因为爆401异常导致 -> 需确认原因 -> 错误码问题 -> 发版更新
 
-3. 华为云 tf moudle 调试
+3. 华为云 tf moudle 调试 -> 修改源镜像为CentOS 判断systemd依赖是否正常 -> CentOS yum源网络太慢 -> 更换为原来的镜像
 
-4. 
+  userdate更新 -> huaweicloud
+  配置文件更新 -> huaweicloud
+  华为云权限 
+
+1. OBS权限无效 -> 怀疑生效时间 -> tf创建问题
+2. pem文件 -> 增加RSA
+3. 访问Timeout -> ECS端点可访问 -> iam端点：https://support.huaweicloud.com/api-iam/iam_01_0004.html
+
+5. 临时修改公网
+
+6. NPE scope
+
+
+
+4. 更改阿里云源镜像，之前的镜像被删了(done)
+
+
+
+6/  
