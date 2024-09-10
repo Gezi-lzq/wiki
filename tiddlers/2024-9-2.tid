@@ -19,6 +19,9 @@ Will DO：
 
 6. DeploymentPlan内增加CustomTags
 
-7. Migration创建密钥对与安全组,并设置自定义tag
+7. Migration流程中管理密钥对与安全组,并设置自定义tag(done)
 
-8. 修改CloudProviderOperator接口
+8. 修改CloudProviderOperator接口(done)
+
+
+
