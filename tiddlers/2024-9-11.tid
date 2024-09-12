@@ -1,14 +1,21 @@
 created: 20240911022102055
 creator: Gezi-lzq
-modified: 20240911022155836
+modified: 20240912022702440
 modifier: Gezi-lzq
 tags: APrivateContent 日志
 title: 2024-9-11
 
-1. 修改scope 获取逻辑 -> TODO
+1. 修改scope 获取逻辑 -> 顺带提交了华为云其他的修改 -> 等待review -> done
 
-2. rocketmq 增加 dashboard 控制台() -> TODO
+2. rocketmq 增加 dashboard 控制台 -> docker 安装 -> 配置用户 -> done
 
-3. 数据面使用iam端点更新 -> 等待发包 -> 已经打完
+3. 数据面使用iam端点更新 -> 等待发包 -> 已经打完 -> 重新打完控制面AMI -> done
 
-4. 
+4. 华为云moudle发布 文档整理 -> tf moudle 发布 -> 编写quick start文档
+
+5. 华为云研发拉会排查 -> 环境example-1 http://123.249.88.30:8080/instances -> 18点给结论
+
+6. AMI 1.1.5 aws & 阿里云 云市场发布 -> done
+
+7. 梳理systemd启动顺序 -> done
+
