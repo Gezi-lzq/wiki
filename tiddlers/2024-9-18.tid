@@ -4,3 +4,19 @@ modified: 20240918020136725
 modifier: Gezi-lzq
 tags: APrivateContent 日志
 title: 2024-9-18
+
+
+1. ons-client 的 sdk 消息轨迹配置方式 -> 判断客户端的轨迹Topic -> 需要重启更新
+ -> done
+
+2. 1.1.6 & 1.2.0 数据面发版(aws, aliyun) -> done
+
+3. 补充配置，修复migration -> done
+
+4. 文章: AutoMQ 与 Flink 混合架构在多活场景下的迁移挑战 
+
+5. 完善 Flink savePoint 修改工具 -> 测试rocksdb场景下的操作 -> 
+
+6. Marathon 迁移场景 Task实现 
+
+7. 
