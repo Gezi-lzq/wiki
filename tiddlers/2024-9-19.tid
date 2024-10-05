@@ -1,0 +1,23 @@
+created: 20240919031955196
+creator: Gezi-lzq
+modified: 20240919031957991
+modifier: Gezi-lzq
+tags: APrivateContent 日志
+title: 2024-9-19
+
+
+1. 修复copilot slo 修改表单前端问题 -> 合入main&control-center-branch -> 发版 -> 更新s3 -> 联系鞍钢更新
+
+2. 增加copilot 修改默认用户 命令行工具 -> 支持查看当前用户列表 -> 支持重置某用户密码 -> 支持添加用户 -> 一起发版
+
+3. 调研迁移流程，梳理user story
+
+4. marathon 内实现迁移接口调用，准备设计测试使用的task
+
+5. 前端分享
+
+6. 迁移指标问题
+
+7. 数据面-构建arm镜像 -> 已经实现，测试中
+
+8. 修复cmp release流程 -> done

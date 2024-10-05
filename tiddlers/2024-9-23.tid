@@ -1,0 +1,23 @@
+created: 20240923023521250
+creator: Gezi-lzq
+modified: 20240923023523278
+modifier: Gezi-lzq
+tags: APrivateContent 日志
+title: 2024-9-23
+
+
+1. 确认 华为云 PoC 流程 -> 已确认可行 -> 后续更新AMI
+
+2. 修复 ami aliyun-saas 构建配置 -> 已修改，pr中 -> done
+
+3. 完成数据面 arm 机型 -> 已修改，测试中 -> 更新tar包
+
+4. 调研迁移流程，梳理user story 
+
+5. 排查迁移存在问题 
+
+6. 控制面 公开镜像分发，同步更新terraform
+
+7. 更改tf module文档权限
+
+8. 
