@@ -15,5 +15,6 @@
     "IM系统-plato": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "Go手写BT下载器": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
     "RocketMQ学习": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
-    "DevOps Concepts: Pets vs Cattle": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
+    "DevOps Concepts: Pets vs Cattle": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;",
+    "auto-commit的机制是什么？": "color:<<colour foreground>>; background-color:<<colour table-header-background>>;"
 }

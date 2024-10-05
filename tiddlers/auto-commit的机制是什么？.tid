@@ -1,8 +1,28 @@
 created: 20240321121946696
 creator: Gezi-lzq
-modified: 20240321124258435
+from-url: https://docs.confluent.io/platform/current/clients/consumer.html#offset-management
+modified: 20241005153436562
 modifier: Gezi-lzq
-tags: kafka问题列表 readingList
+status: complete
+tags: kafka问题列表 readingList Done
 title: auto-commit的机制是什么？
 
-https://docs.confluent.io/platform/current/clients/consumer.html#offset-management
+1. Topic `__consumer_offsets` 内存储各个消费者组在各个分区的提交位点
+
+2. 消费者收到coordinator分配的分区后，需要确定分配的分区的初始位置。
+
+3. 将根据可配置的偏移重置策略 ( auto.offset.reset ) 设置位置。通常，消费从最早的偏移量或最晚的偏移量开始。
+
+4. 当group中的消费者从分配的分区中读取消息时，需要提交与其读取消息相对应的offset
+
+5. 默认情况下为`auto-commit`的offset提交策略，该策略会定期触发提交
+
+6. `auto.commit.offset.interval`属性设置提交间隔的时间上限。
+
+7. 使用`auto-commit`策略可以提供 “at-least-once”保证
+
+8. 当启用自动提交时，每次调用poll方法并获取数据时，消费者就准备好自动提交 poll 返回的消息的偏移量。
+
+9. 如果在下一个自动提交间隔之前未完成对这些消息的处理，则在使用者崩溃或以其他方式重新启动时，存在丢失消息进度的风险。自上次提交以来到达的任何消息都会被再次读取。
+
+10. 如果要减少重复项的窗口，可以减少自动提交间隔。

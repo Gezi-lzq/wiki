@@ -1,0 +1,23 @@
+created: 20241005143721923
+from-url: https://docs.confluent.io/platform/current/clients/consumer.html
+modified: 20241005145316000
+tags: kafka
+title: Kafka consumer groups
+
+* Consumer Group 是一组合作消费来自某些主题的数据的消费者。
+
+* group.id 相同的 consumer 为一组消费者组
+
+* 未设置 group.id 则将随机生成消费者组
+
+* 消费者组内消费者，分按比例分配该订阅下的分区，让消费者数发生变化后，消费者分配的分区也会发生变化
+
+* 给各个消费者分配分区的叫做 ''group’s coordinator''
+
+* Topic `__consumer_offsets` 用于记录各个消费者组的消费进度（提交的偏移量）
+
+* 消费者组的消费进度按照Group ID被散列到该Topic的分区之一
+
+* 存储该消费者组的消费进度的分区的leader所在的Broker会被选为coordinator，将管理该消费者组内消费者的分区分配
+
+* group中的每个成员都必须向协调器发送心跳才能保持组成员身份。如果在配置的会话超时到期之前没有收到心跳，则协调器会将成员踢出组并将其分区重新分配给另一个成员。
