@@ -1,8 +1,9 @@
 created: 20240321121759543
 creator: Gezi-lzq
-modified: 20240321124251151
+modified: 20241006092258436
 modifier: Gezi-lzq
-tags: kafka问题列表 readingList
+status: complete
+tags: kafka问题列表 readingList Done
 title: kafka消费者如何配置超时时间？
 
 https://www.cnblogs.com/chanshuyi/p/kafka_rebalance_quick_guide.html 

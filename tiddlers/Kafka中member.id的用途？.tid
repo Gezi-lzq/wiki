@@ -1,8 +1,9 @@
 created: 20240321122100187
 creator: Gezi-lzq
-modified: 20240321124304235
+modified: 20241006092259010
 modifier: Gezi-lzq
-tags: kafka问题列表 readingList
+status: complete
+tags: kafka问题列表 readingList Done
 title: Kafka中member.id的用途？
 
 https://www.confluent.io/blog/dynamic-vs-static-kafka-consumer-rebalancing/
