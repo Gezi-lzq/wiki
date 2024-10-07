@@ -1,0 +1,1 @@
+[ext[Learning and reviewing system internals tactics and psychology — Jack Vanlightly|https://jack-vanlightly.com/blog/2024/5/7/learning-and-reviewing-system-internals-tactics-and-psychology]]

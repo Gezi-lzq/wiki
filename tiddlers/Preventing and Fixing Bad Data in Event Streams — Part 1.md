@@ -1,0 +1,1 @@
+[ext[Preventing and Fixing Bad Data in Event Streams — Part 1|https://medium.com/confluent/preventing-and-fixing-bad-data-in-event-streams-part-1-27bf2a99b48e]]

@@ -1,0 +1,1 @@
+[ext[BYOC, not “the future of cloud services” but a pillar of an everywhere platform — Jack Vanlightly|https://jack-vanlightly.com/blog/2024/9/11/byoc-not-the-future-of-cloud-services-but-a-pillar-of-an-everywhere-platform]]

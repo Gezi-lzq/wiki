@@ -1,0 +1,25 @@
+Ref: Tw93
+created: 20241007082521542
+creator: Gezi-lzq
+keywords: macos,clean
+modified: 20241007083038584
+modifier: Gezi-lzq
+tags: solution
+title: MacOS垃圾清理
+url: https://x.com/HiTw93/status/1754294011685142835
+
+通过 `curl -fsSL https://dub.sh/mcleanup | bash -s update` 进行安装
+
+然后在 .zshrc 里面加上 alias clean="sudo /usr/local/bin/mac-cleanup"
+
+直接命令行 clean 就可以很方便使用
+
+https://github.com/mac-cleanup/mac-cleanup-sh
+
+---
+
+后有更新的版本：https://github.com/mac-cleanup/mac-cleanup-py
+
+mac-cleanup-py is a powerful cleanup script for macOS.
+This project is a rewrite of the original mac-cleanup-sh rewritten in Python.
+这个项目是用Python重写的原始mac-cleanup-sh的重写。
