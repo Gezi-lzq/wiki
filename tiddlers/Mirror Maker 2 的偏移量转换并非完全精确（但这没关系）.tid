@@ -1,6 +1,0 @@
-created: 20241006104358343
-creator: Gezi-lzq
-modified: 20241006113556515
-modifier: Gezi-lzq
-tags: kafka kafka迁移 MirrorMaker2
-title: Mirror Maker 2 的偏移量转换并非完全精确（但这没关系）

@@ -1,9 +1,9 @@
 created: 20241007074700421
 creator: Gezi-lzq
-modified: 20241007121535316
+modified: 20241007133503349
 modifier: Gezi-lzq
 tags: 梳理MM2位点翻译流程
-title: 为什么需要位点翻译?
+title: 为什么需要位点翻译
 
 位点翻译（offset translation）是一种将一个集群中的消费者位点转换为另一个集群中对应的位点的过程。在这里扮演了一个重要的角色，主要有以下两个原因：
 
