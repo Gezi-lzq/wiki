@@ -1,6 +1,6 @@
 created: 20241007132831726
 creator: Gezi-lzq
-modified: 20241007150326466
+modified: 20241007152651203
 modifier: Gezi-lzq
 tags: 梳理MM2位点翻译流程
 title: MM2的位点翻译方案
@@ -28,6 +28,7 @@ title: MM2的位点翻译方案
 [img[dense_cache_of_all_offset_syncs.png]]
 
 !! 进行优化（Re-read offset-syncs from topic）
+
 根据刚刚的方案，我们发现把map放到内存里面行不通，那么干脆就每次转换的时候都去从offset-syncs中读取好了，通过持续从Kafka主题中读取偏移量同步信息来进行偏移量的翻译和同步。
 
 [img[Re-read_offset-syncs_from_topic.png]]
@@ -48,6 +49,7 @@ title: MM2的位点翻译方案
 因此需要转变思路，不在倾向于准确的翻译，而是可以接受一些不准确（重复消费）而换来性能上的提升。
 
 !! 继续优化（Dense cache of most recent Offset-Syncs）
+
 最近偏移量同步的密集缓存，这种优化方案的核心思想是仅缓存最近的偏移量同步信息，而不是所有的偏移量同步信息。这样可以在保证一定准确性的前提下，显著减少内存使用。
 
 [img[dense_cache_of_most_recent_offset-syncs.png]]
@@ -57,7 +59,7 @@ title: MM2的位点翻译方案
 高精度翻译：
 
 # 对于消费者滞后（lag）中等和低的消费组，提供高精度的偏移量翻译。
-# 对于消费者滞后较高的消费组，无法提供准确的翻译。
+# 对于消费者滞后较高的消费组，无法提供准确的翻译。[[KAFKA-16364|https://issues.apache.org/jira/browse/KAFKA-16364]]
 
 固定缓存大小：
 
@@ -71,6 +73,10 @@ title: MM2的位点翻译方案
 
 !! 当前方案：Sparse Cache
 
+<<<<<<> 
+<<<
+<<<
 
-
-
+[ext[https://lists.apache.org/thread/7qzxm1727y8rtrw6ds7t6hltkm55j5po]]
+[ext[https://github.com/apache/kafka/pull/13178]]
+>>>
