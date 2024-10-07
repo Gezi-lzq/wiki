@@ -1,6 +1,6 @@
 created: 20241007132831726
 creator: Gezi-lzq
-modified: 20241007152651203
+modified: 20241007173438699
 modifier: Gezi-lzq
 tags: 梳理MM2位点翻译流程
 title: MM2的位点翻译方案
@@ -73,10 +73,36 @@ title: MM2的位点翻译方案
 
 !! 当前方案：Sparse Cache
 
-<<<<<<> 
-<<<
-<<<
+缓存结构：使用一个固定大小的缓存，存储指数间隔的偏移量同步信息。
+[img[Sparse_Cache.png]]
+偏移量翻译流程：
 
-[ext[https://lists.apache.org/thread/7qzxm1727y8rtrw6ds7t6hltkm55j5po]]
-[ext[https://github.com/apache/kafka/pull/13178]]
->>>
+# 若当前没有读取完所有的offset sync信息，此时不进行任何转换，直接返回空值。
+# 通过latestOffsetSync方法尝试获取该Topic分区中给定offset对应的最新的OffsetSync
+## 若给定的upstreamOffset小于OffsetSync对象中的upstreamOffset，那么表示给定的upstreamOffset过于过去，无法准确转换，此时返回-1。
+## 若给定的upstreamOffset等于OffsetSync对象中的upstreamOffset，则可直接获得对应位点。
+## 若给定的upstreamOffset大于OffsetSync对象中的upstreamOffset，则将获得位点加1作为翻译位点。
+## 如果没有找到对应的OffsetSync对象，那么表示无法找到offset的同步信息，此时不进行任何转换，直接返回空值。
+
+[img[稀疏缓存翻译流程.png]]
+
+稀疏缓存方案通过使用指数间隔的偏移量同步信息，能够在保证内存使用非常低的情况下，自适应不同规模的工作负载。虽然对高滞后组的翻译精度较低，但能够优先保证低滞后组的高精度翻译，适用于大多数场景。通过合理的缓存管理策略，可以最大限度地提高系统性能并减少内存占用。
+
+优点
+
+# 内存使用优化：由于只缓存指数间隔的偏移量同步信息，内存使用非常低。
+# 自适应工作负载：该方案能够自适应不同规模的工作负载，无需手动调整缓存大小。
+# 优先低滞后组：能够优先保证低滞后组的高精度翻译，确保这些组的消息处理效率。
+
+缺点
+
+# 高滞后组精度低：对于滞后较高的消费组，偏移量翻译的精度较低，可能会导致一些消息重复消费。
+# 滞后倍增：输出的消费滞后最多是输入滞后的约两倍，可能会影响某些实时性要求较高的应用。
+
+https://github.com/apache/kafka/pull/13429
+
+
+<<<
+https://lists.apache.org/thread/7qzxm1727y8rtrw6ds7t6hltkm55j5po
+https://github.com/apache/kafka/pull/13178
+<<<
