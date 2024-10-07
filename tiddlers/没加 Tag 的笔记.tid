@@ -1,6 +1,6 @@
 created: 20241006094037229
 creator: Gezi-lzq
-modified: 20241006152846015
+modified: 20241007093713488
 modifier: Gezi-lzq
 tags: tiddlywiki
 title: 没加 Tag 的笔记
@@ -10,5 +10,3 @@ title: 没加 Tag 的笔记
 <$list filter="[untagged[]!is[system]] +[sort[title]]">
 {{||$:/core/ui/TagTemplate}}
 </$list>
-
-定期回顾这些笔记，思考可以为它们加上什么 Tag。不过我现在用 Tag 作为文件夹结构的同时还有双向链接，[[得重新思考一下有时候是否可用不加Tag|有了双向链接还需要用标签作为文件夹吗]]
