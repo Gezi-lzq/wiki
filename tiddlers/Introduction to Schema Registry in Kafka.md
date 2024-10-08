@@ -2,7 +2,7 @@
 
 Kafka, at its core, only transfers data in byte format. There is no data verification that’s being done at the Kafka cluster level. In fact, Kafka doesn’t even know what kind of data it is sending or receiving; whether it is a string or integer.Kafka 的核心仅以字节格式传输数据。 Kafka 集群级别没有进行数据验证。事实上，Kafka 甚至不知道它正在发送或接收什么样的数据；无论它是字符串还是整数。
 
-![](Introduction to Schema Registry in Kafka/5635938417309778.png)
+![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*6s8wj899rLxpQduV.png)
 
 Producer sending data in byte format to Kafka Cluster and being consumed by a consumer. 生产者以字节格式将数据发送到 Kafka 集群并由消费者消费。
 
@@ -10,7 +10,7 @@ Due to the decoupled nature of Kafka, producers and consumers do not communicate
 
 That’s where [Schema Registry](https://docs.confluent.io/current/schema-registry/index.html) comes into the picture. It is an application that resides outside of your Kafka cluster and handles the distribution of schemas to the producer and consumer by storing a copy of schema in its local cache. 这就是[架构注册表](https://docs.confluent.io/current/schema-registry/index.html)发挥作用的地方。它是一个驻留在 Kafka 集群外部的应用程序，通过在其本地缓存中存储架构副本来处理向生产者和消费者分发架构。
 
-![](Introduction to Schema Registry in Kafka/5545226905551298.png)
+![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*RNcZmLPN5jljq46M.png)
 
 Schema Registry Architecture
 
