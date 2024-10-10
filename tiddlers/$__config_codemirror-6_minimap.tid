@@ -1,0 +1,14 @@
+caption: {{$:/language/codemirror6/minimap/caption}}
+caption-zh: {{$:/language/codemirror6/zh/minimap/caption}}
+created: 20241010171608469
+creator: Gezi-lzq
+description: {{$:/language/codemirror6/minimap/description}}
+description-zh: {{$:/language/codemirror6/zh/minimap/description}}
+id: 29
+modified: 20241010171608469
+modifier: Gezi-lzq
+settings-group: general
+settings-template: input-switch
+title: $:/config/codemirror-6/minimap
+
+yes
