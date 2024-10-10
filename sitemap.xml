@@ -7,6 +7,12 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:{{$:/language/codemirror/theme/hint}}</loc>
+		<lastmod>2024-09-01</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:1.gRPC试图解决的问题是什么？</loc>
 		<lastmod>2022-05-12</lastmod>
 		<changefreq>monthly</changefreq>
@@ -109,6 +115,78 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-10</loc>
+		<lastmod>2024-09-10</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-11</loc>
+		<lastmod>2024-09-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-12</loc>
+		<lastmod>2024-09-12</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-18</loc>
+		<lastmod>2024-09-18</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-19</loc>
+		<lastmod>2024-09-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-2</loc>
+		<lastmod>2024-09-02</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-20</loc>
+		<lastmod>2024-09-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-23</loc>
+		<lastmod>2024-09-23</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-24</loc>
+		<lastmod>2024-09-24</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-25</loc>
+		<lastmod>2024-09-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-6</loc>
+		<lastmod>2024-09-06</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:2024-9-9</loc>
+		<lastmod>2024-09-09</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:2024/3/24%2520安装k3s</loc>
 		<lastmod>2024-03-24</lastmod>
 		<changefreq>monthly</changefreq>
@@ -116,24 +194,18 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:2PC</loc>
-		<lastmod>2023-08-09</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:ABA问题</loc>
-		<lastmod>2023-03-28</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:add.png</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>https://onetwo.ren/wiki/#:AI产品</loc>
-		<lastmod>2023-03-25</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -145,9 +217,15 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:auto-commit的机制是什么？</loc>
-		<lastmod>2024-03-21</lastmod>
+		<lastmod>2024-10-05</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:AutoMQ</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Back%2520Pressure</loc>
@@ -189,6 +267,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:BYOC,%2520not%2520“the%2520future%2520of%2520cloud%2520services”%2520but%2520a%2520pillar%2520of%2520an%2520everywhere%2520platform%2520—%2520Jack%2520Vanlightly</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:CAS(Compare%2520And%2520Swap)</loc>
 		<lastmod>2023-03-28</lastmod>
 		<changefreq>monthly</changefreq>
@@ -197,6 +281,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Channel</loc>
 		<lastmod>2022-09-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:ChatGPT</loc>
+		<lastmod>2024-09-01</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -223,6 +313,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Concurrent%2520GC.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Connector%2520与%2520Task</loc>
+		<lastmod>2024-09-29</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -261,6 +357,16 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:dense_cache_of_all_offset_syncs.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:dense_cache_of_most_recent_offset-syncs.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:DevOps</loc>
 		<lastmod>2022-12-07</lastmod>
 		<changefreq>monthly</changefreq>
@@ -278,12 +384,6 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:Difference%2520between%2520IAM%2520PassRole%2520vs.%2520AssumeRole</loc>
-		<lastmod>2024-03-27</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:DNS%2520Pound%2520Robin</loc>
 		<lastmod>2023-03-16</lastmod>
 		<changefreq>monthly</changefreq>
@@ -292,12 +392,6 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:double-free%2520proble</loc>
 		<lastmod>2023-02-15</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>https://onetwo.ren/wiki/#:Draft%2520of%2520&apos;面试准备&apos;%2520by%2520Gezi</loc>
-		<lastmod>2023-02-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -370,12 +464,6 @@
 		<lastmod>2023-01-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>https://onetwo.ren/wiki/#:GettingThingsDone</loc>
-		<lastmod>2024-05-01</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:github-theme</loc>
@@ -473,7 +561,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Index</loc>
-		<lastmod>2024-03-08</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -485,6 +573,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Internet:从具体构成角度</loc>
 		<lastmod>2022-10-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Introduction%2520to%2520Schema%2520Registry%2520in%2520Kafka</loc>
+		<lastmod>2024-10-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -548,26 +642,26 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:Kafka%2520assigning%2520partitions,%2520do%2520you%2520need%2520to%2520commit%2520offsets?</loc>
-		<lastmod>2024-03-21</lastmod>
+		<loc>https://onetwo.ren/wiki/#:Kafka%2520consumer%2520groups</loc>
+		<lastmod>2024-10-05</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Kafka中member.id的用途？</loc>
-		<lastmod>2024-03-21</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:kafka中的副本分区为什么不提供读</loc>
-		<lastmod>2024-05-01</lastmod>
+		<lastmod>2024-10-05</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:kafka消费者如何配置超时时间？</loc>
-		<lastmod>2024-03-21</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -598,6 +692,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Leaky%2520bucket</loc>
 		<lastmod>2023-03-29</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Learning%2520and%2520reviewing%2520system%2520internals%2520tactics%2520and%2520psychology%2520—%2520Jack%2520Vanlightly</loc>
+		<lastmod>2024-10-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -668,6 +768,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:MacOS垃圾清理</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:mac中安装TidGi</loc>
 		<lastmod>2023-11-21</lastmod>
 		<changefreq>monthly</changefreq>
@@ -725,7 +831,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:master-slave-replication-databases</loc>
-		<lastmod>2024-05-01</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -775,6 +881,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:MM2%2520迁移注意事项</loc>
+		<lastmod>2024-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:MM2的位点翻译方案</loc>
+		<lastmod>2024-10-09</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:MQTT协议</loc>
 		<lastmod>2023-03-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -814,13 +932,18 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:NewTiddler%25201</loc>
-		<lastmod>2023-02-18</lastmod>
+		<loc>https://onetwo.ren/wiki/#:NIO(用户态与内核态的调用过程).png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:NIO(用户态与内核态的调用过程).png</loc>
+		<loc>https://onetwo.ren/wiki/#:offset_syncs_dense_cache.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:On%2520the%2520future%2520of%2520cloud%2520services%2520and%2520BYOC%2520—%2520Jack%2520Vanlightly</loc>
+		<lastmod>2024-10-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -898,6 +1021,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Preventing%2520and%2520Fixing%2520Bad%2520Data%2520in%2520Event%2520Streams%2520—%2520Part%25201</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Processor</loc>
 		<lastmod>2022-09-19</lastmod>
 		<changefreq>monthly</changefreq>
@@ -946,6 +1075,11 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:Re-read_offset-syncs_from_topic.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Reactive%2520Programming</loc>
 		<lastmod>2024-01-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -959,7 +1093,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:readingList</loc>
-		<lastmod>2024-03-08</lastmod>
+		<lastmod>2024-10-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -977,7 +1111,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:Redis-整数集合</loc>
-		<lastmod>2023-04-04</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1024,26 +1158,32 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:RocketMQ</loc>
+		<lastmod>2024-09-10</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520client%2520Periodic%2520Task</loc>
-		<lastmod>2023-08-04</lastmod>
+		<lastmod>2024-09-03</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520client%2520start</loc>
-		<lastmod>2023-08-04</lastmod>
+		<lastmod>2024-09-03</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520client启动流程</loc>
-		<lastmod>2023-08-07</lastmod>
+		<lastmod>2024-09-03</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:RocketMQ%2520Message%2520Flow%2520in%2520Producer</loc>
-		<lastmod>2023-08-07</lastmod>
+		<lastmod>2024-09-03</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1211,6 +1351,17 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:solution</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Sparse_Cache.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:Spring</loc>
 		<lastmod>2022-05-15</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1265,6 +1416,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:TCP协议理解</loc>
 		<lastmod>2023-03-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:Terraform%2520镜像获取方式%2520&amp;%2520升级保证IP不变</loc>
+		<lastmod>2024-10-10</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1329,6 +1486,11 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:tokenBucket.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:topic_have_gaps.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1466,6 +1628,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:为什么需要位点翻译</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:为何使用线程</loc>
 		<lastmod>2023-04-01</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1543,6 +1711,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:位点翻译存在哪些挑战</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:体格强壮</loc>
 		<lastmod>2023-08-21</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1591,6 +1765,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:修复automq中connect%2520log4j配置问题</loc>
+		<lastmod>2024-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:修复无法显示的热力图</loc>
 		<lastmod>2023-01-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1599,6 +1779,18 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:修改Linux的SSH端口</loc>
 		<lastmod>2023-11-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:偏移量翻译和消息迁移中的注意事项</loc>
+		<lastmod>2024-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:做好工作并从中获取成就感</loc>
+		<lastmod>2024-10-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1863,6 +2055,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:增强%2520Kafka%2520集群迁移功能特性并完善迁移方案</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:多对多群聊消息一致性保证思路1.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -1881,6 +2079,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:大数据实训</loc>
 		<lastmod>2023-06-01</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:如何最大程度地减少消费者中处理的重复消息的数量？</loc>
+		<lastmod>2024-10-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -1930,6 +2134,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:学习RocketMQ</loc>
+		<lastmod>2024-10-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:学校需交实验作业</loc>
 		<lastmod>2023-01-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1960,6 +2170,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:客户端迁移注意事项</loc>
+		<lastmod>2024-10-06</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:对onetwo的wiki做模仿</loc>
 		<lastmod>2023-01-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -1967,6 +2183,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:就绪队列和阻塞队列链表的组织形式.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:工作事项</loc>
+		<lastmod>2024-10-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -2012,14 +2234,8 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://onetwo.ren/wiki/#:当日任务</loc>
-		<lastmod>2023-01-17</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.5</priority>
-	</url>
-	<url>
 		<loc>https://onetwo.ren/wiki/#:待办列表</loc>
-		<lastmod>2024-03-08</lastmod>
+		<lastmod>2024-09-01</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -2037,7 +2253,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:快速创建新笔记按钮</loc>
-		<lastmod>2024-03-08</lastmod>
+		<lastmod>2024-09-01</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -2126,6 +2342,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:扩展自己的技能树</loc>
+		<lastmod>2024-10-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:抖音青训营-短视频后端</loc>
 		<lastmod>2023-03-05</lastmod>
 		<changefreq>monthly</changefreq>
@@ -2133,9 +2355,15 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:操作系统</loc>
-		<lastmod>2023-03-18</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:支持Copilot证书生成功能</loc>
+		<lastmod>2024-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:收件箱与发件箱</loc>
@@ -2269,6 +2497,30 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://onetwo.ren/wiki/#:梳理Kafka%2520集群迁移评估模版并提供相应检查项</loc>
+		<lastmod>2024-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:梳理MM2位点翻译流程</loc>
+		<lastmod>2024-10-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:梳理最基础的消息队列抽象</loc>
+		<lastmod>2024-10-05</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:没加%2520Tag%2520的笔记</loc>
+		<lastmod>2024-10-07</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://onetwo.ren/wiki/#:注释的艺术</loc>
 		<lastmod>2023-01-18</lastmod>
 		<changefreq>monthly</changefreq>
@@ -2362,7 +2614,13 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:生产者-消息重试流程</loc>
-		<lastmod>2023-08-07</lastmod>
+		<lastmod>2024-09-03</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:用Packer和AWS%2520Inspector来构建%2520AMI%2520和运行漏洞测试</loc>
+		<lastmod>2024-10-10</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -2387,6 +2645,11 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:硬件同步机制</loc>
 		<lastmod>2023-03-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:稀疏缓存翻译流程.png</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -2597,7 +2860,7 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:软件同步机制</loc>
-		<lastmod>2023-03-27</lastmod>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -2633,6 +2896,12 @@
 	</url>
 	<url>
 		<loc>https://onetwo.ren/wiki/#:边界丢失限流状态.png</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:迁移阶段划分</loc>
+		<lastmod>2024-10-06</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -2829,6 +3098,12 @@
 	<url>
 		<loc>https://onetwo.ren/wiki/#:面试准备</loc>
 		<lastmod>2023-04-22</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://onetwo.ren/wiki/#:预期的位点翻译的效果</loc>
+		<lastmod>2024-10-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
