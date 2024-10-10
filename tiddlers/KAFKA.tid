@@ -1,0 +1,38 @@
+.taghandler: 
+caption: {{$:/xp/images/aggregation-nc}} KAFKA
+color: #bbb
+created: 20241010162058270
+creator: Gezi-lzq
+icon: $:/xp/images/aggregation-nc
+modified: 20241010162058274
+modifier: Gezi-lzq
+title: KAFKA
+type: text/vnd.tiddlywiki
+
+<$vars aggregationTag="""Kafka""" uiTitle="""$:/config/xp/aggregation/ui/kafka""">
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button tooltip="Create a new kafka" aria-label="new kafka" class="tc-btn-invisible tc-btn-mini">
+<$action-sendmessage
+  $message="tm-new-tiddler"
+  title=<<now "kafka/YYYY0MM0DD0hh0mm0ssXXX">>
+  tags={{{ [<aggregationTag>format:titlelist[]] }}}
+  caption="kafka"
+  color=""
+  description=""
+  importance=""
+/>
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new kafka
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/kafka-help">>
+</div>
+
+<$macrocall
+  $name="aggregation-with-tag"
+  state="aggregation-kafka"
+  class=""
+  cardTemplate=""
+  searchClass="xp-search-kafka"
+  promptTiddler=""
+/>
+
+</$vars>

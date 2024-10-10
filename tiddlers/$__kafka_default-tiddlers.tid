@@ -1,0 +1,16 @@
+created: 20241010162058278
+creator: Gezi-lzq
+modified: 20241010162058278
+modifier: Gezi-lzq
+title: $:/kafka/default-tiddlers
+
+[[KAFKA]]
+$:/kafka/default-tiddlers
+$:/kafka-macros
+$:/kafka-help
+$:/xp/tag-handler/items/kafka
+$:/config/xp/aggregation-kafka/category/preset
+$:/config/xp/aggregation-kafka/TableFields
+$:/config/xp/aggregation-kafka/DefaultView
+$:/config/xp/aggregation-kafka/ReadingMode
+$:/config/xp/aggregation/ui/kafka

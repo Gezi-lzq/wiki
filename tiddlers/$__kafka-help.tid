@@ -1,0 +1,37 @@
+color: #bbb
+created: 20241010162058278
+creator: Gezi-lzq
+icon: $:/core/images/help
+modified: 20241010162058280
+modifier: Gezi-lzq
+title: $:/kafka-help
+type: text/vnd.tiddlywiki
+
+!! 默认条目列表
+
+<<list-links filter:"[enlist{$:/kafka/default-tiddlers}]" type:"ol">>
+
+!! 删除聚合主题
+
+<$button style="padding:1px 20px;" aria-label="delete aggregation view">
+DELETE
+<$action-confirm $message="Are you sure you wish to delete this aggregation view?">
+<$list filter={{$:/kafka/default-tiddlers}}>
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$list>
+</$action-confirm>
+</$button>
+<$button style="padding:1px 20px;" aria-label="delete aggregation topic">
+DELETE ALL
+<$action-confirm $message="Are you sure you wish to completely delete this aggregation topic?">
+<$list filter="[enlist{$:/kafka/default-tiddlers}] [tag[Kafka]]">
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$list>
+</$action-confirm>
+</$button>
+
+<small class="tc-muted">
+DELETE 只删除聚合视图。DELETE ALL 会删除聚合条目：<<tag """Kafka""">>。
+</small>
