@@ -1,8 +1,8 @@
 created: 20241008085101706
 creator: Gezi-lzq
 due: 
-modified: 20241008085101709
+modified: 20241010133451059
 modifier: Gezi-lzq
 priority: 
-tags: todo 工作事项
+tags: todo 工作事项 done
 title: 修复automq中connect log4j配置问题
