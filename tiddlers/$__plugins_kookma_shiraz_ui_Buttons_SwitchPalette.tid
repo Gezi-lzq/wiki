@@ -4,9 +4,8 @@ creator: 林一二
 dark-palette: $:/palettes/Nord
 description: Toggle between light/dark color palette
 light-palette: $:/palettes/Notion
-list-after: 
-modified: 20230921142153117
-modifier: 林一二
+modified: 20241011144022833
+modifier: Gezi-lzq
 tags: $:/tags/PageControls
 title: $:/plugins/kookma/shiraz/ui/Buttons/SwitchPalette
 type: text/vnd.tiddlywiki
