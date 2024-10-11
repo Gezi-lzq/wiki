@@ -1,0 +1,10 @@
+created: 20241011030245534
+creator: Gezi-lzq
+modified: 20241011030245534
+modifier: Gezi-lzq
+tags: 剪藏 kafka
+title: KAFKA-16364 MM2 High-Resolution Offset Translation
+type: text/vnd.tiddlywiki
+url: https://issues.apache.org/jira/browse/KAFKA-16364
+
+KAFKA-16364 是一个提议新特性的问题跟踪条目，旨在为 Apache Kafka 的 MirrorMaker 2 实现高精度的偏移量转换功能，以便在迁移集群或需要精确偏移量同步时，更好地满足特定场景下对精确偏移量转换的需求。

@@ -1,0 +1,1 @@
+[ext[Monitoring Kafka performance metrics|https://www.datadoghq.com/blog/monitoring-kafka-performance-metrics/#kafka-producer-metrics]]
