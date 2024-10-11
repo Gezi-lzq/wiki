@@ -1,8 +1,0 @@
-tags: $:/tags/Table/FooterTemplate
-tbl-column-list: tbl-delete
-title: $:/plugins/kookma/shiraz/tables/templates/footer/tbl-delete
-type: text/vnd.tiddlywiki
-
-<%if [<tempTableEdit>getindex[mode]match[edit]] %>
-<td></td>
-<%endif%>

@@ -1,5 +1,0 @@
-tags: $:/tags/Global
-title: $:/plugins/kookma/shiraz/procedures/helper
-type: text/vnd.tiddlywiki
-
-\function color-scheme() [{$:/palette}get[color-scheme]]
