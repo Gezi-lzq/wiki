@@ -1,0 +1,13 @@
+created: 20240915153132367
+modified: 20240915153136538
+title: $:/plugins/kookm/shiraz/readme
+type: text/vnd.tiddlywiki
+
+; Shiraz[use correct name]
+describe what is the plugin in one paragraph
+
+;Code and demo
+For learning plugin features, syntax, tutorial and examples see the plugin demo and code pages
+
+* Demo: https://kookma.github.io/TW-???/
+* Code: https://github.com/kookma/TW-???

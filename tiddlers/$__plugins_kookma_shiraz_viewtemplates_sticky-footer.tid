@@ -1,0 +1,10 @@
+list-after: 
+tags: $:/tags/ViewTemplate
+title: $:/plugins/kookma/shiraz/viewtemplates/sticky-footer
+type: text/vnd.tiddlywiki
+
+<$list filter="[all[current]has[sticky-footer]]">
+<div class="sticky-footer">
+{{!!sticky-footer}}
+</div>
+</$list>

@@ -1,0 +1,33 @@
+caption: Shiraz
+tags: $:/tags/ControlPanel/SettingsTab $:/tags/MoreSideBar
+title: $:/plugins/kookma/shiraz/ui/ControlPanel/Settings
+type: text/vnd.tiddlywiki
+
+\procedure dynamictables-editortype() $:/config/shiraz/dynamictables/editor-type
+
+These settings let you customise the behaviour of Shiraz plugin.
+
+---
+
+;Show Shiraz setting in more sidebar
+:<$checkbox tiddler="$:/plugins/kookma/shiraz/ui/ControlPanel/Settings" tag="$:/tags/MoreSideBar"> Show setting in more sidebar</$checkbox>
+
+
+;Options
+:<$checkbox tiddler="$:/config/Shiraz" index="colorify-ui-buttons" checked="yes"> Colorify UI buttons</$checkbox>
+:<$checkbox tiddler="$:/config/Shiraz" index="view-toolbar-buttons-visibility" checked="yes"> Hide tiddler's view toolbar and show on mouse hover</$checkbox>
+:<$checkbox tiddler="$:/config/Shiraz" index="colorify-sidebar-active-tab" checked="yes"> Colorify active sidebar tab</$checkbox>
+
+
+;Set dark and light palettes
+{{$:/plugins/kookma/shiraz/ui/switch-palette}}
+
+
+;Breadcrumbes
+:{{$:/plugins/kookma/shiraz/ui/breadcrumbs}}
+
+---
+
+; Choose Local Editor for Dynamic Table
+:<$checkbox tiddler=<<dynamictables-editortype>> field="text" checked="main-editor" unchecked="simple-textarea" default="simple-textarea"> Use Tiddlywiki main editor </$checkbox>
+:<$checkbox tiddler=<<dynamictables-editortype>> field="text" checked="simple-textarea" unchecked="main-editor" default="simple-textarea"> Use simple text area </$checkbox>

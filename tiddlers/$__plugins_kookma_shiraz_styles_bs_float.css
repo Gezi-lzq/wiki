@@ -1,0 +1,12 @@
+/* bootstrap.css line 7227*/
+.float-start {
+  float: left !important;
+}
+
+.float-end {
+  float: right !important;
+}
+
+.float-none {
+  float: none !important;
+}
