@@ -40,3 +40,7 @@ registerRoute(
 
 registerRoute(/\.js$/, new StaleWhileRevalidate());
 registerRoute(/(^\/$|index.html)/, new StaleWhileRevalidate());
+
+self.addEventListener('install', (e) => {
+  self.skipWaiting();
+});
