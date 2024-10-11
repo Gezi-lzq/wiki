@@ -1,11 +1,12 @@
 caption: {{$:/plugins/kookma/shiraz/images/palette-switch}} {{$:/language/Buttons/Shiraz/Caption}}
-created: 20240901150512140
-creator: LZQ
-dark-palette: $:/palettes/SolarFlare
+created: 20230921142148203
+creator: 林一二
+dark-palette: $:/palettes/Nord
 description: Toggle between light/dark color palette
-light-palette: $:/palettes/Vanilla
-modified: 20240901150512140
-modifier: LZQ
+light-palette: $:/palettes/Notion
+list-after: 
+modified: 20230921142153117
+modifier: 林一二
 tags: $:/tags/PageControls
 title: $:/plugins/kookma/shiraz/ui/Buttons/SwitchPalette
 type: text/vnd.tiddlywiki

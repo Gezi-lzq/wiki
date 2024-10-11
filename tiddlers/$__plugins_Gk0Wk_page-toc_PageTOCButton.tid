@@ -1,13 +1,12 @@
 caption: {{$:/core/images/list-bullet}} {{$:/plugins/Gk0Wk/page-toc/PageTOCButton!!hint}}
-created: 20220513055531216
-creator: lzq
+created: 20230802131341437
+creator: 林一二
 description: Show TOC of this tiddler
 hint: Page TOC
-modified: 20220513055531216
-modifier: lzq
+modified: 20230802131341437
+modifier: 林一二
 tags: $:/tags/ViewToolbar
 title: $:/plugins/Gk0Wk/page-toc/PageTOCButton
-type: text/vnd.tiddlywiki
 
 \whitespace trim
 <$set value={{{ [<currentTiddler>addprefix[$:/temp/Gk0Wk/page-toc/PageTOCButton/]] }}} name="stateTiddler">

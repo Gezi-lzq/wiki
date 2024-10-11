@@ -1,10 +1,10 @@
 author: Mat von TWaddle
 core-version: >=5.1.22
-created: 20211017092928672
+created: 20211028154106579
 dependents: 
 description: Shows a dropdown listing existing field values for that field name.
 list: readme
-modified: 20211017092928672
+modified: 20211028154106579
 plugin-type: plugin
 title: $:/plugins/mat/field-value-selector
 type: application/json
