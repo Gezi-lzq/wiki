@@ -1,0 +1,10 @@
+created: 20241011031002157
+creator: Gezi-lzq
+modified: 20241011031002157
+modifier: Gezi-lzq
+tags: 剪藏 kafka kafka-issue
+title: DISCUSSION MirrorMaker2 offset translation for compacted, filtered, and transactional source topics-Apache Mail Archives
+type: text/vnd.tiddlywiki
+url: https://lists.apache.org/thread/7qzxm1727y8rtrw6ds7t6hltkm55j5po
+
+主要讨论了 MirrorMaker2（MM2）在处理紧凑、过滤和事务性源主题时的偏移量转换问题，以及相关的修复方案和讨论。

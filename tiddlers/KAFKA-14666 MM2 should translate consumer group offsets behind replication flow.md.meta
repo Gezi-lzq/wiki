@@ -1,8 +1,8 @@
 created: 20241011030144486
 creator: Gezi-lzq
-modified: 20241011030144486
+modified: 20241011030535121
 modifier: Gezi-lzq
-tags: 剪藏 kafka
+tags: 剪藏 kafka kafka-issue
 title: KAFKA-14666 MM2 should translate consumer group offsets behind replication flow
 type: text/markdown
 url: https://issues.apache.org/jira/browse/KAFKA-14666
