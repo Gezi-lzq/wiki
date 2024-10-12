@@ -1,0 +1,380 @@
+created: 20241012052058929
+creator: Gezi-lzq
+modified: 20241012052255005
+modifier: Gezi-lzq
+tags: 剪藏 kafka
+title: Optimizing Kafka broker configuration
+type: text/vnd.tiddlywiki
+url: https://strimzi.io/blog/2021/06/08/broker-tuning/
+
+Following our popular and evergreen posts on fine-tuning [[producers|https://strimzi.io/blog/2020/10/15/producer-tuning/]] and [[consumers|https://strimzi.io/blog/2021/01/07/consumer-tuning/]], we complete our //Kafka optimization trilogy// with this post on getting started with broker configuration. 继我们关于微调[[生产者|https://strimzi.io/blog/2020/10/15/producer-tuning/]]和[[消费者的|https://strimzi.io/blog/2021/01/07/consumer-tuning/]]热门且常青的文章之后，我们通过这篇关于代理配置入门的文章完成了我们的//Kafka 优化三部曲//。
+
+In terms of the options you can use to configure your brokers, there are countless permutations. We’ve reduced and refined the options and present here what’s commonly configured to get the most out of Kafka brokers. 就可用于配置代理的选项而言，有无数的排列。我们减少并完善了选项，并在此介绍了可充分利用 Kafka 代理的常用配置。
+
+And when we say brokers, we also include topics. Some broker options provide defaults which can be overridden at the topic level, such as setting the maximum batch size for topics with `message.max.bytes`. 当我们说经纪人时，我们也包括话题。某些代理选项提供了可以在主题级别覆盖的默认值，例如使用`message.max.bytes`设置主题的最大批量大小。
+
+<!--more-->
+
+!!! Basic broker configuration 基本经纪商配置
+
+A basic broker configuration might look something like this. You’ll see settings for topics, threads and logs. 基本的代理配置可能如下所示。您将看到主题、线程和日志的设置。
+
+```
+num.partitions=1
+default.replication.factor=3
+offsets.topic.replication.factor=3
+transaction.state.log.replication.factor=3
+transaction.state.log.min.isr=1
+log.retention.hours=168
+log.segment.bytes=1073741824
+log.retention.check.interval.ms=300000
+num.network.threads=3
+num.io.threads=8
+num.recovery.threads.per.data.dir=1
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+socket.request.max.bytes=104857600
+group.initial.rebalance.delay.ms=0
+zookeeper.connection.timeout.ms=6000
+```
+
+In Strimzi, you configure these settings through the `config` property of the `Kafka` custom resource. 在 Strimzi 中，您可以通过`Kafka`自定义资源的`config`属性配置这些设置。
+
+In this post, we suggest what else you might add to optimize your Kafka brokers. Where example values are shown for properties, this is usually the default — adjust accordingly. 在这篇文章中，我们建议您还可以添加哪些内容来优化您的 Kafka 代理。如果显示属性的示例值，这通常是默认值 - 进行相应调整。
+
+> Some properties are [[managed directly by Strimzi|https://strimzi.io/docs/operators/latest/using.html#property-kafka-config-reference]], such as `broker.id`. These properties are ignored if they are added to the `config` specification. 某些属性[[由 Strimzi 直接管理|https://strimzi.io/docs/operators/latest/using.html#property-kafka-config-reference]]，例如`broker.id` 。如果将这些属性添加到`config`规范中，它们将被忽略。
+
+!!! Replicating topics for high availability 复制主题以实现高可用性
+
+When you configure topics, the number of partitions, minimum number of in-sync replicas, and partition replication factor are typically set at the topic level. You can use [[Strimzi’s `KafkaTopic`|https://strimzi.io/docs/operators/latest/using.html#proc-configuring-kafka-topic-str]] to do this. You can also set these properties at the broker level too. In which case, the defaults are applied to topics that do not have these properties set explicitly, including automatically-created topics. 配置主题时，分区数量、同步副本的最小数量和分区复制因子通常在主题级别设置。您可以使用[[Strimzi 的`KafkaTopic`|https://strimzi.io/docs/operators/latest/using.html#proc-configuring-kafka-topic-str]]来执行此操作。您还可以在代理级别设置这些属性。在这种情况下，默认值将应用于未显式设置这些属性的主题，包括自动创建的主题。
+
+```
+num.partitions=1
+default.replication.factor=3
+min.insync.replicas=2
+```
+
+High availability environments require a replication factor of at least 3 for topics and a minimum number of in-sync replicas as 1 less than the replication factor. For increased data durability, set `min.insync.replicas` in your //topic// configuration and message delivery acknowledgments using `acks=all` in your //producer// configuration. 高可用性环境要求主题的复制因子至少为 3，并且同步副本的最小数量比复制因子少 1。为了提高数据持久性，请在//主题//配置中设置`min.insync.replicas` ，并在//生产者//配置中使用`acks=all`设置消息传递确认。
+
+Use the `replica.fetch.max.bytes` property to set a maximum size for the messages fetched by each //follower// that replicates the data from a //leader// partition. Base the value on the average message size and throughput. When considering the total memory allocation required for read/write buffering, the memory available must also be able to accommodate the maximum replicated message size when multiplied by all followers. 使用`replica.fetch.max.bytes`属性设置从//领导者//分区复制数据的每个//追随者//获取的消息的最大大小。该值基于平均消息大小和吞吐量。当考虑读 / 写缓冲所需的总内存分配时，可用内存还必须能够容纳乘以所有追随者的最大复制消息大小。
+
+```
+replica.fetch.max.bytes=1048576
+```
+
+The importance of Kafka’s topic replication mechanism cannot be overstated. Topic replication is central to Kafka’s reliability and data durability. Using replication, a failed broker can recover from in-sync replicas on other brokers. We’ll go into more detail about leaders, followers and in-sync replicas when discussing [[partition rebalancing for availability|#partition-rebalancing-for-availability]].Kafka 的主题复制机制的重要性怎么强调都不为过。主题复制对于 Kafka 的可靠性和数据持久性至关重要。使用复制，失败的代理可以从其他代理上的同步副本中恢复。在讨论[[分区重新平衡可用性|#partition-rebalancing-for-availability]]时，我们将更详细地了解领导者、追随者和同步副本。
+
+!!!! Creating and deleting topics 创建和删除主题
+
+The `auto.create.topics.enable` property is enabled by default so that topics are created when needed by a producer or consumer. It’s usually disabled in production as Kafka users tend to prefer applying more control over topic creation. If you are using automatic topic creation, you can set the default number of partitions for topics using `num.partitions`. Use it with the `default.replication.factor` property. In this case, you might want to set the replication factor to at least three replicas so that data is more durable by default.`auto.create.topics.enable`属性默认启用，以便生产者或消费者需要时创建主题。它通常在生产中被禁用，因为 Kafka 用户倾向于对主题创建进行更多控制。如果您使用自动主题创建，则可以使用`num.partitions`设置主题的默认分区数。将其与`default.replication.factor`属性一起使用。在这种情况下，您可能希望将复制因子设置为至少三个副本，以便默认情况下数据更加持久。
+
+The `delete.topic.enable` property is enabled by default to allow topics to be deleted. Kafka users normally disable this property in production too. This time you’re making sure that data is not accidentally lost, although you can temporarily enable the property to delete topics if circumstances demand it. 默认情况下启用`delete.topic.enable`属性以允许删除主题。 Kafka 用户通常也会在生产中禁用此属性。这次您要确保数据不会意外丢失，尽管您可以在情况需要时暂时启用该属性来删除主题。
+
+```
+auto.create.topics.enable=false
+delete.topic.enable=true
+```
+
+> You cannot delete topics with the `KafkaTopic` resource if the `delete.topic.enable` property is set to false. 如果`delete.topic.enable`属性设置为 false，则无法删除具有`KafkaTopic`资源的主题。
+
+!!! Internal topic settings for transactions and commits 事务和提交的内部主题设置
+
+Pay attention to the configuration requirements for internal Kafka topics. 注意内部 Kafka 主题的配置要求。
+
+If you are [[using transactions|https://strimzi.io/docs/operators/latest/using.html#reliability_guarantees]] to enable atomic writes to partitions from producers, the internal `__transaction_state` topic used in the process requires a minimum of three brokers with the default settings. 如果您[[使用事务|https://strimzi.io/docs/operators/latest/using.html#reliability_guarantees]]来启用生产者对分区的原子写入，则该过程中使用的内部`__transaction_state`主题需要至少三个具有默认设置的代理。
+
+    # ...
+    transaction.state.log.replication.factor=3
+    transaction.state.log.min.isr=2
+    # ...
+
+The `__consumer_offsets` topic, which stores partition offset commits, has default settings for the number of partitions and replication factor.`__consumer_offsets`主题存储分区偏移提交，具有分区数量和复制因子的默认设置。
+
+    # ...
+    offsets.topic.num.partitions=50
+    offsets.topic.replication.factor=3
+    offsets.commit.required.acks=-1
+    # ...
+
+//''WARNING: Do not reduce these settings in production. 警告：请勿在生产中减少这些设置。''//
+
+!!! Improving request handling throughput by increasing I/O threads 通过增加 I/O 线程来提高请求处理吞吐量
+
+Network threads (`num.network.threads`) handle requests to the Kafka cluster, such as produce and fetch requests from client applications. Adjust the number of network threads to reflect the replication factor and the levels of activity from client producers and consumers interacting with the Kafka cluster. To reduce congestion and regulate the request traffic, you can use `queued.max.requests` to limit the number of requests allowed in the request queue before the network thread is blocked. 网络线程 ( `num.network.threads` ) 处理对 Kafka 集群的请求，例如来自客户端应用程序的生成和获取请求。调整网络线程数以反映复制因子以及与 Kafka 集群交互的客户端生产者和消费者的活动级别。为了减少拥塞并调节请求流量，您可以使用`queued.max.requests`来限制网络线程被阻塞之前请求队列中允许的请求数量。
+
+> Kafka broker metrics can help with working out the number of threads required. For example, metrics for the average time network threads are idle (`kafka.network:type=SocketServer,name=NetworkProcessorAvgIdlePercent`) indicate the percentage of resources used. If there is 0% idle time, all resources are in use, which means that more threads could be beneficial.Kafka 代理指标可以帮助计算出所需的线程数量。例如，网络线程空闲的平均时间的指标（ `kafka.network:type=SocketServer,name=NetworkProcessorAvgIdlePercent` ) 表示所使用资源的百分比。如果空闲时间为 0%，则所有资源都在使用中，这意味着更多线程可能会带来好处。
+
+I/O threads (`num.io.threads`) pick up requests from the request queue to process them. Adding more threads can improve throughput, but the number of CPU cores and disk bandwidth imposes a practical upper limit. A good starting point might be to start with the default of 8 multiplied by the number of disks.I/O 线程 ( `num.io.threads` ) 从请求队列中获取请求来处理它们。添加更多线程可以提高吞吐量，但 CPU 核心数量和磁盘带宽施加了实际上限。一个好的起点可能是从默认值 8 乘以磁盘数量开始。
+
+Use `num.recovery.threads.per.data.dir` to specify the number of threads used for log loading at startup and flushing at shutdown. 使用 `num.recovery.threads.per.data.dir` 指定用于启动时加载日志和关闭时刷新日志的线程数。
+
+    # ...
+    num.io.threads=8
+    queued.max.requests=500
+    num.network.threads=3
+    num.recovery.threads.per.data.dir=1
+    # ...
+
+Configuration updates to the thread pools for all brokers might occur dynamically at the cluster level. These updates are restricted to between half the current size and twice the current size. 所有代理的线程池的配置更新可能会在集群级别动态发生。这些更新被限制在当前大小的一半到当前大小的两倍之间。
+
+If threads are slow or limited due to the number of disks, try increasing the size of the buffers for network requests to improve throughput: 如果线程由于磁盘数量而缓慢或受限，请尝试增加网络请求缓冲区的大小以提高吞吐量：
+
+    # ...
+    replica.socket.receive.buffer.bytes=65536
+    # ...
+
+And also increase the maximum number of bytes Kafka can receive: 并且还增加 Kafka 可以接收的最大字节数：
+
+    # ...
+    socket.request.max.bytes=104857600
+    # ...
+
+!!! Increasing throughput for high latency connections 提高高延迟连接的吞吐量
+
+If you’ve fine-tuned the size of your message batches, the default values of the buffers for sending and receiving messages might be too small for the required throughput. 如果您已微调消息批次的大小，则用于发送和接收消息的缓冲区的默认值可能对于所需的吞吐量而言太小。
+
+    # ...
+    socket.send.buffer.bytes=1048576
+    socket.receive.buffer.bytes=1048576
+    # ...
+
+If you want to change the values, you can work out the optimal size of your buffers using a //bandwidth-delay// product calculation. You need some figures to work with. Essentially, you want to multiply your bandwidth capacity with the round-trip delay to give the data volume. Go look at this [[wiki definition|https://en.wikipedia.org/wiki/Bandwidth-delay_product]] to see examples of the calculation. 如果您想更改这些值，可以使用//带宽延迟//乘积计算来计算出缓冲区的最佳大小。你需要一些数字来处理。本质上，您需要将带宽容量乘以往返延迟来得出数据量。请查看此[[wiki 定义|https://en.wikipedia.org/wiki/Bandwidth-delay_product]]以查看计算示例。
+
+!!! Managing logs with data retention policies 使用数据保留策略管理日志
+
+Kafka uses logs to store message data. Logs are a series of segments with various associated indexes. New messages are written to a single //active// segment. The messages are never modified.Kafka 使用日志来存储消息数据。日志是一系列具有各种关联索引的段。新消息被写入单个//活动//段。这些消息永远不会被修改。
+
+Using fetch requests, consumers read from the segments. After a time, the active segment is //rolled// to become read-only as a new active segment replaces it. Older segments are retained until they are eligible for deletion. 使用获取请求，消费者从段中读取。一段时间后，活动段将//滚动//为只读，因为新的活动段将取代它。较旧的段将被保留，直到它们符合删除条件。
+
+You can configure the maximum size in bytes of a log segment and the amount of time in milliseconds before an active segment is rolled. Set them at the topic level using `segment.bytes` and `segment.ms`. Or set defaults at the broker level for any topics that do not have these settings: 您可以配置日志段的最大大小（以字节为单位）以及滚动活动段之前的时间量（以毫秒为单位）。使用`segment.bytes`和`segment.ms`在主题级别设置它们。或者在代理级别为没有这些设置的任何主题设置默认值：
+
+    # ...
+    log.segment.bytes=1073741824
+    log.roll.ms=604800000
+    # ...
+
+Larger sizes mean the active segment contains more messages and is rolled less often. Non-active segments also become eligible for deletion less often. 较大的大小意味着活动段包含更多消息并且滚动频率较低。非活动段也很少有资格被删除。
+
+You can set time-based or size-based log retention policies, in conjunction with the cleanup policies we cover next, so that logs are kept manageable. Non-active log segments are removed when retention limits are reached. By controlling the size of the log you retain, you can make sure that you’re not likely to exceed disk capacity. 您可以设置基于时间或基于大小的日志保留策略，结合我们接下来介绍的清理策略，使日志保持可管理性。当达到保留限制时，非活动日志段将被删除。通过控制保留的日志大小，您可以确保不会超出磁盘容量。
+
+For time-based log retention, use the milliseconds configuration, which has priority over the related minutes and hours configuration. The milliseconds configuration also updates dynamically, which the other configurations do not. 对于基于时间的日志保留，请使用毫秒配置，该配置优先于相关的分钟和小时配置。毫秒配置也会动态更新，而其他配置则不会。
+
+    # ...
+    log.retention.ms=1680000
+    # ...
+
+The retention period is based on the time messages were appended to the segment. If `log.retention.ms` is set to -1, no time limit is applied to log retention, so all logs are retained. Disk usage should always be monitored, but the -1 setting is not generally recommended as it is especially likely to lead to issues with full disks, which can be hard to rectify. 保留期限基于消息附加到段的时间。如果`log.retention.ms`设置为 -1，则日志保留没有时间限制，因此所有日志都会保留。应始终监视磁盘使用情况，但通常不建议使用 -1 设置，因为它特别有可能导致磁盘已满的问题，而这可能很难纠正。
+
+For size-based log retention, set a maximum log size in bytes: 对于基于大小的日志保留，设置最大日志大小（以字节为单位）：
+
+    # ...
+    log.retention.bytes=1073741824
+    # ...
+
+The maximum log size is for all segments in the log. In other words, a log will typically end up with approximately //log.retention.bytes/log.segment.bytes// segments once it reaches a steady state. When the maximum log size is reached, older segments are removed. 最大日志大小适用于日志中的所有段。换句话说，一旦日志达到稳定状态，它通常会以大约//log.retention.bytes/log.segment.bytes//的段结束。当达到最大日志大小时，旧的段将被删除。
+
+Setting a maximum log size does not consider the time messages were appended to a segment. If that’s a potential issue, you can use time-based and size-based retention. When you use both, the first threshold reached triggers the cleanup. 设置最大日志大小不考虑消息附加到段的时间。如果这是一个潜在问题，您可以使用基于时间和基于大小的保留。当您同时使用两者时，达到的第一个阈值会触发清理。
+
+If you wish to add a time delay before a segment file is deleted from the system, you can add the delay using `log.segment.delete.delay.ms` for all topics at the broker level or `file.delete.delay.ms` for specific topics in the topic configuration. 如果您希望在从系统中删除段文件之前添加时间延迟，则可以对代理级别的所有主题使用`log.segment.delete.delay.ms`或对特定主题使用`file.delete.delay.ms`添加延迟。主题配置中的主题。
+
+    # ...
+    log.segment.delete.delay.ms=60000
+    # ...
+
+!!! Removing log data with cleanup policies 使用清理策略删除日志数据
+
+Kafka’s log cleaner does what you expect. It removes old data from the log. Enabled by default (`log.cleaner.enable=true`), you can put some control on how the cleaner operates by defining a //cleanup policy//.Kafka 的日志清理器可以满足您的期望。它从日志中删除旧数据。默认情况下启用 ( `log.cleaner.enable=true` )，您可以通过定义//清理策略//来对清理器的运行方式进行一些控制。
+
+    # ...
+    log.cleanup.policy=compact,delete
+    # ...
+
+* ''Delete policy'' `delete` policy corresponds to managing logs with data retention policies. It’s suitable when data does not need to be retained forever. Older segments are deleted based on log retention limits. Otherwise, if the log cleaner is not enabled, and there are no log retention limits, the log will continue to grow.''删除策略''`delete`策略对应于使用数据保留策略管理日志。它适用于不需要永久保留数据的情况。根据日志保留限制删除较旧的段。否则，如果未启用日志清理器，并且没有日志保留限制，则日志将继续增长。
+
+* ''Compact policy'' `compact` policy guarantees to keep the most recent message for each message key. Log compaction is suitable when message values are changeable, and you want to retain the latest update. New messages are appended to the //head// of the log, which acts in the same way as a non-compacted log with writes appended in order. In the //tail// of a compacted log, where the log cleaner operates, records will be deleted if another record with the same key occurs later in the log. So while Kafka guarantees that the latest messages for each key will be retained, it does not guarantee that the whole compacted log will not contain duplicates.''紧凑策略''`compact`策略保证为每个消息密钥保留最新的消息。当消息值可变并且您希望保留最新更新时，日志压缩适用。新消息被附加到日志的//头部//，其作用与按顺序附加写入的非压缩日志相同。在压缩日志的//尾部//，即日志清理器运行的地方，如果日志中稍后出现具有相同键的另一条记录，则记录将被删除。因此，虽然 Kafka 保证保留每个键的最新消息，但它并不能保证整个压缩日志不会包含重复项。
+
+''Log showing key value writes with offset positions before compaction 显示压缩前键值写入偏移位置的日志''
+
+[img[Image of compaction showing key value writes|https://strimzi.io/assets/images/posts/2021-06-08-broker-tuning-compaction-1.png]]
+
+If you’re not using keys, you can’t use compaction as keys are needed to identify related messages. During log cleaning, the latest message (with the highest offset) is kept and older messages with the same key are discarded. Records retain their original offsets even when surrounding records get deleted. Consequently, the tail can have non-contiguous offsets. When consuming an offset that’s no longer available in the tail, the record with the next higher offset is found. 如果您不使用键，则无法使用压缩，因为需要键来识别相关消息。在日志清理期间，最新的消息（具有最高的偏移量）将被保留，具有相同键的较旧的消息将被丢弃。即使周围的记录被删除，记录也会保留其原始偏移量。因此，尾部可能具有不连续的偏移量。当消耗尾部不再可用的偏移量时，会找到具有下一个更高偏移量的记录。
+
+''Log after compaction 压缩后的日志''
+
+[img[Image of compaction after log cleanup|https://strimzi.io/assets/images/posts/2021-06-08-broker-tuning-compaction-2.png]]
+
+Logs can still become arbitrarily large using compaction alone if there’s no upper bound on the number of distinct keys. You can control this by setting policy to compact //and// delete logs. Log data is first compacted, removing older records that have a key in the head of the log. Then data that falls before the log retention threshold is deleted. 如果不同键的数量没有上限，则仅使用压缩仍然可以使日志变得任意大。您可以通过设置策略来压缩//和//删除日志来控制这一点。首先压缩日志数据，删除日志头部具有键的旧记录。然后删除日志保留阈值之前的数据。
+
+''Log retention point and compaction point 原木保留点和压实点''
+
+[img[Image of compaction with retention point|https://strimzi.io/assets/images/posts/2021-06-08-broker-tuning-compaction-3.png]]
+
+Adjust the frequency the log is checked for cleanup in milliseconds using `log.retention.check.interval.ms`. Base the frequency on log retention settings. Cleanup should be often enough to manage the disk space, but not so often it affects performance on a topic. Smaller retention sizes might require more frequent checks. You can put the cleaner on standby if there are no logs to clean for a set period using `log.cleaner.backoff.ms`. 使用以下命令调整检查日志清理的频率（以毫秒为单位） `log.retention.check.interval.ms` 。根据日志保留设置确定频率。清理的频率应该足以管理磁盘空间，但不会太频繁地影响主题的性能。较小的保留大小可能需要更频繁的检查。如果在设定的时间内没有要清理的日志，您可以使用`log.cleaner.backoff.ms`将清理器置于待命状态。
+
+When deleting all messages related to a specific key, a producer sends a //tombstone// message, which has a null value and acts as a marker to tell a consumer the value is deleted. After compaction, only the tombstone is retained, which must be for a long enough period for the consumer to know that the message is deleted. Use `log.cleaner.delete.retention.ms` to make sure that consumers have the chance to read the final state of a deleted record before it is permanently deleted. When older messages are deleted, having no value, the tombstone key is also deleted from the partition. 当删除与特定键相关的所有消息时，生产者会发送一条//墓碑//消息，该消息具有空值并充当标记，告诉消费者该值已被删除。压缩后，仅保留墓碑，并且墓碑必须保留足够长的时间，以便消费者知道消息已被删除。使用 `log.cleaner.delete.retention.ms` 确保消费者在永久删除之前有机会读取已删除记录的最终状态。当删除没有价值的旧消息时，逻辑删除键也会从分区中删除。
+
+    # ...
+    log.retention.check.interval.ms=300000
+    log.cleaner.backoff.ms=15000
+    log.cleaner.delete.retention.ms=86400000
+    log.segment.delete.delay.ms=60000
+    # ...
+
+!!! Managing disk utilization 管理磁盘利用率
+
+There are many other configuration settings related to log cleanup, but of particular importance is memory allocation. 还有许多其他与日志清理相关的配置设置，但特别重要的是内存分配。
+
+The deduplication property specifies the total memory for cleanup across all log cleaner threads. You can set an upper limit on the percentage of memory used through the buffer load factor. 重复数据删除属性指定用于跨所有日志清理线程进行清理的总内存。您可以通过缓冲区加载因子设置内存使用百分比的上限。
+
+    # ...
+    log.cleaner.dedupe.buffer.size=134217728
+    log.cleaner.io.buffer.load.factor=0.9
+    # ...
+
+Each log entry uses exactly 24 bytes, so you can work out how many log entries the buffer can handle in a single run and adjust the setting accordingly. 每个日志条目恰好使用 24 个字节，因此您可以计算出缓冲区在单次运行中可以处理多少个日志条目，并相应地调整设置。
+
+If possible, consider increasing the number of log cleaner threads if you are looking to reduce the log cleaning time: 如果可能，如果您希望减少日志清理时间，请考虑增加日志清理线程的数量：
+
+    # ...
+    log.cleaner.threads=8
+    # ...
+
+If you are experiencing issues with 100% disk bandwidth usage, you can throttle the log cleaner I/O so that the sum of the read/write operations is less than a specified double value based on the capabilities of the disks performing the operations: 如果您遇到 100% 磁盘带宽使用问题，您可以限制日志清理 I/O，以便读 / 写操作的总和小于基于执行操作的磁盘的能力指定的双精度值：
+
+    # ...
+    log.cleaner.io.max.bytes.per.second=1.7976931348623157E308
+    # ...
+
+!!! Handling large message sizes 处理大消息
+
+Ideally, individual messages aren’t more than a few 100KB, and are batched by the producer for better throughput up to the limit configured by `message.max.bytes` (broker config) or `max.message.bytes` (topic config). This defaults to 1MB. 理想情况下，单个消息不超过几百 KB，并由生产者进行批处理，以获得更好的吞吐量，直至达到`message.max.bytes` （代理配置）或`max.message.bytes` （主题配置）配置的限制。默认为 1MB。
+
+You have four ways to handle large message sizes: 您有四种方法来处理大消息：
+
+* Producer-side message compression 生产者端消息压缩
+* Reference-based messaging 基于参考的消息传递
+* Inline messaging 内联消息传递
+* Broker and producer/consumer configuration 代理和生产者 / 消费者配置
+
+We recommend trying producer-side message compression or reference-based messaging, which cover most situations. 我们建议尝试生产者端消息压缩或基于引用的消息传递，这涵盖了大多数情况。
+
+!!!! Producer-side compression 生产者端压缩
+
+For producer-side compression, you specify a `compression.type`, such as Gzip, to apply to batches. In the broker configuration, you use `compression.type=producer` so that the broker retains whatever compression the producer used. Generally speaking, it’s better that the producer and topic compression types match. Otherwise, the broker has to decompress and possibly recompress the batches before appending them to the log, which can be CPU intensive. 对于生产者端压缩，您可以指定`compression.type` （例如 Gzip）以应用于批次。在代理配置中，您使用`compression.type=producer`以便代理保留生产者使用的任何压缩。一般来说，生产者和主题压缩类型匹配更好。否则，代理必须先解压缩并可能重新压缩这些批次，然后再将它们附加到日志中，这可能会占用 CPU 资源。
+
+Compressing batches will add additional processing overhead on the producer and decompression overhead on the consumer. But you will get more data in a batch, which helps with throughput. You’ll also be able to make better use of your storage. Examine your metrics and combine producer-side compression with fine-tuning of the batch size to get the best outcome. 压缩批次会增加生产者的额外处理开销和消费者的解压开销。但您将批量获得更多数据，这有助于提高吞吐量。您还可以更好地利用您的存储空间。检查您的指标并将生产者端压缩与批量大小的微调相结合以获得最佳结果。
+
+!!!! Reference-based messaging 基于参考的消息传递
+
+Reference-based messaging only sends a reference to data stored in some other system in the message’s value. This is useful for data replication when you do not know how big a message will be. It also works well when there’s an occasional large message, since the smaller messages can be sent directly through Kafka, and the large messages can be sent by reference. Data is written to the data store, which must be fast, durable, and highly available, and a reference to the data is returned. The producer sends the reference to Kafka. The consumer uses the reference to fetch the data from the data store. 基于引用的消息传递仅发送对存储在消息值中的某些其他系统中的数据的引用。当您不知道消息有多大时，这对于数据复制非常有用。当偶尔有大消息时，它也能很好地工作，因为较小的消息可以直接通过 Kafka 发送，而大消息可以通过引用发送。数据被写入数据存储，数据存储必须快速、持久且高度可用，并返回对数据的引用。生产者将引用发送给 Kafka。消费者使用该引用从数据存储中获取数据。
+
+''Reference-based messaging flow 基于参考的消息传递流程''
+
+[img[Image of reference-based messaging flow|https://strimzi.io/assets/images/posts/2021-06-08-broker-tuning-reference-messaging.png]]
+
+Referenced-based message passing requires more trips, so end-to-end latency will increase. One major drawback of this approach is that there is no automatic cleanup of the data in the external system when the Kafka message is cleaned up. There is also the risk that data could be removed from the external system before the message in Kafka gets deleted. 基于引用的消息传递需要更多的行程，因此端到端的延迟将会增加。这种方法的一个主要缺点是，当清理 Kafka 消息时，并没有自动清理外部系统中的数据。还存在这样的风险：在 Kafka 中的消息被删除之前，数据可能会从外部系统中删除。
+
+One way to mitigate the limitations of reference-based messaging is to take the hybrid approach briefly mentioned. Send large messages to the data store and process standard-sized messages directly. 减轻基于参考的消息传递的局限性的一种方法是采用简要提到的混合方法。将大消息发送到数据存储并直接处理标准大小的消息。
+
+!!!! Inline messaging 内联消息传递
+
+Inline messaging is a complex process that splits messages into chunks that use the same key, which are then combined on output using a stream processor like Kafka Streams. 内联消息传递是一个复杂的过程，它将消息分割成使用相同密钥的块，然后使用 Kafka Streams 等流处理器将这些块组合在输出上。
+
+The basic steps are: 基本步骤是：
+
+* The producing client application serializes then chunks the data if the message is too big. 如果消息太大，则生成客户端应用程序会序列化数据，然后对数据进行分块。
+* The producer uses the Kafka `ByteArraySerializer` or similar to serialize each chunk again before sending it. 生产者使用 Kafka `ByteArraySerializer`或类似工具在发送之前再次序列化每个块。
+* The consumer tracks messages and buffers chunks until it has a complete message. 消费者跟踪消息并缓冲块，直到获得完整的消息。
+* The consuming client application receives the chunks, which are assembled before deserialization. 消费客户端应用程序接收在反序列化之前组装的块。
+* Complete messages are delivered to the rest of the consuming application in order according to the offset of the first or last chunk for each set of chunked messages. 根据每组分块消息的第一个或最后一个块的偏移量，完整的消息将按顺序传递到消费应用程序的其余部分。
+* Successful delivery of the complete message is checked against offset metadata to avoid duplicates during a rebalance. 根据偏移元数据检查完整消息的成功传递，以避免在重新平衡期间出现重复。
+
+''Inline messaging flow 内联消息流''
+
+[img[Image of inline messaging flow|https://strimzi.io/assets/images/posts/2021-06-08-broker-tuning-inline-messaging.png]]
+
+Inline messaging does not depend on external systems like reference-based messaging. But it does have a performance overhead on the consumer side because of the buffering required, particularly when handling a series of large messages in parallel. The chunks of large messages can become interleaved, so that it is not always possible to commit when all the chunks of a message have been consumed if the chunks of another large message in the buffer are incomplete. For this reason, buffering is usually supported by persisting message chunks or by implementing commit logic. 内联消息传递不依赖于外部系统，例如基于引用的消息传递。但由于需要缓冲，它确实在消费者端产生了性能开销，特别是在并行处理一系列大消息时。大消息的块可能会交错，因此，如果缓冲区中另一个大消息的块不完整，那么当一条消息的所有块都已被消耗时，并不总是可以提交。因此，缓冲通常由持久化消息块或实现提交逻辑来支持。
+
+!!!! Configuration to handle larger messages 处理较大消息的配置
+
+You increase message limits by configuring `message.max.bytes` to set the maximum record batch size. You can set the limit at the topic level or the broker level. If you set limit at the broker level, larger messages are allowed for all topics and messages greater than the maximum limit are rejected. The buffer size for the producers (`max.request.size`) and consumers (`message.max.bytes`) must be able to accommodate the larger messages. 您可以通过配置`message.max.bytes`设置最大记录批量大小来增加消息限制。您可以在主题级别或代理级别设置限制。如果您在代理级别设置限制，则所有主题都允许较大的消息，并且大于最大限制的消息将被拒绝。生产者 ( `max.request.size` ) 和消费者 ( `message.max.bytes` ) 的缓冲区大小必须能够容纳更大的消息。
+
+!!! Controlling the log flush of message data 控制消息数据的日志刷新
+
+Usually, log flush thresholds are not usually set and the operating system performs a background flush using its default settings. But if you are using application flush management, setting lower flush thresholds might be appropriate if you are using faster disks. 通常，通常不设置日志刷新阈值，并且操作系统使用其默认设置执行后台刷新。但是，如果您使用应用程序刷新管理，并且使用更快的磁盘，则设置较低的刷新阈值可能是合适的。
+
+Use the log flush properties to control the periodic writes of cached message data to disk. You can specify the frequency of checks on the log cache in milliseconds. Control the frequency of the flush based on the maximum amount of time that a message is kept in-memory and the maximum number of messages in the log before writing to disk. 使用日志刷新属性可以控制将缓存的消息数据定期写入磁盘。您可以指定检查日志缓存的频率（以毫秒为单位）。根据消息在内存中保留的最长时间以及写入磁盘之前日志中的最大消息数来控制刷新频率。
+
+    # ...
+    log.flush.scheduler.interval.ms=2000
+    log.flush.interval.ms=50000
+    log.flush.interval.messages=100000
+    # ...
+
+The wait between flushes includes the time to make the check and the specified interval before the flush is carried out. Increasing the frequency of flushes can affect throughput. 刷新之间的等待时间包括进行检查的时间和执行刷新之前指定的时间间隔。增加刷新频率会影响吞吐量。
+
+!!! Partition rebalancing for availability 分区重新平衡以实现可用性
+
+When replicating data across brokers, a partition leader on one broker handles all produce requests (writes to the log). Partition followers on other brokers replicate the partition data of the leader. So you get data reliability in the event of the leader failing. Followers need to be in sync for recovery, meaning the follower has caught up with the most recently committed message on the leader. If a leader is no longer available, one of the in-sync replicas is chosen as the new leader. The leader checks the follower by looking at the last offset requested. 跨代理复制数据时，一个代理上的分区领导者会处理所有生产请求（写入日志）。其他代理上的分区追随者复制领导者的分区数据。因此，即使领导者发生故障，您也能获得数据可靠性。追随者需要同步才能恢复，这意味着追随者已经赶上了领导者最近提交的消息。如果领导者不再可用，则选择同步副本之一作为新的领导者。领导者通过查看最后请求的偏移量来检查追随者。
+
+> An out-of-sync follower is usually not eligible as a leader should the current leader fail, unless [[unclean leader election is allowed|#unclean-leader-election]]. 如果当前领导者失败，不同步的追随者通常没有资格成为领导者，除非[[允许不干净的领导者选举|#unclean-leader-election]]。
+
+You can adjust the lag time before a follower is considered out of sync: 您可以调整关注者被视为不同步之前的滞后时间：
+
+    # ...
+    replica.lag.time.max.ms
+    # ...
+
+Lag time puts an upper limit on the time to replicate a message to all in-sync replicas and how long a producer has to wait for an acknowledgment. If a follower fails to make a fetch request and catch up with the latest message within the specified lag time, it is removed from in-sync replicas. The time you use depends on both network latency and broker disk bandwidth. You can reduce the lag time to detect failed replicas sooner, but by doing so you increase the chances of followers falling out of sync needlessly 滞后时间对将消息复制到所有同步副本的时间以及生产者必须等待确认的时间设置了上限。如果关注者未能在指定的延迟时间内发出获取请求并赶上最新消息，则会将其从同步副本中删除。您使用的时间取决于网络延迟和代理磁盘带宽。您可以缩短延迟时间以更快地检测到失败的副本，但这样做会不必要地增加追随者不同步的机会
+
+> Followers operate only to replicate messages from the partition leader and allow recovery should the leader fail. Followers do not normally serve clients, though [[rack configuration|https://strimzi.io/docs/operators/latest/using.html#type-Rack-reference]] allows a consumer to consume messages from the closest replica when a Kafka cluster spans multiple datacenters. 追随者仅用于复制来自分区领导者的消息，并在领导者失败时允许恢复。尽管当 Kafka 集群跨越多个数据中心时，[[机架配置|https://strimzi.io/docs/operators/latest/using.html#type-Rack-reference]]允许消费者使用来自最近副本的消息，但追随者通常不为客户端提供服务。
+
+You can [[use Cruise Control for Strimzi|https://strimzi.io/docs/operators/latest/using.html#cruise-control-concepts-str]] to figure out replica assignments to brokers that balance load evenly across the cluster. Its calculation takes into account the differing load experienced by leaders and followers. A failed leader affects the balance of a Kafka cluster because the remaining brokers get the extra work of leading additional partitions. 您可以[[使用 Strimzi 的 Cruise Control|https://strimzi.io/docs/operators/latest/using.html#cruise-control-concepts-str]]来确定代理的副本分配，从而在集群中均匀平衡负载。其计算考虑了领导者和追随者所经历的不同负载。失败的领导者会影响 Kafka 集群的平衡，因为剩余的代理会承担领导额外分区的额外工作。
+
+For the assignment found by Cruise Control to actually be balanced it is necessary that partitions are lead by the preferred leader. Kafka can automatically ensure that the preferred leader is being used (where possible), changing the current leader if necessary. This ensures that the cluster remains in the balanced state found by Cruise Control. 为了使 Cruise Control 发现的分配真正达到平衡，分区必须由首选领导者领导。 Kafka 可以自动确保使用首选领导者（如果可能），并在必要时更改当前领导者。这可确保集群保持在 Cruise Control 发现的平衡状态。
+
+You can control the frequency, in seconds, of automatic preferred leader checks and the maximum percentage of imbalance allowed for a broker before a rebalance is triggered. 您可以控制自动首选领导者检查的频率（以秒为单位）以及触发重新平衡之前代理允许的最大不平衡百分比。
+
+    #...
+    auto.leader.rebalance.enable=true
+    leader.imbalance.check.interval.seconds=300
+    leader.imbalance.per.broker.percentage=10
+    #...
+
+The percentage leader imbalance for a broker is the ratio between the current number of partitions for which the broker is the //current// leader and the number of partitions for which it is the //preferred// leader. You can set the percentage to zero to ensure that preferred leaders are always elected, assuming they are in sync. 代理的领导者不平衡百分比是代理作为//当前领导者的当前//分区数与它作为//首选//领导者的分区数之间的比率。您可以将百分比设置为零，以确保始终选出首选领导者（假设他们同步）。
+
+If the checks for rebalances need more control, you can disable automated rebalances. You can then choose when to trigger a rebalance using the `kafka-leader-election.sh` command line tool. 如果重新平衡检查需要更多控制，您可以禁用自动重新平衡。然后，您可以使用`kafka-leader-election.sh`命令行工具选择何时触发重新平衡。
+
+> The Grafana dashboards provided with Strimzi show metrics for under-replicated partitions and partitions that do not have an active leader.Strimzi 提供的 Grafana 仪表板显示复制不足的分区和没有活动领导者的分区的指标。
+
+!!! Unclean leader election 不干净的领导人选举
+
+Leader election to an in-sync replica is considered //clean// because it guarantees no loss of data. And this is what happens by default. If no other broker was in the ISR (in-sync replica) when the old leader was lost, Kafka waits until that leader is back online before messages can be written or read. 对同步副本的领导者选举被认为是\*干净的，\*因为它保证不会丢失数据。这就是默认情况下发生的情况。如果旧领导者丢失时 ISR（同步副本）中没有其他代理，则 Kafka 会等待该领导者重新上线，然后才能写入或读取消息。
+
+But what if there is no in-sync replica to take on leadership? Perhaps the ISR only contained the leader when the leader’s disk died. If a minimum number of in-sync replicas is not set, and there are no followers in sync with the partition leader when its hard drive fails irrevocably, data is already lost. Not only that, but //a new leader cannot be elected// because there are no in-sync followers. 但是，如果没有同步副本来承担领导责任怎么办？也许 ISR 仅在主磁盘失效时才包含主磁盘。如果未设置同步副本的最小数量，并且当分区领导者的硬盘发生不可挽回的故障时，没有追随者与分区领导者同步，则数据已经丢失。不仅如此，因为没有同步的追随者，所以//无法选举新的领导者//。
+
+If your situation favors availability over durability, you might want to enable //unclean// leader election. 如果您的情况更看重可用性而不是持久性，您可能希望启用//不干净的//领导者选举。
+
+    # ...
+    unclean.leader.election.enable=false
+    # ...
+
+Unclean leader election means out-of-sync replicas can become leaders, but you risk losing messages. 不干净的领导者选举意味着不同步的副本可以成为领导者，但你可能会面临丢失消息的风险。
+
+!!! Avoiding unnecessary consumer group rebalances 避免不必要的消费组重新平衡
+
+We’ll end this exploration of broker tuning tips by suggesting a very useful configuration to avoid unnecessary consumer group rebalances. You can add a delay so the group coordinator waits for members to join before the initial rebalance: 我们将通过建议一个非常有用的配置来结束对代理调整技巧的探索，以避免不必要的消费者组重新平衡。您可以添加延迟，以便组协调员在初始重新平衡之前等待成员加入：
+
+    # ...
+    group.initial.rebalance.delay.ms=3000
+    # ...
+
+Inevitably, there’s a trade-off as the delay prevents the group from consuming until the period has ended. 不可避免地，需要进行权衡，因为延迟会阻止该组在该期间结束之前进行消费。
+
+And as we come to end of his post, we can make a general point about any tuning you undertake. Have a clear idea of what you hope to achieve with your tuning, but be mindful of what compromises you might have to make to achieve the outcome you seek. 当我们结束他的文章时，我们可以对您进行的任何调整提出一个一般性的观点。清楚地了解您希望通过调整实现什么目标，但请注意您可能需要做出哪些妥协才能实现您寻求的结果。
+
+!! Conclusion 结论
+
+So that completes a targeted roundup of the most common broker tuning options for your consideration. Try them out and keep your messages flowing. 这样就完成了对最常见经纪商调整选项的有针对性的汇总，供您考虑。尝试一下，让您的信息畅通无阻。
+
+Share this: 分享这个： [img[https://strimzi.io/assets/images/share-page/icons_social-linkedin.png]] [img[https://strimzi.io/assets/images/share-page/icons_social-twitter.png]] [img[https://strimzi.io/assets/images/share-page/icons_social-facebook.png]] [img[https://strimzi.io/assets/images/share-page/icons_social-reddit.png]] [img[https://strimzi.io/assets/images/share-page/icons_social-email.png]]
