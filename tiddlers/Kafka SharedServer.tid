@@ -1,0 +1,20 @@
+created: 20241014094456489
+creator: Gezi-lzq
+modified: 20241014094456489
+modifier: Gezi-lzq
+tags: 剪藏 kafka
+title: Kafka SharedServer
+type: text/vnd.tiddlywiki
+url: https://app.nextchat.dev/#/chat
+
+`SharedServer` 的生命周期在 Kafka 服务器中主要由 `Broker` 和 `Controller` 控制，它们可以分别启动和停止 `SharedServer`。具体的生命周期如下：
+
+# ''初始化''：`SharedServer` 在初始化时会接收一系列参数，包括 Kafka 配置、元数据属性集合、时间、度量、Controller 选举者的未来集合、引导服务器集合和故障处理器工厂。
+
+# ''启动''：当 `Broker` 或 `Controller` 需要 `SharedServer` 时，它们会调用 `startForBroker()` 或 `startForController()` 方法来启动 `SharedServer`。在启动过程中，`SharedServer` 会初始化一系列的组件，如 Raft 管理器、元数据加载器、快照生成器等，并注册到 Raft 管理器。
+
+# ''运行''：在 `SharedServer` 启动后，它会持续运行，直到不再被 `Broker` 或 `Controller` 使用。在运行过程中，`SharedServer` 会根据需要处理各种故障，并加载和发布元数据。
+
+# ''停止''：当 `Broker` 或 `Controller` 不再需要 `SharedServer` 时，它们会调用 `stopForBroker()` 或 `stopForController()` 方法来停止 `SharedServer`。在停止过程中，`SharedServer` 会关闭所有已经初始化的组件，并释放相关资源。
+
+注意，`SharedServer` 的启动和停止都是线程安全的，可以由多个线程并发调用。同时，`SharedServer` 可以被多次启动和停止，这在单元测试中可能会很有用。
