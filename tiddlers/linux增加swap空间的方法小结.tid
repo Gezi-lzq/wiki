@@ -1,0 +1,33 @@
+created: 20241015070105567
+creator: Gezi-lzq
+modified: 20241015070105567
+modifier: Gezi-lzq
+tags: 剪藏 linux
+title: linux增加swap空间的方法小结
+type: text/vnd.tiddlywiki
+url: https://www.cnblogs.com/tocy/p/linux-swap-cmd-summary.html
+
+!! 通过 swap 分区文件增加 swap 空间
+
+!!! 1. 创建 swap 分区的文件
+
+`dd if=/dev/zero of=swapfile bs=1M count=1024`\
+其中`bs`是每块的大小，`count`是块的数量；`bs*count`，就是 swap 文件的大小：这里 1M\*1024=1G。可以根据需要自行调整。
+
+此外，`swapfile`是 swap 文件的路径，可以根据需求修改。
+
+!!! 2. 格式化交换分区文件
+
+`mkswap swapfile`\
+这里的路径和之前的路径要对应起来。
+
+!!! 3. 启用 swap 分区文件
+
+`swapon swapfile`
+
+!!! 4. 添加开机启动
+
+修改`/etc/fstab`这个文件，添加或者修改这一行：\
+`swapfile swap swap defaults 0 0`\
+注意，路径还是要对应，而且必须是全路径。最后两个是零，不是大写字母 O。\
+此项不是必须的。如果不修改开机启动配置，重启之后的 swap 空间会重置，之前配置丢失。
