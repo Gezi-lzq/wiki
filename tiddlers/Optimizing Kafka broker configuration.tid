@@ -1,6 +1,6 @@
 created: 20241012052058929
 creator: Gezi-lzq
-modified: 20241012052255005
+modified: 20241017034013550
 modifier: Gezi-lzq
 tags: 剪藏 kafka
 title: Optimizing Kafka broker configuration
@@ -83,18 +83,18 @@ Pay attention to the configuration requirements for internal Kafka topics. 注�
 
 If you are [[using transactions|https://strimzi.io/docs/operators/latest/using.html#reliability_guarantees]] to enable atomic writes to partitions from producers, the internal `__transaction_state` topic used in the process requires a minimum of three brokers with the default settings. 如果您[[使用事务|https://strimzi.io/docs/operators/latest/using.html#reliability_guarantees]]来启用生产者对分区的原子写入，则该过程中使用的内部`__transaction_state`主题需要至少三个具有默认设置的代理。
 
-    # ...
-    transaction.state.log.replication.factor=3
-    transaction.state.log.min.isr=2
-    # ...
+```
+transaction.state.log.replication.factor=3
+transaction.state.log.min.isr=2
+```
 
 The `__consumer_offsets` topic, which stores partition offset commits, has default settings for the number of partitions and replication factor.`__consumer_offsets`主题存储分区偏移提交，具有分区数量和复制因子的默认设置。
 
-    # ...
-    offsets.topic.num.partitions=50
-    offsets.topic.replication.factor=3
-    offsets.commit.required.acks=-1
-    # ...
+```
+offsets.topic.num.partitions=50
+offsets.topic.replication.factor=3
+offsets.commit.required.acks=-1
+```
 
 //''WARNING: Do not reduce these settings in production. 警告：请勿在生产中减少这些设置。''//
 
@@ -108,35 +108,35 @@ I/O threads (`num.io.threads`) pick up requests from the request queue to proces
 
 Use `num.recovery.threads.per.data.dir` to specify the number of threads used for log loading at startup and flushing at shutdown. 使用 `num.recovery.threads.per.data.dir` 指定用于启动时加载日志和关闭时刷新日志的线程数。
 
-    # ...
-    num.io.threads=8
-    queued.max.requests=500
-    num.network.threads=3
-    num.recovery.threads.per.data.dir=1
-    # ...
+```
+num.io.threads=8
+queued.max.requests=500
+num.network.threads=3
+num.recovery.threads.per.data.dir=1
+```
 
 Configuration updates to the thread pools for all brokers might occur dynamically at the cluster level. These updates are restricted to between half the current size and twice the current size. 所有代理的线程池的配置更新可能会在集群级别动态发生。这些更新被限制在当前大小的一半到当前大小的两倍之间。
 
 If threads are slow or limited due to the number of disks, try increasing the size of the buffers for network requests to improve throughput: 如果线程由于磁盘数量而缓慢或受限，请尝试增加网络请求缓冲区的大小以提高吞吐量：
 
-    # ...
-    replica.socket.receive.buffer.bytes=65536
-    # ...
+```
+replica.socket.receive.buffer.bytes=65536
+```
 
 And also increase the maximum number of bytes Kafka can receive: 并且还增加 Kafka 可以接收的最大字节数：
 
-    # ...
-    socket.request.max.bytes=104857600
-    # ...
+```
+socket.request.max.bytes=104857600
+```
 
 !!! Increasing throughput for high latency connections 提高高延迟连接的吞吐量
 
 If you’ve fine-tuned the size of your message batches, the default values of the buffers for sending and receiving messages might be too small for the required throughput. 如果您已微调消息批次的大小，则用于发送和接收消息的缓冲区的默认值可能对于所需的吞吐量而言太小。
 
-    # ...
-    socket.send.buffer.bytes=1048576
-    socket.receive.buffer.bytes=1048576
-    # ...
+```
+socket.send.buffer.bytes=1048576
+socket.receive.buffer.bytes=1048576
+```
 
 If you want to change the values, you can work out the optimal size of your buffers using a //bandwidth-delay// product calculation. You need some figures to work with. Essentially, you want to multiply your bandwidth capacity with the round-trip delay to give the data volume. Go look at this [[wiki definition|https://en.wikipedia.org/wiki/Bandwidth-delay_product]] to see examples of the calculation. 如果您想更改这些值，可以使用//带宽延迟//乘积计算来计算出缓冲区的最佳大小。你需要一些数字来处理。本质上，您需要将带宽容量乘以往返延迟来得出数据量。请查看此[[wiki 定义|https://en.wikipedia.org/wiki/Bandwidth-delay_product]]以查看计算示例。
 
@@ -148,10 +148,10 @@ Using fetch requests, consumers read from the segments. After a time, the active
 
 You can configure the maximum size in bytes of a log segment and the amount of time in milliseconds before an active segment is rolled. Set them at the topic level using `segment.bytes` and `segment.ms`. Or set defaults at the broker level for any topics that do not have these settings: 您可以配置日志段的最大大小（以字节为单位）以及滚动活动段之前的时间量（以毫秒为单位）。使用`segment.bytes`和`segment.ms`在主题级别设置它们。或者在代理级别为没有这些设置的任何主题设置默认值：
 
-    # ...
-    log.segment.bytes=1073741824
-    log.roll.ms=604800000
-    # ...
+```
+log.segment.bytes=1073741824
+log.roll.ms=604800000
+```
 
 Larger sizes mean the active segment contains more messages and is rolled less often. Non-active segments also become eligible for deletion less often. 较大的大小意味着活动段包含更多消息并且滚动频率较低。非活动段也很少有资格被删除。
 
@@ -159,17 +159,17 @@ You can set time-based or size-based log retention policies, in conjunction with
 
 For time-based log retention, use the milliseconds configuration, which has priority over the related minutes and hours configuration. The milliseconds configuration also updates dynamically, which the other configurations do not. 对于基于时间的日志保留，请使用毫秒配置，该配置优先于相关的分钟和小时配置。毫秒配置也会动态更新，而其他配置则不会。
 
-    # ...
-    log.retention.ms=1680000
-    # ...
+```
+log.retention.ms=1680000
+```
 
 The retention period is based on the time messages were appended to the segment. If `log.retention.ms` is set to -1, no time limit is applied to log retention, so all logs are retained. Disk usage should always be monitored, but the -1 setting is not generally recommended as it is especially likely to lead to issues with full disks, which can be hard to rectify. 保留期限基于消息附加到段的时间。如果`log.retention.ms`设置为 -1，则日志保留没有时间限制，因此所有日志都会保留。应始终监视磁盘使用情况，但通常不建议使用 -1 设置，因为它特别有可能导致磁盘已满的问题，而这可能很难纠正。
 
 For size-based log retention, set a maximum log size in bytes: 对于基于大小的日志保留，设置最大日志大小（以字节为单位）：
 
-    # ...
+```
     log.retention.bytes=1073741824
-    # ...
+```
 
 The maximum log size is for all segments in the log. In other words, a log will typically end up with approximately //log.retention.bytes/log.segment.bytes// segments once it reaches a steady state. When the maximum log size is reached, older segments are removed. 最大日志大小适用于日志中的所有段。换句话说，一旦日志达到稳定状态，它通常会以大约//log.retention.bytes/log.segment.bytes//的段结束。当达到最大日志大小时，旧的段将被删除。
 
@@ -177,9 +177,9 @@ Setting a maximum log size does not consider the time messages were appended to 
 
 If you wish to add a time delay before a segment file is deleted from the system, you can add the delay using `log.segment.delete.delay.ms` for all topics at the broker level or `file.delete.delay.ms` for specific topics in the topic configuration. 如果您希望在从系统中删除段文件之前添加时间延迟，则可以对代理级别的所有主题使用`log.segment.delete.delay.ms`或对特定主题使用`file.delete.delay.ms`添加延迟。主题配置中的主题。
 
-    # ...
+```
     log.segment.delete.delay.ms=60000
-    # ...
+```
 
 !!! Removing log data with cleanup policies 使用清理策略删除日志数据
 
@@ -213,12 +213,12 @@ Adjust the frequency the log is checked for cleanup in milliseconds using `log.r
 
 When deleting all messages related to a specific key, a producer sends a //tombstone// message, which has a null value and acts as a marker to tell a consumer the value is deleted. After compaction, only the tombstone is retained, which must be for a long enough period for the consumer to know that the message is deleted. Use `log.cleaner.delete.retention.ms` to make sure that consumers have the chance to read the final state of a deleted record before it is permanently deleted. When older messages are deleted, having no value, the tombstone key is also deleted from the partition. 当删除与特定键相关的所有消息时，生产者会发送一条//墓碑//消息，该消息具有空值并充当标记，告诉消费者该值已被删除。压缩后，仅保留墓碑，并且墓碑必须保留足够长的时间，以便消费者知道消息已被删除。使用 `log.cleaner.delete.retention.ms` 确保消费者在永久删除之前有机会读取已删除记录的最终状态。当删除没有价值的旧消息时，逻辑删除键也会从分区中删除。
 
-    # ...
+```
     log.retention.check.interval.ms=300000
     log.cleaner.backoff.ms=15000
     log.cleaner.delete.retention.ms=86400000
     log.segment.delete.delay.ms=60000
-    # ...
+```
 
 !!! Managing disk utilization 管理磁盘利用率
 
@@ -226,24 +226,24 @@ There are many other configuration settings related to log cleanup, but of parti
 
 The deduplication property specifies the total memory for cleanup across all log cleaner threads. You can set an upper limit on the percentage of memory used through the buffer load factor. 重复数据删除属性指定用于跨所有日志清理线程进行清理的总内存。您可以通过缓冲区加载因子设置内存使用百分比的上限。
 
-    # ...
+```
     log.cleaner.dedupe.buffer.size=134217728
     log.cleaner.io.buffer.load.factor=0.9
-    # ...
+```
 
 Each log entry uses exactly 24 bytes, so you can work out how many log entries the buffer can handle in a single run and adjust the setting accordingly. 每个日志条目恰好使用 24 个字节，因此您可以计算出缓冲区在单次运行中可以处理多少个日志条目，并相应地调整设置。
 
 If possible, consider increasing the number of log cleaner threads if you are looking to reduce the log cleaning time: 如果可能，如果您希望减少日志清理时间，请考虑增加日志清理线程的数量：
 
-    # ...
+```
     log.cleaner.threads=8
-    # ...
+```
 
 If you are experiencing issues with 100% disk bandwidth usage, you can throttle the log cleaner I/O so that the sum of the read/write operations is less than a specified double value based on the capabilities of the disks performing the operations: 如果您遇到 100% 磁盘带宽使用问题，您可以限制日志清理 I/O，以便读 / 写操作的总和小于基于执行操作的磁盘的能力指定的双精度值：
 
-    # ...
+```
     log.cleaner.io.max.bytes.per.second=1.7976931348623157E308
-    # ...
+```
 
 !!! Handling large message sizes 处理大消息
 
@@ -305,11 +305,11 @@ Usually, log flush thresholds are not usually set and the operating system perfo
 
 Use the log flush properties to control the periodic writes of cached message data to disk. You can specify the frequency of checks on the log cache in milliseconds. Control the frequency of the flush based on the maximum amount of time that a message is kept in-memory and the maximum number of messages in the log before writing to disk. 使用日志刷新属性可以控制将缓存的消息数据定期写入磁盘。您可以指定检查日志缓存的频率（以毫秒为单位）。根据消息在内存中保留的最长时间以及写入磁盘之前日志中的最大消息数来控制刷新频率。
 
-    # ...
+```
     log.flush.scheduler.interval.ms=2000
     log.flush.interval.ms=50000
     log.flush.interval.messages=100000
-    # ...
+```
 
 The wait between flushes includes the time to make the check and the specified interval before the flush is carried out. Increasing the frequency of flushes can affect throughput. 刷新之间的等待时间包括进行检查的时间和执行刷新之前指定的时间间隔。增加刷新频率会影响吞吐量。
 
@@ -321,9 +321,9 @@ When replicating data across brokers, a partition leader on one broker handles a
 
 You can adjust the lag time before a follower is considered out of sync: 您可以调整关注者被视为不同步之前的滞后时间：
 
-    # ...
+```
     replica.lag.time.max.ms
-    # ...
+```
 
 Lag time puts an upper limit on the time to replicate a message to all in-sync replicas and how long a producer has to wait for an acknowledgment. If a follower fails to make a fetch request and catch up with the latest message within the specified lag time, it is removed from in-sync replicas. The time you use depends on both network latency and broker disk bandwidth. You can reduce the lag time to detect failed replicas sooner, but by doing so you increase the chances of followers falling out of sync needlessly 滞后时间对将消息复制到所有同步副本的时间以及生产者必须等待确认的时间设置了上限。如果关注者未能在指定的延迟时间内发出获取请求并赶上最新消息，则会将其从同步副本中删除。您使用的时间取决于网络延迟和代理磁盘带宽。您可以缩短延迟时间以更快地检测到失败的副本，但这样做会不必要地增加追随者不同步的机会
 
@@ -335,11 +335,11 @@ For the assignment found by Cruise Control to actually be balanced it is necessa
 
 You can control the frequency, in seconds, of automatic preferred leader checks and the maximum percentage of imbalance allowed for a broker before a rebalance is triggered. 您可以控制自动首选领导者检查的频率（以秒为单位）以及触发重新平衡之前代理允许的最大不平衡百分比。
 
-    #...
+```
     auto.leader.rebalance.enable=true
     leader.imbalance.check.interval.seconds=300
     leader.imbalance.per.broker.percentage=10
-    #...
+```
 
 The percentage leader imbalance for a broker is the ratio between the current number of partitions for which the broker is the //current// leader and the number of partitions for which it is the //preferred// leader. You can set the percentage to zero to ensure that preferred leaders are always elected, assuming they are in sync. 代理的领导者不平衡百分比是代理作为//当前领导者的当前//分区数与它作为//首选//领导者的分区数之间的比率。您可以将百分比设置为零，以确保始终选出首选领导者（假设他们同步）。
 
@@ -355,9 +355,9 @@ But what if there is no in-sync replica to take on leadership? Perhaps the ISR o
 
 If your situation favors availability over durability, you might want to enable //unclean// leader election. 如果您的情况更看重可用性而不是持久性，您可能希望启用//不干净的//领导者选举。
 
-    # ...
+```
     unclean.leader.election.enable=false
-    # ...
+```
 
 Unclean leader election means out-of-sync replicas can become leaders, but you risk losing messages. 不干净的领导者选举意味着不同步的副本可以成为领导者，但你可能会面临丢失消息的风险。
 
@@ -365,9 +365,9 @@ Unclean leader election means out-of-sync replicas can become leaders, but you r
 
 We’ll end this exploration of broker tuning tips by suggesting a very useful configuration to avoid unnecessary consumer group rebalances. You can add a delay so the group coordinator waits for members to join before the initial rebalance: 我们将通过建议一个非常有用的配置来结束对代理调整技巧的探索，以避免不必要的消费者组重新平衡。您可以添加延迟，以便组协调员在初始重新平衡之前等待成员加入：
 
-    # ...
+```
     group.initial.rebalance.delay.ms=3000
-    # ...
+```
 
 Inevitably, there’s a trade-off as the delay prevents the group from consuming until the period has ended. 不可避免地，需要进行权衡，因为延迟会阻止该组在该期间结束之前进行消费。
 
