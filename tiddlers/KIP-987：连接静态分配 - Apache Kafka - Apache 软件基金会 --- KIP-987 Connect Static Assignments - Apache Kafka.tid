@@ -1,0 +1,19 @@
+created: 20241018073131627
+creator: Gezi-lzq
+modified: 20241018073131627
+modifier: Gezi-lzq
+tags: 剪藏 kafka
+title: KIP-987：连接静态分配 - Apache Kafka - Apache 软件基金会 --- KIP-987 Connect Static Assignments - Apache Kafka
+type: text/vnd.tiddlywiki
+url: https://cwiki.apache.org/confluence/display/KAFKA/KIP-987%3A+Connect+Static+Assignments
+
+KIP-987 提案是针对 Apache Kafka Connect 的调度算法改进，以解决当前调度算法在处理异构工作负载时的不足。提案由 Greg Harris 提出，目前处于讨论阶段。该提案的动机在于，现有的 eager 和 compatible 调度算法在工作负载和集群同质时表现良好，但在 Connect 的异构工作负载中，这些算法可能导致集群热点问题，尤其是在 compatible 协议下，热点问题的出现是不确定的，且难以修复。为了解决这一问题，KIP-987 提议引入静态分配功能，允许用户或管理层将作业分配给特定的工作人员，并由一个新的调度算法来尊重这些静态分配。
+
+该提案包括以下几个方面：
+
+# 引入新的 connect.protocol ，static，作为新的默认协议，与现有的 sessioned 协议向后兼容。
+# 工作人员将接受两种新的可选配置，static.connectors 和 static.tasks，用于指定允许在该节点上执行的连接器和任务。
+# 如果集群中所有成员都支持 static 协议，领导者将执行一系列步骤来分配作业，包括将工作人员分类为静态工作人员和通配符工作人员，将作业分类为静态作业和通配符作业，并根据分类进行作业的撤销和分配。
+
+提案保持了向后兼容性，支持滚动升级，并提供了迁移计划。
+系统测试将验证滚动更新流程，包括从现有协议迁移到 static 协议，以及添加和移除静态和通配符工作人员的情况。
