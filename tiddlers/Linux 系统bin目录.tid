@@ -1,0 +1,20 @@
+created: 20241031032832688
+creator: Gezi-lzq
+modified: 20241031032913547
+modifier: Gezi-lzq
+tags: linux
+title: Linux 系统bin目录
+
+! Linux 系统中六个关键目录的作用：
+
+/bin：存放普通用户和超级用户都会用到的必要的命令，如ls、pwd等。
+
+/sbin：存放系统管理员使用的必要的管理系统的命令，如shutdown、ifconfig等。
+
+/usr/bin：存放一些非必要的、普通用户和超级用户都可能使用的命令，如gcc、ldd等。
+
+/usr/sbin：存放一些非必要的、由系统管理员来使用的管理系统的命令，如crond、httpd等。
+
+/usr/local/bin：通常是用户后来安装的软件，可能被普通用户或超级用户使用。
+
+/usr/local/sbin：通常是用户后来安装的软件，一般是用来管理系统的，被系统管理员使用。
