@@ -1,0 +1,28 @@
+created: 20241103083308055
+creator: Gezi-lzq
+modified: 20241103085158805
+modifier: Gezi-lzq
+tags: 
+title: Iceberg Architecture
+
+Apache Iceberg 通过一个元数据数来跟踪表分区、排序、schema 随时间的变化以及更多内容，这个元数据树可以让引擎以极短的时间来规划查询，这比使用传统的数据湖模式要快更多。
+
+[img[the_apache_iceberg_architecture.png]]
+
+这个 metadate tree 将表的元数据分解为四个组成部分：
+
+!!! ''Manifest file''
+
+	A list of datafiles， 包含了每个 datafile 的 location/path 以及 关于这些 datafile 的 key metadate，这有助于创建更高效的执行计划。
+
+!!! ''Manifest list''
+
+	定义表的单一快照的文件作为 manifest file 的列表，以及这些 manifest file 的统计信息，这些信息可以帮助创建更高效的执行计划。
+
+!!! ''Metadate file ''
+
+	文件定义了表的 structure 包括其 schema，分区方案以及快照列表。
+
+!!! ''Catalog''
+
+	跟踪表的位置（类似 Hive Metastore）,但它包含的是表名到表最新的 metadate file location 的映射，而不是表名到一组目录的映射。
