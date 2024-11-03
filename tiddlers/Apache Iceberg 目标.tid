@@ -1,6 +1,6 @@
 created: 20241103074738733
 creator: Gezi-lzq
-modified: 20241103075429783
+modified: 20241103083030204
 modifier: Gezi-lzq
 tags: 大数据 iceberg
 title: Apache Iceberg 目标
@@ -11,3 +11,16 @@ title: Apache Iceberg 目标
 
 ! Perfomace
 
+Hive 的文件/目录列表瓶颈导致查询规划在执行查询之间需要花费过长时间。该表应提供元数据，避免过度文件列表，这样不仅可以使规划过程更快，而且由于它们只扫描查询需要的文件，因此生成的计划也可以更快地执行。
+
+! Easy to use
+
+为了获得分区等技术的优势，最终用户不应需要了解表的物理结构。表应该根据自然直观的查询为用户提供分区的好处，而无需依赖于他们已经过滤的列（例如，在已经过滤了派生时间戳的月份列时）过滤额外的分区列。
+
+! Evolvability
+
+更新 Hive 表的 schemas 可能会导致不完全的处理，而更改表的分区则会导致需要重写整个表。表应该能够安全地演变其 schemas 和 分区方案，而无需重写。
+
+! Scalability
+
+所有前面的目标都应该能够在 Netflix 的 PB 级数据规模上实现。

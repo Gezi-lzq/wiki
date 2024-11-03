@@ -1,0 +1,16 @@
+caption: {{$:/language/codemirror6/keymap/caption}}
+caption-zh: {{$:/language/codemirror6/zh/keymap/caption}}
+created: 20241103080924660
+creator: Gezi-lzq
+description: {{$:/language/codemirror6/keymap/description}}
+description-zh: {{$:/language/codemirror6/zh/keymap/description}}
+id: 6
+modified: 20241103080924660
+modifier: Gezi-lzq
+option-names: standard vim
+option-values: standard vim
+settings-group: keymap
+settings-template: select
+title: $:/config/codemirror-6/keymap
+
+vim

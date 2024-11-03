@@ -1,0 +1,14 @@
+caption: {{$:/language/codemirror6/footer/caption}}
+caption-zh: {{$:/language/codemirror6/zh/footer/caption}}
+created: 20241103080453686
+creator: Gezi-lzq
+description: {{$:/language/codemirror6/footer/description}}
+description-zh: {{$:/language/codemirror6/zh/footer/description}}
+id: 36
+modified: 20241103080459502
+modifier: Gezi-lzq
+settings-group: completion
+settings-template: input-switch
+title: $:/config/codemirror-6/footer
+
+no

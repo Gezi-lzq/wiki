@@ -1,0 +1,14 @@
+caption: {{$:/language/codemirror6/insertModeFirst/caption}}
+caption-zh: {{$:/language/codemirror6/zh/insertModeFirst/caption}}
+created: 20241103080610972
+creator: Gezi-lzq
+description: {{$:/language/codemirror6/insertModeFirst/description}}
+description-zh: {{$:/language/codemirror6/zh/insertModeFirst/description}}
+id: 8
+modified: 20241103081042010
+modifier: Gezi-lzq
+settings-group: vim
+settings-template: input-switch
+title: $:/config/codemirror-6/insertModeFirst
+
+no
