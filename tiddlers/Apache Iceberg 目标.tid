@@ -1,0 +1,13 @@
+created: 20241103074738733
+creator: Gezi-lzq
+modified: 20241103075429783
+modifier: Gezi-lzq
+tags: 大数据 iceberg
+title: Apache Iceberg 目标
+
+! Consistency
+
+如果一个表的更新涉及多个分区，必须确保最终用户在查看数据时不会遇到数据不一致的情况。对跨多个分区的表进行更新应当迅速且原子化，以确保对最终用户的一致性。用户要么看到更新前的数据，要么看到更新后的数据，而不会看到更新过程中的数据。
+
+! Perfomace
+
