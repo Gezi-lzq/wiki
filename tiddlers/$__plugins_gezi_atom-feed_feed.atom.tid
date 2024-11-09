@@ -1,12 +1,9 @@
 created: 20241109150531837
 creator: Gezi-lzq
-modified: 20241109150702567
+modified: 20241109151427683
 modifier: Gezi-lzq
 tags: 
-title: feed.atom
-
-
-title: feed.atom
+title: $:/plugins/gezi/atom-feed/feed.atom
 
 \define tv-wikilink-template() #$uri_encoded$
 \define tv-config-toolbar-icons() no
