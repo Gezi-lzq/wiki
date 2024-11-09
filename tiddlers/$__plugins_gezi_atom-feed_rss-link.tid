@@ -1,8 +1,8 @@
 created: 20241109144631826
 creator: Gezi-lzq
-modified: 20241109154037800
+modified: 20241109163519848
 modifier: Gezi-lzq
 tags: 
 title: $:/plugins/gezi/atom-feed/rss-link
 
-<a href="https://gezi-lzq.github.io/wiki/#%24%3A%2Fplugins%2Fgezi%2Fatom-feed%2Ffeed.atom" target="_blank" title="subcribe to atom feed" class="atom-link">{{$:/plugins/gezi/atom-feed/rss-svg}}</a>
+<a href="https://gezi-lzq.github.io/wiki/atom.xml" target="_blank" title="subcribe to atom feed" class="atom-link">{{$:/plugins/gezi/atom-feed/rss-svg}}</a>
