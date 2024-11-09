@@ -1,0 +1,8 @@
+created: 20241109144631826
+creator: Gezi-lzq
+modified: 20241109144842186
+modifier: Gezi-lzq
+tags: 
+title: $:/plugins/sycom/atom-feed/rss-link
+
+<a href="https://gezi-lzq.github.io/wiki/$:/plugins/sycom/atom-feed/atom.xml" target="_blank" title="subcribe to atom feed" class="atom-link">{{$:/plugins/sycom/atom-feed/rss-svg}}</a>

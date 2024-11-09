@@ -1,0 +1,23 @@
+created: 20190406210152700
+creator: Gezi-lzq
+modified: 20241109145137047
+modifier: Gezi-lzq
+title: $:/plugins/sycom/atom-feed/templates/itemfeed
+type: text/vnd.tiddlywiki
+
+`<entry>
+   <title>`<$view field="caption">{{!!title}}</$view>`</title>
+       <link rel="alternate" type="text/html"
+        href="`<$text text={{$:/plugins/sycom/atom-feed/publicationWebsite!!caption}}/>/#{{!!title}}`"/>
+       <id>`{{!!title}}`</id>
+       <updated>`<$view field=modified format=date template="YYYY-0MM-0DDT0hh:0mm:0ss"/>`</updated>
+       <published>`<$view field=created format=date template="YYYY-0MM-0DDT0hh:0mm:0ss"/>`</published>
+       <author>
+         <name>`{{!!modifier}}`</name>
+       </author>
+       <content type="html">
+
+`
+          <$view field="text" format="htmlwikified"/>
+       `</content>
+</entry>`

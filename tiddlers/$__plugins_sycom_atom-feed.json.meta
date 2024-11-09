@@ -1,0 +1,11 @@
+author: Sylvain Comte
+core-version: >=5.0.0
+dependents: 
+description: Atom feed
+list: readme usage
+name: atom-feed
+plugin-type: plugin
+source: https://framagit.org/sycom/TiddlyWiki-Plugins
+title: $:/plugins/sycom/atom-feed
+type: application/json
+version: 0.0.2

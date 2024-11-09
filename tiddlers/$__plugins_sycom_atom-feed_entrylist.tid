@@ -1,0 +1,16 @@
+caption: 25
+created: 20190407141826200
+creator: Gezi-lzq
+modified: 20241109145230649
+modifier: Gezi-lzq
+title: $:/plugins/sycom/atom-feed/entrylist
+type: text/vnd.tiddlywiki
+
+\define feedFilter() [all[tiddlers]tag[feed]![This wiki uses Google analytics]!prefix[Draft of ]!prefix[$:/]!prefix[-$:/]!sort[created]limit[$(numFeed)$]]
+
+<$set name=numFeed value={{!!caption}}>
+
+<$list filter=<<feedFilter>> template="$:/plugins/sycom/atom-feed/templates/itemfeed">
+
+</$list>
+</$set>
