@@ -1,8 +1,8 @@
 created: 20241102150300168
 creator: Gezi-lzq
-modified: 20241102153909059
+modified: 20241109163931651
 modifier: Gezi-lzq
-tags: DataLake
+tags: DataLake feed
 title: Data Lake Brief History
 
 在最初，你会采用 Hadoop ，一个开源的分布式计算框架，以及其HDFS文件系统组件，在由廉价计算机组成的集群中 存储和处理大量结构化和非结构化的数据集。 但仅仅存储这些数据还不够，你还希望对其进行分析。
