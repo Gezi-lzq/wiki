@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>$:/plugins/gezi/atom-feed/feed.atom</id>
+  <title>我的 TiddlyWiki</title>
+  <subtitle>卡片式个人网页笔记 
+    
+        
+    
+</subtitle>
+  <link href="https://gezi-lzq.github.io/wiki/feed.atom" rel="self" type="application/atom+xml"/>
+  <author>
+    <name>Gezi-lzq</name>
+  </author>
+  <updated>2024-11-09T07:40:05+02:00</updated>  <entry>    <title>MY FIRST FEED</title>    <id>https://gezi-lzq.github.io/wiki/#MY%20FIRST%20FEED</id>    <link href='https://gezi-lzq.github.io/wiki/#MY%20FIRST%20FEED'/>    <updated>2024-11-09T07:40:05+02:00</updated>    <summary>新增加了 RSS 功能	，仅 feed 标签的会被筛选出来，第一个feed，测试一下...</summary>  </entry></feed>
