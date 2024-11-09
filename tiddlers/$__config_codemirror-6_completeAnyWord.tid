@@ -1,0 +1,14 @@
+caption: {{$:/language/codemirror6/completeAnyWord/caption}}
+caption-zh: {{$:/language/codemirror6/zh/completeAnyWord/caption}}
+created: 20241109061302384
+creator: Gezi-lzq
+description: {{$:/language/codemirror6/completeAnyWord/description}}
+description-zh: {{$:/language/codemirror6/zh/completeAnyWord/description}}
+id: 39
+modified: 20241109061302384
+modifier: Gezi-lzq
+settings-group: completion
+settings-template: input-switch
+title: $:/config/codemirror-6/completeAnyWord
+
+yes
