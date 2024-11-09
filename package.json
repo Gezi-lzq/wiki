@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "zx ./scripts/build-wiki.mjs",
-    "update": "npm-check-updates -u"
+    "update": "npm-check-updates -u",
+    "build:feed": "tiddlywiki --render '$:/plugins/gezi/atom-feed/feed.atom' 'atom.xml' 'text/plain'"
   },
   "dependencies": {
     "tiddlywiki": "5.3.5"
