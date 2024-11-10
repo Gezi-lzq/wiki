@@ -1,0 +1,54 @@
+created: 20241110135628568
+creator: Gezi-lzq
+modified: 20241110161737000
+modifier: Gezi-lzq
+tags: kafka
+title: Kafka Replace ZooKeeper
+
+在 KIP-500 中，提出了使用“Replace ZooKeeper with a Self-Managed Metadata Quorum”在这个KIP中，提出了希望去除对 ZooKeeper 的依赖。使用更稳健且可扩展的方式来管理元数据，支持更多分区。
+
+我们如今常用的代码版本管理工具git，通过一个个记录变更的commit来管理整个项目的代码版本。如果希望恢复到某个时间点的代码版本，只需要把这个事件之前的commit撤销即可，分支中最新的代码内容，也是该分支中所有变更叠加的操作。
+
+在进行状态管理的时候，往往也会通过类似的方式，通过事件流的方式进行管理，当只需要回放所有的事件就可以构建出最新的状态。而最糟糕的做法，就是直接对原状态直接进行覆盖，这会引起后续一系列复杂的问题。
+
+而 Kafka 则是其他应用在设计事件流中的一个重要的实现组件，其通过一个单一的数字，offset（偏移量），描述了消费者在流中的位置。多个消费者只需要重放所有比当前偏移量新的事件，就可以赶上最新的状态。日志在事件之间建立起清晰的顺序，并确保消费者始终沿着单一的时间线移动。
+
+而 Kafka 自己是否存在这种状态管理的需求呢，答案当然是一定的。在 Kafka 中，Topic 中包含了若干 Partition, Broker 上存在若干 Partition, ConsumerGroup 需要消费若干 Partition, Partition 中不同 ConsumerGroup 的消费进度等等均是需要去管理的状态信息或者说元数据。
+
+如果放弃使用外部的Zookeeper来进行元数据管理的方式，我们期望达到一个怎样的状态来管理这些元数据？那么便是由Kafka自己来管理元数据。
+
+!! Kafka 元数据管理过程中存在哪些挑战：
+
+!!! 元数据一致性
+
+元数据在 Kafka 中包含Topic信息、Partition信息、副本位置、Broker信息等。这些元信息需要在所有Broker之间保持一致，以确保整个集群能够正确工作。例如，当一个Topic被创建或者删除时，这些变化需要同步到集群中所有的Brokers。
+
+!!! 分区领导者一致性
+
+在 Kafka 集群中，每个分区都有一个Leader，它是处理所有读写请求的目标，Leader信息需要在集群中保持一致，其他Broker必须知道当前每个分区的Leader是谁，以便正确的处理数据流。
+
+!!! 快速领导者选举
+
+当一个Broker宕机或者网络分区出现时，Kafka 必须迅速选举出新的分区Leader，以保持对读写请求的服务不中断。
+
+!!! Broker故障恢复
+
+Kafka必须能够在 Broker 宕机后快速恢复服务。在恢复过程中，新的 Broker 需要加载元数据并与现有副本同步数据。
+
+!! 在使用 ZooKeeper 的情况时，是如何解决这些挑战的？
+
+ZooKeeper 使用 ZAB（ZooKeeper Atomic Broadcast）协议来确保在分布式环境中的强一致性, 同时提供 Watch 机制，当数据节点（ZNode）发生变化时，ZooKeeper 会触发 Watcher 并通知相关客户端。通过以上方式，在leader进行状态变更时，将数据同步到其他节点。但是 ZooKeeper 并未完全解决这些场景，Watch 机制的性能问题，使得ZooKeeper的数据状态与Kafka各节点内存中的数据状态的一致性较为脆弱。同时，随着 kafka 集群规模的增大，ZooKeeper 成了单点性能瓶颈，尤其是大规模集群中处理大量元数据时。
+
+!! 希望如何解决这些挑战
+
+* 将元数据不在存在单独的系统，而是将元数据存储在Kafka本身，以此来解决掉 Controller 状态与 ZooKeeper 状态之间所有相关问题。
+
+* Broker 应该从 event log 中消费元数据事件，而不是通过某种机制将变更推送到 Broker 中，以此来确保元数据始终以相同顺序到达，并且在Broker其中时，因为本地存储有元数据，所以不需要获取整个元数据状态，只需从Controller中读取已经更改的内容。这样也使得我们可以以更少的 CPU 消耗来支持更多分区。
+
+在有了上面的解决思路时，就需要具体的实现方案了，可以分为如下：
+
+* 基于维护一个由自管理仲裁组（quorum）管理的复制元数据日志的Kafka架构: [[A Raft Protocol for the Metadata Quorum]]
+* Broker Metadata 管理机制与 Broker 状态机: [[Broker Metadata Management and The Broker State Machine]]
+
+
+

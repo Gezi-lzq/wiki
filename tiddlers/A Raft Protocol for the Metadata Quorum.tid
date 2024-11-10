@@ -1,0 +1,15 @@
+created: 20241110161521844
+creator: Gezi-lzq
+modified: 20241110162512041
+modifier: Gezi-lzq
+tags: kafka
+title: A Raft Protocol for the Metadata Quorum
+
+> KIP-595: A Raft Protocol for the Metadata Quorum
+
+该 KIP-595 概述了一个基于维护一个由自管理仲裁组（quorum）管理的复制元数据日志的Kafka架构。
+
+在此KIP中这样描写到日志复制与Raft
+
+> Log replication is at the heart of Kafka, and it is also at the heart of consensus protocols such as Raft. The replication protocol that we spent years improving and validating is actually not too different from Raft if you take a step back. There is a single leader at any time which is enforced by a monotonically increasing epoch; messages are unique by offset and epoch; and there is a protocol to reconcile log inconsistencies following leader changes using offset and epoch information from the log. 
+> 日志复制是 Kafka 的核心，也是如 Raft 等共识协议的核心。我们花费多年改进和验证的复制协议，如果你退一步看，实际上和 Raft 并没有太大区别。认识时候都有一个单一的 Leader ,这由单调递增的 epoch 强制执行；消息通过偏移量和epoch来保证其是唯一的；并有一个协议，在Leader变更后使用Log中的偏移量和epoch信息来解决Log不一致问题。
