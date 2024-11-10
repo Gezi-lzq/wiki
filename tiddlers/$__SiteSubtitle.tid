@@ -1,7 +1,7 @@
 created: 20241109152001130
 creator: Gezi-lzq
-modified: 20241109171101606
+modified: 20241110135507356
 modifier: Gezi-lzq
 title: $:/SiteSubtitle
 
-打造自己的数字花园 {{$:/plugins/gezi/atom-feed/rss-link}}
+打造自己的[[数字花园]] {{$:/plugins/gezi/atom-feed/rss-link}}
