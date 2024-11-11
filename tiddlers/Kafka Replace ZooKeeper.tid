@@ -1,8 +1,8 @@
 created: 20241110135628568
 creator: Gezi-lzq
-modified: 20241110171054610
+modified: 20241111020002876
 modifier: Gezi-lzq
-tags: kafka 分布式系统
+tags: kafka 分布式系统 feed
 title: Kafka Replace ZooKeeper
 
 在 KIP-500 中，提出了使用“Replace ZooKeeper with a Self-Managed Metadata Quorum”在这个KIP中，提出了希望去除对 ZooKeeper 的依赖。使用更稳健且可扩展的方式来管理元数据，支持更多分区。
