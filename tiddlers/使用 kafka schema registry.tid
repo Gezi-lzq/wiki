@@ -1,6 +1,6 @@
 created: 20241111064830783
 creator: Gezi-lzq
-modified: 20241111091626841
+modified: 20241111111155303
 modifier: Gezi-lzq
 tags: 
 title: 使用 kafka schema registry
@@ -88,4 +88,5 @@ cd schema-sample
 ...
 ```
 
+设置 
 
