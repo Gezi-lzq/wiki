@@ -1,0 +1,91 @@
+created: 20241111064830783
+creator: Gezi-lzq
+modified: 20241111072330645
+modifier: Gezi-lzq
+tags: 
+title: 使用 kafka schema registry
+
+
+在此基础上[[快速启动单节点Kafka]]，进行 kafka schema registry 的启动与使用。
+
+首先在本地启动 Confluent schema registry 
+
+```
+docker run -d --network="host" \
+  -v "$KAFKA_HOME/libs:/usr/share/java/kafka" \
+  -e 'CUB_CLASSPATH=/usr/share/java/kafka/*:/usr/share/java/cp-base-new/*' \
+  -e 'classpath=/usr/share/java/kafka/*' \
+  -e 'SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=localhost:9092' \
+  -e 'SCHEMA_REGISTRY_HOST_NAME=localhost' \
+  confluentinc/cp-schema-registry:7.7.0
+```
+
+创建一个 kafka schema registry sample 示例。
+
+
+```bash
+mvn archetype:generate -DartifactId=schema-sample -DgroupId=com.schema-sample.example\
+   -DarchetypeArtifactId=maven-archetype-quickstart\
+   -DarchetypeVersion=1.5 -DinteractiveMode=false
+cd schema-sample
+```
+
+调整 pom.xml 以引入 Avro 和 Kafka dependencies:
+
+
+```xml
+... 
+<repositories>
+...
+    <repository>
+      <id>confluent</id>
+      <name>Confluent</name>
+      <url>https://packages.confluent.io/maven/</url>
+    </repository>
+  </repositories>
+```
+
+```xml
+....
+<!-- https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer -->
+<dependencies>
+<dependency>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-avro-serializer</artifactId>
+    <version>7.7.1</version>
+</dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>3.6.2</version>
+    </dependency>
+<dependency>
+  <groupId>org.apache.avro</groupId>
+  <artifactId>avro</artifactId>
+  <version>1.11.4</version>
+</dependency>
+...
+</dependencies>
+<plugins>
+  <plugin>
+  <groupId>org.apache.avro</groupId>
+  <artifactId>avro-maven-plugin</artifactId>
+  <version>1.11.4</version>
+  <executions>
+    <execution>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>schema</goal>
+      </goals>
+      <configuration>
+        <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
+        <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+</plugins>
+...
+```
+
+
