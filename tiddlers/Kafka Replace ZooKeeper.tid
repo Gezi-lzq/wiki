@@ -1,6 +1,6 @@
 created: 20241110135628568
 creator: Gezi-lzq
-modified: 20241111020002876
+modified: 20241111020110187
 modifier: Gezi-lzq
 tags: kafka 分布式系统 feed
 title: Kafka Replace ZooKeeper
@@ -37,7 +37,7 @@ Kafka必须能够在 Broker 宕机后快速恢复服务。在恢复过程中，�
 
 !! 在使用 ZooKeeper 的情况时，是如何解决这些挑战的？
 
-ZooKeeper 使用 ZAB（ZooKeeper Atomic Broadcast）协议来确保在分布式环境中的强一致性, 同时提供 Watch 机制，当数据节点（ZNode）发生变化时，ZooKeeper 会触发 Watcher 并通知相关客户端。通过以上方式，在leader进行状态变更时，将数据同步到其他节点。但是 ZooKeeper 并未完全解决这些场景，Watch 机制的性能问题，使得ZooKeeper的数据状态与Kafka各节点内存中的数据状态的一致性较为脆弱。同时，随着 kafka 集群规模的增大，ZooKeeper 成了单点性能瓶颈，尤其是大规模集群中处理大量元数据时。
+ZooKeeper 使用 ZAB（[[ZooKeeper Atomic Broadcast]]）协议来确保在分布式环境中的强一致性, 同时提供 Watch 机制，当数据节点（ZNode）发生变化时，ZooKeeper 会触发 Watcher 并通知相关客户端。通过以上方式，在leader进行状态变更时，将数据同步到其他节点。但是 ZooKeeper 并未完全解决这些场景，Watch 机制的性能问题，使得ZooKeeper的数据状态与Kafka各节点内存中的数据状态的一致性较为脆弱。同时，随着 kafka 集群规模的增大，ZooKeeper 成了单点性能瓶颈，尤其是大规模集群中处理大量元数据时。
 
 !! 希望如何解决这些挑战
 

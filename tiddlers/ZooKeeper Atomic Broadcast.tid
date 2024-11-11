@@ -1,0 +1,86 @@
+created: 20241111024814801
+creator: Gezi-lzq
+modified: 20241111025409741
+modifier: Gezi-lzq
+title: ZooKeeper Atomic Broadcast
+
+! ZAB 协议概述
+ZAB 是一种专门设计用于 ZooKeeper 的广义状态机复制协议。它的主要目标是保证在分布式环境中的数据一致性，并在面临网络分区或节点故障时提供高可用性。
+
+ZAB 协议分为两个主要阶段：
+
+1. Leader 选举阶段（Leader Election）
+2. 原子广播阶段（Atomic Broadcast）
+
+!! 一：Leader 选举阶段
+
+!!! 目的
+
+确保集群中只有一个 Leader，所有写操作都通过这个 Leader 进行，以保证数据一致性。Leader 选举阶段在以下两种情况下启动：
+
+* 集群初次启动时。
+* 当前 Leader 崩溃或者与大多数 Follower 失去连接时。
+
+!!! 过程
+
+!!!! Initial Discovery:
+
+启动时或者 Leader 崩溃后， 所有参选节点首先进入 LOOKING 状态，并进行竞选。
+
+!!!! 投票 ：
+
+* 每个节点向其他节点发出投票，同时收到其他节点的投票。
+* 投票信息包括：节点的 ZXID（事务 ID）、节点 ID 等。
+
+!!!! 投票合并 ：
+
+* 每个节点根据收到的投票进行比较，选择 ZXID 较高、且节点 ID 较大的投票。
+* 如果某个节点收到的投票数量超过半数，则进入 FOLLOWING 或 LEADING 状态。
+
+!!!! 宣告 Leader：
+
+* 最终某个节点被宣告为 Leader，其余节点作为 Follower 同步数据。
+
+!!! 结果
+
+Leader 选举阶段结束后，所有节点达成一致，选出一个 Leader，并进入原子广播阶段。
+
+!! 二：原子广播阶段
+
+!!! 目的
+
+确保每一个写请求（事务）在集群中的所有副本上按相同的顺序执行，以实现强一致性。
+
+!!! 过程
+
+!!!! Proposal：
+
+* 客户端请求（写操作）首先被发送到 Leader 节点。
+
+* Leader 节点将请求打包成一个 Proposal，并将其发送给所有 Follower 节点。每个 Proposal 都包含一个唯一的 ZXID（ZooKeeper Transaction ID），用来标识和排序事务。
+
+!!!! Acknowledgement：
+
+* Follower 节点接收到 Proposal 后，写入本地日志并向 Leader 发送 Acknowledgement（确认）。
+
+!!!! Commit：
+
+* Leader 接收到大多数 Follower 的确认(通常是集群中超过半数的 Follower）后，向所有 Follower 发送 Commit 消息。
+* Leader 和 Follower 接收到 Commit 消息后，将事务应用到本地状态机中。
+
+!! 容错和恢复
+1. Session 失效和重新连接
+
+当客户端检测到与其连接的服务器断开连接时，它会尝试重新连接到其它服务器。这种机制保证了客户端在服务器发生故障时仍然能够继续操作。
+
+2. 数据恢复
+
+当一个 Follower 节点崩溃并重启时，它会从 Leader 节点同步最新的数据。这包含从 Leader 请求最新的 Proposal，并将其应用到本地状态机。
+
+!! ZAB 与 Paxos 的关系
+
+ZAB 协议借鉴了 Paxos 一致性协议的一些思想，但针对分布式协调服务做了优化：
+
+* 单一 Leader 模式 ：Paxos 是多 Leader 协议，而 ZAB 则为单 Leader 协议。单 Leader 较为简单，减少了复杂性，但要求所有写请求都需要通过 Leader 进行处理。
+* 持久化存储 ：ZAB 强调持久化存储，确保事务写入磁盘以提升可靠性。
+* 简化的实施 ：节点只需要向 Leader 发送确认，而不需要与其他节点直接通信，简化了实现难度。
