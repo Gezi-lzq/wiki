@@ -1,6 +1,6 @@
 created: 20241111064830783
 creator: Gezi-lzq
-modified: 20241111072330645
+modified: 20241111091626841
 modifier: Gezi-lzq
 tags: 
 title: 使用 kafka schema registry
@@ -24,7 +24,7 @@ docker run -d --network="host" \
 
 
 ```bash
-mvn archetype:generate -DartifactId=schema-sample -DgroupId=com.schema-sample.example\
+mvn archetype:generate -DartifactId=schemasample -DgroupId=com.schema-sample.example\
    -DarchetypeArtifactId=maven-archetype-quickstart\
    -DarchetypeVersion=1.5 -DinteractiveMode=false
 cd schema-sample
