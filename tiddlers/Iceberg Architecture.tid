@@ -1,13 +1,19 @@
 created: 20241103083308055
 creator: Gezi-lzq
-modified: 20241103085158805
+modified: 20241113161842970
 modifier: Gezi-lzq
-tags: 
+tags: iceberg
 title: Iceberg Architecture
+
+Apache Iceberg table 有三个不同的层次：
+
+* catalog layer
+* metadata layer
+* data layer
 
 Apache Iceberg 通过一个元数据数来跟踪表分区、排序、schema 随时间的变化以及更多内容，这个元数据树可以让引擎以极短的时间来规划查询，这比使用传统的数据湖模式要快更多。
 
-[img[the_apache_iceberg_architecture.png]]
+[img width=700 [the_apache_iceberg_architecture.png]]
 
 这个 metadate tree 将表的元数据分解为四个组成部分：
 

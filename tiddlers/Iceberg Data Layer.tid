@@ -1,0 +1,62 @@
+created: 20241113161823167
+creator: Gezi-lzq
+modified: 20241113165735113
+modifier: Gezi-lzq
+tags: iceberg
+title: Iceberg Data Layer
+
+Apache Iceberg 表的数据层是存储表的实际数据的地方，主要由 datafile 组成，尽管 deletefile 也包括在内。
+
+数据层为用户查询提供所需的数据。虽然在某些情况下，metadata 层的结构也可以提供结构（例如， 获取某列的最大值），但通常由数据层来参与提供用户查询并提供结果。
+
+数据层中的files构成了 Apache Iceberg 表树结构的叶子部分。
+
+在实际使用中，data layer 是由一个分布式文件系统（例如， HDFS）或者类似分布式文件系统的东西支持的，比如 object storage(例如 Amazon S3, Azure DLS， GCS)。这使得 data lakehouse 架构可以建立在这些可扩展且极低成本的 storage systems 上并从中受益。
+
+! Datafiles
+
+数据存储在 Datafile 中。Apache Iceberg 是 file format agnostic，目前支持 Apache Parquet, Apache ORC, 和 Apache Avro。
+
+“file format agnostic（不可知的文件结构）”这个设计很重要，原因如下：
+
+* 当前现状中，许多组织将数据存储为 multiple file formats， 这往往是业务需求或者在规模扩张中一些历史原因导致的。
+* 这样提供了很大的灵活性，可以根据实际 workload 来选择 file format。例如，Parquet 可能用于大规模的OLAP，而 Avro 可能用于低延迟的 streaming analytics tables。
+* 这样可以使组织的file format 是 future-proof(不会过时)。若新的file format 被开发出来，更适合一组 workload, 那么这个 file format 可以在 Apache Iceberg table 中使用。
+
+虽然 Apache Iceberg 对 file format 不敏感，但是在现实世界中，最常用的 file format 是 Apache Parquet。 Parquet 最常用的原因是它的 columnar structure 为 OLAP workloads 提供了比 row-based file formats 更大的 performance gains，并且它已经成为 industry 的事实标准，基本上每个 engine 和 tool 都支持 Parquet。它的 columnar structure 为 performance features 奠定了基础，比如单个文件可以多次 split 以增加 parallelism，每个 split points的 statistics，以及增加 compression，从而提供更低的 storage volume 和更高的 read throughput。
+
+根据下面的例子，你可以看到一个给定的 Parquet file 如何有一组 rows（图中的“Row group 0”），然后这些 rows 的值按给定的 column 一起存储（图中的“Column a”）。所有 rows 的值进一步被分解成这个 column 的值的子集，称为 pages（图中的“Page 0”）。每个这些层次可以被 engines 和 tools 独立读取，因此每个可以被一个给定的 engine 或 tool 并行读取。
+
+此外，Parquet 存储统计数据（例如，一个给定 row group 的一个给定 column 的最小值和最大值），使得 engines 和 tools 可以决定是否需要读取所有数据，或者是否可以修剪不符合查询的 row groups。
+
+[img[The_architecture_of_a_Parquet_file.png]]
+
+
+! Delete Files
+Delete files 记录了哪些数据集中的记录已被删除。由于将 data lake 存储视为不可变是最佳实践，因此你不能直接更新文件中的行。相反，你需要写一个新文件。这个新文件可以是旧文件的副本，其中反映了更改（称为 copy-on-write [COW]），或者它可以是一个仅包含更改的新文件，然后读取数据的引擎将其合并（称为 merge-on-read [MOR]）。Delete files 支持 MOR 策略来执行 Iceberg tables 的 updates 和 deletes。
+
+请注意，delete files 只适用于 MOR tables，delete files 仅在 Iceberg v2 format 中支持。
+
+[img[显示在运行 DELETE 之前和之后的 MOR 表的 diagram|MOR_table_and_after_a_Delete_is_run_on_it.png]]
+
+有两种方法可以 identify 需要从 logical dataset 中 remove 的特定 row，当一个 engine 读取 dataset 时：可以通过 row 在 dataset 中的 准确位置 来 identify，或者通过 row 的一个或多个 field 的 values 来 identify。
+
+因此，有两种类型的 delete files。前者称为 positional delete files，后者称为 equality delete files。
+
+!! Positional delete files
+
+位置删除文件表示哪些行已经被逻辑删除，因此引擎在使用表时会从其表示中删除它们，通过识别行所在表中的确切位置来实现。这是通过指定包含该行的特定文件的 file path 和该文件中的 row number 来完成的。
+
+[img[positional_delete_files.png]]
+
+!! Equality delete files
+
+Equality delete files 表示哪些 rows 已经被逻辑删除，因此 engine 在使用 table 时需要从其表示中移除这些 rows，通过识别 row 的一个或多个字段的值来实现。当每个 row 在 table 中有一个 unique identifier（即 primary key）时，这种操作效果最好，因为单个字段的值可以唯一标识一个 row（例如，“delete the row where the row has a value for order_id of 1234”）。然而，也可以通过这种方法删除多个 rows（例如，“delete all rows where interaction_customer_id = 5678”）。
+
+图 2-5 展示了使用 equality delete file 删除 order_id 为 1234 的行。一个 engine 写入一个 delete file，内容是“delete 任何 order_id 等于 1234 的行”，任何读取它的 engine 都会遵循这一点。注意，与 positional delete files 相比，这里没有提到这些行在 table 中的具体位置。
+
+请注意，还有一种情况可能发生，即一个 equality delete file 通过 column values 删除了一条记录，然后在随后的 commit 中，一条记录被重新添加到与 delete file 的 column values 匹配的数据集中。在这种情况下，你不希望 query engines 在读取时从 logical table 中移除新添加的记录。
+
+Apache Iceberg 对此的解决方案是 sequence numbers。例如，覆盖图 2-5 中的情况，manifest file 会记录图 2-5 左侧的数据文件都有一个 sequence number 为 1。然后，跟踪右侧 delete file 的 manifest file 会有一个 sequence number 为 2。然后，在随后的 insert 中创建的新行 order_id 为 1234 的数据文件会有一个 sequence number 为 3。所以，当一个 engine 读取表时，它知道要将 delete file 应用于所有 sequence number 小于 2（delete file 的 sequence number）的数据文件，但不应用于 sequence number 为 2 或更高的数据文件。通过这种方法，随着时间的推移，表的正确状态得以维护。
+
+[img[equality_delete_files.png]]

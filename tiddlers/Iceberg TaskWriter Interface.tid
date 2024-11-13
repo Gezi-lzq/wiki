@@ -1,8 +1,8 @@
 created: 20241113130852994
 creator: Gezi-lzq
-modified: 20241113154634372
+modified: 20241113160923251
 modifier: Gezi-lzq
-tags: 
+tags: iceberg
 title: Iceberg TaskWriter Interface
 
 TaskWriter 有大量实现类，通用实现类有如下：
