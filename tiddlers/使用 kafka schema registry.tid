@@ -1,6 +1,6 @@
 created: 20241111064830783
 creator: Gezi-lzq
-modified: 20241111111155303
+modified: 20241113130833496
 modifier: Gezi-lzq
 tags: 
 title: 使用 kafka schema registry
@@ -88,5 +88,84 @@ cd schema-sample
 ...
 ```
 
-设置 
+* User.avsc
+
+```
+{
+  "namespace": "com.schemasample.example",
+  "type": "record",
+  "name": "User",
+  "fields": [
+    {"name": "name", "type": "string"},
+    {"name": "favoriteNumber", "type": "int"},
+    {"name": "favoriteColor", "type": "string"}
+  ]
+}
+
+```
+
+可以调用接口注册和查看
+
+```bash
+curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json"\
+   --data "{\"schema\": $(cat demo/src/main/avro/User.avsc | jq -c | jq -R)}" \
+   http://localhost:8081/subjects/User/versions
+
+curl -X GET http://localhost:8081/subjects/
+```
+
+Producer 和 Counsumer 示例：
+
+```java
+Properties p = new Properties();
+        try (InputStream input = UserProducer.class.getClassLoader().getResourceAsStream("kafka-client.properties")) {
+            if (input == null) {
+                System.out.println("Sorry, unable to find kafka-client.properties");
+                return;
+            }
+            p.load(input);
+        }
+        p.put("schema.registry.url", "http://localhost:8071");
+        p.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        p.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+        KafkaProducer<String, User> producer = new KafkaProducer<>(p);
+        final User u = new User("SchemaEnthusiast", 42, "green");
+        ProducerRecord<String, User> message = new ProducerRecord<>("user-topic-1", "", u);
+        producer.send(message, (RecordMetadata r, Exception e) -> {
+            if (e != null) {
+                e.printStackTrace();
+            } else {
+                System.out.println("Sent record with key " + r.offset());
+            }
+        });
+        producer.close();
+```
+
+```java
+Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "user-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
+        props.put("schema.registry.url", "http://localhost:8071");
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+consumer = new KafkaConsumer<>(props);
+
+try {
+            consumer.subscribe(java.util.Collections.singletonList("user-topic-1"));
+            LOGGER.info("Subscribed to user-topic-1");
+            while (true) {
+                ConsumerRecords<String, GenericRecord> records = consumer.poll(100);
+                for (ConsumerRecord<String, GenericRecord> record : records) {
+                    System.out.printf("offset = %d, key = %s, value = %s%n",
+                            record.offset(), record.key(), record.value());
+                    record.value().getSchema().getFields().forEach(f -> System.out.println(f.name()));
+
+                    processRecord(record.value());
+                }
+            }
+        } finally {
+            consumer.close();
+        }
+```
 
