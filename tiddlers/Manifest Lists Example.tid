@@ -1,0 +1,78 @@
+created: 20241114172219996
+creator: Gezi-lzq
+modified: 20241114172219996
+modifier: Gezi-lzq
+tags: [[Iceberg Metadata Layer]]
+title: Manifest Lists Example
+
+```json
+{
+    "manifest_path": "s3://jason-dremio-product-us-west-2/iceberg-book/iceberg_book.db/orders/metadata/a5969634-3cdb-4d66-9630-7849091c8556-m0.avro",
+    // 存储 manifest 文件的路径
+
+    "manifest_length": 7283,
+    // manifest 文件的长度（字节数）
+
+    "partition_spec_id": 0,
+    // 分区规范的 ID，用于指定数据的分区方式
+
+    "content": 0,
+    // 内容类型（0=数据文件，1=删除文件）
+
+    "sequence_number": 2,
+    // 操作的序列号，用于确保操作顺序
+
+    "min_sequence_number": 2,
+    // 此 manifest 中最早的序列号，用于数据快照和变更跟踪
+
+    "added_snapshot_id": 8619686881304977000,
+    // 该条目所属快照的 ID
+
+    "added_data_files_count": 2,
+    // 新增的数据文件数量
+
+    "existing_data_files_count": 0,
+    // 已存在的数据文件数量
+
+    "deleted_data_files_count": 0,
+    // 被删除的数据文件数量
+
+    "added_rows_count": 2,
+    // 新增的数据行数
+
+    "existing_rows_count": 0,
+    // 已存在的数据行数
+
+    "deleted_rows_count": 0,
+    // 被删除的数据行数
+
+    "partitions":
+    {
+        "array":
+        [
+            {
+                "contains_null": false,
+                // 分区键是否包含null值
+
+                "contains_nan":
+                {
+                    "boolean": false
+                },
+                // 分区键是否包含NaN值
+
+                "lower_bound":
+                {
+                    "bytes": "íK\u0000\u0000"
+                },
+                // 分区键的下界（二进制表示）
+
+                "upper_bound":
+                {
+                    "bytes": "íK\u0000\u0000"
+                }
+                // 分区键的上界（二进制表示）
+            }
+        ]
+    }
+}
+```

@@ -1,0 +1,24 @@
+created: 20241114172706984
+creator: Gezi-lzq
+modified: 20241114173656125
+modifier: Gezi-lzq
+tags: iceberg
+title: The Catalog
+
+任何从一个 table 读取数据的人（更不用说几十、几百甚至几千个 table）需要知道首先去哪里；他们需要一个地方来找出在哪里读取/写入特定 table 的数据。任何想要与 table 交互的人第一步是找到当前 metadata pointer 的 metadata file 的位置。
+
+这个用于查找当前 metadata pointer 位置的中心位置就是 Iceberg Catalog。
+
+Iceberg catalog 的 primary requirement 是它必须支持 atomic operations 来更新 current metadata pointer。Iceberg必须要求有 atomic operations 的支持，只有这样所有的 readers 和 writers 在某个时间点都能看到 table 的相同状态。
+
+在 catalog 中，每个 table 都有一个 reference 或 pointer 指向该 table 当前的 metadata 文件。
+
+[img width=600 [catalog_and_metadata.png]]
+
+因为对 Iceberg catalog 的唯一要求是它需要存储当前的 metadata pointer 并提供 atomic guarantees，所以有很多不同的 backends 可以作为 Iceberg catalog。
+
+不过，不同的 catalog 存储当前的 metadata pointer 的方式不同。以下是一些例子:
+
+* 使用 Amazon S3 作为 catalog 时，在表的 metadata 文件夹中有一个名为 version-hint.text 的文件，其内容是当前 metadata 文件的 version number。请注意，任何时候你使用分布式文件系统（或类似的东西）来存储当前 metadata pointer 时，实际使用的 catalog 被称为 hadoop catalog。
+* 使用 Hive Metastore 作为 catalog 时，Hive Metastore 中的 table entry 有一个称为 location 的 table property，用于存储当前 metadata file 的位置。
+* 使用 Nessie 作为 catalog，Nessie 中的 table entry 有一个 table property 叫做 metadataLocation，存储当前表的 metadata file 的位置。

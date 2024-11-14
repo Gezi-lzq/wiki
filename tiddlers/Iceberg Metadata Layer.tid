@@ -1,6 +1,70 @@
 created: 20241113165808215
 creator: Gezi-lzq
-modified: 20241113165817596
+modified: 20241114172634351
 modifier: Gezi-lzq
 tags: iceberg
 title: Iceberg Metadata Layer
+
+The metadata layer 是 Iceberg table 架构中不可或缺的一部分，包含了所有的 metadata files。它是一个 tree structure，追踪 datafiles 及其 metadata, 以及导致这些文件创建的operations。
+
+这个 tree structure 由三种 file types 组成，所有这些都与 datafiles colocated(同等定位)：
+
+* manifest files
+* manifest lists
+* metadata files
+
+The metadata layer 对于高效管理 large datasets 以及启用核心功能如 time travel 和 schema evolution 至关重要。
+
+! Manifest files
+
+Manifest files 记录了 data layer 中的文件（即 datafiles 和 delete files）以及每个文件的附加细节和统计信息，例如 datafile 列的最小值和最大值。
+
+使 Iceberg 能够解决 Hive table format 问题的主要区别是跟踪表格中的 data 到''文件级别''（而不是目录级别）。
+
+> 虽然 manifest 文件跟踪 datafiles 以及 delete files，但每个文件类型使用一套独立的 manifest 文件（即，一个 manifest 文件只包含 datafiles 或 delete files），尽管 manifest 文件 schemas 是相同的。
+
+每个 manifest file 会记录一部分 datafiles 的信息。它们包含关于 partition membership、record counts 以及 columns 的 lower 和 upper bounds 等信息，这些信息用于提高从这些 datafiles 读取数据时的效率和性能。
+
+虽然有些 statistics 也存储在 datafiles 本身，但一个 manifest file 会为多个 datafiles 存储这些 statistics，这意味着从一个 manifest file 中的 stats 进行修剪大大减少了需要打开许多 datafiles 的需求，这可以提高性能（即使只是打开许多 datafiles 的 footer，这也可能花费很长时间）。
+
+这些 statistics 在 write 操作期间由 engine/tool 为每个 manifest file 跟踪的一部分 datafiles 写入。
+
+因为这些 statistics 是由每个 engine 对它们负责写入的数据文件子集，进行较小批次的写入，所以写这些 statistics 比 Hive 表格式要轻量得多。
+
+在 Hive 表格式中，statistics 是作为一个长而昂贵的读取作业的一部分进行收集和存储的，需要 engine 读取整个分区或整个表，计算所有数据的 statistics，然后为该分区/表写入 stats。
+
+而在Icebreg当中，因为数据的 writer 已经处理了它正在写入的所有数据，因此对于这个 writer 来说，添加一个步骤来收集这些数据的 statistics 是更轻量的。
+
+在实践中，这意味着在使用 Hive 表格式时，会因为statistics 收集作业不会经常重新运行（如果有的话），engine 没有必要的信息来做出关于如何执行给定查询的明智决策，而导致查询性能较差。
+
+然而 Iceberg 表更容易获得最新和准确的 statistics，使 engine 在处理它们时能够做出更好的决策，从而提高作业性能。
+
+[[Manifest Files Example]]
+
+! Manifest Lists
+
+A manifest list 是在特定时间点的 Iceberg table 的 snapshot。对于该时间点的 table，它包含所有 manifest files 的列表，包括位置、所属的 partitions，以及它(该manifest file)追踪的数据文件的 partition columns 的 upper 和 lower bounds。
+
+A manifest list 包含一个 array of structs，每个 struct 记录一个 manifest file。
+
+[[Manifest Lists Example]]
+
+! Metadata Files
+
+Manifest lists 由 metadata 文件追踪。另一个恰如其名的文件，metadata 文件存储关于 Iceberg 表在特定时间点的 metadata。这包括表的 schema 信息、partition 信息、snapshots 以及当前的 snapshot 是哪个。
+
+每次对 Iceberg table 进行更改时，都会创建一个新的 metadata file，并通过 catalog 原子性地注册为最新版本的 metadata file.
+
+[[Metadata Files Example]]
+
+! Puffin Files
+
+虽然 datafiles 和 delete files 的结构可以增强与 Iceberg table 中数据交互的 performance，有时候你需要更 advanced 的结构来增强特定类型查询的 performance。
+
+例如，假设你想知道在过去 30 天内有多少 unique 的人下了订单。数据文件中的 statistics，而不是 metadata 文件中的 statistics，涵盖了这种 use case。当然，你可以使用这些 statistics 来在一定程度上 improve performance（例如，只修剪过去 30 天的数据），但你仍然需要读取那 30 天内的每个 order 并在 engine 中进行 aggregations，这可能会花费很长时间，具体取决于数据的 size、分配给 engine 的 resources 以及字段的 cardinality 等因素。
+
+进入 puffin file format。一个 puffin file 存储关于表中数据的 statistics 和 indexes，这些可以提升更广泛查询的 performance，例如前面提到的例子，比 datafiles 和 metadata files 中存储的 statistics 更有效。
+
+[img width=500 [The_structure_of_a_puffin_file.png]]
+
+......
