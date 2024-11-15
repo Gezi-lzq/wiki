@@ -1,6 +1,6 @@
 created: 20241115032625360
 creator: Gezi-lzq
-modified: 20241115075640690
+modified: 20241115101457107
 modifier: Gezi-lzq
 tags: iceberg
 title: Iceberg ParquetWriter
@@ -8,7 +8,8 @@ title: Iceberg ParquetWriter
 * ParquetWriter 的 可见性较低，无法直接继承修改
 * ParquetWriter 实现的 Append 接口, 在每次 append 的过程中会进行 checkSize, 若触发条件则进行 fluse
 * checkSize 的 条件 是：
-** 在一个 RowGroup 中，最小为MinRowCountForPageSizeCheck个，最大为MaxRowCountForPageSizeCheck。
+** 第一次判断是当前record大于10条，且缓冲区大小是否接近目标RowGroup大小，若不接近，则估算还需要多少个record达到targetRowGroupSize，当达到估算值当一半进行flush。（估算值需要在[MinRowCountForPageSizeCheck, MaxRowCountForPageSizeCheck]范围内）
+** 完成一次flush后，会重新计算record数量，根据上次RowGroup的record大小的一半(且需要在[MinRowCountForPageSizeCheck, MaxRowCountForPageSizeCheck]范围内)作为下次flush的条件。
 ** 若上一个 RowGroup 的 record size 的二分之一也在这个范围，则以此为 nextCheckRecordCount
 ** 判断缓冲区大小是否接近目标行组大小，如果缓冲区大小 (bufferedSize) 大于目标行组大小 (targetRowGroupSize) 减去两倍平均记录大小 (2 * avgRecordSize)，则需要刷新当前行组。这里使用 2 * avgRecordSize 是为了在缓冲区接近满时（但还没有完全满）进行刷新，以避免记录过多导致超出缓冲区限制。
 
