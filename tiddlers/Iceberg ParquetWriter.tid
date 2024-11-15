@@ -1,6 +1,6 @@
 created: 20241115032625360
 creator: Gezi-lzq
-modified: 20241115065730722
+modified: 20241115075640690
 modifier: Gezi-lzq
 tags: iceberg
 title: Iceberg ParquetWriter
@@ -16,5 +16,8 @@ title: Iceberg ParquetWriter
 ** 初始化 ParquetFileWriter
 ** 在Parquet文件中开始一个新的Block的写入流程
 ** 将所有 Column 的数据从内存写入到底层存储系统，在Column Chunk中按Page管理数据，并将Page写入存储
-** 
+** 设置块级元数据（如记录数和序号），添加块到块集合，更新列索引、偏移索引和布隆过滤器集合。在块结束后重置相应的数据结构，确保下一个块写入的干净起点。
+** 再次调用 flush()，并迭代并关闭所有 ColumnWriterBase 实例
+** 启动准备一个新的 RowGroup
+
 
