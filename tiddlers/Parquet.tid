@@ -1,0 +1,48 @@
+created: 20241115024931688
+creator: Gezi-lzq
+modified: 20241115030045410
+modifier: Gezi-lzq
+tags: 
+title: Parquet
+
+Apache Parquet 是一种开源的、列式数据文件格式，旨在实现高效的数据存储和检索。它提供了高效的数据压缩和编码方案，以增强性能来处理大量复杂数据。
+
+* Block (HDFS block): 这是HDFS（Hadoop分布式文件系统）中的一个块。在这个文件格式中，Block的含义保持不变。该文件格式设计得非常适合在HDFS上运行。
+
+* File: 这是一个HDFS文件，必须包含该文件的元数据，而不需要实际包含数据。
+
+* Row group: 这是数据按行的逻辑水平分区。对于Row group，没有保证的物理结构。一个Row group包含数据集中每一列的一个Column chunk。
+
+* Column chunk: 这是特定列的数据块。它们存在于一个特定的Row group中，并且在文件中是连续的。
+
+* Page: Column chunks被分成多个Pages。一个Page在概念上是一个不可分割的单位（就压缩和编码而言）。在一个Column chunk中可以交错存在多种类型的Pages。
+
+
+```
+    4-byte magic number "PAR1"
+    <Column 1 Chunk 1>
+    <Column 2 Chunk 1>
+    ...
+    <Column N Chunk 1>
+    <Column 1 Chunk 2>
+    <Column 2 Chunk 2>
+    ...
+    <Column N Chunk 2>
+    ...
+    <Column 1 Chunk M>
+    <Column 2 Chunk M>
+    ...
+    <Column N Chunk M>
+    File Metadata
+    4-byte length in bytes of file metadata (little endian)
+    4-byte magic number "PAR1"
+```
+在上面的 example 中，这个 table 有 N 列，分成 M 个 row groups。文件 metadata 包含所有 column chunk 起始位置的 locations。
+
+文件 metadata 是在数据之后写入的，以允许单次 pass 写入。
+
+Readers 需要先读取文件的 metadata 来找到所有感兴趣的 column chunks。然后这些 column chunks 应该被顺序读取。
+
+这个 format 是明确设计用来将 metadata 和 data 分开的。这样可以将 columns 拆分成多个文件，并且可以让一个 metadata 文件 reference 多个 parquet 文件。
+
+[img[parquet_format.png]]
