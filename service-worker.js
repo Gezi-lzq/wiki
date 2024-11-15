@@ -11,7 +11,7 @@ const { CacheFirst, StaleWhileRevalidate } = workbox.strategies;
 const { ExpirationPlugin } = workbox.expiration;
 const { precacheAndRoute, matchPrecache } = workbox.precaching;
 
-precacheAndRoute([{"revision":"51b1c635de81aaf49c1b674eb91971fa","url":"favicon.ico"},{"revision":"ce5366ae9a026cbd0e2544b7c1b8d791","url":"index.html"},{"revision":"b5c865126953a407bb214fc9114b9d88","url":"tiddlywiki5.js"},{"revision":"713f708b9b2662da54cd38bc98a6483f","url":"TiddlyWikiIconBlack.png"},{"revision":"2c94295d5e6cfa9e5f0b666c4ba1964c","url":"TiddlyWikiIconWhite.png"},{"revision":"a9c3231dc859bbccdd8c14950efcb030","url":"vercel.json"}]);
+precacheAndRoute([{"revision":"51b1c635de81aaf49c1b674eb91971fa","url":"favicon.ico"},{"revision":"4f4d65d00d7b9c49700f121a8a617ddc","url":"index.html"},{"revision":"b5c865126953a407bb214fc9114b9d88","url":"tiddlywiki5.js"},{"revision":"713f708b9b2662da54cd38bc98a6483f","url":"TiddlyWikiIconBlack.png"},{"revision":"2c94295d5e6cfa9e5f0b666c4ba1964c","url":"TiddlyWikiIconWhite.png"},{"revision":"a9c3231dc859bbccdd8c14950efcb030","url":"vercel.json"}]);
 
 registerRoute(
   /\.css$/,
