@@ -1,6 +1,6 @@
 created: 20241116104154492
 creator: Gezi-lzq
-modified: 20241116104309750
+modified: 20241116111739726
 modifier: Gezi-lzq
 tags: 
 title: TLA+
@@ -9,9 +9,18 @@ https://lamport.azurewebsites.net/tla/tla.html
 
 https://learntla.com/
 
-TLA+ 是一种高级语言，适用于编写程序和系统的模型，特别是并发和分布式系统。该语言基于使用简单数学概念来精确描述事物的思想。
+! What’s TLA+?
 
-* 形式化语言 ：TLA+是一种基于数学原理的语言。它能够精确地描述系统行为和属性，消除歧义。
-* 时态逻辑 ：TLA+使用一种称为“行动中的时态逻辑”的模型来说明系统随时间变化的行为。这使得它非常适合描述并发系统和分布式系统。
-* 状态-变迁系统 ：在TLA+中，系统的状态用变量表示，系统的行为则用从一个状态转换到另一个状态的操作来描述。
+TLA+ 是一种用于编写和检查“specifications”或系统设计的语言。一旦你有了 specification，你可以直接 test 这个 specification 的 bugs，甚至在你写任何代码之前。
 
+大多数的软件 flaws 来自两个地方之一。code bug 是指代码与我们的设计不匹配——例如，off-by-one error 或 null dereference。我们有很多技术来发现 code bugs。但是 design flaws 呢？当涉及到我们设计中的 bugs 时，我们只是被教导要“认真思考”。
+
+TLA+ 是一种“formal specification language”，一种设计系统的方法，可以直接测试这些设计。由图灵奖得主 Leslie Lamport 开发，TLA+ 已经得到了像 AWS、Microsoft 和 CrowdStrike 这样的公司的认可。TLA+ 不是取代我们的 engineering skill，而是增强它。有了 TLA+，我们可以更快、更自信地设计系统。
+
+! What’s PlusCal?¶
+
+PlusCal 是一种 DSL，可以编译成 TLA+。大多数工程师发现它比纯 TLA+ 更容易入门，并且它在很多 specification 中效果很好。The Core 从 PlusCal 开始（这是原因），但到最后完全教授 TLA+。
+
+! What’s TLA+ good for?
+
+TLA+ 非常适合用于建模和发现并发和分布式系统中的 bugs。它也适用于跨越多个 codebase 的系统建模。像 AWS Step Function 这样的东西涉及多个程序、服务，甚至人类 actor 一起工作。所有这些都可以被纳入一个单一的 system design 并检查 errors。
