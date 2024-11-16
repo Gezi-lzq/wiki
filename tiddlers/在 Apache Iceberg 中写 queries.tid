@@ -1,0 +1,138 @@
+created: 20241116162300973
+creator: Gezi-lzq
+modified: 20241116171835927
+modifier: Gezi-lzq
+tags: iceberg
+title: 在 Apache Iceberg 中写 queries
+
+Apache Iceberg 中的 write process 涉及一系列步骤，使 query engines 能够高效地插入和更新数据。当一个 write query 被启动时，它会被发送到 engine 进行解析。
+
+然后 consult catalog 以确保数据的一致性和完整性，并根据定义的 partition strategies 写入数据。
+
+数据文件和 metadata 文件会根据 query 写入。最后，catalog file 会被更新以反映最新的 metadata，从而支持后续的 read operations 去 access 最新版本的数据。
+
+[img[Iceberg_write_process.png]]
+
+! Create the Table
+
+下面将从创建一个 Iceberg Table 开始，理解其中的底层过程。在下面这个 example query 中，将会创建一个名为 orders 的table， 包含 4 个 columns。
+（在下面将展示 Spark 与 Dremio 的 SQL Query Engine 中执行操作需要的SQL）
+
+```SQL
+# Spark SQL
+CREATE TABLE orders (
+	order_id BIGINT,
+	customer_id BIGINT,
+	order_amount DECIMAL(10, 2),
+	order_ts TIMESTAMP
+)
+USING iceberg
+PARTITIONED BY (HOUR(order_ts))
+
+# Dremio
+CREATE TABLE orders (
+	order_id BIGINT,
+	customer_id BIGINT,
+	order_amount DECIMAL(10, 2),
+	order_ts TIMESTAMP
+)
+PARTITION BY (HOUR(order_ts))
+```
+
+! 把 query 发送到 engine
+
+首先，query 被发送到 query engine 进行解析。然后，因为这是一个 CREATE statement，engine 会开始创建和定义表。
+
+! 写 metadata 文件
+
+在这个阶段，engine 开始在 data lake 文件系统中创建一个名为 v1.metadata.json 的 metadata 文件，用于存储关于 table 的信息。路径的通用 URL 形式看起来像这样：`s3://path/to/warehouse/db1/table1/metadata/v1.metadata.json`。
+
+根据 `/path/to/warehouse/db1/table1` 的信息，engine 写入 metadata 文件。然后通过指定 columns 和 data types 来定义 orders 表 的 schema，并将其存储在 metadata 文件中。最后，它为 table 分配一个唯一的标识符：table-uuid。一旦 query 成功执行，metadata 文件 v1.metadata.json 就会写入 data lake file storage。
+
+```
+s3://datalake/db1/orders/metadata/v1.metadata.json
+```
+
+如果你检查 metadata 文件，你会看到定义表的 schema 以及 partition specification:
+
+```json
+{
+  "table-uuid": "072db680-d810-49ac-935c-56e901cad686",
+  "schema": {
+    "type": "struct",
+    "schema-id": 0,
+    "fields": [
+      {
+        "id": 1,
+        "name": "order_id",
+        "required": false,
+        "type": "long"
+      },
+      {
+        "id": 2,
+        "name": "customer_id",
+        "required": false,
+        "type": "long"
+      },
+      {
+        "id": 3,
+        "name": "order_amount",
+        "required": false,
+        "type": "decimal(10, 2)"
+      },
+      {
+        "id": 4,
+        "name": "order_ts",
+        "required": false,
+        "type": "timestamptz"
+      }
+    ]
+  },
+  "partition-spec": [
+    {
+      "name": "order_ts_hour",
+      "transform": "hour",
+      "source-id": 4,
+      "field-id": 1000
+    }
+  ]
+}
+```
+
+这是当前的 table 状态；你已经创建了一个 table，但它是一个没有 records 的 empty table。在 Iceberg 术语中，这被称为 snapshot 。
+
+这里需要注意的是，由于你还没有插入任何 records，所以 table 中没有 actual data，因此你的 data lake 中没有 datafiles。因此，snapshot 不会指向任何 manifest list；因此，没有 manifest files。
+
+! 更新 catalog 文件以 commit 更改
+
+最后，engine 更新当前的 metadata 指针，指向 catalog 文件中的 v1.metadata.json 文件，因为这是 table 的当前状态。需要注意的是，catalog 文件的名字 version-hint.text 是特定于 catalog 选择的。在这个示例中，我们使用了基于 filesystem 的 Hadoop catalog。下图展示了 table 创建后 Iceberg 组件的 hierarchy。
+
+[img[hierarchy_of_iceberg_components.png]]
+
+! 插入 the query
+
+现在让我们插入一些 records 到 table 中并了解其工作原理。我们已经创建了一个名为 orders 的 table，包含四个 columns。在这个示范中，我们将输入以下 values 到 table 中：order_id 为 123，customer_id 为 456，order_amount 为 36.17，order_ts 为 2023-03-07 08:10:23。
+
+```SQL
+# Spark SQL/Dremio's SQL Query Engine
+INSERT INTO orders VALUES (
+	123,
+	456,
+	36.17,
+	'2023-03-07 08:10:23'
+)
+```
+
+! 把 query 发送到 engine
+
+The query 被发送到 query engine 进行 parsing。因为这是一个 `INSERT statement`，engine 需要关于 table 的信息，比如它的 schema，以开始 query planning。
+
+! 检查 catalog
+
+首先，query engine 会向 catalog 请求以确定当前 metadata 文件的位置，然后读取它。因为我们使用的是 Hadoop catalog，engine 会读取 `/orders/metadata/version-hint.txt` 文件，并看到文件内容是一个单一的整数：1。
+
+基于此，并利用 catalog 实现中的逻辑，engine 知道当前 metadata 文件的位置是 `/orders/metadata/v1.metadata.json`，这是我们之前 `CREATE TABLE` 操作创建的文件。所以 engine 会读取这个文件。尽管在这种情况下 engine 的目的是插入新的 datafiles，它仍然会与 catalog 交互，主要有两个原因：
+
+* The engine 需要理解当前表的 schema 以遵循它。
+* The engine 需要在写入时了解 partitioning scheme 来组织数据。
+
