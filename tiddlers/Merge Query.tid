@@ -1,0 +1,31 @@
+created: 20241117103525113
+creator: Gezi-lzq
+modified: 20241117104129941
+modifier: Gezi-lzq
+tags: 
+title: Merge Query
+
+! Merge Query
+
+对于我们的下一个写操作，我们将执行一个 UPSERT /MERGE INTO。这样的 Query 通常在你想要更新表中存在的特定值时运行，如果不存在，则就插入新的 row。
+
+所以，在我们的例子中，假设有一个 stage table，`orders_staging` 包含两个record：一个是现有 `order_id(order_id=123)` 与 另一个全新的 order。
+
+我们希望保持 orders table 更新每个 order 的最新详情，因此如果 order_id 已经存在与目标表（orders）中，我们将更新 order_amount。 如果没有，我们将插入新的记录。
+
+```SQL
+# Spark SQL
+MERGE INTO orders o
+USING (SELECT * FROM orders_staging) s
+ON o.order_id = s.order_id
+WHEN MATCHED THEN UPDATE SET order_amount = s.order_amount
+WHEN NOT MATCHED THEN INSERT *;
+
+# Dremio
+MERGE INTO orders o
+USING (SELECT * FROM orders_staging) s
+ON o.order_id = s.order_id
+WHEN MATCHED THEN UPDATE SET order_amount = s.order_amount
+WHEN NOT MATCHED THEN INSERT (order_id, customer_id, order_amount, order_ts)
+VALUES (s.order_id, s.customer_id, s.order_amount, s.order_ts)
+```
