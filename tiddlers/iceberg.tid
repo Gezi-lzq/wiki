@@ -1,6 +1,11 @@
 color: #8cd0f2
 created: 20241113161556427
 creator: Gezi-lzq
-modified: 20241113165851010
+modified: 20241117120323676
 modifier: Gezi-lzq
+tags: 笔记
 title: iceberg
+
+此 Tag 下大多内容的来源为《The Definitive Guide to Apache Iceberg》进行摘抄与翻译
+
+https://github.com/developer-advocacy-dremio/definitive-guide-to-apache-iceberg

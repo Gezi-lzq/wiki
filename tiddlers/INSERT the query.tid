@@ -1,0 +1,158 @@
+created: 20241117105808322
+creator: Gezi-lzq
+modified: 20241117105808322
+modifier: Gezi-lzq
+tags: [[在 Apache Iceberg 中写 queries]]
+title: INSERT the query
+
+
+! INSERT the query
+
+现在让我们插入一些 records 到 table 中并了解其工作原理。我们已经创建了一个名为 orders 的 table，包含四个 columns。在这个示范中，我们将输入以下 values 到 table 中：order_id 为 123，customer_id 为 456，order_amount 为 36.17，order_ts 为 2023-03-07 08:10:23。
+
+```SQL
+# Spark SQL/Dremio's SQL Query Engine
+INSERT INTO orders VALUES (
+	123,
+	456,
+	36.17,
+	'2023-03-07 08:10:23'
+)
+```
+
+! 把 query 发送到 engine
+
+The query 被发送到 query engine 进行 parsing。因为这是一个 `INSERT statement`，engine 需要关于 table 的信息，比如它的 schema，以开始 query planning。
+
+! 检查 catalog
+
+首先，query engine 会向 catalog 请求以确定当前 metadata 文件的位置，然后读取它。因为我们使用的是 Hadoop catalog，engine 会读取 `/orders/metadata/version-hint.txt` 文件，并看到文件内容是一个单一的整数：1。
+
+基于此，并利用 catalog 实现中的逻辑，engine 知道当前 metadata 文件的位置是 `/orders/metadata/v1.metadata.json`，这是我们之前 `CREATE TABLE` 操作创建的文件。所以 engine 会读取这个文件。尽管在这种情况下 engine 的目的是插入新的 datafiles，它仍然会与 catalog 交互，主要有两个原因：
+
+* The engine 需要理解当前表的 schema 以遵循它。
+* The engine 需要在写入时了解 partitioning scheme 来组织数据。
+
+! 写 datafiles 和 metadata files
+
+在 engine 了解 table schema 和 partitioning scheme 之后，它开始写入新的 datafiles 和相关的 metadata files。以下是这个过程中的具体步骤。
+
+首先，engine 将记录写成 Parquet 数据文件（Parquet 是默认的，但可以更改），基于表的每小时定义的 partitioning scheme。
+
+此外，如果为表定义了 sort order，记录将在写入 datafile 之前进行排序。这就是它在 filesystem 中的样子：
+
+```
+s3://datalake/db1/orders/data/order_ts_hour=2023-03-07-08/0_0_0.parquet
+```
+
+在写入 datafile 之后，engine 会创建一个 manifest file。这个 manifest file 包含了关于 engine 创建的实际 datafile 路径的信息。此外，engine 还会在 manifest file 中写入统计信息，例如列的 upper 和 lower bounds 以及 null value counts，这对 query engine 修剪文件和提供最佳性能非常有利。
+
+engine 在处理即将写入的数据时计算这些信息，因此这是一个相对轻量的操作，至少相比从头开始计算统计信息的过程。manifest file 会作为.avro 文件写入存储系统中。
+
+```
+s3://datalake/db1/orders/metadata/62acb3d7-e992-4cbc-8e41-58809fcacb3e.avro
+```
+
+这是一个 manifest 文件内容的 JSON 表示(仅展示了需要关注的部分信息)。
+
+```json
+{
+  "data_file": {
+    "file_path": "s3://datalake/db1/orders/data/order_ts_hour=2023-03-07-08/0_0_0.parquet",
+    "file_format": "PARQUET",
+    "block_size_in_bytes": 67108864,
+    "null_value_counts": [],
+    "lower_bounds": {
+      "array": [
+        {
+          "key": 1,
+          "value": 123
+        }
+      ]
+    },
+    "upper_bounds": {
+      "array": [
+        {
+          "key": 1,
+          "value": 123
+        }
+      ]
+    }
+  }
+}
+```
+
+接下来，engine 创建一个 manifest list 来跟踪 manifest file。如果现有的 manifest files 与这个 snapshot 相关联，它们也会被添加到这个新的 manifest list 中。
+
+engine 将这个文件写入 data lake，包含的信息如 manifest file 的路径、添加或删除的 datafiles/rows 数量以及关于 partitions 的统计信息，例如 partition columns 的上下界。同样，engine 已经拥有所有这些信息，所以有这些 statistics 是一个轻量级的操作。这些信息帮助读取 queries 排除任何不需要的 manifest 文件，从而加快 queries 速度。
+
+```
+s3://datalake/db1/orders/metadata/snap-8333017788700497002-1-4010cc03-5585-458c-9fdc-188de318c3e6.avro
+```
+
+这里是 manifest list 内容的一个片段：
+
+```json
+{
+  "manifest_path": "s3://datalake/db1/orders/metadata/62acb3d7-e992-4cbc-8e41-58809fcacb3e.avro",
+  "manifest_length": 6152,
+  "added_snapshot_id": 8333017788700497002,
+  "added_data_files_count": 1,
+  "added_rows_count": 1,
+  "deleted_rows_count": 0,
+  "partitions": {
+    "array": [
+      {
+        "contains_null": false,
+        "lower_bound": {
+          "bytes": "¹Ô\u0006\u0000"
+        },
+        "upper_bound": {
+          "bytes": "¹Ô\u0006\u0000"
+        }
+      }
+    ]
+  }
+}
+```
+
+最后，engine 创建了一个新的 metadata 文件 `v2.metadata.json` ，并生成了一个新的 `snapshot-s1`。在这个过程中，engine 参考了现有的、之前被认为是当前元数据文件的 `v1.metadata.json`, 同时记录了上一个 `snapshot-s0`。这个新的元数据文件包括 engine 创建的 manifest list 信息，其中包括例如manifest list 文件路径、snapshot id 以及 operation summary 等详细信息。
+
+此外，engine 还指明了最近生成的 manifest 列表或快照是当前应使用的版本。
+
+```
+s3://datalake/db1/orders/metadata/v2.metadata.json
+```
+
+以下是这个新的 metadata 文件的部分内容示例：
+
+```json
+{
+  "current-snapshot-id": 8333017788700497002,
+  "refs": {
+    "main": {
+      "snapshot-id": 8333017788700497002,
+      "type": "branch"
+    }
+  },
+  "snapshots": [
+    {
+      "snapshot-id": 8333017788700497002,
+      "summary": {
+        "operation": "append",
+        "added-data-files": "1",
+        "added-records": "1"
+      },
+      "manifest-list": "s3://datalake/db1/orders/metadata/snap-8333017788700497002-1-4010cc03-5585-458c-9fdc-188de318c3e6.avro"
+    }
+  ]
+}
+```
+
+! 更新 catalog 文件以 commit 更改
+
+现在 engine 再次访问 catalog，确保在执行这个 INSERT 操作时没有其他 snapshots 被提交。通过这种 validation，Iceberg 保证了在多个 writers 同时写数据的情况下操作不会互相干扰。
+
+在任何 write 操作中，Iceberg 乐观地创建 metadata files，假设当前版本在 writer 提交之前不会改变。完成 write 后，engine 通过将 table 的 metadata file pointer 从现有的 base version 切换到新的版本 v2.metadata.json 来原子性地 commit，这样新版本就成为了当前的 metadata file。
+
+[img[iceberg_component's_hierarchy_after_executing_INSERT.png]]

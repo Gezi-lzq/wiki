@@ -1,6 +1,6 @@
 created: 20241117103525113
 creator: Gezi-lzq
-modified: 20241117104129941
+modified: 20241117120103779
 modifier: Gezi-lzq
 tags: 
 title: Merge Query
@@ -11,7 +11,7 @@ title: Merge Query
 
 所以，在我们的例子中，假设有一个 stage table，`orders_staging` 包含两个record：一个是现有 `order_id(order_id=123)` 与 另一个全新的 order。
 
-我们希望保持 orders table 更新每个 order 的最新详情，因此如果 order_id 已经存在与目标表（orders）中，我们将更新 order_amount。 如果没有，我们将插入新的记录。
+我们希望保持 orders table 更新每个 order 的最新详情，因此如果`orders_staging`表中的 order_id 已经存在与目标表（orders）中，我们将更新 order_amount。 如果没有，我们将插入新的记录。
 
 ```SQL
 # Spark SQL
@@ -29,3 +29,64 @@ WHEN MATCHED THEN UPDATE SET order_amount = s.order_amount
 WHEN NOT MATCHED THEN INSERT (order_id, customer_id, order_amount, order_ts)
 VALUES (s.order_id, s.customer_id, s.order_amount, s.order_ts)
 ```
+
+这个 query 会 merge 以下 datasets：
+
+
+|!`orders` | !order_id | !customer_id | !order_amount | !order_ts |
+|!recodr-1| 123 | 456 | 36.7 | 2023-03-07 08:10:23 |
+
+
+|!`orders_staging` | !order_id | !customer_id | !order_amount | !order_ts |
+|! recodr-1| 123 | 456 | 50.5 | 2023-03-07 08:10:23 |
+|! recodr-2| 124 | 326 | 60 | 2023-01-27 10:05:03 |
+
+! 把 query 发送到 engine
+
+The query 先由 query engine 解析。在这种情况下，因为涉及两个表（stage 和 destination），engine 需要这两个表的数据来开始 query planning。
+
+! 检查 catalog
+
+类似于[[INSERT the query]]的操作，query engine 首先会向 catalog 请求以确定当前 metadata 文件的位置，然后读取它。因为当前这个example使用的 catalog 是 Hadoop， engine 会读取 `/orders/metadata/version-hint.txt` 文件并获取其内容， 即为整数 2。
+
+在获取这些信息并使用 catalog 逻辑后， engine 了解到当前的 metadata 文件位置是 `/orders/metadata/v2.metadata.json`。 这是在上一次 INSERT 操作后生的文件，所以 engine 会读取这个文件。 然后 engine 会查看表当前的 `schema`，以便写操作可以遵循它。最后， engine 会根据 partitioning strategy 了解 datafile 的组织方式，并开始写入新的 datafile。
+
+! Write datafiles 和 metadata files
+
+首先，query engine 会从 `orders_staging` 和 `orders` tables 中读取并加载数据到内存中，以确定匹配的记录。engine 会根据 order_id 字段遍历两个表中的每条记录，并找出匹配的记录。
+
+一个重要的事情是，当引擎在确定匹配时，内存中跟踪的内容将基于 Iceberg table properties 定义的两种策略：copy-on-write (COW) 和 merge-on-read (MOR)。对于 COW strategy，每当 Iceberg table 被更新时，任何与相关记录相关的数据文件都会被重写为一个新的 datafile。然而，对于 MOR，数据文件不会被重写；相反，会生成新的 delete files 来跟踪这些 changes。
+
+在我们的 case 中，我们会使用 COW strategy。因此，包含 order_id = 123 记录的 datafile 0_0_0.parquet 会被读入内存。然后，这个 order_id 的 order_amount 字段会用 order_staging 表中的新 order_amount 在内存副本中更新。最后，这些修改后的 details 将被写入一个新的 Parquet datafile：
+
+```
+s3://datalake/db1/orders/data/order_ts_hour=2023-03-07-08/0_0_1.parquet
+```
+
+请注意，在这个特定的例子中，我们在 orders 表中只有一条记录。然而，即使在这个表中有其他不符合查询条件的记录，engine 仍然会复制所有这些记录，并且只有匹配的行会被更新，而不匹配的行会被写入一个独立的文件。这是 write strategy COW 所规定的。
+
+现在在 `order_staging` 表中不符合条件的记录将被视为常规 INSERT，并将作为新的 datafile 写入不同的 partition，因为这个记录的 hour(order_ts)值不同：
+
+```
+s3://datalake/db1/orders/data/order_ts_hour=2023-01-27-10/0_0_0.parquet
+```
+
+在写完 datafiles 之后，engine 会创建一个新的 manifest file，里面包含了这两个 datafiles 的 filepath 引用。此外，这些 datafiles 的各种统计信息，例如某一列的 lower 和 upper bounds 以及 value counts，也会被包含在 manifest file 中。
+
+然后 engine 生成一个新的 manifest list，指向前一步创建的 manifest file。它还会 track 任何现有的 manifest files，并将 manifest list 写入 data lake：
+
+```
+s3://datalake/db1/orders/metadata/snap-5139476312242609518-1-e22ff753-2738-4d7da810-d65dcc1abe63.avro
+```
+
+之后，engine 会创建一个新的 metadata 文件，v3.metadata.json，带有一个新的 snapshot，s2，基于之前的 current metadata 文件，v2.metadata.json，以及包含在其中的 snapshots，s0 和 s1。
+
+```
+s3://datalake/db1/orders/metadata/v3.metadata.json
+```
+
+! 更新 catalog 文件以 commit 更改
+
+最后，engine 在这一点上运行检查，以确保没有 write conflicts，然后用最新的 metadata file 的值更新 catalog，这个文件是 v3.metadata.json。
+
+[img[Iceberg_components_hierarchy_after_executing_MERGE_INTO.png]]
