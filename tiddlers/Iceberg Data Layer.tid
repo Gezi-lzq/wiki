@@ -1,8 +1,8 @@
 created: 20241113161823167
 creator: Gezi-lzq
-modified: 20241113165735113
+modified: 20241118032101160
 modifier: Gezi-lzq
-tags: iceberg
+tags: iceberg feed
 title: Iceberg Data Layer
 
 Apache Iceberg 表的数据层是存储表的实际数据的地方，主要由 datafile 组成，尽管 deletefile 也包括在内。

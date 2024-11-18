@@ -1,8 +1,8 @@
 created: 20241113165808215
 creator: Gezi-lzq
-modified: 20241114172634351
+modified: 20241118032144988
 modifier: Gezi-lzq
-tags: iceberg
+tags: iceberg feed
 title: Iceberg Metadata Layer
 
 The metadata layer 是 Iceberg table 架构中不可或缺的一部分，包含了所有的 metadata files。它是一个 tree structure，追踪 datafiles 及其 metadata, 以及导致这些文件创建的operations。

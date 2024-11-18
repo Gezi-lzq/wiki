@@ -1,8 +1,8 @@
 created: 20241114172706984
 creator: Gezi-lzq
-modified: 20241114173656125
+modified: 20241118032207053
 modifier: Gezi-lzq
-tags: iceberg
+tags: iceberg feed
 title: The Catalog
 
 任何从一个 table 读取数据的人（更不用说几十、几百甚至几千个 table）需要知道首先去哪里；他们需要一个地方来找出在哪里读取/写入特定 table 的数据。任何想要与 table 交互的人第一步是找到当前 metadata pointer 的 metadata file 的位置。

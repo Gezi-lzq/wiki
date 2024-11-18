@@ -1,8 +1,8 @@
 created: 20241116162300973
 creator: Gezi-lzq
-modified: 20241117105840127
+modified: 20241118032225755
 modifier: Gezi-lzq
-tags: iceberg
+tags: iceberg feed
 title: 在 Apache Iceberg 中写 queries
 
 Apache Iceberg 中的 write process 涉及一系列步骤，使 query engines 能够高效地插入和更新数据。当一个 write query 被启动时，它会被发送到 engine 进行解析。
