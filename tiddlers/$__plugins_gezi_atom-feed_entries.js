@@ -55,7 +55,7 @@ exports.run = function(filter) {
 					.split("<")[0]
 					.split("`")[0]
 					.split("!")[0]
-					.substr(0,200)
+					.substr(0,300)
 					+ "...";
 			} else {
 				summary = summary.replace(/\</mg,"").replace(/\>/mg,"");
