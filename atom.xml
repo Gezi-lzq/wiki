@@ -13,22 +13,36 @@
   </author>
   <updated>2024-11-18T03:22:25+02:00</updated>  <entry>    <title>Data Lake Brief History</title>    <id>https://gezi-lzq.github.io/wiki/#Data%20Lake%20Brief%20History</id>    <link href='https://gezi-lzq.github.io/wiki/#Data%20Lake%20Brief%20History'/>    <updated>2024-11-09T16:39:31+02:00</updated>    <summary>在最初，你会采用 Hadoop ，一个开源的分布式计算框架，以及其HDFS文件系统组件，在由廉价计算机组成的集群中 存储和处理大量结构化和非结构化的数据集。 但仅仅存储这些数据还不够，你还希望对其进行分析。
 
-Hadoop 生态系统包含了 MapReduce，这是一个分析框架，用户可以用 Java 编写分析作业并在 Hadoop 集群上运行。编写 MapReduce 作业时代码冗长且复杂，而许多分...</summary>  </entry>  <entry>    <title>Iceberg Data Layer</title>    <id>https://gezi-lzq.github.io/wiki/#Iceberg%20Data%20Layer</id>    <link href='https://gezi-lzq.github.io/wiki/#Iceberg%20Data%20Layer'/>    <updated>2024-11-18T03:21:01+02:00</updated>    <summary>Apache Iceberg 表的数据层是存储表的实际数据的地方，主要由 datafile 组成，尽管 deletefile 也包括在内。
+Hadoop 生态系统包含了 MapReduce，这是一个分析框架，用户可以用 Java 编写分析作业并在 Hadoop 集群上运行。编写 MapReduce 作业时代码冗长且复杂，而许多分析师更习惯于编写 SQL 而不是 Java，因此 Hive 被创建出来，用来将 SQL 语句转换成 MapReduce 作业。
+
+为了编写SQL，还需要一个机制用来区分存储中哪些文件属于特定的数据集或...</summary>  </entry>  <entry>    <title>Iceberg Data Layer</title>    <id>https://gezi-lzq.github.io/wiki/#Iceberg%20Data%20Layer</id>    <link href='https://gezi-lzq.github.io/wiki/#Iceberg%20Data%20Layer'/>    <updated>2024-11-18T03:21:01+02:00</updated>    <summary>Apache Iceberg 表的数据层是存储表的实际数据的地方，主要由 datafile 组成，尽管 deletefile 也包括在内。
 
 数据层为用户查询提供所需的数据。虽然在某些情况下，metadata 层的结构也可以提供结构（例如， 获取某列的最大值），但通常由数据层来参与提供用户查询并提供结果。
 
 数据层中的files构成了 Apache Iceberg 表树结构的叶子部分。
 
-在实际使...</summary>  </entry>  <entry>    <title>Iceberg Metadata Layer</title>    <id>https://gezi-lzq.github.io/wiki/#Iceberg%20Metadata%20Layer</id>    <link href='https://gezi-lzq.github.io/wiki/#Iceberg%20Metadata%20Layer'/>    <updated>2024-11-18T03:21:44+02:00</updated>    <summary>The metadata layer 是 Iceberg table 架构中不可或缺的一部分，包含了所有的 metadata files。它是一个 tree structure，追踪 datafiles 及其 metadata, 以及导致这些文件创建的operations。
+在实际使用中，data layer 是由一个分布式文件系统（例如， HDFS）或者类似分布式文件系统的东西支持的，比如 object storage(例如 Amazon S3, Azure DLS， GCS)...</summary>  </entry>  <entry>    <title>Iceberg Metadata Layer</title>    <id>https://gezi-lzq.github.io/wiki/#Iceberg%20Metadata%20Layer</id>    <link href='https://gezi-lzq.github.io/wiki/#Iceberg%20Metadata%20Layer'/>    <updated>2024-11-18T03:21:44+02:00</updated>    <summary>The metadata layer 是 Iceberg table 架构中不可或缺的一部分，包含了所有的 metadata files。它是一个 tree structure，追踪 datafiles 及其 metadata, 以及导致这些文件创建的operations。
 
-这个 tree structure 由三种 file types 组成，所有这些都与 datafiles colocate...</summary>  </entry>  <entry>    <title>Kafka Replace ZooKeeper</title>    <id>https://gezi-lzq.github.io/wiki/#Kafka%20Replace%20ZooKeeper</id>    <link href='https://gezi-lzq.github.io/wiki/#Kafka%20Replace%20ZooKeeper'/>    <updated>2024-11-11T02:01:10+02:00</updated>    <summary>在 KIP-500 中，提出了使用“Replace ZooKeeper with a Self-Managed Metadata Quorum”在这个KIP中，提出了希望去除对 ZooKeeper 的依赖。使用更稳健且可扩展的方式来管理元数据，支持更多分区。
+这个 tree structure 由三种 file types 组成，所有这些都与 datafiles colocated(同等定位)：
 
-我们如今常用的代码版本管理工具git，通过一个个记录变更的commit来管理整个项目的代码版本。如果希望恢复到某个时间点的代码版本，只需要...</summary>  </entry>  <entry>    <title>MY FIRST FEED</title>    <id>https://gezi-lzq.github.io/wiki/#MY%20FIRST%20FEED</id>    <link href='https://gezi-lzq.github.io/wiki/#MY%20FIRST%20FEED'/>    <updated>2024-11-09T07:40:05+02:00</updated>    <summary>新增加了 RSS 功能	，仅 feed 标签的会被筛选出来，第一个feed，测试一下...</summary>  </entry>  <entry>    <title>The Catalog</title>    <id>https://gezi-lzq.github.io/wiki/#The%20Catalog</id>    <link href='https://gezi-lzq.github.io/wiki/#The%20Catalog'/>    <updated>2024-11-18T03:22:07+02:00</updated>    <summary>任何从一个 table 读取数据的人（更不用说几十、几百甚至几千个 table）需要知道首先去哪里；他们需要一个地方来找出在哪里读取/写入特定 table 的数据。任何想要与 table 交互的人第一步是找到当前 metadata pointer 的 metadata file 的位置。
+* manifest files
+* manifest lists
+* metadata files
+
+The metadata layer 对于高效管理 large datase...</summary>  </entry>  <entry>    <title>Kafka Replace ZooKeeper</title>    <id>https://gezi-lzq.github.io/wiki/#Kafka%20Replace%20ZooKeeper</id>    <link href='https://gezi-lzq.github.io/wiki/#Kafka%20Replace%20ZooKeeper'/>    <updated>2024-11-11T02:01:10+02:00</updated>    <summary>在 KIP-500 中，提出了使用“Replace ZooKeeper with a Self-Managed Metadata Quorum”在这个KIP中，提出了希望去除对 ZooKeeper 的依赖。使用更稳健且可扩展的方式来管理元数据，支持更多分区。
+
+我们如今常用的代码版本管理工具git，通过一个个记录变更的commit来管理整个项目的代码版本。如果希望恢复到某个时间点的代码版本，只需要把这个事件之前的commit撤销即可，分支中最新的代码内容，也是该分支中所有变更叠加的操作。
+
+在进行状态管理的时候，往往也会通过类似的方式，通过事件流的方式进行管理，当只需要回放所有的事件就可以构建...</summary>  </entry>  <entry>    <title>MY FIRST FEED</title>    <id>https://gezi-lzq.github.io/wiki/#MY%20FIRST%20FEED</id>    <link href='https://gezi-lzq.github.io/wiki/#MY%20FIRST%20FEED'/>    <updated>2024-11-09T07:40:05+02:00</updated>    <summary>新增加了 RSS 功能	，仅 feed 标签的会被筛选出来，第一个feed，测试一下...</summary>  </entry>  <entry>    <title>The Catalog</title>    <id>https://gezi-lzq.github.io/wiki/#The%20Catalog</id>    <link href='https://gezi-lzq.github.io/wiki/#The%20Catalog'/>    <updated>2024-11-18T03:22:07+02:00</updated>    <summary>任何从一个 table 读取数据的人（更不用说几十、几百甚至几千个 table）需要知道首先去哪里；他们需要一个地方来找出在哪里读取/写入特定 table 的数据。任何想要与 table 交互的人第一步是找到当前 metadata pointer 的 metadata file 的位置。
 
 这个用于查找当前 metadata pointer 位置的中心位置就是 Iceberg Catalog。
 
-...</summary>  </entry>  <entry>    <title>在 Apache Iceberg 中写 queries</title>    <id>https://gezi-lzq.github.io/wiki/#%E5%9C%A8%20Apache%20Iceberg%20%E4%B8%AD%E5%86%99%20queries</id>    <link href='https://gezi-lzq.github.io/wiki/#%E5%9C%A8%20Apache%20Iceberg%20%E4%B8%AD%E5%86%99%20queries'/>    <updated>2024-11-18T03:22:25+02:00</updated>    <summary>Apache Iceberg 中的 write process 涉及一系列步骤，使 query engines 能够高效地插入和更新数据。当一个 write query 被启动时，它会被发送到 engine 进行解析。
+Iceberg catalog 的 primary requirement 是它必须支持 atomic operations 来更新 current metadata pointer。Iceberg必...</summary>  </entry>  <entry>    <title>在 Apache Iceberg 中写 queries</title>    <id>https://gezi-lzq.github.io/wiki/#%E5%9C%A8%20Apache%20Iceberg%20%E4%B8%AD%E5%86%99%20queries</id>    <link href='https://gezi-lzq.github.io/wiki/#%E5%9C%A8%20Apache%20Iceberg%20%E4%B8%AD%E5%86%99%20queries'/>    <updated>2024-11-18T03:22:25+02:00</updated>    <summary>Apache Iceberg 中的 write process 涉及一系列步骤，使 query engines 能够高效地插入和更新数据。当一个 write query 被启动时，它会被发送到 engine 进行解析。
 
 然后 consult catalog 以确保数据的一致性和完整性，并根据定义的 partition strategies 写入数据。
 
-数据文件和 metadata 文件会根据 ...</summary>  </entry></feed>
+数据文件和 metadata 文件会根据 query 写入。最后，catalog file 会被更新以反映最新的 metadata，从而支持后续的 read operations 去 access 最新版本的数据。
+
+
+
+...</summary>  </entry></feed>
