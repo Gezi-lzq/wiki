@@ -1,0 +1,11 @@
+created: 20241224151718245
+creator: Gezi-lzq
+modified: 20241224151913577
+modifier: Gezi-lzq
+tags: DDIA
+title: 理解 trade-offs
+
+理解 trade-offs, 也就是说，认识到对于许多问题没有一个正确的答案，而是有几种不同的方法，每种方法都有各自的优缺点。
+
+> There are no solutions, there are only trade-offs. […] But you try to get the best trade-off you can get, and that’s all you can hope for.
+> Thomas Sowell, Interview with Fred Barnes (2005)

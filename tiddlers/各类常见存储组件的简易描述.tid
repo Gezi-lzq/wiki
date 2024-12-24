@@ -1,0 +1,16 @@
+created: 20241224145739106
+creator: Gezi-lzq
+modified: 20241224150200455
+modifier: Gezi-lzq
+tags: DDIA
+title: 各类常见存储组件的简易描述
+
+1. 存储 data 以便他们或者其他应用程序可以稍后再次找到它 （databases)
+
+2. 记住一次 expensive operation 的结果，以加速读取 （caches）
+
+3. 允许用户通过 keyword 搜索数据或用各种方式 filter 数据（seach indexes）
+
+4. event 与 data 变化一发生就要 handle (stream processing)
+
+5. 定期 crunch 大量累积的数据 (batch processing)

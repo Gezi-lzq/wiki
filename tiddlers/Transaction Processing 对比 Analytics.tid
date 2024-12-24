@@ -1,0 +1,11 @@
+created: 20241224152229124
+creator: Gezi-lzq
+modified: 20241224153426155
+modifier: Gezi-lzq
+tags: DDIA
+title: Transaction Processing 对比 Analytics
+
+Operational systems 包括 backend services 和 data infrastructure，这些地方是数据被创建的地方，例如通过服务 external users。在这里，application code 会根据用户执行的 actions 来读取和修改数据库中的数据。
+
+Analytical systems 满足 business analysts 和 data scientists 的需求。它们包含来自 operational systems 的只读数据副本，并且它们针对 analytics 所需的数据处理类型进行了优化。
+
