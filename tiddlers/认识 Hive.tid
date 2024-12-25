@@ -1,8 +1,8 @@
 created: 20241102144825910
 creator: Gezi-lzq
-modified: 20241102145424781
+modified: 20241225022816401
 modifier: Gezi-lzq
-tags: 
+tags: 大数据
 title: 认识 Hive
 
 Apache Hive 是一个基于 Hadoop 的数据仓库系统，用于在分布式存储系统上进行大规模数据的存储、查询和分析。Hive 提供了一种称为 HiveQL 的查询语言，这种语言类似于 SQL，使得熟悉 SQL 的用户能够轻松地在 Hadoop 上执行数据查询和分析。
