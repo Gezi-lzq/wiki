@@ -1,0 +1,18 @@
+created: 20250101153127094
+creator: Gezi-lzq
+modified: 20250101155915082
+modifier: Gezi-lzq
+tags: [[Optimizing the Performance of Iceberg Table]]
+title: Compaction
+
+每个 procedure 或 process 在时间上都有 cost， 这意味着更长的 queries 和 更高的计算成本。换句话说，完成某事所需要的 steps 越多，所花费的时间就越长。当你 query Iceberg tables 时，你需要打开并扫描每个文件，然后在完成后关闭文件。你需要扫描的文件越多，这些 file operations 对你 query 造成的 cost 就越大。 在 streaming 或 “real-time”数据的世界中，这个问题被放大了，因为数据在创建时被 ingested，生成了很多只有少量记录的文件。
+
+相比之下，batch ingestion, 你可以在一个 job 中摄取一整天或一整周的 records，这样可以更有效地计划如何将数据写成更有组织的 files。即使是 batch ingestion, 也可能会遇到“small file problem”， 因为太多的小 files 会影响到你的扫描速度和性能，因为你需要更多的 file operations, 有更多的 metadata 要读取（每个 file 都有 metadata ）,并且在进行 cleanup 和 maintenance 操作时需要删除更多 files。下图描绘了这两种情况：
+[img[many_smaller_files_are_slower_to_read.png]]
+
+Essentially, 当涉及到读取数据时，有些 fied costs 是你无法避免的， 还有一些 variable costs 你可以通过不同的策略来避免。 Fixed costs 包括读取与你 query 相关的特定数据；你无法避免读取数据来处理它。虽然 variable 包括访问数据的文件操作，通过我们本章中讨论的需要策略，你可以尽可能减少这些 variable costs。使用这些策略后，就可以通过必要的计算完成这份工作，使其成本与时间的开销都可以降低。
+
+解决这个问题的 solution 是定期将所有小文件中的 data 提取出来并重写到更少的较大文件中（如果 manifest 相对于 datafiles 的数量过多， 你可能也需要重写 manifest）。这个过程叫做 compaction，因为你正在将许多文件压缩成少数几个。
+
+[img[compaction_takes_many_smaller_files.png]]
+
