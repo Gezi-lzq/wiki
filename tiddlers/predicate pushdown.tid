@@ -1,0 +1,8 @@
+created: 20250101161116458
+creator: Gezi-lzq
+modified: 20250101161155452
+modifier: Gezi-lzq
+tags: 大数据
+title: predicate pushdown
+
+在数据存储和查询优化中，"predicate pushdown" 是一种优化技术，涉及在数据库查询过程中尽量在查询早期阶段进行过滤条件的应用，以减少不必要的数据扫描和处理。这个过程通常发生在存储引擎层面，查询引擎将过滤条件（谓词）下推到数据源以尽量减少返回的数据量。
