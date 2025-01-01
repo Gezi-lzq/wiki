@@ -1,0 +1,11 @@
+created: 20250101141637551
+creator: Gezi-lzq
+modified: 20250101145919941
+modifier: Gezi-lzq
+tags: iceberg
+title: Optimizing the Performance of Iceberg Table
+
+Apache Iceberg tables 提供了一层 metadata，允许 Query engine 创建更多智能的 query plans 以提高性能。然而，这些 metadata 只是你可以优化数据性能的开始。
+
+	你有各自 optimization levers 可以使用，包括减少 datafiles 的数量、data sorting、table partitioning、row-lever update handing、metrices collection 和 external factors。这些 levers 在提升 data per
+
