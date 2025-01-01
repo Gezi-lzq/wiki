@@ -1,0 +1,11 @@
+author: Saq Imtiaz
+core-version: >=5.3.0
+dependents: 
+description: Quickly and silently import images in the editor
+list: readme settings
+name: Quick Images
+plugin-priority: 0
+plugin-type: plugin
+title: $:/plugins/sq/quickimages
+type: application/json
+version: 0.0.3
