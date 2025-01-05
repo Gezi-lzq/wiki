@@ -11,7 +11,7 @@
   <author>
     <name>Gezi-lzq</name>
   </author>
-  <updated>2025-01-05T09:02:34+02:00</updated>  <entry>    <title>Data Lake Brief History</title>    <id>https://gezi-lzq.github.io/wiki/#Data%20Lake%20Brief%20History</id>    <link href='https://gezi-lzq.github.io/wiki/#Data%20Lake%20Brief%20History'/>    <updated>2024-11-09T16:39:31+02:00</updated>    <summary>在最初，你会采用 Hadoop ，一个开源的分布式计算框架，以及其HDFS文件系统组件，在由廉价计算机组成的集群中 存储和处理大量结构化和非结构化的数据集。 但仅仅存储这些数据还不够，你还希望对其进行分析。
+  <updated>2025-01-05T10:14:12+02:00</updated>  <entry>    <title>Data Lake Brief History</title>    <id>https://gezi-lzq.github.io/wiki/#Data%20Lake%20Brief%20History</id>    <link href='https://gezi-lzq.github.io/wiki/#Data%20Lake%20Brief%20History'/>    <updated>2024-11-09T16:39:31+02:00</updated>    <summary>在最初，你会采用 Hadoop ，一个开源的分布式计算框架，以及其HDFS文件系统组件，在由廉价计算机组成的集群中 存储和处理大量结构化和非结构化的数据集。 但仅仅存储这些数据还不够，你还希望对其进行分析。
 
 Hadoop 生态系统包含了 MapReduce，这是一个分析框架，用户可以用 Java 编写分析作业并在 Hadoop 集群上运行。编写 MapReduce 作业时代码冗长且复杂，而许多分析师更习惯于编写 SQL 而不是 Java，因此 Hive 被创建出来，用来将 SQL 语句转换成 MapReduce 作业。
 
