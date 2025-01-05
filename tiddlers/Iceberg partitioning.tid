@@ -1,0 +1,11 @@
+created: 20250105085930924
+creator: Gezi-lzq
+modified: 20250105090234654
+modifier: Gezi-lzq
+tags: iceberg
+title: Iceberg partitioning
+
+! what is partitioning?
+
+partitioning 是一种在写入时将相似行分组在一起以加快查询速度的方法。
+
