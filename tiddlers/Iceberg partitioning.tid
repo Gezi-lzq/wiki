@@ -1,11 +1,164 @@
 created: 20250105085930924
 creator: Gezi-lzq
-modified: 20250105090234654
+modified: 20250105101412625
 modifier: Gezi-lzq
 tags: iceberg
 title: Iceberg partitioning
 
-! what is partitioning?
+! What is partitioning?
 
-partitioning 是一种在写入时将相似行分组在一起以加快查询速度的方法。
+Partitioning 是一种在写入时将相似行分组在一起以加快查询速度的方法。
 
+例如，查询 logs 表的日志条目通常会包括一个时间范围，比如这个查询，用于获取上午 10 点到 12 点之间的日志：
+
+```
+SELECT level, message FROM logs
+WHERE event_time BETWEEN '2018-12-01 10:00:00' AND '2018-12-01 12:00:00';
+```
+
+配置 logs 表按 event_time 的日期分区将日志事件分组到具有相同事件日期的文件中。Iceberg 会跟踪那个日期，并使用它来跳过其他没有有用数据的日期的文件。
+
+Iceberg 可以根据年、月、日和小时的粒度分区时间戳。它还可以使用类别列，如这个日志示例中的 level ，将行一起存储以加快查询速度。
+
+! What does Iceberg do differently?
+
+其他表格格式如 Hive 支持分区，但 Iceberg 支持 'hidden partitioning'。
+
+
+* Iceberg 处理生成表中行的partition values这一繁琐且容易出错的任务。
+
+* Iceberg 会自动避免读取不必要的分区。消费者不需要知道表是如何分区的并在查询中添加额外的过滤条件。
+
+* Iceberg partition layouts可以根据需要演变。
+
+
+!! Partitioning in Hive
+
+为了展示差异，请考虑 Hive 会如何处理一个 logs 表。
+
+在 Hive 中，分区是显式的，并以列的形式出现，因此 logs 表会有一列名为 event_date 。在写入时，插入操作需要提供 event_date 列的数据：
+
+```sql
+INSERT INTO logs PARTITION (event_date)
+  SELECT level, message, event_time, format_time(event_time, 'YYYY-MM-dd')
+  FROM unstructured_log_source;
+```
+
+<<<
+我们正在向 logs 表插入数据。 PARTITION (event_date) 表示第 event_date 列将用于分区。
+
+这个 SQL 查询是从 unstructured_log_source 转移数据到一个分区的 logs 表中。它将 event_time 格式化为日期格式 event_date 以供分区使用。
+
+<<<
+
+同样，查询 logs 表时必须包含 event_date 过滤器以及 event_time 过滤器。
+
+```sql
+SELECT level, count(1) as count FROM logs
+WHERE event_time BETWEEN '2018-12-01 10:00:00' AND '2018-12-01 12:00:00'
+  AND event_date = '2018-12-01';
+```
+
+如果缺少 event_date 过滤器，Hive 会扫描表中的每个文件，因为它不知道 event_time 列与 event_date 列相关。
+
+!! Problems with Hive partitioning
+
+
+Hive 必须提供分区值。在日志示例中，它不知道 event_time 和 event_date 之间的关系。
+
+这导致了几个问题：
+
+* Hive 无法验证分区值——正确的值由写入者生成
+
+** 使用错误的格式 2018-12-01 而不是 20181201 ，会产生隐性的错误结果，而不是查询失败
+
+** 使用错误的源列，比如 processing_time ，或者时区也会导致结果不正确，而不是失败
+
+* 用户需要正确编写查询
+
+** 使用错误的 format 也会导致 silently incorrect 的结果
+
+** 不理解 table 物理布局的用户会导致查询速度变慢 -- Hive 不能自动 translate filters
+
+* 工作 queries 与表的 partitioning scheme 绑定，因此如果不破坏 queries，partitioning configuration 不能更改
+
+
+! Iceberg 的 hidden partitioning
+
+Iceberg 通过获取列值并可选地进行 transformation 来生成 partition values。Iceberg 负责将 event_time 转换为 event_date ，并跟踪这种关系。
+
+表 partitioning 是通过这些关系配置的。 logs 表将按 date(event_time) 和 level 进行 partition。
+
+因为 Iceberg 不需要用户维护的 partition columns，它可以隐藏 partitioning。Partition values 每次都能正确生成，并在可能的情况下始终用于加速 queries。Producers 和 consumers 甚至不会看到 event_date 。
+
+最重要的是，queries 不再依赖于表的物理布局。由于 physical 和 logical 的分离，Iceberg tables 可以随着数据量的变化逐步演变分区方案。Misconfigured tables 可以在不进行昂贵迁移的情况下修复。
+
+
+! Partition Transforms
+
+https://iceberg.apache.org/spec/#partition-transforms
+
+
+! Partition evolution
+
+Table partitioning 可以通过添加、移除、重命名或重新排序 partition spec fields 来演变。
+
+更改 partition spec 会生成一个新的spec，通过一个唯一的 spec ID 来识别，并添加到表的 partition spec列表中，并且可能设置为表的默认spec。
+
+在 evolving 一个 spec 时，changes 不应该导致 partition field IDs 改变，因为 partition field IDs 在 manifest files 中被用作 partition tuple field IDs。
+
+
+
+Iceberg table partitioning可以在现有表中更新，因为 queries 不会直接引用 partition values。
+
+当你 evolve 一个 partition spec 时，用早期 spec 写入的旧数据保持不变。新数据使用新的 spec 在新的 layout 中写入。每个 partition 版本的 metadata 是分开保存的。因为这个原因，当你开始写 queries 时，你会得到 split planning。这就是每个 partition layout 使用特定的 filter 分别计划文件的地方。
+
+<<image-card img:"https://iceberg.apache.org/docs/1.4.0/assets/images/partition-spec-evolution.png" width:"" align:"" title:"" text:"" footer:"" pos:"" alt:"">>
+
+
+2008 年的 data 是按月 partition 的。从 2009 年开始，table 更新后 data 是按天 partition 的。两种 partitioning layouts 可以在同一个 table 中共存。
+
+Iceberg 使用 hidden partitioning，所以你不需要写 queries 针对 specific partition layout 来提高速度。相反，你可以写 queries 选择你需要的数据，Iceberg 会自动剔除不包含匹配数据的文件。
+
+Partition evolution 是一个 metadata 操作，并不会主动 rewrite 文件。
+
+Iceberg 的 Java table API 提供 updateSpec API 来更新 partition spec。例如，以下代码可以用来更新 partition spec 以添加一个新的 partition field，将 id 列的值放入 8 个 buckets，并移除现有的 partition field category ：
+
+```
+Table sampleTable = ...;
+sampleTable.updateSpec()
+    .addField(bucket("id", 8))
+    .removeField("category")
+    .commit();
+```
+
+
+! Sorting
+
+用户可以在 partitions 内通过 columns 对数据进行排序以提升 performance。关于数据如何排序的信息可以通过 sort order 在每个 data 或 delete file 中声明。
+
+排序顺序由一个 sort order id 和一个 sort fields 列表定义。列表中的 sort fields 顺序定义了排序应用于数据的顺序。每个 sort field 包括：
+
+* 表的 schema 中的 source column id 或 source column id 列表
+
+* 用于从 source 列生成排序值的 transform。这与 partition transforms 中描述的 transform 相同。
+
+* 排序方向只能是 asc 或 desc
+
+* 一个 null order 描述了 null 值在排序时的顺序。只能是 nulls-first 或 nulls-last 。
+
+
+
+! Sort order evolution
+
+类似于 partition spec，Iceberg sort order 也可以在现有的 table 中更新。当你 evolve 一个 sort order 时，使用早期 order 写入的旧数据保持不变。Engines 总是可以选择以最新的 sort order 写入数据，或者在排序成本过高时选择 unsorted。
+
+Iceberg 的 Java table API 提供 replaceSortOrder API 来更新 sort order。例如，以下代码可以用来创建一个新的 sort order，其中 id 列按升序排列，nulls 最后，而 category 列按降序排列，nulls 首先：
+
+```
+Table sampleTable = ...;
+sampleTable.replaceSortOrder()
+   .asc("id", NullOrder.NULLS_LAST)
+   .dec("category", NullOrder.NULL_FIRST)
+   .commit();
+```
