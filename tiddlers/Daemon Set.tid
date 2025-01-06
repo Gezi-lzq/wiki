@@ -1,0 +1,23 @@
+created: 20250106120711697
+creator: Gezi-lzq
+modified: 20250106120826321
+modifier: Gezi-lzq
+tags: k8s
+title: Daemon Set
+
+DaemonSet是Kubernetes中的一种控制器（Controller），用于确保每个节点（Node）上运行一个特定的Pod副本。它特别适用于需要在集群中每个节点上运行的后台任务或守护程序，比如日志收集器、监控工具或网络服务等。
+
+!!! 主要功能与特点：
+* 节点覆盖 ：确保指定的Pod在所有（或指定子集的）节点上运行。
+
+* 自动适应 ：当新的节点加入集群时，DaemonSet自动在新节点上部署Pod；当节点被移除时，对应的Pod也会被清理。
+
+* 滚动更新 ：通过更新DaemonSet定义，可以逐步替换每个节点上的Pod，支持无缝升级。
+
+* 选择性调度 ：可以基于节点标签（node selector）选择性地调度Pod到特定节点。
+
+
+!!! 使用场景：
+* 日志收集 ：例如部署一个负责收集和转发日志到日志服务器的Pod。
+* 监控 ：如部署Prometheus node-exporter来采集节点上的性能和资源使用数据。
+* 网络插件 ：比如部署CNI（容器网络接口）插件以在每个节点上设置网络配置。
